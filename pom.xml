@@ -38,12 +38,10 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -76,8 +74,26 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <arguments>
+            <argument>--spring.profiles.active=dev</argument>
+          </arguments>
+        </configuration>
       </plugin>
+
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <!-- log configuration -->
+        <logback.loglevel>DEBUG</logback.loglevel>
+      </properties>
+    </profile>
+  </profiles>
 </project>
