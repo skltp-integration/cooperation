@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import se.skltp.cooperation.CooperationApplication;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
+import se.skltp.cooperation.web.rest.v1.controller.ConnectionPointController;
 
 import javax.annotation.PostConstruct;
 

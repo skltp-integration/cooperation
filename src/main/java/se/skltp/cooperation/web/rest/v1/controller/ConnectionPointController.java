@@ -1,5 +1,6 @@
-package se.skltp.cooperation.web.rest.v1;
+package se.skltp.cooperation.web.rest.v1.controller;
 
+import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
+import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,14 +31,23 @@ public class ConnectionPointController {
     @Autowired
     private ConnectionPointRepository connectionPointRepository;
 
+    @Autowired
+    private DozerBeanMapper mapper;
+
     /**
      * GET  /connectionPoints -> get all the connectionPoints.
      */
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ConnectionPoint> getAll() {
+    public List<ConnectionPointDTO> getAll() {
         log.debug("REST request to get all ConnectionPoints");
-        return connectionPointRepository.findAll();
+        List<ConnectionPointDTO> result = new ArrayList<>();
+        List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
+        for (ConnectionPoint cp : connectionPoints) {
+            result.add(mapper.map(cp, ConnectionPointDTO.class));
+        }
+        return result;
+
     }
 
     /**
