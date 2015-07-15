@@ -2,8 +2,6 @@ package se.skltp.cooperation.web.rest.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.domain.Cooperation;
 
 import java.util.HashSet;
 import java.util.Set;

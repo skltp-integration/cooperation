@@ -11,6 +11,8 @@ import java.io.Serializable;
 
 /**
  * A ServiceProduction.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "SERVICEPRODUCTION")

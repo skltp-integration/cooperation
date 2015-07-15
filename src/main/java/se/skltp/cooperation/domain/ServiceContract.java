@@ -13,6 +13,8 @@ import java.util.Set;
 
 /**
  * A ServiceContract.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "SERVICECONTRACT")

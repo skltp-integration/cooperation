@@ -14,6 +14,8 @@ import java.util.Set;
 
 /**
  * A ServiceConsumer.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "SERVICECONSUMER")

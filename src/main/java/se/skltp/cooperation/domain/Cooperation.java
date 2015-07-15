@@ -10,6 +10,8 @@ import java.io.Serializable;
 
 /**
  * A Cooperation.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "COOPERATION")

@@ -13,6 +13,8 @@ import java.util.Set;
 
 /**
  * A LogicalAddress.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "LOGICALADDRESS")

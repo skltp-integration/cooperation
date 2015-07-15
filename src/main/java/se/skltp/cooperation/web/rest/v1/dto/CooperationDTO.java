@@ -1,7 +1,6 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
 
 /**
  * A Cooperation Data Transfer Object

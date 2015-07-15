@@ -13,6 +13,8 @@ import java.util.Set;
 
 /**
  * A ServiceProducer.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "SERVICEPRODUCER")

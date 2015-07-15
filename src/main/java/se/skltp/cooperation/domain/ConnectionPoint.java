@@ -13,6 +13,8 @@ import java.util.Set;
 
 /**
  * A ConnectionPoint.
+ *
+ * @author Peter Merikan
  */
 @Entity
 @Table(name = "CONNECTIONPOINT")

@@ -1,8 +1,6 @@
 package se.skltp.cooperation.web.rest.v1;
 
 import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,14 +19,11 @@ import se.skltp.cooperation.web.rest.v1.controller.ConnectionPointController;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
 
 import javax.annotation.PostConstruct;
-
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -42,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test class for the ConnectionPointController REST controller.
  *
+ * @author Peter Merikan
  * @see ConnectionPointController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,13 +45,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class ConnectionPointControllerTest {
 
+    @InjectMocks
+    ConnectionPointController uut;
     @Mock
     private ConnectionPointRepository connectionPointRepositoryMock;
     @Mock
     private DozerBeanMapper mapperMock;
-    @InjectMocks
-    ConnectionPointController uut;
-
     private ConnectionPoint cp1;
     private ConnectionPoint cp2;
     private MockMvc mockMvc;
