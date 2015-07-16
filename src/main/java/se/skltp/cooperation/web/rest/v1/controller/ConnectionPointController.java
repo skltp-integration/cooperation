@@ -56,11 +56,11 @@ public class ConnectionPointController {
     @RequestMapping(value = "/{id}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ConnectionPoint> get(@PathVariable Long id) {
+    public ResponseEntity<ConnectionPointDTO> get(@PathVariable Long id) {
         log.debug("REST request to get ConnectionPoint : {}", id);
         return Optional.ofNullable(connectionPointRepository.findOne(id))
             .map(connectionPoint -> new ResponseEntity<>(
-                connectionPoint,
+                mapper.map(connectionPoint, ConnectionPointDTO.class),
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

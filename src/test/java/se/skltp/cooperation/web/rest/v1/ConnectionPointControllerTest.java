@@ -125,9 +125,9 @@ public class ConnectionPointControllerTest {
         mockMvc.perform(get("/v1/connectionPoints/{id}", cp1.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.id").value(cp1.getId().intValue()))
-            .andExpect(jsonPath("$.platform").value(cp1.getPlatform()))
-            .andExpect(jsonPath("$.environment").value(cp1.getEnvironment()));
+            .andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
+            .andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
+            .andExpect(jsonPath("$.environment").value(dto1.getEnvironment()));
     }
 
     @Test
