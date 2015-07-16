@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointListDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,11 @@ public class ConnectionPointController {
 
     /**
      * GET  /connectionPoints -> get all the connectionPoints.
+     * Content type: JSON
      */
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ConnectionPointDTO> getAll() {
+    public List<ConnectionPointDTO> getAllAsJson() {
         log.debug("REST request to get all ConnectionPoints");
         List<ConnectionPointDTO> result = new ArrayList<>();
         List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
@@ -51,11 +53,30 @@ public class ConnectionPointController {
     }
 
     /**
+     * GET  /connectionPoints -> get all the connectionPoints.
+     * Content type: XML
+     */
+    @RequestMapping(method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_XML_VALUE)
+    public ConnectionPointListDTO getAllAsXml() {
+        log.debug("REST request to get all ConnectionPoints");
+        ConnectionPointListDTO result = new ConnectionPointListDTO();
+
+        List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
+        for (ConnectionPoint cp : connectionPoints) {
+            result.getConnectionPoints().add(mapper.map(cp, ConnectionPointDTO.class));
+        }
+
+        return result;
+
+    }
+
+    /**
      * GET  /connectionPoints/:id -> get the "id" connectionPoint.
      */
     @RequestMapping(value = "/{id}",
         method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ConnectionPointDTO> get(@PathVariable Long id) {
         log.debug("REST request to get ConnectionPoint : {}", id);
         return Optional.ofNullable(connectionPointRepository.findOne(id))

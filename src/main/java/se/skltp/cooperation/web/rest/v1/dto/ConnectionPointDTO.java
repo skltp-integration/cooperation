@@ -3,6 +3,7 @@ package se.skltp.cooperation.web.rest.v1.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
  *
  * @author Peter Merikan
  */
+@XmlRootElement(name = "connectionPoint")
 public class ConnectionPointDTO {
 
 
