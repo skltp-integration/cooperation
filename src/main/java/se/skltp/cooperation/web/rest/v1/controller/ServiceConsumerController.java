@@ -1,5 +1,6 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
+
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,30 +13,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
+import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
+import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointListDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerListDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing ConnectionPoint.
+ * REST controller for managing ServiceConsumer.
  *
  * @author Peter Merikan
  */
 @RestController
-@RequestMapping("/v1/connectionPoints")
-public class ConnectionPointController {
+@RequestMapping("/v1/serviceConsumers")
+public class ServiceConsumerController {
 
-    private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
+    private final Logger log = LoggerFactory.getLogger(ServiceConsumerController.class);
 
     @Autowired
-    private ConnectionPointRepository connectionPointRepository;
+    private ServiceConsumerRepository serviceConsumerRepository;
 
     @Autowired
     private DozerBeanMapper mapper;
+
+
 
     /**
      * GET  /connectionPoints -> get all the connectionPoints.
@@ -43,47 +50,44 @@ public class ConnectionPointController {
      */
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ConnectionPointDTO> getAllAsJson() {
-        log.debug("REST request to get all ConnectionPoints");
-        List<ConnectionPointDTO> result = new ArrayList<>();
-        List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
-        for (ConnectionPoint cp : connectionPoints) {
-            result.add(mapper.map(cp, ConnectionPointDTO.class));
+    public List<ServiceConsumerDTO> getAllAsJson() {
+        log.debug("REST request to get all ServiceConsumers as Json");
+        List<ServiceConsumerDTO> result = new ArrayList<>();
+        List<ServiceConsumer> consumers = serviceConsumerRepository.findAll();
+        for (ServiceConsumer consumer : consumers) {
+            result.add(mapper.map(consumer, ServiceConsumerDTO.class));
         }
         return result;
 
     }
-
     /**
      * GET  /connectionPoints -> get all the connectionPoints.
      * Content type: XML
      */
     @RequestMapping(method = RequestMethod.GET,
         produces = MediaType.APPLICATION_XML_VALUE)
-    public ConnectionPointListDTO getAllAsXml() {
-        log.debug("REST request to get all ConnectionPoints");
-        ConnectionPointListDTO result = new ConnectionPointListDTO();
-
-        List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
-        for (ConnectionPoint cp : connectionPoints) {
-            result.getConnectionPoints().add(mapper.map(cp, ConnectionPointDTO.class));
+    public ServiceConsumerListDTO getAllAsXml() {
+        log.debug("REST request to get all ServiceConsumers as Xml");
+        ServiceConsumerListDTO result = new ServiceConsumerListDTO();
+        List<ServiceConsumer> consumers = serviceConsumerRepository.findAll();
+        for (ServiceConsumer consumer : consumers) {
+            result.getServiceConsumers().add(mapper.map(consumer, ServiceConsumerDTO.class));
         }
-
         return result;
 
     }
 
     /**
-     * GET  /connectionPoints/:id -> get the "id" connectionPoint.
+     * GET  /serviceConsumers/:id -> get the "id" serviceConsumer.
      */
     @RequestMapping(value = "/{id}",
         method = RequestMethod.GET,
         produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ConnectionPointDTO> get(@PathVariable Long id) {
+    public ResponseEntity<ServiceConsumerDTO> get(@PathVariable Long id) {
         log.debug("REST request to get ConnectionPoint : {}", id);
-        return Optional.ofNullable(connectionPointRepository.findOne(id))
-            .map(connectionPoint -> new ResponseEntity<>(
-                mapper.map(connectionPoint, ConnectionPointDTO.class),
+        return Optional.ofNullable(serviceConsumerRepository.findOne(id))
+            .map(serviceConsumer -> new ResponseEntity<>(
+                mapper.map(serviceConsumer, ServiceConsumerDTO.class),
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
