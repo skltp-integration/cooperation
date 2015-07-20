@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface ServiceConsumerRepository extends JpaRepository<ServiceConsumer,Long> {
 
+    List<ServiceConsumer> findDistinctByCooperationsConnectionPointIdOrderByDescriptionAsc(Long cooperationId);
+
 }

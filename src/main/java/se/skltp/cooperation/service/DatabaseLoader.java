@@ -58,47 +58,136 @@ public class DatabaseLoader {
 
     @PostConstruct
     private void initDatabase() {
+
+        // NTjP - Development
+
         ConnectionPoint connectionPoint = new ConnectionPoint();
         connectionPoint.setPlatform("NTjP");
         connectionPoint.setEnvironment("development");
         connectionPointRepository.save(connectionPoint);
 
-        LogicalAddress logicalAddress = new LogicalAddress();
-        logicalAddress.setDescription("logiskadress");
-        logicalAddressRepository.save(logicalAddress);
+        loadTAKData(connectionPoint);
 
-        ServiceContract serviceContract = new ServiceContract();
-        serviceContract.setName("Engagemangsindex - Update");
-        serviceContract.setNamespace("urn:riv:itintegration:engagementindex:UpdateResponder:1");
-        serviceContract.setMajor(2);
-        serviceContract.setMinor(1);
-        serviceContractRepository.save(serviceContract);
 
-        ServiceProducer serviceProducer = new ServiceProducer();
-        serviceProducer.setDescription("Producent: Engagemangsidex - Update");
-        serviceProducerRepository.save(serviceProducer);
+    }
 
-        ServiceProduction serviceProduction = new ServiceProduction();
-        serviceProduction.setRivtaProfile("RIVTABP21");
-        serviceProduction.setPhysicalAddress("PhysicalAddress");
-        serviceProduction.setConnectionPoint(connectionPoint);
-        serviceProduction.setLogicalAddress(logicalAddress);
-        serviceProduction.setServiceProducer(serviceProducer);
-        serviceProduction.setServiceContract(serviceContract);
-        serviceProductionRepository.save(serviceProduction);
+    private void loadTAKData(ConnectionPoint connectionPoint) {
+        String label = "[" + connectionPoint.getPlatform() + "-"+ connectionPoint.getEnvironment() + "]";
 
-        ServiceConsumer serviceConsumer = new ServiceConsumer();
-        serviceConsumer.setDescription("serviceConsumer");
-        serviceConsumer.setHsaId("hsaid");
-        serviceConsumer.setConnectionPoint(connectionPoint);
-        serviceConsumerRepository.save(serviceConsumer);
+        //Contract: Update
+        ServiceContract ei_update_contract = new ServiceContract();
+        ei_update_contract.setName("Engagemangsindex - Update");
+        ei_update_contract.setNamespace("urn:riv:itintegration:engagementindex:UpdateResponder:1");
+        ei_update_contract.setMajor(1);
+        ei_update_contract.setMinor(0);
+        serviceContractRepository.save(ei_update_contract);
+
+
+        LogicalAddress ei_update_logicalAddress = new LogicalAddress();
+        ei_update_logicalAddress.setDescription(label + " EI-update ");
+        logicalAddressRepository.save(ei_update_logicalAddress);
+
+        ServiceProducer ei_update_producer = new ServiceProducer();
+        ei_update_producer.setDescription(label + " Producent: Engagemangsidex - Update");
+        serviceProducerRepository.save(ei_update_producer);
+
+        ServiceProduction ei_update_production = new ServiceProduction();
+        ei_update_production.setRivtaProfile("RIVTABP21");
+        ei_update_production.setPhysicalAddress("PhysicalAddress:Producent: Engagemangsidex - Update");
+        ei_update_production.setConnectionPoint(connectionPoint);
+        ei_update_production.setLogicalAddress(ei_update_logicalAddress);
+        ei_update_production.setServiceProducer(ei_update_producer);
+        ei_update_production.setServiceContract(ei_update_contract);
+        serviceProductionRepository.save(ei_update_production);
+
+        ServiceConsumer serviceConsumer1 = new ServiceConsumer();
+        serviceConsumer1.setDescription(label + " serviceConsumer 1");
+        serviceConsumer1.setHsaId("hsaid");
+        serviceConsumer1.setConnectionPoint(connectionPoint);
+        serviceConsumerRepository.save(serviceConsumer1);
 
         Cooperation cooperation = new Cooperation();
         cooperation.setConnectionPoint(connectionPoint);
-        cooperation.setLogicalAddress(logicalAddress);
-        cooperation.setServiceContract(serviceContract);
-        cooperation.setServiceConsumer(serviceConsumer);
+        cooperation.setLogicalAddress(ei_update_logicalAddress);
+        cooperation.setServiceContract(ei_update_contract);
+        cooperation.setServiceConsumer(serviceConsumer1);
         cooperationRepository.save(cooperation);
+
+        ServiceConsumer serviceConsumer2 = new ServiceConsumer();
+        serviceConsumer2.setDescription(label + " serviceConsumer 2");
+        serviceConsumer2.setHsaId("hsaid");
+        serviceConsumer2.setConnectionPoint(connectionPoint);
+        serviceConsumerRepository.save(serviceConsumer2);
+
+        Cooperation cooperation2 = new Cooperation();
+        cooperation2.setConnectionPoint(connectionPoint);
+        cooperation2.setLogicalAddress(ei_update_logicalAddress);
+        cooperation2.setServiceContract(ei_update_contract);
+        cooperation2.setServiceConsumer(serviceConsumer2);
+        cooperationRepository.save(cooperation2);
+
+
+        //Contract: ProcessNotification
+        ServiceContract ei_processNotification_contract = new ServiceContract();
+        ei_processNotification_contract.setName("Engagemangsindex - ProcessNotification");
+        ei_processNotification_contract.setNamespace("urn:riv:itintegration:engagementindex:ProcessNotificationResponder:1");
+        ei_processNotification_contract.setMajor(1);
+        ei_processNotification_contract.setMinor(0);
+        serviceContractRepository.save(ei_processNotification_contract);
+
+        LogicalAddress processNotification_producer1_logicalAddress = new LogicalAddress();
+        processNotification_producer1_logicalAddress.setDescription(label + " producer1:processNotification");
+        logicalAddressRepository.save(processNotification_producer1_logicalAddress);
+
+        ServiceProducer processNotification_producer1 = new ServiceProducer();
+        processNotification_producer1.setDescription(label + " ProcessNotification:Producer1");
+        serviceProducerRepository.save(processNotification_producer1);
+
+        ServiceProduction processNotification_producer1_production = new ServiceProduction();
+        processNotification_producer1_production.setRivtaProfile("RIVTABP21");
+        processNotification_producer1_production.setPhysicalAddress("PhysicalAddress - Producent1: ProcessNotification");
+        processNotification_producer1_production.setConnectionPoint(connectionPoint);
+        processNotification_producer1_production.setLogicalAddress(processNotification_producer1_logicalAddress);
+        processNotification_producer1_production.setServiceProducer(processNotification_producer1);
+        processNotification_producer1_production.setServiceContract(ei_processNotification_contract);
+        serviceProductionRepository.save(processNotification_producer1_production);
+
+        LogicalAddress processNotification_producer2_logicalAddress = new LogicalAddress();
+        processNotification_producer1_logicalAddress.setDescription(label + " producer2:processNotification");
+        logicalAddressRepository.save(processNotification_producer2_logicalAddress);
+
+        ServiceProducer processNotification_producer2 = new ServiceProducer();
+        processNotification_producer1.setDescription(label + " ProcessNotification:Producer2");
+        serviceProducerRepository.save(processNotification_producer2);
+
+        ServiceProduction processNotification_producer2_production = new ServiceProduction();
+        processNotification_producer1_production.setRivtaProfile("RIVTABP21");
+        processNotification_producer1_production.setPhysicalAddress("PhysicalAddress - Producent2: ProcessNotification");
+        processNotification_producer1_production.setConnectionPoint(connectionPoint);
+        processNotification_producer1_production.setLogicalAddress(processNotification_producer2_logicalAddress);
+        processNotification_producer1_production.setServiceProducer(processNotification_producer2);
+        processNotification_producer1_production.setServiceContract(ei_processNotification_contract);
+        serviceProductionRepository.save(processNotification_producer2_production);
+
+        ServiceConsumer serviceConsumer3 = new ServiceConsumer();
+        serviceConsumer3.setDescription(label + " serviceConsumer 3");
+        serviceConsumer3.setHsaId("hsaid");
+        serviceConsumer3.setConnectionPoint(connectionPoint);
+        serviceConsumerRepository.save(serviceConsumer3);
+
+        Cooperation cooperation3 = new Cooperation();
+        cooperation3.setConnectionPoint(connectionPoint);
+        cooperation3.setLogicalAddress(processNotification_producer1_logicalAddress);
+        cooperation3.setServiceContract(ei_processNotification_contract);
+        cooperation3.setServiceConsumer(serviceConsumer3);
+        cooperationRepository.save(cooperation3);
+        cooperation3 = new Cooperation();
+        cooperation3.setConnectionPoint(connectionPoint);
+        cooperation3.setLogicalAddress(processNotification_producer2_logicalAddress);
+        cooperation3.setServiceContract(ei_processNotification_contract);
+        cooperation3.setServiceConsumer(serviceConsumer3);
+        cooperationRepository.save(cooperation3);
+
 
     }
 
