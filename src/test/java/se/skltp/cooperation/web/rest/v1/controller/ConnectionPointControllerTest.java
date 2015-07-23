@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1;
+package se.skltp.cooperation.web.rest.v1.controller;
 
 import org.dozer.DozerBeanMapper;
 import org.junit.Test;
