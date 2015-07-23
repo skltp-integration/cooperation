@@ -61,7 +61,7 @@ public class ServiceConsumerControllerTest {
 
 
     @Test
-    public void getAll_shouldReturnAllAsJson() throws Exception {
+    public void getAllAsJson_shouldReturnAll() throws Exception {
 
         ServiceConsumer c1 = new ServiceConsumer();
         ServiceConsumer c2 = new ServiceConsumer();
@@ -96,7 +96,7 @@ public class ServiceConsumerControllerTest {
     }
 
     @Test
-    public void getAll_shouldReturnAllAsXml() throws Exception {
+    public void getAllAsXml_shouldReturnAll() throws Exception {
 
         ServiceConsumer c1 = new ServiceConsumer();
         ServiceConsumer c2 = new ServiceConsumer();
@@ -113,7 +113,6 @@ public class ServiceConsumerControllerTest {
         when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
         when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-        // Get all serviceConsumers
         mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_XML))
@@ -130,16 +129,27 @@ public class ServiceConsumerControllerTest {
     }
 
     @Test
-    public void getAll_shouldReturnEmptyList() throws Exception {
+    public void getAllAsJson_shouldReturnEmptyList() throws Exception {
 
         when(serviceConsumerRepositoryMock.findAll()).thenReturn(Collections.emptyList());
-        // Get all serviceConsumers
-        mockMvc.perform(get("/v1/serviceConsumers").contentType(MediaType.APPLICATION_JSON))
+
+        mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(0)));
     }
 
+    @Test
+    public void getAllAsXml_shouldReturnEmptyList() throws Exception {
+
+        when(serviceConsumerRepositoryMock.findAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_XML))
+            .andExpect(xpath("/serviceConsumers").nodeCount(1))
+            .andExpect(xpath("/serviceConsumers/*").nodeCount(0));
+    }
 
     @Test
     public void get_shouldReturnOneAsJson() throws Exception {
