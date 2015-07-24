@@ -2,11 +2,14 @@ package se.skltp.cooperation.web.rest.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * A Cooperation Data Transfer Object
  *
  * @author Peter Merikan
  */
+@XmlRootElement(name = "cooperation")
 public class CooperationDTO {
     private Long id;
     @JsonBackReference

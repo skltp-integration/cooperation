@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import se.skltp.cooperation.CooperationApplication;
 import se.skltp.cooperation.domain.Cooperation;
@@ -24,6 +23,7 @@ import java.util.Collections;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -129,6 +129,48 @@ public class CooperationControllerTest {
             .andExpect(content().contentType(MediaType.APPLICATION_XML))
             .andExpect(xpath("/cooperations").nodeCount(1)).
             andExpect(xpath("/cooperations/cooperation").nodeCount(0));
+    }
+
+    @Test
+    public void get_shouldReturnOneAsJson() throws Exception {
+        Cooperation c1 = new Cooperation();
+        c1.setId(1L);
+        CooperationDTO dto1 = new CooperationDTO();
+        dto1.setId(1L);
+
+        when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+        when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
+
+        mockMvc.perform(get("/v1/cooperations/{id}", c1.getId())
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.id").value(dto1.getId().intValue()));
+    }
+
+    @Test
+    public void get_shouldReturnOneAsXml() throws Exception {
+        Cooperation c1 = new Cooperation();
+        c1.setId(1L);
+        CooperationDTO dto1 = new CooperationDTO();
+        dto1.setId(1L);
+
+        when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+        when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
+
+        mockMvc.perform(get("/v1/cooperations/{id}", c1.getId()).accept(MediaType.APPLICATION_XML))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_XML))
+            .andExpect(xpath("/cooperation/id").string(is(dto1.getId().toString())));
+    }
+
+    @Test
+    public void get_shouldReturnNotFound() throws Exception {
+
+        when(cooperationRepositoryMock.findOne(anyLong())).thenReturn(null);
+
+        mockMvc.perform(get("/v1/cooperations/{id}", Long.MAX_VALUE))
+            .andExpect(status().isNotFound());
     }
 
 }
