@@ -1,5 +1,6 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
+import com.mysema.query.types.Predicate;
 import org.dozer.DozerBeanMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,8 +22,10 @@ import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -173,4 +176,23 @@ public class CooperationControllerTest {
             .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void buildCriteria_shouldBuild() throws Exception {
+
+        Predicate predicate = uut.buildCriteria(1L, null, null, null);
+        assertThat(predicate.toString(),is("cooperation.serviceConsumer.id = 1"));
+        predicate = uut.buildCriteria(1L, 2L, null, null);
+        assertThat(predicate.toString(),is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2"));
+        predicate = uut.buildCriteria(1L, 2L, 3L, null);
+        assertThat(predicate.toString(),is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2 && cooperation.serviceContract.id = 3"));
+        predicate = uut.buildCriteria(1L, 2L, 3L, 4L);
+        assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2 && cooperation.serviceContract.id = 3 && cooperation.connectionPoint.id = 4"));
+
+    }
+    @Test
+    public void buildCriteria_shouldReturnNull() throws Exception {
+
+        Predicate predicate = uut.buildCriteria(null, null, null, null);
+        assertNull(predicate);
+    }
 }

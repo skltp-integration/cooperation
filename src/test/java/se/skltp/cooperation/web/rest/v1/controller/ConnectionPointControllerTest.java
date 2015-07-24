@@ -52,8 +52,6 @@ public class ConnectionPointControllerTest {
     private ConnectionPointRepository connectionPointRepositoryMock;
     @Mock
     private DozerBeanMapper mapperMock;
-    private ConnectionPoint cp1;
-    private ConnectionPoint cp2;
     private MockMvc mockMvc;
 
     @PostConstruct
@@ -64,7 +62,7 @@ public class ConnectionPointControllerTest {
 
 
     @Test
-    public void getAll_shouldReturnAllAsJSON() throws Exception {
+    public void getAllAsJson_shouldReturnAll() throws Exception {
 
         ConnectionPoint cp1 = new ConnectionPoint();
         ConnectionPoint cp2 = new ConnectionPoint();
@@ -99,7 +97,7 @@ public class ConnectionPointControllerTest {
     }
 
     @Test
-    public void getAll_shouldReturnAllAsXML() throws Exception {
+    public void getAllAsXml_shouldReturnAll() throws Exception {
 
         ConnectionPoint cp1 = new ConnectionPoint();
         ConnectionPoint cp2 = new ConnectionPoint();
@@ -133,15 +131,27 @@ public class ConnectionPointControllerTest {
     }
 
     @Test
-    public void getAll_shouldReturnEmptyList() throws Exception {
+    public void getAllAsJson_shouldReturnEmptyList() throws Exception {
 
         when(connectionPointRepositoryMock.findAll()).thenReturn(Collections.emptyList());
 
-        // Get all the connectionPoints
-        mockMvc.perform(get("/v1/connectionPoints"))
+        mockMvc.perform(get("/v1/connectionPoints").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(0)));
+    }
+
+    @Test
+    public void getAllAsXml_shouldReturnEmptyList() throws Exception {
+
+        when(connectionPointRepositoryMock.findAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/v1/connectionPoints").accept(MediaType.APPLICATION_XML))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_XML))
+            .andExpect(xpath("/connectionPoints").nodeCount(1))
+            .andExpect(xpath("/connectionPoints/*").nodeCount(0));
+
     }
 
     @Test

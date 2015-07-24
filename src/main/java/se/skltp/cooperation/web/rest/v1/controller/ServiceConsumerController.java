@@ -49,7 +49,6 @@ public class ServiceConsumerController {
     public List<ServiceConsumerDTO> getAllAsJson(
         @RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
         log.debug("REST request to get all ServiceConsumers as Json");
-        System.out.println("Merikan: connectionPointId= " + connectionPointId);
         List<ServiceConsumerDTO> result = new ArrayList<>();
         List<ServiceConsumer> consumers = new ArrayList<>();
         if (connectionPointId != null) {
