@@ -12,9 +12,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "cooperation")
 public class CooperationDTO {
     private Long id;
+    @JsonBackReference
     private ServiceConsumerDTO serviceConsumer;
+    @JsonBackReference
     private LogicalAddressDTO logicalAddress;
+    @JsonBackReference
     private ConnectionPointDTO connectionPoint;
+    @JsonBackReference
     private ServiceContractDTO serviceContract;
 
     public Long getId() {

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.CooperationPredicates;
 import se.skltp.cooperation.repository.CooperationRepository;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationListDTO;
+import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
+import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationListDTO;
 
 import java.util.ArrayList;
 import java.util.List;

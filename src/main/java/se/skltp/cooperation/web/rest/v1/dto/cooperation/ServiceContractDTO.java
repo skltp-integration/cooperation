@@ -18,8 +18,8 @@ public class ServiceContractDTO {
     private String namespace;
     private Integer major;
     private Integer minor;
-    private Set<CooperationDTO> cooperations = new HashSet<>();
-    private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
+//    private Set<CooperationDTO> cooperations = new HashSet<>();
+//    private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -61,19 +61,19 @@ public class ServiceContractDTO {
         this.minor = minor;
     }
 
-    public Set<CooperationDTO> getCooperations() {
-        return cooperations;
-    }
-
-    public void setCooperations(Set<CooperationDTO> cooperations) {
-        this.cooperations = cooperations;
-    }
-
-    public Set<ServiceProductionDTO> getServiceProductions() {
-        return serviceProductions;
-    }
-
-    public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
-        this.serviceProductions = serviceProductions;
-    }
+//    public Set<CooperationDTO> getCooperations() {
+//        return cooperations;
+//    }
+//
+//    public void setCooperations(Set<CooperationDTO> cooperations) {
+//        this.cooperations = cooperations;
+//    }
+//
+//    public Set<ServiceProductionDTO> getServiceProductions() {
+//        return serviceProductions;
+//    }
+//
+//    public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
+//        this.serviceProductions = serviceProductions;
+//    }
 }
