@@ -61,14 +61,17 @@ public class DatabaseLoader {
 
         // NTjP - Development
 
+        saveDummyConnectionPoint("NTjP", "development");
+        saveDummyConnectionPoint("NTjP", "QA");
+        saveDummyConnectionPoint("NTjP", "Production");
+    }
+
+    private void saveDummyConnectionPoint(String platform, String environment) {
         ConnectionPoint connectionPoint = new ConnectionPoint();
-        connectionPoint.setPlatform("NTjP");
-        connectionPoint.setEnvironment("development");
+        connectionPoint.setPlatform(platform);
+        connectionPoint.setEnvironment(environment);
         connectionPointRepository.save(connectionPoint);
-
         loadTAKData(connectionPoint);
-
-
     }
 
     private void loadTAKData(ConnectionPoint connectionPoint) {
