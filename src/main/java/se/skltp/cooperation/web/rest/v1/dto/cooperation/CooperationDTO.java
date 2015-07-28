@@ -1,6 +1,9 @@
-package se.skltp.cooperation.web.rest.v1.dto;
+package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
+import se.skltp.cooperation.web.rest.v1.dto.LogicalAddressDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceContractDTO;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "cooperation")
 public class CooperationDTO {
     private Long id;
-    private ServiceConsumerDTO serviceConsumer;
+    private se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO serviceConsumer;
     private LogicalAddressDTO logicalAddress;
     private ConnectionPointDTO connectionPoint;
     private ServiceContractDTO serviceContract;
@@ -25,7 +28,7 @@ public class CooperationDTO {
         this.id = id;
     }
 
-    public ServiceConsumerDTO getServiceConsumer() {
+    public se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO getServiceConsumer() {
         return serviceConsumer;
     }
 
