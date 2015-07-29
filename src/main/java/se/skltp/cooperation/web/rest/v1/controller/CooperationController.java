@@ -88,20 +88,12 @@ public class CooperationController {
         @RequestParam(required = false) Long serviceConsumerId,
         @RequestParam(required = false) Long logicalAddressId,
         @RequestParam(required = false) Long serviceContractId,
-        @RequestParam(required = false) Long connectionPointId) {
+        @RequestParam(required = false) Long connectionPointId,
+        @RequestParam(required = false) String include) {
         log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_XML);
-        CooperationListDTO result = new CooperationListDTO();
 
-        List<Cooperation> cooperations;
-        Predicate criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
-        if (criteria != null) {
-            cooperations = Lists.newArrayList(cooperationRepository.findAll(criteria));
-        } else {
-            cooperations = cooperationRepository.findAll();
-        }
-        for (Cooperation c : cooperations) {
-            result.getCooperations().add(mapper.map(c, CooperationDTO.class));
-        }
+        CooperationListDTO result = new CooperationListDTO();
+        result.setCooperations(getAllAsJson(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId, include));
 
         return result;
 

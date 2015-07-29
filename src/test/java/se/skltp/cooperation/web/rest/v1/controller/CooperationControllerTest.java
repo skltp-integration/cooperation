@@ -2,6 +2,7 @@ package se.skltp.cooperation.web.rest.v1.controller;
 
 import com.mysema.query.types.Predicate;
 import org.dozer.DozerBeanMapper;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import se.skltp.cooperation.CooperationApplication;
 import se.skltp.cooperation.domain.ConnectionPoint;
@@ -57,6 +59,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class CooperationControllerTest {
 
+    private Cooperation c1;
+    private Cooperation c2;
+    private CooperationDTO dto1;
+    private CooperationDTO dto2;
+
     @InjectMocks
     CooperationController uut;
     @Mock
@@ -71,15 +78,46 @@ public class CooperationControllerTest {
         this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
     }
 
+    @Before
+    public void setUpTestData() throws Exception {
+        c1 = new Cooperation();
+        c1.setId(1L);
+        c2 = new Cooperation();
+        c2.setId(2L);
+        dto1 = new CooperationDTO();
+        dto1.setId(1L);
+        dto1.setConnectionPoint(new ConnectionPointDTO());
+        dto1.getConnectionPoint().setId(11L);
+        dto1.getConnectionPoint().setPlatform("dto1.connectionPoint.platform");
+        dto1.setLogicalAddress(new LogicalAddressDTO());
+        dto1.getLogicalAddress().setId(12L);
+        dto1.getLogicalAddress().setDescription("dto1.logicalAddress.description");
+        dto1.setServiceConsumer(new ServiceConsumerDTO());
+        dto1.getServiceConsumer().setId(13L);
+        dto1.getServiceConsumer().setHsaId("dto1.serviceConsumer.hsaId");
+        dto1.setServiceContract(new ServiceContractDTO());
+        dto1.getServiceContract().setId(14L);
+        dto1.getServiceContract().setName("dto1.serviceContract.name");
+        dto2 = new CooperationDTO();
+        dto2.setId(2L);
+        dto2.setConnectionPoint(new ConnectionPointDTO());
+        dto2.getConnectionPoint().setId(21L);
+        dto2.getConnectionPoint().setPlatform("dto2.connectionPoint.platform");
+        dto2.setLogicalAddress(new LogicalAddressDTO());
+        dto2.getLogicalAddress().setId(22L);
+        dto2.getLogicalAddress().setDescription("dto2.logicalAddress.description");
+        dto2.setServiceConsumer(new ServiceConsumerDTO());
+        dto2.getServiceConsumer().setId(23L);
+        dto2.getServiceConsumer().setHsaId("dto2.serviceConsumer.hsaId");
+        dto2.setServiceContract(new ServiceContractDTO());
+        dto2.getServiceContract().setId(24L);
+        dto2.getServiceContract().setName("dto2.serviceContract.name");
+
+
+    }
 
     @Test
     public void getAllAsJson_shouldReturnAll() throws Exception {
-        Cooperation c1 = new Cooperation();
-        Cooperation c2 = new Cooperation();
-        CooperationDTO dto1 = new CooperationDTO();
-        dto1.setId(1L);
-        CooperationDTO dto2 = new CooperationDTO();
-        dto2.setId(2L);
 
         when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
         when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -99,12 +137,6 @@ public class CooperationControllerTest {
 
     @Test
     public void getAllAsJson_shouldReturnWithFilter() throws Exception {
-        Cooperation c1 = new Cooperation();
-        Cooperation c2 = new Cooperation();
-        CooperationDTO dto1 = new CooperationDTO();
-        dto1.setId(1L);
-        CooperationDTO dto2 = new CooperationDTO();
-        dto2.setId(2L);
 
         when(cooperationRepositoryMock.findAll(any(Predicate.class))).thenReturn(Arrays.asList(c1, c2));
         when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -124,36 +156,6 @@ public class CooperationControllerTest {
 
     @Test
     public void getAllAsJson_shouldReturnWithInclude() throws Exception {
-        Cooperation c1 = new Cooperation();
-        Cooperation c2 = new Cooperation();
-        CooperationDTO dto1 = new CooperationDTO();
-        dto1.setId(1L);
-        dto1.setConnectionPoint(new ConnectionPointDTO());
-        dto1.getConnectionPoint().setId(11L);
-        dto1.getConnectionPoint().setPlatform("dto1.connectionPoint.platform");
-        dto1.setLogicalAddress(new LogicalAddressDTO());
-        dto1.getLogicalAddress().setId(12L);
-        dto1.getLogicalAddress().setDescription("dto1.logicalAddress.description");
-        dto1.setServiceConsumer(new ServiceConsumerDTO());
-        dto1.getServiceConsumer().setId(13L);
-        dto1.getServiceConsumer().setHsaId("dto1.serviceConsumer.hsaId");
-        dto1.setServiceContract(new ServiceContractDTO());
-        dto1.getServiceContract().setId(14L);
-        dto1.getServiceContract().setName("dto1.serviceContract.name");
-        CooperationDTO dto2 = new CooperationDTO();
-        dto2.setId(2L);
-        dto2.setConnectionPoint(new ConnectionPointDTO());
-        dto2.getConnectionPoint().setId(21L);
-        dto2.getConnectionPoint().setPlatform("dto2.connectionPoint.platform");
-        dto2.setLogicalAddress(new LogicalAddressDTO());
-        dto2.getLogicalAddress().setId(22L);
-        dto2.getLogicalAddress().setDescription("dto2.logicalAddress.description");
-        dto2.setServiceConsumer(new ServiceConsumerDTO());
-        dto2.getServiceConsumer().setId(23L);
-        dto2.getServiceConsumer().setHsaId("dto2.serviceConsumer.hsaId");
-        dto2.setServiceContract(new ServiceContractDTO());
-        dto2.getServiceContract().setId(24L);
-        dto2.getServiceContract().setName("dto2.serviceContract.name");
 
         when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
         when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -182,12 +184,6 @@ public class CooperationControllerTest {
 
     @Test
     public void testGetAllAsXml_shouldReturnAll() throws Exception {
-        Cooperation c1 = new Cooperation();
-        Cooperation c2 = new Cooperation();
-        CooperationDTO dto1 = new CooperationDTO();
-        dto1.setId(1L);
-        CooperationDTO dto2 = new CooperationDTO();
-        dto2.setId(2L);
 
         when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
         when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -198,6 +194,34 @@ public class CooperationControllerTest {
             .andExpect(content().contentType(MediaType.APPLICATION_XML))
             .andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
             .andExpect(xpath("/cooperations/cooperation[2]/id").string(is(dto2.getId().toString())));
+
+        verify(cooperationRepositoryMock, times(1)).findAll();
+        verifyNoMoreInteractions(cooperationRepositoryMock);
+
+    }
+
+    @Test
+    public void testGetAllAsXml_shouldReturnWithInclude() throws Exception {
+
+        when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+        when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
+        when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
+
+        mockMvc.perform(get("/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
+            .accept(MediaType.APPLICATION_XML))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_XML))
+            .andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
+            .andExpect(xpath("/cooperations/cooperation[1]/connectionPoint/platform").string(is(dto1.getConnectionPoint().getPlatform())))
+            .andExpect(xpath("/cooperations/cooperation[1]/logicalAddress/description").string(is(dto1.getLogicalAddress().getDescription())))
+            .andExpect(xpath("/cooperations/cooperation[1]/serviceConsumer/hsaId").string(is(dto1.getServiceConsumer().getHsaId())))
+            .andExpect(xpath("/cooperations/cooperation[1]/serviceContract/name").string(is(dto1.getServiceContract().getName())))
+            .andExpect(xpath("/cooperations/cooperation[2]/id").string(is(dto2.getId().toString())))
+            .andExpect(xpath("/cooperations/cooperation[2]/connectionPoint/platform").string(is(dto2.getConnectionPoint().getPlatform())))
+            .andExpect(xpath("/cooperations/cooperation[2]/logicalAddress/description").string(is(dto2.getLogicalAddress().getDescription())))
+            .andExpect(xpath("/cooperations/cooperation[2]/serviceConsumer/hsaId").string(is(dto2.getServiceConsumer().getHsaId())))
+            .andExpect(xpath("/cooperations/cooperation[2]/serviceContract/name").string(is(dto2.getServiceContract().getName())));
+
 
         verify(cooperationRepositoryMock, times(1)).findAll();
         verifyNoMoreInteractions(cooperationRepositoryMock);
@@ -229,16 +253,13 @@ public class CooperationControllerTest {
 
     @Test
     public void get_shouldReturnOneAsJson() throws Exception {
-        Cooperation c1 = new Cooperation();
-        c1.setId(1L);
-        CooperationDTO dto1 = new CooperationDTO();
-        dto1.setId(1L);
 
         when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
         when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 
         mockMvc.perform(get("/v1/cooperations/{id}", c1.getId())
             .accept(MediaType.APPLICATION_JSON))
+            .andDo(MockMvcResultHandlers.print())
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(dto1.getId().intValue()));
@@ -246,10 +267,6 @@ public class CooperationControllerTest {
 
     @Test
     public void get_shouldReturnOneAsXml() throws Exception {
-        Cooperation c1 = new Cooperation();
-        c1.setId(1L);
-        CooperationDTO dto1 = new CooperationDTO();
-        dto1.setId(1L);
 
         when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
         when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
