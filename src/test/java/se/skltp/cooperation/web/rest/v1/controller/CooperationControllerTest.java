@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import se.skltp.cooperation.CooperationApplication;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.CooperationRepository;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
+import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
@@ -195,4 +195,5 @@ public class CooperationControllerTest {
         Predicate predicate = uut.buildCriteria(null, null, null, null);
         assertNull(predicate);
     }
+
 }
