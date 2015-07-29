@@ -1,5 +1,6 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.mysema.query.BooleanBuilder;
 import com.mysema.query.types.Predicate;
@@ -32,11 +33,14 @@ import java.util.Optional;
 @RequestMapping("/v1/cooperations")
 public class CooperationController {
 
+    private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
+    public static String INCLUDE_SERVICECONSUMER = "serviceConsumer";
+    public static String INCLUDE_SERVICECONTRACT = "serviceContract";
+    public static String INCLUDE_CONNECTIONPOINT = "connectionPoint";
+    public static String INCLUDE_LOGICALADDRESS = "logicalAddress";
     private final Logger log = LoggerFactory.getLogger(CooperationController.class);
-
     @Autowired
     private CooperationRepository cooperationRepository;
-
     @Autowired
     private DozerBeanMapper mapper;
 
@@ -50,9 +54,14 @@ public class CooperationController {
         @RequestParam(required = false) Long serviceConsumerId,
         @RequestParam(required = false) Long logicalAddressId,
         @RequestParam(required = false) Long serviceContractId,
-        @RequestParam(required = false) Long connectionPointId) {
-        log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_XML);
+        @RequestParam(required = false) Long connectionPointId,
+        @RequestParam(required = false) String include) {
+
+        log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_JSON_VALUE);
         List<CooperationDTO> result = new ArrayList<>();
+
+        List<String> includes = (include != null) ? SPLITTER.splitToList(include) : new ArrayList<>();
+
         List<Cooperation> cooperations;
         Predicate criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
         if (criteria != null) {
@@ -60,7 +69,9 @@ public class CooperationController {
         } else {
             cooperations = cooperationRepository.findAll();
         }
+
         for (Cooperation cp : cooperations) {
+            includeOrNot(includes, cp);
             result.add(mapper.map(cp, CooperationDTO.class));
         }
         return result;
@@ -77,20 +88,12 @@ public class CooperationController {
         @RequestParam(required = false) Long serviceConsumerId,
         @RequestParam(required = false) Long logicalAddressId,
         @RequestParam(required = false) Long serviceContractId,
-        @RequestParam(required = false) Long connectionPointId) {
+        @RequestParam(required = false) Long connectionPointId,
+        @RequestParam(required = false) String include) {
         log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_XML);
-        CooperationListDTO result = new CooperationListDTO();
 
-        List<Cooperation> cooperations;
-        Predicate criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
-        if (criteria != null) {
-            cooperations = Lists.newArrayList(cooperationRepository.findAll(criteria));
-        } else {
-            cooperations = cooperationRepository.findAll();
-        }
-        for (Cooperation c : cooperations) {
-            result.getCooperations().add(mapper.map(c, CooperationDTO.class));
-        }
+        CooperationListDTO result = new CooperationListDTO();
+        result.setCooperations(getAllAsJson(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId, include));
 
         return result;
 
@@ -129,6 +132,21 @@ public class CooperationController {
         }
 
         return builder.hasValue() ? builder.getValue() : null;
+    }
+
+    /**
+     * Decide which compound objects that should be included
+     *
+     * @param includes    A list of parameter values
+     * @param cooperation
+     */
+    void includeOrNot(List<String> includes, Cooperation cooperation) {
+        if (includes != null) {
+            if (!includes.contains(INCLUDE_CONNECTIONPOINT)) cooperation.setConnectionPoint(null);
+            if (!includes.contains(INCLUDE_LOGICALADDRESS)) cooperation.setLogicalAddress(null);
+            if (!includes.contains(INCLUDE_SERVICECONSUMER)) cooperation.setServiceConsumer(null);
+            if (!includes.contains(INCLUDE_SERVICECONTRACT)) cooperation.setServiceContract(null);
+        }
     }
 
 }

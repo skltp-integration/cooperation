@@ -1,16 +1,14 @@
 package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceProductionDTO;
-
-import java.util.HashSet;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * A ServiceContract Data Transfer Object
  *
  * @author Peter Merikan
  */
+@JsonInclude(Include.NON_NULL)
 public class ServiceContractDTO {
 
     private Long id;
@@ -18,8 +16,6 @@ public class ServiceContractDTO {
     private String namespace;
     private Integer major;
     private Integer minor;
-//    private Set<CooperationDTO> cooperations = new HashSet<>();
-//    private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -61,19 +57,4 @@ public class ServiceContractDTO {
         this.minor = minor;
     }
 
-//    public Set<CooperationDTO> getCooperations() {
-//        return cooperations;
-//    }
-//
-//    public void setCooperations(Set<CooperationDTO> cooperations) {
-//        this.cooperations = cooperations;
-//    }
-//
-//    public Set<ServiceProductionDTO> getServiceProductions() {
-//        return serviceProductions;
-//    }
-//
-//    public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
-//        this.serviceProductions = serviceProductions;
-//    }
 }
