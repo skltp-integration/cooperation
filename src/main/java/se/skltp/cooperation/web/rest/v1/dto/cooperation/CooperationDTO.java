@@ -1,6 +1,9 @@
 package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -9,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Peter Merikan
  */
 @XmlRootElement(name = "cooperation")
+@JsonInclude(Include.NON_NULL)
 public class CooperationDTO {
     private Long id;
     private ServiceConsumerDTO serviceConsumer;

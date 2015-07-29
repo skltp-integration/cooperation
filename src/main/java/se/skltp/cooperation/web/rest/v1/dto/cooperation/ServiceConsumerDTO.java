@@ -1,13 +1,9 @@
 package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A ServiceConsumer Data Transfer Object
@@ -15,6 +11,7 @@ import java.util.Set;
  * @author Peter Merikan
  */
 @XmlRootElement(name = "serviceConsumer")
+@JsonInclude(Include.NON_NULL)
 public class ServiceConsumerDTO {
 
     private Long id;

@@ -1,14 +1,6 @@
 package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceProductionDTO;
-
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A ConnectionPoint Data Transfer Object
