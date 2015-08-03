@@ -27,8 +27,19 @@ public class ServiceProducer implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "hsa_id", unique = true)
+    private String hsaId;
+
     @OneToMany(mappedBy = "serviceProducer")
     private Set<ServiceProduction> serviceProductions = new HashSet<>();
+
+    public String getHsaId() {
+        return hsaId;
+    }
+
+    public void setHsaId(String hsaId) {
+        this.hsaId = hsaId;
+    }
 
     public Long getId() {
         return id;

@@ -28,7 +28,7 @@ public class ServiceConsumer implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "hsa_id")
+    @Column(name = "hsa_id", unique = true)
     private String hsaId;
 
     @OneToMany(mappedBy = "serviceConsumer")

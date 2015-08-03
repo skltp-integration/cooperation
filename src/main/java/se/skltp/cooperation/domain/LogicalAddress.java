@@ -24,6 +24,9 @@ public class LogicalAddress implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "logical_address", unique = true)
+    private String logicalAddress;
+
     @Column(name = "description")
     private String description;
 
@@ -39,6 +42,14 @@ public class LogicalAddress implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLogicalAddress() {
+        return logicalAddress;
+    }
+
+    public void setLogicalAddress(String logicalAddress) {
+        this.logicalAddress = logicalAddress;
     }
 
     public String getDescription() {
