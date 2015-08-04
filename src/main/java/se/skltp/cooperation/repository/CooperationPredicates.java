@@ -10,24 +10,24 @@ import se.skltp.cooperation.domain.QCooperation;
  */
 public class CooperationPredicates {
 
-    public static Predicate serviceConsumerIdIs(final Long id) {
-        QCooperation cooperation = QCooperation.cooperation;
-        return cooperation.serviceConsumer.id.eq(id);
-    }
+	public static Predicate serviceConsumerIdIs(final Long id) {
+		QCooperation cooperation = QCooperation.cooperation;
+		return cooperation.serviceConsumer.id.eq(id);
+	}
 
-    public static Predicate logicalAddressIdIs(final Long id) {
-        QCooperation cooperation = QCooperation.cooperation;
-        return cooperation.logicalAddress.id.eq(id);
-    }
+	public static Predicate logicalAddressIdIs(final Long id) {
+		QCooperation cooperation = QCooperation.cooperation;
+		return cooperation.logicalAddress.id.eq(id);
+	}
 
-    public static Predicate serviceContractIdIs(final Long id) {
-        QCooperation cooperation = QCooperation.cooperation;
-        return cooperation.serviceContract.id.eq(id);
-    }
+	public static Predicate serviceContractIdIs(final Long id) {
+		QCooperation cooperation = QCooperation.cooperation;
+		return cooperation.serviceContract.id.eq(id);
+	}
 
-    public static Predicate connectionPointIdIs(final Long id) {
-        QCooperation cooperation = QCooperation.cooperation;
-        return cooperation.connectionPoint.id.eq(id);
-    }
+	public static Predicate connectionPointIdIs(final Long id) {
+		QCooperation cooperation = QCooperation.cooperation;
+		return cooperation.connectionPoint.id.eq(id);
+	}
 
 }

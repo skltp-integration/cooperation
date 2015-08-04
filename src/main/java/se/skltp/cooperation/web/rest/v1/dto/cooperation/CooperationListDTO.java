@@ -14,16 +14,16 @@ import java.util.List;
 @XmlRootElement(name = "cooperations")
 public class CooperationListDTO {
 
-    private List<CooperationDTO> cooperations = new ArrayList<>();
+	private List<CooperationDTO> cooperations = new ArrayList<>();
 
-    @XmlElement(name = "cooperation")
-    public List<CooperationDTO> getCooperations() {
-        return cooperations;
-    }
+	@XmlElement(name = "cooperation")
+	public List<CooperationDTO> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(List<CooperationDTO> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(List<CooperationDTO> cooperations) {
+		this.cooperations = cooperations;
+	}
 
 
 }

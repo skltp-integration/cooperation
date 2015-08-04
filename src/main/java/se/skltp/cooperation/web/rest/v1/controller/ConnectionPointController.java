@@ -29,63 +29,63 @@ import java.util.Optional;
 @RequestMapping("/v1/connectionPoints")
 public class ConnectionPointController {
 
-    private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
+	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
 
-    @Autowired
-    private ConnectionPointRepository connectionPointRepository;
+	@Autowired
+	private ConnectionPointRepository connectionPointRepository;
 
-    @Autowired
-    private DozerBeanMapper mapper;
+	@Autowired
+	private DozerBeanMapper mapper;
 
-    /**
-     * GET  /connectionPoints -> get all the connectionPoints.
-     * Content type: JSON
-     */
-    @RequestMapping(method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ConnectionPointDTO> getAllAsJson() {
-        log.debug("REST request to get all ConnectionPoints");
-        List<ConnectionPointDTO> result = new ArrayList<>();
-        List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
-        for (ConnectionPoint cp : connectionPoints) {
-            result.add(mapper.map(cp, ConnectionPointDTO.class));
-        }
-        return result;
+	/**
+	 * GET  /connectionPoints -> get all the connectionPoints.
+	 * Content type: JSON
+	 */
+	@RequestMapping(method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ConnectionPointDTO> getAllAsJson() {
+		log.debug("REST request to get all ConnectionPoints");
+		List<ConnectionPointDTO> result = new ArrayList<>();
+		List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
+		for (ConnectionPoint cp : connectionPoints) {
+			result.add(mapper.map(cp, ConnectionPointDTO.class));
+		}
+		return result;
 
-    }
+	}
 
-    /**
-     * GET  /connectionPoints -> get all the connectionPoints.
-     * Content type: XML
-     */
-    @RequestMapping(method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_XML_VALUE)
-    public ConnectionPointListDTO getAllAsXml() {
-        log.debug("REST request to get all ConnectionPoints");
-        ConnectionPointListDTO result = new ConnectionPointListDTO();
+	/**
+	 * GET  /connectionPoints -> get all the connectionPoints.
+	 * Content type: XML
+	 */
+	@RequestMapping(method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_XML_VALUE)
+	public ConnectionPointListDTO getAllAsXml() {
+		log.debug("REST request to get all ConnectionPoints");
+		ConnectionPointListDTO result = new ConnectionPointListDTO();
 
-        List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
-        for (ConnectionPoint cp : connectionPoints) {
-            result.getConnectionPoints().add(mapper.map(cp, ConnectionPointDTO.class));
-        }
+		List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
+		for (ConnectionPoint cp : connectionPoints) {
+			result.getConnectionPoints().add(mapper.map(cp, ConnectionPointDTO.class));
+		}
 
-        return result;
+		return result;
 
-    }
+	}
 
-    /**
-     * GET  /connectionPoints/:id -> get the "id" connectionPoint.
-     */
-    @RequestMapping(value = "/{id}",
-        method = RequestMethod.GET,
-        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ConnectionPointDTO> get(@PathVariable Long id) {
-        log.debug("REST request to get ConnectionPoint : {}", id);
-        return Optional.ofNullable(connectionPointRepository.findOne(id))
-            .map(connectionPoint -> new ResponseEntity<>(
-                mapper.map(connectionPoint, ConnectionPointDTO.class),
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+	/**
+	 * GET  /connectionPoints/:id -> get the "id" connectionPoint.
+	 */
+	@RequestMapping(value = "/{id}",
+		method = RequestMethod.GET,
+		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<ConnectionPointDTO> get(@PathVariable Long id) {
+		log.debug("REST request to get ConnectionPoint : {}", id);
+		return Optional.ofNullable(connectionPointRepository.findOne(id))
+			.map(connectionPoint -> new ResponseEntity<>(
+				mapper.map(connectionPoint, ConnectionPointDTO.class),
+				HttpStatus.OK))
+			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	}
 
 }

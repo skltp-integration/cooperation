@@ -15,51 +15,51 @@ import java.util.Set;
 @XmlRootElement(name = "serviceConsumer")
 public class ServiceConsumerDTO {
 
-    private Long id;
-    private String description;
-    private String hsaId;
-    @JsonManagedReference
-    private Set<CooperationDTO> cooperations = new HashSet<>();
-    @JsonBackReference
-    private ConnectionPointDTO connectionPoint;
+	private Long id;
+	private String description;
+	private String hsaId;
+	@JsonManagedReference
+	private Set<CooperationDTO> cooperations = new HashSet<>();
+	@JsonBackReference
+	private ConnectionPointDTO connectionPoint;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getHsaId() {
-        return hsaId;
-    }
+	public String getHsaId() {
+		return hsaId;
+	}
 
-    public void setHsaId(String hsaId) {
-        this.hsaId = hsaId;
-    }
+	public void setHsaId(String hsaId) {
+		this.hsaId = hsaId;
+	}
 
-    public Set<CooperationDTO> getCooperations() {
-        return cooperations;
-    }
+	public Set<CooperationDTO> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(Set<CooperationDTO> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(Set<CooperationDTO> cooperations) {
+		this.cooperations = cooperations;
+	}
 
-    public ConnectionPointDTO getConnectionPoint() {
-        return connectionPoint;
-    }
+	public ConnectionPointDTO getConnectionPoint() {
+		return connectionPoint;
+	}
 
-    public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-        this.connectionPoint = connectionPoint;
-    }
+	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
+		this.connectionPoint = connectionPoint;
+	}
 }

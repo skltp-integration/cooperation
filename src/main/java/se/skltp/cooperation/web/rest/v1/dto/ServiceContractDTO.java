@@ -10,67 +10,67 @@ import java.util.Set;
  */
 public class ServiceContractDTO {
 
-    private Long id;
-    private String name;
-    private String namespace;
-    private Integer major;
-    private Integer minor;
-    private Set<CooperationDTO> cooperations = new HashSet<>();
-    private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
+	private Long id;
+	private String name;
+	private String namespace;
+	private Integer major;
+	private Integer minor;
+	private Set<CooperationDTO> cooperations = new HashSet<>();
+	private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getNamespace() {
-        return namespace;
-    }
+	public String getNamespace() {
+		return namespace;
+	}
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
 
-    public Integer getMajor() {
-        return major;
-    }
+	public Integer getMajor() {
+		return major;
+	}
 
-    public void setMajor(Integer major) {
-        this.major = major;
-    }
+	public void setMajor(Integer major) {
+		this.major = major;
+	}
 
-    public Integer getMinor() {
-        return minor;
-    }
+	public Integer getMinor() {
+		return minor;
+	}
 
-    public void setMinor(Integer minor) {
-        this.minor = minor;
-    }
+	public void setMinor(Integer minor) {
+		this.minor = minor;
+	}
 
-    public Set<CooperationDTO> getCooperations() {
-        return cooperations;
-    }
+	public Set<CooperationDTO> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(Set<CooperationDTO> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(Set<CooperationDTO> cooperations) {
+		this.cooperations = cooperations;
+	}
 
-    public Set<ServiceProductionDTO> getServiceProductions() {
-        return serviceProductions;
-    }
+	public Set<ServiceProductionDTO> getServiceProductions() {
+		return serviceProductions;
+	}
 
-    public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
-        this.serviceProductions = serviceProductions;
-    }
+	public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
+		this.serviceProductions = serviceProductions;
+	}
 }

@@ -11,50 +11,50 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class ServiceContractDTO {
 
-    private Long id;
-    private String name;
-    private String namespace;
-    private Integer major;
-    private Integer minor;
+	private Long id;
+	private String name;
+	private String namespace;
+	private Integer major;
+	private Integer minor;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getNamespace() {
-        return namespace;
-    }
+	public String getNamespace() {
+		return namespace;
+	}
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
 
-    public Integer getMajor() {
-        return major;
-    }
+	public Integer getMajor() {
+		return major;
+	}
 
-    public void setMajor(Integer major) {
-        this.major = major;
-    }
+	public void setMajor(Integer major) {
+		this.major = major;
+	}
 
-    public Integer getMinor() {
-        return minor;
-    }
+	public Integer getMinor() {
+		return minor;
+	}
 
-    public void setMinor(Integer minor) {
-        this.minor = minor;
-    }
+	public void setMinor(Integer minor) {
+		this.minor = minor;
+	}
 
 }

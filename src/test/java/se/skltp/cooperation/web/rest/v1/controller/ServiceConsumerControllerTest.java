@@ -45,166 +45,166 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class ServiceConsumerControllerTest {
 
-    @InjectMocks
-    ServiceConsumerController uut;
-    @Mock
-    private ServiceConsumerRepository serviceConsumerRepositoryMock;
-    @Mock
-    private DozerBeanMapper mapperMock;
-    private MockMvc mockMvc;
+	@InjectMocks
+	ServiceConsumerController uut;
+	@Mock
+	private ServiceConsumerRepository serviceConsumerRepositoryMock;
+	@Mock
+	private DozerBeanMapper mapperMock;
+	private MockMvc mockMvc;
 
-    @PostConstruct
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
-    }
+	@PostConstruct
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+		this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
+	}
 
 
-    @Test
-    public void getAllAsJson_shouldReturnAll() throws Exception {
+	@Test
+	public void getAllAsJson_shouldReturnAll() throws Exception {
 
-        ServiceConsumer c1 = new ServiceConsumer();
-        ServiceConsumer c2 = new ServiceConsumer();
-        ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
-        dto1.setId(1L);
-        dto1.setDescription("dto1.description");
-        dto1.setHsaId("dto1.hsaId");
-        ServiceConsumerDTO dto2 = new ServiceConsumerDTO();
-        dto2.setId(2L);
-        dto2.setDescription("dto2.description");
-        dto2.setHsaId("dto2.hsaId");
+		ServiceConsumer c1 = new ServiceConsumer();
+		ServiceConsumer c2 = new ServiceConsumer();
+		ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
+		dto1.setId(1L);
+		dto1.setDescription("dto1.description");
+		dto1.setHsaId("dto1.hsaId");
+		ServiceConsumerDTO dto2 = new ServiceConsumerDTO();
+		dto2.setId(2L);
+		dto2.setDescription("dto2.description");
+		dto2.setHsaId("dto2.hsaId");
 
-        when(serviceConsumerRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
-        when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
-        when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+		when(serviceConsumerRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-        // Get all serviceConsumers
-        mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$", hasSize(2)))
-            .andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
-            .andExpect(jsonPath("$.[0].description").value(is(dto1.getDescription())))
-            .andExpect(jsonPath("$.[0].hsaId").value(is(dto1.getHsaId())))
-            .andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
-            .andExpect(jsonPath("$.[1].description").value(is(dto2.getDescription())))
-            .andExpect(jsonPath("$.[1].hsaId").value(is(dto2.getHsaId())));
+		// Get all serviceConsumers
+		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$", hasSize(2)))
+			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
+			.andExpect(jsonPath("$.[0].description").value(is(dto1.getDescription())))
+			.andExpect(jsonPath("$.[0].hsaId").value(is(dto1.getHsaId())))
+			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
+			.andExpect(jsonPath("$.[1].description").value(is(dto2.getDescription())))
+			.andExpect(jsonPath("$.[1].hsaId").value(is(dto2.getHsaId())));
 
-        verify(serviceConsumerRepositoryMock, times(1)).findAll();
-        verifyNoMoreInteractions(serviceConsumerRepositoryMock);
+		verify(serviceConsumerRepositoryMock, times(1)).findAll();
+		verifyNoMoreInteractions(serviceConsumerRepositoryMock);
 
-    }
+	}
 
-    @Test
-    public void getAllAsXml_shouldReturnAll() throws Exception {
+	@Test
+	public void getAllAsXml_shouldReturnAll() throws Exception {
 
-        ServiceConsumer c1 = new ServiceConsumer();
-        ServiceConsumer c2 = new ServiceConsumer();
-        ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
-        dto1.setId(1L);
-        dto1.setDescription("dto1.description");
-        dto1.setHsaId("dto1.hsaId");
-        ServiceConsumerDTO dto2 = new ServiceConsumerDTO();
-        dto2.setId(2L);
-        dto2.setDescription("dto2.description");
-        dto2.setHsaId("dto2.hsaId");
+		ServiceConsumer c1 = new ServiceConsumer();
+		ServiceConsumer c2 = new ServiceConsumer();
+		ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
+		dto1.setId(1L);
+		dto1.setDescription("dto1.description");
+		dto1.setHsaId("dto1.hsaId");
+		ServiceConsumerDTO dto2 = new ServiceConsumerDTO();
+		dto2.setId(2L);
+		dto2.setDescription("dto2.description");
+		dto2.setHsaId("dto2.hsaId");
 
-        when(serviceConsumerRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
-        when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
-        when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+		when(serviceConsumerRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-        mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_XML))
-            .andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
-            .andExpect(xpath("/serviceConsumers/serviceConsumer[1]/description").string(is(dto1.getDescription())))
-            .andExpect(xpath("/serviceConsumers/serviceConsumer[1]/hsaId").string(is(dto1.getHsaId())))
-            .andExpect(xpath("/serviceConsumers/serviceConsumer[2]/id").string(is(dto2.getId().toString())))
-            .andExpect(xpath("/serviceConsumers/serviceConsumer[2]/description").string(is(dto2.getDescription())))
-            .andExpect(xpath("/serviceConsumers/serviceConsumer[2]/hsaId").string(is(dto2.getHsaId())));
+		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/description").string(is(dto1.getDescription())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/hsaId").string(is(dto1.getHsaId())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/id").string(is(dto2.getId().toString())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/description").string(is(dto2.getDescription())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/hsaId").string(is(dto2.getHsaId())));
 
-        verify(serviceConsumerRepositoryMock, times(1)).findAll();
-        verifyNoMoreInteractions(serviceConsumerRepositoryMock);
+		verify(serviceConsumerRepositoryMock, times(1)).findAll();
+		verifyNoMoreInteractions(serviceConsumerRepositoryMock);
 
-    }
+	}
 
-    @Test
-    public void getAllAsJson_shouldReturnEmptyList() throws Exception {
+	@Test
+	public void getAllAsJson_shouldReturnEmptyList() throws Exception {
 
-        when(serviceConsumerRepositoryMock.findAll()).thenReturn(Collections.emptyList());
+		when(serviceConsumerRepositoryMock.findAll()).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$", hasSize(0)));
-    }
+		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$", hasSize(0)));
+	}
 
-    @Test
-    public void getAllAsXml_shouldReturnEmptyList() throws Exception {
+	@Test
+	public void getAllAsXml_shouldReturnEmptyList() throws Exception {
 
-        when(serviceConsumerRepositoryMock.findAll()).thenReturn(Collections.emptyList());
+		when(serviceConsumerRepositoryMock.findAll()).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_XML))
-            .andExpect(xpath("/serviceConsumers").nodeCount(1))
-            .andExpect(xpath("/serviceConsumers/*").nodeCount(0));
-    }
+		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(xpath("/serviceConsumers").nodeCount(1))
+			.andExpect(xpath("/serviceConsumers/*").nodeCount(0));
+	}
 
-    @Test
-    public void get_shouldReturnOneAsJson() throws Exception {
-        ServiceConsumer c1 = new ServiceConsumer();
-        c1.setId(1L);
-        ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
-        dto1.setId(1L);
-        dto1.setDescription("dto1.description");
-        dto1.setHsaId("dto1.hsaId");
+	@Test
+	public void get_shouldReturnOneAsJson() throws Exception {
+		ServiceConsumer c1 = new ServiceConsumer();
+		c1.setId(1L);
+		ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
+		dto1.setId(1L);
+		dto1.setDescription("dto1.description");
+		dto1.setHsaId("dto1.hsaId");
 
-        when(serviceConsumerRepositoryMock.findOne(c1.getId())).thenReturn(c1);
-        when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(serviceConsumerRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 
-        // Get the c1
-        mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.id").value(is(dto1.getId().intValue())))
-            .andExpect(jsonPath("$.description").value(is(dto1.getDescription())))
-            .andExpect(jsonPath("$.hsaId").value(is(dto1.getHsaId())));
+		// Get the c1
+		mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
+			.accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$.id").value(is(dto1.getId().intValue())))
+			.andExpect(jsonPath("$.description").value(is(dto1.getDescription())))
+			.andExpect(jsonPath("$.hsaId").value(is(dto1.getHsaId())));
 
-    }
+	}
 
-    @Test
-    public void get_shouldReturnOneAsXml() throws Exception {
-        ServiceConsumer c1 = new ServiceConsumer();
-        c1.setId(1L);
-        ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
-        dto1.setId(1L);
-        dto1.setDescription("dto1.description");
-        dto1.setHsaId("dto1.hsaId");
+	@Test
+	public void get_shouldReturnOneAsXml() throws Exception {
+		ServiceConsumer c1 = new ServiceConsumer();
+		c1.setId(1L);
+		ServiceConsumerDTO dto1 = new ServiceConsumerDTO();
+		dto1.setId(1L);
+		dto1.setDescription("dto1.description");
+		dto1.setHsaId("dto1.hsaId");
 
-        when(serviceConsumerRepositoryMock.findOne(c1.getId())).thenReturn(c1);
-        when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(serviceConsumerRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 
-        // Get the c1
-        mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
-            .accept(MediaType.APPLICATION_XML))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_XML))
-            .andExpect(xpath("/serviceConsumer/id").string(is(dto1.getId().toString())))
-            .andExpect(xpath("/serviceConsumer/description").string(is(dto1.getDescription())))
-            .andExpect(xpath("/serviceConsumer/hsaId").string(is(dto1.getHsaId())));
+		// Get the c1
+		mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
+			.accept(MediaType.APPLICATION_XML))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(xpath("/serviceConsumer/id").string(is(dto1.getId().toString())))
+			.andExpect(xpath("/serviceConsumer/description").string(is(dto1.getDescription())))
+			.andExpect(xpath("/serviceConsumer/hsaId").string(is(dto1.getHsaId())));
 
-    }
+	}
 
-    @Test
-    public void get_shouldReturnNotFound() throws Exception {
+	@Test
+	public void get_shouldReturnNotFound() throws Exception {
 
-        when(serviceConsumerRepositoryMock.findOne(anyLong())).thenReturn(null);
+		when(serviceConsumerRepositoryMock.findOne(anyLong())).thenReturn(null);
 
-        mockMvc.perform(get("/v1/serviceConsumers/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
-    }
+		mockMvc.perform(get("/v1/serviceConsumers/{id}", Long.MAX_VALUE))
+			.andExpect(status().isNotFound());
+	}
 
 }
 

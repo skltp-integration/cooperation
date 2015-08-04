@@ -21,60 +21,60 @@ import java.util.Set;
 @Table(name = "SERVICECONSUMER")
 public class ServiceConsumer implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "description")
-    private String description;
+	@Column(name = "description")
+	private String description;
 
-    @Column(name = "hsa_id", unique = true)
-    private String hsaId;
+	@Column(name = "hsa_id", unique = true)
+	private String hsaId;
 
-    @OneToMany(mappedBy = "serviceConsumer")
-    private Set<Cooperation> cooperations = new HashSet<>();
+	@OneToMany(mappedBy = "serviceConsumer")
+	private Set<Cooperation> cooperations = new HashSet<>();
 
-    @ManyToOne
-    private ConnectionPoint connectionPoint;
+	@ManyToOne
+	private ConnectionPoint connectionPoint;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getHsaId() {
-        return hsaId;
-    }
+	public String getHsaId() {
+		return hsaId;
+	}
 
-    public void setHsaId(String hsaId) {
-        this.hsaId = hsaId;
-    }
+	public void setHsaId(String hsaId) {
+		this.hsaId = hsaId;
+	}
 
-    public Set<Cooperation> getCooperations() {
-        return cooperations;
-    }
+	public Set<Cooperation> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(Set<Cooperation> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(Set<Cooperation> cooperations) {
+		this.cooperations = cooperations;
+	}
 
-    public ConnectionPoint getConnectionPoint() {
-        return connectionPoint;
-    }
+	public ConnectionPoint getConnectionPoint() {
+		return connectionPoint;
+	}
 
-    public void setConnectionPoint(ConnectionPoint connectionPoint) {
-        this.connectionPoint = connectionPoint;
-    }
+	public void setConnectionPoint(ConnectionPoint connectionPoint) {
+		this.connectionPoint = connectionPoint;
+	}
 
 }

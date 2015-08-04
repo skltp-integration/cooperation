@@ -10,31 +10,31 @@ import java.util.Set;
  */
 public class ServiceProducerDTO {
 
-    private Long id;
-    private String description;
-    private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
+	private Long id;
+	private String description;
+	private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public Set<ServiceProductionDTO> getServiceProductions() {
-        return serviceProductions;
-    }
+	public Set<ServiceProductionDTO> getServiceProductions() {
+		return serviceProductions;
+	}
 
-    public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
-        this.serviceProductions = serviceProductions;
-    }
+	public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
+		this.serviceProductions = serviceProductions;
+	}
 }

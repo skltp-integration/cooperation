@@ -20,82 +20,82 @@ import java.util.Set;
 @Table(name = "SERVICECONTRACT")
 public class ServiceContract implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "name")
-    private String name;
+	@Column(name = "name")
+	private String name;
 
-    @Column(name = "namespace")
-    private String namespace;
+	@Column(name = "namespace")
+	private String namespace;
 
-    @Column(name = "major")
-    private Integer major;
+	@Column(name = "major")
+	private Integer major;
 
-    @Column(name = "minor")
-    private Integer minor;
+	@Column(name = "minor")
+	private Integer minor;
 
-    @OneToMany(mappedBy = "serviceContract")
-    private Set<Cooperation> cooperations = new HashSet<>();
+	@OneToMany(mappedBy = "serviceContract")
+	private Set<Cooperation> cooperations = new HashSet<>();
 
-    @OneToMany(mappedBy = "serviceContract")
-    private Set<ServiceProduction> serviceProductions = new HashSet<>();
+	@OneToMany(mappedBy = "serviceContract")
+	private Set<ServiceProduction> serviceProductions = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getNamespace() {
-        return namespace;
-    }
+	public String getNamespace() {
+		return namespace;
+	}
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
 
-    public Integer getMajor() {
-        return major;
-    }
+	public Integer getMajor() {
+		return major;
+	}
 
-    public void setMajor(Integer major) {
-        this.major = major;
-    }
+	public void setMajor(Integer major) {
+		this.major = major;
+	}
 
-    public Integer getMinor() {
-        return minor;
-    }
+	public Integer getMinor() {
+		return minor;
+	}
 
-    public void setMinor(Integer minor) {
-        this.minor = minor;
-    }
+	public void setMinor(Integer minor) {
+		this.minor = minor;
+	}
 
-    public Set<Cooperation> getCooperations() {
-        return cooperations;
-    }
+	public Set<Cooperation> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(Set<Cooperation> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(Set<Cooperation> cooperations) {
+		this.cooperations = cooperations;
+	}
 
-    public Set<ServiceProduction> getServiceProductions() {
-        return serviceProductions;
-    }
+	public Set<ServiceProduction> getServiceProductions() {
+		return serviceProductions;
+	}
 
-    public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
-        this.serviceProductions = serviceProductions;
-    }
+	public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
+		this.serviceProductions = serviceProductions;
+	}
 
 }

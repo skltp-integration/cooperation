@@ -11,32 +11,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ConnectionPointDTO {
 
 
-    private Long id;
-    private String platform;
-    private String environment;
+	private Long id;
+	private String platform;
+	private String environment;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getPlatform() {
-        return platform;
-    }
+	public String getPlatform() {
+		return platform;
+	}
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
 
-    public String getEnvironment() {
-        return environment;
-    }
+	public String getEnvironment() {
+		return environment;
+	}
 
-    public void setEnvironment(String environment) {
-        this.environment = environment;
-    }
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
 
 }

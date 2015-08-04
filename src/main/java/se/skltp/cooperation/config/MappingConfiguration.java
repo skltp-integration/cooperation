@@ -15,12 +15,12 @@ import java.util.List;
 @Configuration
 public class MappingConfiguration {
 
-    @Bean
-    public DozerBeanMapper mapper() {
+	@Bean
+	public DozerBeanMapper mapper() {
 
-        List mappingFiles = new ArrayList<>();
-        mappingFiles.add("dozerBeanMapping.xml");
+		List mappingFiles = new ArrayList<>();
+		mappingFiles.add("dozerBeanMapping.xml");
 
-        return new DozerBeanMapper(mappingFiles);
-    }
+		return new DozerBeanMapper(mappingFiles);
+	}
 }

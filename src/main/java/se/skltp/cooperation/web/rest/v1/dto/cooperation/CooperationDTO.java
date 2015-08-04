@@ -14,49 +14,49 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "cooperation")
 @JsonInclude(Include.NON_NULL)
 public class CooperationDTO {
-    private Long id;
-    private ServiceConsumerDTO serviceConsumer;
-    private LogicalAddressDTO logicalAddress;
-    private ConnectionPointDTO connectionPoint;
-    private ServiceContractDTO serviceContract;
+	private Long id;
+	private ServiceConsumerDTO serviceConsumer;
+	private LogicalAddressDTO logicalAddress;
+	private ConnectionPointDTO connectionPoint;
+	private ServiceContractDTO serviceContract;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public ServiceConsumerDTO getServiceConsumer() {
-        return serviceConsumer;
-    }
+	public ServiceConsumerDTO getServiceConsumer() {
+		return serviceConsumer;
+	}
 
-    public void setServiceConsumer(ServiceConsumerDTO serviceConsumer) {
-        this.serviceConsumer = serviceConsumer;
-    }
+	public void setServiceConsumer(ServiceConsumerDTO serviceConsumer) {
+		this.serviceConsumer = serviceConsumer;
+	}
 
-    public LogicalAddressDTO getLogicalAddress() {
-        return logicalAddress;
-    }
+	public LogicalAddressDTO getLogicalAddress() {
+		return logicalAddress;
+	}
 
-    public void setLogicalAddress(LogicalAddressDTO logicalAddress) {
-        this.logicalAddress = logicalAddress;
-    }
+	public void setLogicalAddress(LogicalAddressDTO logicalAddress) {
+		this.logicalAddress = logicalAddress;
+	}
 
-    public ConnectionPointDTO getConnectionPoint() {
-        return connectionPoint;
-    }
+	public ConnectionPointDTO getConnectionPoint() {
+		return connectionPoint;
+	}
 
-    public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-        this.connectionPoint = connectionPoint;
-    }
+	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
+		this.connectionPoint = connectionPoint;
+	}
 
-    public ServiceContractDTO getServiceContract() {
-        return serviceContract;
-    }
+	public ServiceContractDTO getServiceContract() {
+		return serviceContract;
+	}
 
-    public void setServiceContract(ServiceContractDTO serviceContract) {
-        this.serviceContract = serviceContract;
-    }
+	public void setServiceContract(ServiceContractDTO serviceContract) {
+		this.serviceContract = serviceContract;
+	}
 }

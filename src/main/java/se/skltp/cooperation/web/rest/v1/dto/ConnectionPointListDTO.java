@@ -16,14 +16,14 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ConnectionPointListDTO {
 
-    @XmlElement(name = "connectionPoint")
-    private List<ConnectionPointDTO> connectionPoints = new ArrayList<>();
+	@XmlElement(name = "connectionPoint")
+	private List<ConnectionPointDTO> connectionPoints = new ArrayList<>();
 
-    public List<ConnectionPointDTO> getConnectionPoints() {
-        return connectionPoints;
-    }
+	public List<ConnectionPointDTO> getConnectionPoints() {
+		return connectionPoints;
+	}
 
-    public void setConnectionPoints(List<ConnectionPointDTO> connectionPoints) {
-        this.connectionPoints = connectionPoints;
-    }
+	public void setConnectionPoints(List<ConnectionPointDTO> connectionPoints) {
+		this.connectionPoints = connectionPoints;
+	}
 }

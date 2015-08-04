@@ -10,16 +10,16 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication
 public class CooperationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CooperationApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(CooperationApplication.class, args);
+	}
 
 
-    @Bean
-    @Profile("dev")
-    public ServletRegistrationBean h2servletRegistration() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
-        registration.addUrlMappings("/console/*");
-        return registration;
-    }
+	@Bean
+	@Profile("dev")
+	public ServletRegistrationBean h2servletRegistration() {
+		ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
+		registration.addUrlMappings("/console/*");
+		return registration;
+	}
 }

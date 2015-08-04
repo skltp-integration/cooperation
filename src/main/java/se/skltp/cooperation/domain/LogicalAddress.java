@@ -20,60 +20,60 @@ import java.util.Set;
 @Table(name = "LOGICALADDRESS")
 public class LogicalAddress implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "logical_address", unique = true)
-    private String logicalAddress;
+	@Column(name = "logical_address", unique = true)
+	private String logicalAddress;
 
-    @Column(name = "description")
-    private String description;
+	@Column(name = "description")
+	private String description;
 
-    @OneToMany(mappedBy = "logicalAddress")
-    private Set<Cooperation> cooperations = new HashSet<>();
+	@OneToMany(mappedBy = "logicalAddress")
+	private Set<Cooperation> cooperations = new HashSet<>();
 
-    @OneToMany(mappedBy = "logicalAddress")
-    private Set<ServiceProduction> serviceProductions = new HashSet<>();
+	@OneToMany(mappedBy = "logicalAddress")
+	private Set<ServiceProduction> serviceProductions = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getLogicalAddress() {
-        return logicalAddress;
-    }
+	public String getLogicalAddress() {
+		return logicalAddress;
+	}
 
-    public void setLogicalAddress(String logicalAddress) {
-        this.logicalAddress = logicalAddress;
-    }
+	public void setLogicalAddress(String logicalAddress) {
+		this.logicalAddress = logicalAddress;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public Set<Cooperation> getCooperations() {
-        return cooperations;
-    }
+	public Set<Cooperation> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(Set<Cooperation> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(Set<Cooperation> cooperations) {
+		this.cooperations = cooperations;
+	}
 
-    public Set<ServiceProduction> getServiceProductions() {
-        return serviceProductions;
-    }
+	public Set<ServiceProduction> getServiceProductions() {
+		return serviceProductions;
+	}
 
-    public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
-        this.serviceProductions = serviceProductions;
-    }
+	public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
+		this.serviceProductions = serviceProductions;
+	}
 
 }

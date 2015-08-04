@@ -9,6 +9,6 @@ import se.skltp.cooperation.domain.Cooperation;
  *
  * @author Peter Merikan
  */
-public interface CooperationRepository extends JpaRepository<Cooperation,Long>, QueryDslPredicateExecutor {
+public interface CooperationRepository extends JpaRepository<Cooperation, Long>, QueryDslPredicateExecutor {
 
 }

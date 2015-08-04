@@ -20,71 +20,71 @@ import java.util.Set;
 @Table(name = "CONNECTIONPOINT")
 public class ConnectionPoint implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "platform")
-    private String platform;
+	@Column(name = "platform")
+	private String platform;
 
-    @Column(name = "environment")
-    private String environment;
+	@Column(name = "environment")
+	private String environment;
 
-    @OneToMany(mappedBy = "connectionPoint")
-    private Set<ServiceProduction> serviceProductions = new HashSet<>();
+	@OneToMany(mappedBy = "connectionPoint")
+	private Set<ServiceProduction> serviceProductions = new HashSet<>();
 
-    @OneToMany(mappedBy = "connectionPoint")
-    private Set<ServiceConsumer> serviceConsumers = new HashSet<>();
+	@OneToMany(mappedBy = "connectionPoint")
+	private Set<ServiceConsumer> serviceConsumers = new HashSet<>();
 
-    @OneToMany(mappedBy = "connectionPoint")
-    private Set<Cooperation> cooperations = new HashSet<>();
+	@OneToMany(mappedBy = "connectionPoint")
+	private Set<Cooperation> cooperations = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getPlatform() {
-        return platform;
-    }
+	public String getPlatform() {
+		return platform;
+	}
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
 
-    public String getEnvironment() {
-        return environment;
-    }
+	public String getEnvironment() {
+		return environment;
+	}
 
-    public void setEnvironment(String environment) {
-        this.environment = environment;
-    }
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
 
-    public Set<ServiceProduction> getServiceProductions() {
-        return serviceProductions;
-    }
+	public Set<ServiceProduction> getServiceProductions() {
+		return serviceProductions;
+	}
 
-    public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
-        this.serviceProductions = serviceProductions;
-    }
+	public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
+		this.serviceProductions = serviceProductions;
+	}
 
-    public Set<ServiceConsumer> getServiceConsumers() {
-        return serviceConsumers;
-    }
+	public Set<ServiceConsumer> getServiceConsumers() {
+		return serviceConsumers;
+	}
 
-    public void setServiceConsumers(Set<ServiceConsumer> serviceConsumers) {
-        this.serviceConsumers = serviceConsumers;
-    }
+	public void setServiceConsumers(Set<ServiceConsumer> serviceConsumers) {
+		this.serviceConsumers = serviceConsumers;
+	}
 
-    public Set<Cooperation> getCooperations() {
-        return cooperations;
-    }
+	public Set<Cooperation> getCooperations() {
+		return cooperations;
+	}
 
-    public void setCooperations(Set<Cooperation> cooperations) {
-        this.cooperations = cooperations;
-    }
+	public void setCooperations(Set<Cooperation> cooperations) {
+		this.cooperations = cooperations;
+	}
 
 }

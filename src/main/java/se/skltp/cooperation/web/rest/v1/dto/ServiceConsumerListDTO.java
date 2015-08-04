@@ -16,14 +16,14 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ServiceConsumerListDTO {
 
-    @XmlElement(name = "serviceConsumer")
-    private List<ServiceConsumerDTO> serviceConsumers = new ArrayList<>();
+	@XmlElement(name = "serviceConsumer")
+	private List<ServiceConsumerDTO> serviceConsumers = new ArrayList<>();
 
-    public List<ServiceConsumerDTO> getServiceConsumers() {
-        return serviceConsumers;
-    }
+	public List<ServiceConsumerDTO> getServiceConsumers() {
+		return serviceConsumers;
+	}
 
-    public void setServiceConsumers(List<ServiceConsumerDTO> serviceConsumers) {
-        this.serviceConsumers = serviceConsumers;
-    }
+	public void setServiceConsumers(List<ServiceConsumerDTO> serviceConsumers) {
+		this.serviceConsumers = serviceConsumers;
+	}
 }
