@@ -12,6 +12,7 @@ public class LogicalAddressDTO {
 
 	private Long id;
 	private String description;
+	private String logicalAddress;
 	private Set<CooperationDTO> cooperations = new HashSet<>();
 	private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
@@ -45,5 +46,13 @@ public class LogicalAddressDTO {
 
 	public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
 		this.serviceProductions = serviceProductions;
+	}
+
+	public String getLogicalAddress() {
+		return logicalAddress;
+	}
+
+	public void setLogicalAddress(String logicalAddress) {
+		this.logicalAddress = logicalAddress;
 	}
 }

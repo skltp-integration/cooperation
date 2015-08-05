@@ -13,6 +13,7 @@ public class LogicalAddressDTO {
 
 	private Long id;
 	private String description;
+	private String logicalAddress;
 
 	public Long getId() {
 		return id;
@@ -30,4 +31,11 @@ public class LogicalAddressDTO {
 		this.description = description;
 	}
 
+	public String getLogicalAddress() {
+		return logicalAddress;
+	}
+
+	public void setLogicalAddress(String logicalAddress) {
+		this.logicalAddress = logicalAddress;
+	}
 }
