@@ -22,6 +22,7 @@ import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
 import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.ConnectionPointDTO;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.LogicalAddressDTO;
@@ -35,8 +36,10 @@ import java.util.Collections;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -277,12 +280,17 @@ public class CooperationControllerTest {
 	}
 
 	@Test
-	public void get_shouldReturnNotFound() throws Exception {
+	public void get_shouldThrowNotFoundException() throws Exception {
 
 		when(cooperationRepositoryMock.findOne(anyLong())).thenReturn(null);
 
-		mockMvc.perform(get("/v1/cooperations/{id}", Long.MAX_VALUE))
-			.andExpect(status().isNotFound());
+		try {
+			mockMvc.perform(get("/v1/cooperations/{id}", Long.MAX_VALUE))
+				.andExpect(status().isNotFound());
+			fail("Should thrown a exception");
+		} catch (Exception e) {
+			assertEquals(e.getCause().getClass(), ResourceNotFoundException.class);
+		}
 	}
 
 	@Test

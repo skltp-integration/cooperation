@@ -8,9 +8,7 @@ import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.CooperationPredicates;
 import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationListDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller to handle resource Cooperation
@@ -38,6 +36,7 @@ public class CooperationController {
 	public static String INCLUDE_SERVICECONTRACT = "serviceContract";
 	public static String INCLUDE_CONNECTIONPOINT = "connectionPoint";
 	public static String INCLUDE_LOGICALADDRESS = "logicalAddress";
+
 	private final Logger log = LoggerFactory.getLogger(CooperationController.class);
 	@Autowired
 	private CooperationRepository cooperationRepository;
@@ -105,13 +104,14 @@ public class CooperationController {
 	@RequestMapping(value = "/{id}",
 		method = RequestMethod.GET,
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<CooperationDTO> get(@PathVariable Long id) {
+	public CooperationDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
-		return Optional.ofNullable(cooperationRepository.findOne(id))
-			.map(cooperation -> new ResponseEntity<>(
-				mapper.map(cooperation, CooperationDTO.class),
-				HttpStatus.OK))
-			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		Cooperation coop = cooperationRepository.findOne(id);
+		if (coop == null) {
+			log.debug("Cooperation with id {} not found", id);
+			throw new ResourceNotFoundException("Cooperation with id " + id + " not found");
+		}
+		return mapper.map(coop, CooperationDTO.class);
 	}
 
 	Predicate buildCriteria(Long serviceConsumerId, Long logicalAddressId, Long serviceContractId, Long connectionPointId) {

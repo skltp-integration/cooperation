@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Peter Merikan
  */
 @XmlRootElement(name = "cooperation")
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class CooperationDTO {
 	private Long id;
 	private ServiceConsumerDTO serviceConsumer;

@@ -5,9 +5,7 @@ import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerListDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing ServiceConsumer.
@@ -86,13 +84,15 @@ public class ServiceConsumerController {
 	@RequestMapping(value = "/{id}",
 		method = RequestMethod.GET,
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<ServiceConsumerDTO> get(@PathVariable Long id) {
+	public ServiceConsumerDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
-		return Optional.ofNullable(serviceConsumerRepository.findOne(id))
-			.map(serviceConsumer -> new ResponseEntity<>(
-				mapper.map(serviceConsumer, ServiceConsumerDTO.class),
-				HttpStatus.OK))
-			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		ServiceConsumer serviceConsumer = serviceConsumerRepository.findOne(id);
+		if (serviceConsumer == null) {
+			log.debug("Service consumer with id {} not found", id);
+			throw new ResourceNotFoundException("Service consumer with id " + id + " not found");
+
+		}
+		return mapper.map(serviceConsumer, ServiceConsumerDTO.class);
 	}
 
 }

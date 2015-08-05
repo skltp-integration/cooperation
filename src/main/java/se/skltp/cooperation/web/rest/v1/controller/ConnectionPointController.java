@@ -4,21 +4,19 @@ import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointListDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing ConnectionPoint.
@@ -79,13 +77,15 @@ public class ConnectionPointController {
 	@RequestMapping(value = "/{id}",
 		method = RequestMethod.GET,
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<ConnectionPointDTO> get(@PathVariable Long id) {
+	public ConnectionPointDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
-		return Optional.ofNullable(connectionPointRepository.findOne(id))
-			.map(connectionPoint -> new ResponseEntity<>(
-				mapper.map(connectionPoint, ConnectionPointDTO.class),
-				HttpStatus.OK))
-			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+		ConnectionPoint cp = connectionPointRepository.findOne(id);
+		if (cp == null) {
+			log.debug("Connection point with id {} not found", id);
+			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
+		}
+		return mapper.map(cp, ConnectionPointDTO.class);
 	}
 
 }

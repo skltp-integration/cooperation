@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import se.skltp.cooperation.CooperationApplication;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
 
 import javax.annotation.PostConstruct;
@@ -23,6 +24,8 @@ import java.util.Collections;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -198,12 +201,18 @@ public class ServiceConsumerControllerTest {
 	}
 
 	@Test
-	public void get_shouldReturnNotFound() throws Exception {
+	public void get_shouldThrowNotFoundException() throws Exception {
 
 		when(serviceConsumerRepositoryMock.findOne(anyLong())).thenReturn(null);
 
-		mockMvc.perform(get("/v1/serviceConsumers/{id}", Long.MAX_VALUE))
-			.andExpect(status().isNotFound());
+		try {
+			mockMvc.perform(get("/v1/serviceConsumers/{id}", Long.MAX_VALUE))
+				.andExpect(status().isNotFound());
+			fail("Should thrown a exception");
+		} catch (Exception e) {
+			assertEquals(e.getCause().getClass(), ResourceNotFoundException.class);
+		}
+
 	}
 
 }
