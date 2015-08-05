@@ -22,6 +22,7 @@ import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
 import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.ConnectionPointDTO;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
@@ -64,15 +65,15 @@ public class CooperationControllerTest {
 
 	@InjectMocks
 	CooperationController uut;
+	@Mock
+	private CooperationService cooperationServiceMock;
+	@Mock
+	private DozerBeanMapper mapperMock;
+	private MockMvc mockMvc;
 	private Cooperation c1;
 	private Cooperation c2;
 	private CooperationDTO dto1;
 	private CooperationDTO dto2;
-	@Mock
-	private CooperationRepository cooperationRepositoryMock;
-	@Mock
-	private DozerBeanMapper mapperMock;
-	private MockMvc mockMvc;
 
 	@PostConstruct
 	public void setup() {
@@ -121,7 +122,7 @@ public class CooperationControllerTest {
 	@Test
 	public void getAllAsJson_shouldReturnAll() throws Exception {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -132,15 +133,15 @@ public class CooperationControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
 
-		verify(cooperationRepositoryMock, times(1)).findAll();
-		verifyNoMoreInteractions(cooperationRepositoryMock);
+		verify(cooperationServiceMock, times(1)).findAll();
+		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
 
 	@Test
 	public void getAllAsJson_shouldReturnWithFilter() throws Exception {
 
-		when(cooperationRepositoryMock.findAll(any(Predicate.class))).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll(any(Predicate.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -151,15 +152,15 @@ public class CooperationControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
 
-		verify(cooperationRepositoryMock, times(1)).findAll(any(Predicate.class));
-		verifyNoMoreInteractions(cooperationRepositoryMock);
+		verify(cooperationServiceMock, times(1)).findAll(any(Predicate.class));
+		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
 
 	@Test
 	public void getAllAsJson_shouldReturnWithInclude() throws Exception {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -179,15 +180,15 @@ public class CooperationControllerTest {
 			.andExpect(jsonPath("$.[1].serviceConsumer.hsaId").value(is(dto2.getServiceConsumer().getHsaId())))
 			.andExpect(jsonPath("$.[1].serviceContract.name").value(is(dto2.getServiceContract().getName())));
 
-		verify(cooperationRepositoryMock, times(1)).findAll();
-		verifyNoMoreInteractions(cooperationRepositoryMock);
+		verify(cooperationServiceMock, times(1)).findAll();
+		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
 
 	@Test
 	public void testGetAllAsXml_shouldReturnAll() throws Exception {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -197,15 +198,15 @@ public class CooperationControllerTest {
 			.andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/cooperations/cooperation[2]/id").string(is(dto2.getId().toString())));
 
-		verify(cooperationRepositoryMock, times(1)).findAll();
-		verifyNoMoreInteractions(cooperationRepositoryMock);
+		verify(cooperationServiceMock, times(1)).findAll();
+		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
 
 	@Test
 	public void testGetAllAsXml_shouldReturnWithInclude() throws Exception {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -225,15 +226,15 @@ public class CooperationControllerTest {
 			.andExpect(xpath("/cooperations/cooperation[2]/serviceContract/name").string(is(dto2.getServiceContract().getName())));
 
 
-		verify(cooperationRepositoryMock, times(1)).findAll();
-		verifyNoMoreInteractions(cooperationRepositoryMock);
+		verify(cooperationServiceMock, times(1)).findAll();
+		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
 
 	@Test
 	public void getAllAsJson_shouldReturnEmptyList() throws Exception {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(Collections.emptyList());
+		when(cooperationServiceMock.findAll()).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(get("/v1/cooperations").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -244,7 +245,7 @@ public class CooperationControllerTest {
 	@Test
 	public void getAllAsXml_shouldReturnEmptyList() throws Exception {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(Collections.emptyList());
+		when(cooperationServiceMock.findAll()).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(get("/v1/cooperations").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
@@ -256,7 +257,7 @@ public class CooperationControllerTest {
 	@Test
 	public void get_shouldReturnOneAsJson() throws Exception {
 
-		when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+		when(cooperationServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 
 		mockMvc.perform(get("/v1/cooperations/{id}", c1.getId())
@@ -270,7 +271,7 @@ public class CooperationControllerTest {
 	@Test
 	public void get_shouldReturnOneAsXml() throws Exception {
 
-		when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+		when(cooperationServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 
 		mockMvc.perform(get("/v1/cooperations/{id}", c1.getId()).accept(MediaType.APPLICATION_XML))
@@ -282,14 +283,14 @@ public class CooperationControllerTest {
 	@Test
 	public void get_shouldThrowNotFoundException() throws Exception {
 
-		when(cooperationRepositoryMock.findOne(anyLong())).thenReturn(null);
+		when(cooperationServiceMock.find(anyLong())).thenReturn(null);
 
 		try {
 			mockMvc.perform(get("/v1/cooperations/{id}", Long.MAX_VALUE))
 				.andExpect(status().isNotFound());
 			fail("Should thrown a exception");
 		} catch (Exception e) {
-			assertEquals(e.getCause().getClass(), ResourceNotFoundException.class);
+			assertEquals(ResourceNotFoundException.class, e.getCause().getClass());
 		}
 	}
 

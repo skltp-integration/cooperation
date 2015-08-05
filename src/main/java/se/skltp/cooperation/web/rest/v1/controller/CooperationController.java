@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.CooperationPredicates;
 import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationListDTO;
@@ -38,10 +39,14 @@ public class CooperationController {
 	public static String INCLUDE_LOGICALADDRESS = "logicalAddress";
 
 	private final Logger log = LoggerFactory.getLogger(CooperationController.class);
+	private final CooperationService cooperationService;
+	private final DozerBeanMapper mapper;
+
 	@Autowired
-	private CooperationRepository cooperationRepository;
-	@Autowired
-	private DozerBeanMapper mapper;
+	public CooperationController(CooperationService cooperationService, DozerBeanMapper mapper) {
+		this.cooperationService = cooperationService;
+		this.mapper = mapper;
+	}
 
 	/**
 	 * GET  /cooperations -> get all the cooperations.
@@ -64,9 +69,9 @@ public class CooperationController {
 		List<Cooperation> cooperations;
 		Predicate criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
 		if (criteria != null) {
-			cooperations = Lists.newArrayList(cooperationRepository.findAll(criteria));
+			cooperations = cooperationService.findAll(criteria);
 		} else {
-			cooperations = cooperationRepository.findAll();
+			cooperations = cooperationService.findAll();
 		}
 
 		for (Cooperation cp : cooperations) {
@@ -106,7 +111,7 @@ public class CooperationController {
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public CooperationDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
-		Cooperation coop = cooperationRepository.findOne(id);
+		Cooperation coop = cooperationService.find(id);
 		if (coop == null) {
 			log.debug("Cooperation with id {} not found", id);
 			throw new ResourceNotFoundException("Cooperation with id " + id + " not found");
