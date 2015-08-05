@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  *
  * @author Peter Merikan
  */
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class LogicalAddressDTO {
 
 	private Long id;

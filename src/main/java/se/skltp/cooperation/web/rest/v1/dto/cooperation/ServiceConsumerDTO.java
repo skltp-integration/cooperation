@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Peter Merikan
  */
 @XmlRootElement(name = "serviceConsumer")
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class ServiceConsumerDTO {
 
 	private Long id;
