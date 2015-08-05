@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
-public class CooperationApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CooperationApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 

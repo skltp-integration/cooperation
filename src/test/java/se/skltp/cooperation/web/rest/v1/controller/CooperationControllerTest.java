@@ -15,13 +15,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import se.skltp.cooperation.CooperationApplication;
+import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
-import se.skltp.cooperation.repository.CooperationRepository;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.ConnectionPointDTO;
@@ -59,7 +58,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CooperationApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class CooperationControllerTest {
 

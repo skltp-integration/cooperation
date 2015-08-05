@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import se.skltp.cooperation.CooperationApplication;
+import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ConnectionPointController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CooperationApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class ConnectionPointControllerTest {
 

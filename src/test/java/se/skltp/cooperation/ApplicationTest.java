@@ -8,14 +8,14 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 
 /**
- * Test class for CooperationApplication
+ * Test class for Application
  *
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CooperationApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class CooperationApplicationTests {
+public class ApplicationTest {
 
 	@Test
 	public void contextLoads() {

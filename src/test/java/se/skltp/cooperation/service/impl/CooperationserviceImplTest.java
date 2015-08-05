@@ -2,7 +2,6 @@ package se.skltp.cooperation.service.impl;
 
 import com.mysema.query.BooleanBuilder;
 import com.mysema.query.types.Predicate;
-import com.mysema.query.types.Visitor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,11 +10,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import se.skltp.cooperation.CooperationApplication;
+import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.CooperationRepository;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +29,7 @@ import static org.mockito.Mockito.when;
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CooperationApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class CooperationServiceImplTest {
 
