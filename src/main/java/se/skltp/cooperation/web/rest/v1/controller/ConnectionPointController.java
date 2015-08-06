@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.repository.ConnectionPointRepository;
+import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointListDTO;
@@ -29,11 +29,14 @@ public class ConnectionPointController {
 
 	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
 
-	@Autowired
-	private ConnectionPointRepository connectionPointRepository;
+	private final ConnectionPointService connectionPointService;
+	private final DozerBeanMapper mapper;
 
 	@Autowired
-	private DozerBeanMapper mapper;
+	public ConnectionPointController(ConnectionPointService connectionPointService, DozerBeanMapper mapper) {
+		this.connectionPointService = connectionPointService;
+		this.mapper = mapper;
+	}
 
 	/**
 	 * GET  /connectionPoints -> get all the connectionPoints.
@@ -44,7 +47,7 @@ public class ConnectionPointController {
 	public List<ConnectionPointDTO> getAllAsJson() {
 		log.debug("REST request to get all ConnectionPoints");
 		List<ConnectionPointDTO> result = new ArrayList<>();
-		List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
+		List<ConnectionPoint> connectionPoints = connectionPointService.findAll();
 		for (ConnectionPoint cp : connectionPoints) {
 			result.add(mapper.map(cp, ConnectionPointDTO.class));
 		}
@@ -62,7 +65,7 @@ public class ConnectionPointController {
 		log.debug("REST request to get all ConnectionPoints");
 		ConnectionPointListDTO result = new ConnectionPointListDTO();
 
-		List<ConnectionPoint> connectionPoints = connectionPointRepository.findAll();
+		List<ConnectionPoint> connectionPoints = connectionPointService.findAll();
 		for (ConnectionPoint cp : connectionPoints) {
 			result.getConnectionPoints().add(mapper.map(cp, ConnectionPointDTO.class));
 		}
@@ -80,7 +83,7 @@ public class ConnectionPointController {
 	public ConnectionPointDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 
-		ConnectionPoint cp = connectionPointRepository.findOne(id);
+		ConnectionPoint cp = connectionPointService.find(id);
 		if (cp == null) {
 			log.debug("Connection point with id {} not found", id);
 			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
