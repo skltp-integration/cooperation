@@ -1,6 +1,5 @@
 package se.skltp.cooperation.service;
 
-import com.mysema.query.types.Predicate;
 import se.skltp.cooperation.domain.Cooperation;
 
 import java.util.List;
@@ -18,12 +17,12 @@ public interface CooperationService {
 	List<Cooperation> findAll();
 
 	/**
-	 * Find all Cooperations by given predicate
+	 * Find all Cooperations by given criteria
 	 *
-	 * @param predicate
+	 * @param criteria
 	 * @return List A list of {@link Cooperation} objects.
 	 */
-	List<Cooperation> findAll(Predicate predicate);
+	List<Cooperation> findAll(CooperationCriteria criteria);
 
 	/**
 	 * Find a cooperation by id

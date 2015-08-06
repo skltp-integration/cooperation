@@ -1,6 +1,5 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
-import com.mysema.query.types.Predicate;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +20,7 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.ConnectionPointDTO;
@@ -39,6 +39,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
@@ -121,7 +122,7 @@ public class CooperationControllerTest {
 	@Test
 	public void getAllAsJson_shouldReturnAll() throws Exception {
 
-		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -132,7 +133,7 @@ public class CooperationControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
 
-		verify(cooperationServiceMock, times(1)).findAll();
+		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
@@ -140,7 +141,7 @@ public class CooperationControllerTest {
 	@Test
 	public void getAllAsJson_shouldReturnWithFilter() throws Exception {
 
-		when(cooperationServiceMock.findAll(any(Predicate.class))).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -151,7 +152,7 @@ public class CooperationControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
 
-		verify(cooperationServiceMock, times(1)).findAll(any(Predicate.class));
+		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
@@ -159,7 +160,7 @@ public class CooperationControllerTest {
 	@Test
 	public void getAllAsJson_shouldReturnWithInclude() throws Exception {
 
-		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -179,7 +180,7 @@ public class CooperationControllerTest {
 			.andExpect(jsonPath("$.[1].serviceConsumer.hsaId").value(is(dto2.getServiceConsumer().getHsaId())))
 			.andExpect(jsonPath("$.[1].serviceContract.name").value(is(dto2.getServiceContract().getName())));
 
-		verify(cooperationServiceMock, times(1)).findAll();
+		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
@@ -187,7 +188,7 @@ public class CooperationControllerTest {
 	@Test
 	public void testGetAllAsXml_shouldReturnAll() throws Exception {
 
-		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -197,7 +198,7 @@ public class CooperationControllerTest {
 			.andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/cooperations/cooperation[2]/id").string(is(dto2.getId().toString())));
 
-		verify(cooperationServiceMock, times(1)).findAll();
+		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
@@ -205,7 +206,7 @@ public class CooperationControllerTest {
 	@Test
 	public void testGetAllAsXml_shouldReturnWithInclude() throws Exception {
 
-		when(cooperationServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
@@ -225,7 +226,7 @@ public class CooperationControllerTest {
 			.andExpect(xpath("/cooperations/cooperation[2]/serviceContract/name").string(is(dto2.getServiceContract().getName())));
 
 
-		verify(cooperationServiceMock, times(1)).findAll();
+		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
 
 	}
@@ -296,22 +297,27 @@ public class CooperationControllerTest {
 	@Test
 	public void buildCriteria_shouldBuild() throws Exception {
 
-		Predicate predicate = uut.buildCriteria(1L, null, null, null);
-		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1"));
-		predicate = uut.buildCriteria(1L, 2L, null, null);
-		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2"));
-		predicate = uut.buildCriteria(1L, 2L, 3L, null);
-		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2 && cooperation.serviceContract.id = 3"));
-		predicate = uut.buildCriteria(1L, 2L, 3L, 4L);
-		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2 && cooperation.serviceContract.id = 3 && cooperation.connectionPoint.id = 4"));
-
+		CooperationCriteria criteria = uut.buildCriteria(1L, null, null, null);
+		assertThat(criteria.getServiceConsumerId(), is(1L));
+		criteria = uut.buildCriteria(1L, 2L, null, null);
+		assertThat(criteria.getServiceConsumerId(), is(1L));
+		assertThat(criteria.getLogicalAddressId(), is(2L));
+		criteria = uut.buildCriteria(1L, 2L, 3L, null);
+		assertThat(criteria.getServiceConsumerId(), is(1L));
+		assertThat(criteria.getLogicalAddressId(), is(2L));
+		assertThat(criteria.getServiceContractId(), is(3L));
+		criteria = uut.buildCriteria(1L, 2L, 3L, 4L);
+		assertThat(criteria.getServiceConsumerId(), is(1L));
+		assertThat(criteria.getLogicalAddressId(), is(2L));
+		assertThat(criteria.getServiceContractId(), is(3L));
+		assertThat(criteria.getConnectionPointId(), is(4L));
 	}
 
 	@Test
-	public void buildCriteria_shouldReturnNull() throws Exception {
+	public void buildCriteria_shouldBeEmpty() throws Exception {
 
-		Predicate predicate = uut.buildCriteria(null, null, null, null);
-		assertNull(predicate);
+		CooperationCriteria criteria = uut.buildCriteria(null, null, null, null);
+		assertTrue(criteria.isEmpty());
 	}
 
 

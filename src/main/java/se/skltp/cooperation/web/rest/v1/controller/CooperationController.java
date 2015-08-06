@@ -1,9 +1,6 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.Cooperation;
-import se.skltp.cooperation.repository.CooperationPredicates;
-import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
@@ -67,12 +63,8 @@ public class CooperationController {
 		List<String> includes = (include != null) ? SPLITTER.splitToList(include) : new ArrayList<>();
 
 		List<Cooperation> cooperations;
-		Predicate criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
-		if (criteria != null) {
-			cooperations = cooperationService.findAll(criteria);
-		} else {
-			cooperations = cooperationService.findAll();
-		}
+		CooperationCriteria criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
+		cooperations = cooperationService.findAll(criteria);
 
 		for (Cooperation cp : cooperations) {
 			includeOrNot(includes, cp);
@@ -119,28 +111,20 @@ public class CooperationController {
 		return mapper.map(coop, CooperationDTO.class);
 	}
 
-	Predicate buildCriteria(Long serviceConsumerId, Long logicalAddressId, Long serviceContractId, Long connectionPointId) {
+	CooperationCriteria buildCriteria(Long serviceConsumerId, Long logicalAddressId, Long serviceContractId, Long connectionPointId) {
 		log.debug("buildCriteria(serviceConsumerId:{}, logicalAddressId:{}, serviceContractId:{}, connectionPointId:{})", serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
 
-		BooleanBuilder builder = new BooleanBuilder();
-		if (serviceConsumerId != null) {
-			builder.and(CooperationPredicates.serviceConsumerIdIs(serviceConsumerId));
-		}
-		if (logicalAddressId != null) {
-			builder.and(CooperationPredicates.logicalAddressIdIs(logicalAddressId));
-		}
-		if (serviceContractId != null) {
-			builder.and(CooperationPredicates.serviceContractIdIs(serviceContractId));
-		}
-		if (connectionPointId != null) {
-			builder.and(CooperationPredicates.connectionPointIdIs(connectionPointId));
-		}
-
-		return builder.hasValue() ? builder.getValue() : null;
+		CooperationCriteria criteria = new CooperationCriteria();
+		criteria.setServiceConsumerId(serviceConsumerId);
+		criteria.setLogicalAddressId(logicalAddressId);
+		criteria.setServiceContractId(serviceContractId);
+		criteria.setConnectionPointId(connectionPointId);
+		return criteria;
 	}
 
 	/**
-	 * Decide which compound objects that should be included
+	 * Decide which compound objects that should be included. If not requested to
+	 * be included it will be nulled.
 	 *
 	 * @param includes    A list of parameter values
 	 * @param cooperation
