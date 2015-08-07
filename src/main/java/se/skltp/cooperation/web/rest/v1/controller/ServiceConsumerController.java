@@ -32,12 +32,14 @@ public class ServiceConsumerController {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceConsumerController.class);
 
-	@Autowired
-	private ServiceConsumerService serviceConsumerService; //TODO use constructor injection instead
+	private final ServiceConsumerService serviceConsumerService;
+	private final DozerBeanMapper mapper;
 
 	@Autowired
-	private DozerBeanMapper mapper;
-
+	public ServiceConsumerController(ServiceConsumerService serviceConsumerService, DozerBeanMapper mapper) {
+		this.serviceConsumerService = serviceConsumerService;
+		this.mapper = mapper;
+	}
 
 	/**
 	 * GET  /connectionPoints -> get all the connectionPoints.
