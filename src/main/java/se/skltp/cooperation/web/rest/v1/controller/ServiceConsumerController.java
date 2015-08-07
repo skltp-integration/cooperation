@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ServiceConsumer;
-import se.skltp.cooperation.repository.ServiceConsumerRepository;
+import se.skltp.cooperation.service.ServiceConsumerCriteria;
+import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerListDTO;
@@ -32,7 +33,7 @@ public class ServiceConsumerController {
 	private final Logger log = LoggerFactory.getLogger(ServiceConsumerController.class);
 
 	@Autowired
-	private ServiceConsumerRepository serviceConsumerRepository;
+	private ServiceConsumerService serviceConsumerService; //TODO use constructor injection instead
 
 	@Autowired
 	private DozerBeanMapper mapper;
@@ -48,11 +49,14 @@ public class ServiceConsumerController {
 		@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
 		log.debug("REST request to get all ServiceConsumers as Json");
 		List<ServiceConsumerDTO> result = new ArrayList<>();
+
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria();
+		criteria.setConnectionPointId(connectionPointId);
 		List<ServiceConsumer> consumers = new ArrayList<>();
 		if (connectionPointId != null) {
-			consumers = serviceConsumerRepository.findDistinctByCooperationsConnectionPointIdOrderByDescriptionAsc(connectionPointId);
+			consumers = serviceConsumerService.findAll(criteria);
 		} else {
-			consumers = serviceConsumerRepository.findAll();
+			consumers = serviceConsumerService.findAll();
 		}
 		for (ServiceConsumer consumer : consumers) {
 			result.add(mapper.map(consumer, ServiceConsumerDTO.class));
@@ -64,13 +68,15 @@ public class ServiceConsumerController {
 	/**
 	 * GET  /connectionPoints -> get all the connectionPoints.
 	 * Content type: XML
+	 * <p/>
+	 * TODO: add request param connectionPointId
 	 */
 	@RequestMapping(method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_XML_VALUE)
 	public ServiceConsumerListDTO getAllAsXml() {
 		log.debug("REST request to get all ServiceConsumers as Xml");
 		ServiceConsumerListDTO result = new ServiceConsumerListDTO();
-		List<ServiceConsumer> consumers = serviceConsumerRepository.findAll();
+		List<ServiceConsumer> consumers = serviceConsumerService.findAll();
 		for (ServiceConsumer consumer : consumers) {
 			result.getServiceConsumers().add(mapper.map(consumer, ServiceConsumerDTO.class));
 		}
@@ -86,7 +92,7 @@ public class ServiceConsumerController {
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public ServiceConsumerDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
-		ServiceConsumer serviceConsumer = serviceConsumerRepository.findOne(id);
+		ServiceConsumer serviceConsumer = serviceConsumerService.find(id);
 		if (serviceConsumer == null) {
 			log.debug("Service consumer with id {} not found", id);
 			throw new ResourceNotFoundException("Service consumer with id " + id + " not found");
