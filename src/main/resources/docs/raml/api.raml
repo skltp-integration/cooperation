@@ -1,0 +1,126 @@
+#%RAML 0.8
+title: Etablerad samverkan mellan system i olika plattformar och miljöer.
+version: v1
+baseUri: http://localhost:8080/{version}
+
+schemas:
+  - cooperation:     !include cooperation/cooperation.schema.json
+  - cooperations:    !include cooperation/cooperations.schema.json
+  - logicalAddress:  !include logicalAddress/logicalAddress.schema.json
+  - connectionPoint: !include connectionPoint/connectionPoint.schema.json 
+
+
+/connectionPoints:
+  displayName: Connection Points
+  description: |
+    En lista med Connection Points
+    En connection point representerar en miljö i en viss plattform
+  get:
+    description: Hämta en lista med connection points
+    responses:
+      200:
+        body:
+          application/json:
+          application/xml:
+  /{connectionPointId}:
+    displayName: Connection Point
+    uriParameters:
+      connectionPointId:
+        displayName: Connection Point Id
+        description: Id på den connection point som avses.
+        type: integer
+        required: true
+    get:
+      description: Hämta en connection point
+      responses:
+        200:
+          body:
+            application/json:
+              schema: connectionPoint
+            application/xml:
+      
+/serviceConsumers:
+    displayName: Service Consumers
+    description: |
+      En lista med Service Consumers 
+      En Service Consumer representerar ett/en system/applikation som konsumerar en tjänst.
+    get:
+      description: Hämta en lista med service consumers
+      queryParameters:
+        connectionPointId:
+          displayName: Connection Point Id
+          type: integer
+      responses:
+        200:
+          body:
+            application/json:
+              schema: serviceConsumers
+            application/xml:
+    
+/cooperations:
+    displayName: Cooperations
+    description: |
+      En lista med cooperations.
+      En cooperation representerar en unik association mellan serviceConsumer, logicalAddress, connectionPoint och serviceConsumer.
+    get:
+      description: Hämta en lista med cooperations.
+      queryParameters:
+        serviceConsumerId: 
+          displayName: serviceConsumerId
+          type: integer
+        logicalAddressId:
+          displayName: logicalAddressId
+          type: integer
+        serviceContractId:
+          displayName: serviceContractId
+          type: integer
+        connectionPointId:
+          displayName: connectionPointId
+          type: integer
+        include:
+          displayName: include
+          type: string
+          description: |
+            En kommaseparerad lista av resurser som önskas vara med i svaret. Valida värden: 
+              - serviceConsumer
+              - serviceContract
+              - connectionPoint
+              - logicalAddress
+          example: |
+            logicalAddress,connectionPoint
+      responses:
+        200:
+          body:
+            application/json:
+              schema: cooperations
+              example: !include cooperation/cooperations_get.sample.json
+            application/xml:
+    /{cooperationId}:
+      displayName: Ett displayname
+      description: En specifik Cooperation.
+      uriParameters:  
+        cooperationId:
+          description: Id på den cooperation som avses.
+          type: integer
+          required: true
+      get:
+        description: Hämta en cooperation
+        queryParameters:
+          include:
+            displayName: include
+            type: string
+            description: |
+              En kommaseparerad lista av resurser som önskas vara med i svaret. Valida värden: 
+                - serviceConsumer
+                - serviceContract
+                - connectionPoint
+                - logicalAddress
+            example: | 
+              logicalAddress,connectionPoint
+        responses:
+          200:
+            body:
+              application/json:
+                example:
+                schema:  !include cooperation/cooperations.schema.json 
+              application/xml:

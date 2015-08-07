@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "ConnectionPoints",
+  "description": "A collection of connection points",
+  "type": "array",
+  "items": {
+    "$ref": "connectionPoint.schema.json"
+  }
+}
