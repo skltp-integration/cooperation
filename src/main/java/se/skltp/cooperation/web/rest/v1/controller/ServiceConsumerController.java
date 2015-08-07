@@ -75,13 +75,11 @@ public class ServiceConsumerController {
 	 */
 	@RequestMapping(method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_XML_VALUE)
-	public ServiceConsumerListDTO getAllAsXml() {
+	public ServiceConsumerListDTO getAllAsXml(
+		@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
 		log.debug("REST request to get all ServiceConsumers as Xml");
 		ServiceConsumerListDTO result = new ServiceConsumerListDTO();
-		List<ServiceConsumer> consumers = serviceConsumerService.findAll();
-		for (ServiceConsumer consumer : consumers) {
-			result.getServiceConsumers().add(mapper.map(consumer, ServiceConsumerDTO.class));
-		}
+		result.setServiceConsumers(getAllAsJson(connectionPointId));
 		return result;
 
 	}

@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ServiceConsumer;
+import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
@@ -27,6 +28,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -108,6 +110,25 @@ public class ServiceConsumerControllerTest {
 	}
 
 	@Test
+	public void getAllAsJson_shouldReturnWithFilter() throws Exception {
+
+		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
+		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+
+		mockMvc.perform(get("/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$", hasSize(2)))
+			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
+			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
+
+		verify(serviceConsumerServiceMock, times(1)).findAll(any(ServiceConsumerCriteria.class));
+		verifyNoMoreInteractions(serviceConsumerServiceMock);
+
+	}
+
+	@Test
 	public void getAllAsXml_shouldReturnAll() throws Exception {
 
 		when(serviceConsumerServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
@@ -128,6 +149,29 @@ public class ServiceConsumerControllerTest {
 		verifyNoMoreInteractions(serviceConsumerServiceMock);
 
 	}
+
+	@Test
+	public void getAllAsXml_shouldReturnWithFilter() throws Exception {
+
+		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
+		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+
+		mockMvc.perform(get("/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_XML))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/description").string(is(dto1.getDescription())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/hsaId").string(is(dto1.getHsaId())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/id").string(is(dto2.getId().toString())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/description").string(is(dto2.getDescription())))
+			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/hsaId").string(is(dto2.getHsaId())));
+
+		verify(serviceConsumerServiceMock, times(1)).findAll(any(ServiceConsumerCriteria.class));
+		verifyNoMoreInteractions(serviceConsumerServiceMock);
+
+	}
+
 
 	@Test
 	public void getAllAsJson_shouldReturnEmptyList() throws Exception {
