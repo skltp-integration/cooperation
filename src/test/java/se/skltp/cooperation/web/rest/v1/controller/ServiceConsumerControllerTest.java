@@ -89,7 +89,7 @@ public class ServiceConsumerControllerTest {
 	@Test
 	public void getAllAsJson_shouldReturnAll() throws Exception {
 
-		when(serviceConsumerServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
@@ -104,7 +104,7 @@ public class ServiceConsumerControllerTest {
 			.andExpect(jsonPath("$.[1].description").value(is(dto2.getDescription())))
 			.andExpect(jsonPath("$.[1].hsaId").value(is(dto2.getHsaId())));
 
-		verify(serviceConsumerServiceMock, times(1)).findAll();
+		verify(serviceConsumerServiceMock, times(1)).findAll(any(ServiceConsumerCriteria.class));
 		verifyNoMoreInteractions(serviceConsumerServiceMock);
 
 	}
@@ -131,7 +131,7 @@ public class ServiceConsumerControllerTest {
 	@Test
 	public void getAllAsXml_shouldReturnAll() throws Exception {
 
-		when(serviceConsumerServiceMock.findAll()).thenReturn(Arrays.asList(c1, c2));
+		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
@@ -145,7 +145,7 @@ public class ServiceConsumerControllerTest {
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/description").string(is(dto2.getDescription())))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[2]/hsaId").string(is(dto2.getHsaId())));
 
-		verify(serviceConsumerServiceMock, times(1)).findAll();
+		verify(serviceConsumerServiceMock, times(1)).findAll(any(ServiceConsumerCriteria.class));
 		verifyNoMoreInteractions(serviceConsumerServiceMock);
 
 	}

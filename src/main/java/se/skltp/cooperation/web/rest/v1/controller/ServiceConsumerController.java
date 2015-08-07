@@ -49,17 +49,12 @@ public class ServiceConsumerController {
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceConsumerDTO> getAllAsJson(
 		@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
+
 		log.debug("REST request to get all ServiceConsumers as Json");
 		List<ServiceConsumerDTO> result = new ArrayList<>();
-
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria();
 		criteria.setConnectionPointId(connectionPointId);
-		List<ServiceConsumer> consumers = new ArrayList<>();
-		if (connectionPointId != null) {
-			consumers = serviceConsumerService.findAll(criteria);
-		} else {
-			consumers = serviceConsumerService.findAll();
-		}
+		List<ServiceConsumer> consumers = serviceConsumerService.findAll(criteria);
 		for (ServiceConsumer consumer : consumers) {
 			result.add(mapper.map(consumer, ServiceConsumerDTO.class));
 		}

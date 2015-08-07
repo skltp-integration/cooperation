@@ -15,4 +15,8 @@ public class ServiceConsumerCriteria {
 	public void setConnectionPointId(Long connectionPointId) {
 		this.connectionPointId = connectionPointId;
 	}
+
+	public boolean isEmpty() {
+		return (connectionPointId == null);
+	}
 }

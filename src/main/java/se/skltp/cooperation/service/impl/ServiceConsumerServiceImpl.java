@@ -31,7 +31,11 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 
 	@Override
 	public List<ServiceConsumer> findAll(ServiceConsumerCriteria criteria) {
-		return serviceConsumerRepository.findDistinctByCooperationsConnectionPointIdOrderByDescriptionAsc(criteria.getConnectionPointId());
+		if (criteria.isEmpty()) {
+			return findAll();
+		} else {
+			return serviceConsumerRepository.findDistinctByCooperationsConnectionPointIdOrderByDescriptionAsc(criteria.getConnectionPointId());
+		}
 	}
 
 	@Override
