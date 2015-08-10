@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "ConnectionPoint",
+  "title": "Connection Point",
   "description": "A connection point respresents a environment for a specific platform",
   "type": "object",
   "properties": {
