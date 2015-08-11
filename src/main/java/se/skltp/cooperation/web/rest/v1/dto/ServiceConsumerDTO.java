@@ -20,8 +20,6 @@ public class ServiceConsumerDTO {
 	private String hsaId;
 	@JsonManagedReference
 	private Set<CooperationDTO> cooperations = new HashSet<>();
-	@JsonBackReference
-	private ConnectionPointDTO connectionPoint;
 
 	public Long getId() {
 		return id;
@@ -55,11 +53,4 @@ public class ServiceConsumerDTO {
 		this.cooperations = cooperations;
 	}
 
-	public ConnectionPointDTO getConnectionPoint() {
-		return connectionPoint;
-	}
-
-	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-		this.connectionPoint = connectionPoint;
-	}
 }

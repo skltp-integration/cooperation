@@ -156,10 +156,6 @@ public class DatabaseLoader {
 		ei_update_production.setServiceContract(ei_update_contract);
 		serviceProductionRepository.save(ei_update_production);
 
-		//Setup service consumers for EI in current plattform and environemnt
-		serviceConsumer1.setConnectionPoint(connectionPoint);
-		serviceConsumer2.setConnectionPoint(connectionPoint);
-
 		Cooperation cooperation = new Cooperation();
 		cooperation.setConnectionPoint(connectionPoint);
 		cooperation.setLogicalAddress(ei_logicalAddress);
@@ -199,10 +195,7 @@ public class DatabaseLoader {
 		processNotification_producer2_production.setServiceProducer(processNotification_producer2);
 		processNotification_producer2_production.setServiceContract(ei_processNotification_contract);
 		serviceProductionRepository.save(processNotification_producer2_production);
-
-		//Setup service consumers for Process Notification in current plattform and environemnt
-		serviceConsumer3.setConnectionPoint(connectionPoint);
-
+		
 		Cooperation cooperation3 = new Cooperation();
 		cooperation3.setConnectionPoint(connectionPoint);
 		cooperation3.setLogicalAddress(processNotification_producer1_logicalAddress);

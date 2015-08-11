@@ -21,8 +21,6 @@ public class ConnectionPointDTO {
 	private String environment;
 	@JsonManagedReference
 	private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
-	@JsonManagedReference
-	private Set<ServiceConsumerDTO> serviceConsumers = new HashSet<>();
 	//    @JsonManagedReference
 	@JsonIgnore
 	private Set<CooperationDTO> cooperations = new HashSet<>();
@@ -57,14 +55,6 @@ public class ConnectionPointDTO {
 
 	public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
 		this.serviceProductions = serviceProductions;
-	}
-
-	public Set<ServiceConsumerDTO> getServiceConsumers() {
-		return serviceConsumers;
-	}
-
-	public void setServiceConsumers(Set<ServiceConsumerDTO> serviceConsumers) {
-		this.serviceConsumers = serviceConsumers;
 	}
 
 	public Set<CooperationDTO> getCooperations() {

@@ -34,9 +34,6 @@ public class ServiceConsumer implements Serializable {
 	@OneToMany(mappedBy = "serviceConsumer")
 	private Set<Cooperation> cooperations = new HashSet<>();
 
-	@ManyToOne
-	private ConnectionPoint connectionPoint;
-
 	public Long getId() {
 		return id;
 	}
@@ -67,14 +64,6 @@ public class ServiceConsumer implements Serializable {
 
 	public void setCooperations(Set<Cooperation> cooperations) {
 		this.cooperations = cooperations;
-	}
-
-	public ConnectionPoint getConnectionPoint() {
-		return connectionPoint;
-	}
-
-	public void setConnectionPoint(ConnectionPoint connectionPoint) {
-		this.connectionPoint = connectionPoint;
 	}
 
 }
