@@ -4,9 +4,9 @@ version: v1
 documentation:
   - title: Synopsis
     content: |
-      This is the API documentation...  
-      Established cooperations between service producers and service consumers in different environments and platforms.
-      [//]: # include externaly defined docs
+      Detta är API dokumentationen...  
+      Etablerad samverkan mellan tjänstekonsumenter och tjänsteproducenter i olika miljöer och plattformar.
+      Inkludera mer dokumentation
 baseUri: http://localhost:8080/{version}
 
 
@@ -23,9 +23,9 @@ schemas:
 resourceTypes:
   - collection:
       usage: This resourceType should be used for any collection of items
-      description:  Collection of available <<resourcePathName>>
+      description:  Kollektion av tillgängliga <<resourcePathName>>
       get:
-        description: Get a list of <<resourcePathName>>
+        description: Hämta en lista med <<resourcePathName>>
         responses:
           200:
             body:
@@ -38,10 +38,10 @@ resourceTypes:
 
   - item:
       usage: This resourceType should be use for any single item of a collection
-      description: Entity representing a <<resourcePathName|!singularize>>
+      description: Entitet som representerar en  <<resourcePathName|!singularize>>
       get:
         description: |
-          Get the <<resourcePathName|!singularize>> with <<resourcePathName|!singularize>>Id =  {<<resourcePathName|!singularize>>Id}
+          Hämta specifik <<resourcePathName|!singularize>> med <<resourcePathName|!singularize>>Id =  {<<resourcePathName|!singularize>>Id}
         responses:
           200:
             body:
@@ -62,26 +62,26 @@ traits:
         include:
           type: string
           description: |
-            The value of the include parameter must be a comma-separated list of related resources to be inluded in the response. Valid values are: <<values>>
+            Värdet på include parametern måste vara en comma-separerad lista av av namnen på resurser som skall inkluderas i svaret. Giltiga värden är: <<values>>
           example:  include=value1,value2
   - filtered:
       queryParameters:
         serviceConsumerId?: 
           displayName: serviceConsumerId
           type: integer
-          description: Id of the service consumer to be filtered.
+          description: Id på den 'service consumer' som skall filtreras.
         logicalAddressId?:
-          displayName: logicalAddressId to be filtered.
+          displayName: logicalAddressId
           type: integer
-          description: Id of the logical address to be filtered.
+          description: Id på den 'logical address' som skall filtreras.
         serviceContractId?:
           displayName: serviceContractId
           type: integer
-          description: Id of the service contract to be filtered.
+          description: Id på den 'service contract' som skall filtreras.
         connectionPointId?:
           displayName: connectionPointId
           type: integer
-          description: Id of the connection point to be filtered.
+          description: Id på den 'connection point' som skall filtreras.
 /cooperations:
   type: 
     collection: 
