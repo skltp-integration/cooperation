@@ -29,3 +29,7 @@ Som standalone:
 ```
 > java -jar target/cooperation-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
+### Anropa en tjänst
+```
+curl -X GET 'http://localhost:8080/v1/cooperations?include=logicalAddress,connectionPoint'
+```
