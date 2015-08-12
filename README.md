@@ -27,5 +27,5 @@ Med  Maven:
 
 Som standalone:
 ```
-> java -jar target/cooperation.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+> java -jar target/cooperation-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
