@@ -1,7 +1,6 @@
 package se.skltp.cooperation.service;
 
 import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.domain.Cooperation;
 
 import java.util.List;
 

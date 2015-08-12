@@ -1,9 +1,10 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,14 @@ import java.util.List;
  *
  * @author Peter Merikan
  */
-@XmlRootElement(name = "connectionPoints")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName="connectionPoints")
 public class ConnectionPointListDTO {
 
-	@XmlElement(name = "connectionPoint")
+	@JacksonXmlProperty(localName = "connectionPoint")
+	@JacksonXmlElementWrapper(useWrapping = false)
 	private List<ConnectionPointDTO> connectionPoints = new ArrayList<>();
 
+	@XmlElement(name = "connectionPoint")
 	public List<ConnectionPointDTO> getConnectionPoints() {
 		return connectionPoints;
 	}

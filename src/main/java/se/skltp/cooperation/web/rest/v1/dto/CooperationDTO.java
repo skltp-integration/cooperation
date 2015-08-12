@@ -1,6 +1,7 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,7 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Peter Merikan
  */
-@XmlRootElement(name = "cooperation")
+
+@JacksonXmlRootElement(localName = "cooperation")
 public class CooperationDTO {
 	private Long id;
 	@JsonBackReference

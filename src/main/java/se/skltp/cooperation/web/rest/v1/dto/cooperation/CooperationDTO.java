@@ -3,15 +3,14 @@ package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * A Cooperation Data Transfer Object
  *
  * @author Peter Merikan
  */
-@XmlRootElement(name = "cooperation")
+@JacksonXmlRootElement(localName="cooperation")
 @JsonInclude(Include.NON_EMPTY)
 public class CooperationDTO {
 	private Long id;

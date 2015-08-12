@@ -1,9 +1,10 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,13 +13,15 @@ import java.util.Set;
  *
  * @author Peter Merikan
  */
-@XmlRootElement(name = "serviceConsumer")
+@JacksonXmlRootElement(localName = "serviceConsumer")
 public class ServiceConsumerDTO {
 
 	private Long id;
 	private String description;
 	private String hsaId;
 	@JsonManagedReference
+	@JacksonXmlElementWrapper(localName = "cooperations")
+	@JacksonXmlProperty(localName = "cooperation")
 	private Set<CooperationDTO> cooperations = new HashSet<>();
 
 	public Long getId() {

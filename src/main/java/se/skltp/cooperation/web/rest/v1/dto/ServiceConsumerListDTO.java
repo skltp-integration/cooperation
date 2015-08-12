@@ -1,9 +1,9 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +12,11 @@ import java.util.List;
  *
  * @author Peter Merikan
  */
-@XmlRootElement(name = "serviceConsumers")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JacksonXmlRootElement(localName="serviceConsumers")
 public class ServiceConsumerListDTO {
 
-	@XmlElement(name = "serviceConsumer")
+	@JacksonXmlProperty(localName = "serviceConsumer")
+	@JacksonXmlElementWrapper(useWrapping = false)
 	private List<ServiceConsumerDTO> serviceConsumers = new ArrayList<>();
 
 	public List<ServiceConsumerDTO> getServiceConsumers() {

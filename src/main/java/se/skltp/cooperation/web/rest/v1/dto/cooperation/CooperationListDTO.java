@@ -1,8 +1,10 @@
 package se.skltp.cooperation.web.rest.v1.dto.cooperation;
 
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +13,13 @@ import java.util.List;
  *
  * @author Peter Merikan
  */
-@XmlRootElement(name = "cooperations")
+@JacksonXmlRootElement(localName="cooperations")
 public class CooperationListDTO {
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "cooperation")
 	private List<CooperationDTO> cooperations = new ArrayList<>();
 
-	@XmlElement(name = "cooperation")
 	public List<CooperationDTO> getCooperations() {
 		return cooperations;
 	}
