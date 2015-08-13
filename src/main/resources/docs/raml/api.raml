@@ -4,7 +4,7 @@ version: v1
 documentation:
   - title: Synopsis
     content: |
-      Detta är API dokumentationen...  
+      Detta är API dokumentationen...
       Etablerad samverkan mellan tjänstekonsumenter och tjänsteproducenter i olika miljöer och plattformar.
       Inkludera mer dokumentation
 baseUri: http://localhost:8080/{version}
@@ -14,7 +14,7 @@ schemas:
   - cooperation.json:       !include cooperation/cooperation.schema.json
   - cooperations.json:      !include cooperation/cooperations.schema.json
   - logicalAddress.json:    !include logicalAddress/logicalAddress.schema.json
-  - connectionPoint.json:   !include connectionPoint/connectionPoint.schema.json 
+  - connectionPoint.json:   !include connectionPoint/connectionPoint.schema.json
   - serviceConsumer.json:   !include serviceConsumer/serviceConsumer.schema.json
   - serviceConsumers.json:  !include serviceConsumer/serviceConsumers.schema.json
 
@@ -63,10 +63,10 @@ traits:
           type: string
           description: |
             Värdet på include parametern måste vara en comma-separerad lista av av namnen på resurser som skall inkluderas i svaret. Giltiga värden är: <<values>>
-          example:  include=value1,value2
+          example: <<example>>
   - filtered:
       queryParameters:
-        serviceConsumerId?: 
+        serviceConsumerId?:
           displayName: serviceConsumerId
           type: integer
           description: Id på den 'service consumer' som skall filtreras.
@@ -83,23 +83,25 @@ traits:
           type: integer
           description: Id på den 'connection point' som skall filtreras.
 /cooperations:
-  type: 
-    collection: 
+  type:
+    collection:
       get_response_schema_json: cooperations.json
       get_response_sample_json: !include cooperation/cooperations_get.sample.json
       get_response_schema_xml:  cooperations.json
       get_response_sample_xml: {}
   get:
     is: [
-      query_include: {values: "serviceConsumer, serviceContract, connectionPoint, logicalAddress"},
-      filtered: 
+      query_include: {
+        values: "serviceConsumer, serviceContract, connectionPoint, logicalAddress",
+        example: "serviceContract, connectionPoint"},
+      filtered:
     ]
     queryParameters:
         serviceConsumerId:
         logicalAddressId:
         serviceContractId:
         connectionPointId:
-        
+
   /{cooperationId}:
     uriParameters:
       cooperationId:
@@ -112,7 +114,9 @@ traits:
         get_response_sample_xml: {}
     get:
       is: [
-        query_include: {values: "serviceConsumer, serviceContract, connectionPoint, logicalAddress"}
+      query_include: {
+        values: "serviceConsumer, serviceContract, connectionPoint, logicalAddress",
+        example: "serviceContract, connectionPoint"}
       ]
 /connectionPoints:
   type:
@@ -123,7 +127,7 @@ traits:
       get_response_sample_xml: {}
   get:
     is: [
-      filtered: 
+      filtered:
     ]
     queryParameters:
         platform:
@@ -155,7 +159,7 @@ traits:
       get_response_sample_xml: {}
   get:
     is: [
-      filtered: 
+      filtered:
     ]
     queryParameters:
         logicalAddressId:
@@ -171,4 +175,3 @@ traits:
         get_response_sample_json: {}
         get_response_schema_xml: {}
         get_response_sample_xml: {}
-    
