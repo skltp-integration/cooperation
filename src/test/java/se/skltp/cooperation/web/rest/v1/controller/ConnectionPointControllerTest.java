@@ -1,6 +1,7 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
 import org.dozer.DozerBeanMapper;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -11,12 +12,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
+import se.skltp.cooperation.web.rest.v1.dto.connectionPoint.ConnectionPointDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
@@ -56,33 +58,45 @@ public class ConnectionPointControllerTest {
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
 
+	ConnectionPoint cp1;
+	ConnectionPoint cp2;
+	ConnectionPointDTO dto1;
+	ConnectionPointDTO dto2;
+
 	@PostConstruct
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
 	}
 
+	@Before
+	public void setUpTestData() throws Exception {
+
+		cp1 = new ConnectionPoint();
+		cp1.setId(1L);
+		cp2 = new ConnectionPoint();
+		cp2.setId(2L);
+		dto1 = new ConnectionPointDTO();
+		dto1.setId(1L);
+		dto1.setPlatform("dto1.platform");
+		dto1.setEnvironment("dto1.environment");
+		dto2 = new ConnectionPointDTO();
+		dto2.setId(2L);
+		dto2.setPlatform("dto2.platform");
+		dto2.setEnvironment("dto2.environment");
+
+	}
 
 	@Test
 	public void getAllAsJson_shouldReturnAll() throws Exception {
 
-		ConnectionPoint cp1 = new ConnectionPoint();
-		ConnectionPoint cp2 = new ConnectionPoint();
-		ConnectionPointDTO dto1 = new ConnectionPointDTO();
-		dto1.setId(1L);
-		dto1.setPlatform("dt01.platform");
-		dto1.setEnvironment("dto1.environment");
-		ConnectionPointDTO dto2 = new ConnectionPointDTO();
-		dto2.setId(2L);
-		dto2.setPlatform("dt02.platform");
-		dto2.setEnvironment("dto2.environment");
 
 		when(connectionPointServiceMock.findAll()).thenReturn(Arrays.asList(cp1, cp2));
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
-		// Get all the connectionPoints
 		mockMvc.perform(get("/v1/connectionPoints").accept(MediaType.APPLICATION_JSON))
+			.andDo(MockMvcResultHandlers.print())
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$", hasSize(2)))
@@ -101,22 +115,10 @@ public class ConnectionPointControllerTest {
 	@Test
 	public void getAllAsXml_shouldReturnAll() throws Exception {
 
-		ConnectionPoint cp1 = new ConnectionPoint();
-		ConnectionPoint cp2 = new ConnectionPoint();
-		ConnectionPointDTO dto1 = new ConnectionPointDTO();
-		dto1.setId(1L);
-		dto1.setPlatform("dt01.platform");
-		dto1.setEnvironment("dto1.environment");
-		ConnectionPointDTO dto2 = new ConnectionPointDTO();
-		dto2.setId(2L);
-		dto2.setPlatform("dt02.platform");
-		dto2.setEnvironment("dto2.environment");
-
 		when(connectionPointServiceMock.findAll()).thenReturn(Arrays.asList(cp1, cp2));
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
-		// Get all the connectionPoints
 		mockMvc.perform(get("/v1/connectionPoints").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
@@ -158,17 +160,10 @@ public class ConnectionPointControllerTest {
 
 	@Test
 	public void get_shouldReturnOneAsJson() throws Exception {
-		ConnectionPoint cp1 = new ConnectionPoint();
-		cp1.setId(1L);
-		ConnectionPointDTO dto1 = new ConnectionPointDTO();
-		dto1.setId(1L);
-		dto1.setPlatform("dt01.platform");
-		dto1.setEnvironment("dto1.environment");
 
 		when(connectionPointServiceMock.find(cp1.getId())).thenReturn(cp1);
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
-		// Get the cp1
 		mockMvc.perform(get("/v1/connectionPoints/{id}", cp1.getId())
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -180,17 +175,10 @@ public class ConnectionPointControllerTest {
 
 	@Test
 	public void get_shouldReturnOneAsXml() throws Exception {
-		ConnectionPoint cp1 = new ConnectionPoint();
-		cp1.setId(1L);
-		ConnectionPointDTO dto1 = new ConnectionPointDTO();
-		dto1.setId(1L);
-		dto1.setPlatform("dt01.platform");
-		dto1.setEnvironment("dto1.environment");
 
 		when(connectionPointServiceMock.find(cp1.getId())).thenReturn(cp1);
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
-		// Get the cp1
 		mockMvc.perform(get("/v1/connectionPoints/{id}", cp1.getId())
 			.accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())

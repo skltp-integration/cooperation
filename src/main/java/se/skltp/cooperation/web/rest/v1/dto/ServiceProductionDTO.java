@@ -3,14 +3,11 @@ package se.skltp.cooperation.web.rest.v1.dto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
- * A ServiceProduction Data Transfer Object
+ * A ServiceProduction Data Transfer Object with associations
  *
  * @author Peter Merikan
  */
-public class ServiceProductionDTO {
-	private Long id;
-	private String physicalAddress;
-	private String rivtaProfile;
+public class ServiceProductionDTO extends ServiceProductionBaseDTO {
 	@JsonBackReference
 	private ServiceProducerDTO serviceProducer;
 	@JsonBackReference
@@ -19,30 +16,6 @@ public class ServiceProductionDTO {
 	private ConnectionPointDTO connectionPoint;
 	@JsonBackReference
 	private ServiceContractDTO serviceContract;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getPhysicalAddress() {
-		return physicalAddress;
-	}
-
-	public void setPhysicalAddress(String physicalAddress) {
-		this.physicalAddress = physicalAddress;
-	}
-
-	public String getRivtaProfile() {
-		return rivtaProfile;
-	}
-
-	public void setRivtaProfile(String rivtaProfile) {
-		this.rivtaProfile = rivtaProfile;
-	}
 
 	public ServiceProducerDTO getServiceProducer() {
 		return serviceProducer;
