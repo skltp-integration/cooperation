@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.dto.connectionPoint;
+package se.skltp.cooperation.web.rest.v1.connectionPoint;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.controller;
+package se.skltp.cooperation.web.rest.v1.serviceConsumer;
 
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
@@ -18,7 +18,8 @@ import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.serviceConsumer.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.serviceConsumer.ServiceConsumerController;
+import se.skltp.cooperation.web.rest.v1.serviceConsumer.ServiceConsumerDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;

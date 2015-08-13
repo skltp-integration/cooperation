@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.dto.cooperation;
+package se.skltp.cooperation.web.rest.v1.cooperation;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

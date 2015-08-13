@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.controller;
+package se.skltp.cooperation.web.rest.v1.connectionPoint;
 
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.connectionPoint.ConnectionPointDTO;
-import se.skltp.cooperation.web.rest.v1.dto.connectionPoint.ConnectionPointListDTO;
 
 import java.util.ArrayList;
 import java.util.List;

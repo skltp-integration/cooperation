@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.controller;
+package se.skltp.cooperation.web.rest.v1.cooperation;
 
 import com.google.common.base.Splitter;
 import org.dozer.DozerBeanMapper;
@@ -15,8 +15,6 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationListDTO;
 
 import java.util.ArrayList;
 import java.util.List;

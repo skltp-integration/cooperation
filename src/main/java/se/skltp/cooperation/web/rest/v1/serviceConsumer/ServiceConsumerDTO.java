@@ -1,11 +1,10 @@
-package se.skltp.cooperation.web.rest.v1.dto.serviceConsumer;
+package se.skltp.cooperation.web.rest.v1.serviceConsumer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import se.skltp.cooperation.web.rest.v1.dto.CooperationBaseDTO;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerBaseDTO;
 
 import java.util.HashSet;

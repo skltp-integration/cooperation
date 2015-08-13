@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.controller;
+package se.skltp.cooperation.web.rest.v1.cooperation;
 
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
@@ -23,11 +23,12 @@ import se.skltp.cooperation.domain.ServiceContract;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.ConnectionPointDTO;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.LogicalAddressDTO;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.ServiceConsumerDTO;
-import se.skltp.cooperation.web.rest.v1.dto.cooperation.ServiceContractDTO;
+import se.skltp.cooperation.web.rest.v1.cooperation.ConnectionPointDTO;
+import se.skltp.cooperation.web.rest.v1.cooperation.CooperationController;
+import se.skltp.cooperation.web.rest.v1.cooperation.CooperationDTO;
+import se.skltp.cooperation.web.rest.v1.cooperation.LogicalAddressDTO;
+import se.skltp.cooperation.web.rest.v1.cooperation.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.cooperation.ServiceContractDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;

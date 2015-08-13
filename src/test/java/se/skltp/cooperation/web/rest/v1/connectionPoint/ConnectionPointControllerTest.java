@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.controller;
+package se.skltp.cooperation.web.rest.v1.connectionPoint;
 
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
@@ -18,7 +18,8 @@ import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.connectionPoint.ConnectionPointDTO;
+import se.skltp.cooperation.web.rest.v1.connectionPoint.ConnectionPointController;
+import se.skltp.cooperation.web.rest.v1.connectionPoint.ConnectionPointDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.dto.cooperation;
+package se.skltp.cooperation.web.rest.v1.cooperation;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

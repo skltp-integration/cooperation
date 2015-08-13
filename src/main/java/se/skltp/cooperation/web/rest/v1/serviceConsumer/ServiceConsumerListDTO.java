@@ -1,9 +1,8 @@
-package se.skltp.cooperation.web.rest.v1.dto.serviceConsumer;
+package se.skltp.cooperation.web.rest.v1.serviceConsumer;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import se.skltp.cooperation.web.rest.v1.dto.*;
 
 import java.util.ArrayList;
 import java.util.List;
