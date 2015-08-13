@@ -18,7 +18,7 @@ import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.dto.serviceConsumer.ServiceConsumerDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
