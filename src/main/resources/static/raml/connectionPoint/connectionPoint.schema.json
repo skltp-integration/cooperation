@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Connection Point",
+  "description": "A connection point respresents a environment for a specific platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier for a connection point",
+      "type": "integer"
+    },
+    "platform": {
+      "description": "The platform",
+      "type": "string"
+    },
+    "environment": {
+      "description": "The environment for this connection point",
+      "type": "string"
+    },
+    "required": ["id"]
+  }
+}

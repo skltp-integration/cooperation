@@ -1,0 +1,178 @@
+#%RAML 0.8
+title: Cooperation
+version: v1
+documentation:
+  - title: Synopsis
+    content: |
+      Detta är API dokumentationen...
+      Etablerad samverkan mellan tjänstekonsumenter och tjänsteproducenter i olika miljöer och plattformar.
+      Inkludera mer dokumentation
+#baseUri: http://localhost:8080/{version}
+baseUri: http://ec2-52-19-89-21.eu-west-1.compute.amazonaws.com:8080/{version}
+
+
+schemas:
+  - cooperation.json:       !include cooperation/cooperation.schema.json
+  - cooperations.json:      !include cooperation/cooperations.schema.json
+  - logicalAddress.json:    !include logicalAddress/logicalAddress.schema.json
+  - connectionPoint.json:   !include connectionPoint/connectionPoint.schema.json
+  - serviceConsumer.json:   !include serviceConsumer/serviceConsumer.schema.json
+  - serviceConsumers.json:  !include serviceConsumer/serviceConsumers.schema.json
+
+
+
+resourceTypes:
+  - collection:
+      usage: This resourceType should be used for any collection of items
+      description:  Kollektion av tillgängliga <<resourcePathName>>
+      get:
+        description: Hämta en lista med <<resourcePathName>>
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<get_response_schema_json>>
+                example: <<get_response_sample_json>>
+              application/xml:
+                schema: <<get_response_schema_xml>>
+                example: <<get_response_sample_xml>>
+
+  - item:
+      usage: This resourceType should be use for any single item of a collection
+      description: Entitet som representerar en  <<resourcePathName|!singularize>>
+      get:
+        description: |
+          Hämta specifik <<resourcePathName|!singularize>> med <<resourcePathName|!singularize>>Id =  {<<resourcePathName|!singularize>>Id}
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<get_response_schema_json>>
+                example: <<get_response_sample_json>>
+              application/xml:
+                schema: <<get_response_schema_xml>>
+                example: <<get_response_sample_xml>>
+          404:
+            body:
+              application/json:
+                example: |
+                  {"message": "<<resourcePathName|!singularize>> not found" }
+traits:
+  - query_include:
+      queryParameters:
+        include:
+          type: string
+          description: |
+            Värdet på include parametern måste vara en comma-separerad lista av av namnen på resurser som skall inkluderas i svaret. Giltiga värden är: <<values>>
+          example: <<example>>
+  - filtered:
+      queryParameters:
+        serviceConsumerId?:
+          displayName: serviceConsumerId
+          type: integer
+          description: Id på den 'service consumer' som skall filtreras.
+        logicalAddressId?:
+          displayName: logicalAddressId
+          type: integer
+          description: Id på den 'logical address' som skall filtreras.
+        serviceContractId?:
+          displayName: serviceContractId
+          type: integer
+          description: Id på den 'service contract' som skall filtreras.
+        connectionPointId?:
+          displayName: connectionPointId
+          type: integer
+          description: Id på den 'connection point' som skall filtreras.
+/cooperations:
+  type:
+    collection:
+      get_response_schema_json: cooperations.json
+      get_response_sample_json: !include cooperation/cooperations_get.sample.json
+      get_response_schema_xml:  cooperations.json
+      get_response_sample_xml: {}
+  get:
+    is: [
+      query_include: {
+        values: "serviceConsumer, serviceContract, connectionPoint, logicalAddress",
+        example: "serviceContract, connectionPoint"},
+      filtered:
+    ]
+    queryParameters:
+        serviceConsumerId:
+        logicalAddressId:
+        serviceContractId:
+        connectionPointId:
+
+  /{cooperationId}:
+    uriParameters:
+      cooperationId:
+        type: integer
+    type:
+      item:
+        get_response_schema_json: cooperation.json
+        get_response_sample_json: {}
+        get_response_schema_xml: {}
+        get_response_sample_xml: {}
+    get:
+      is: [
+      query_include: {
+        values: "serviceConsumer, serviceContract, connectionPoint, logicalAddress",
+        example: "serviceContract, connectionPoint"}
+      ]
+/connectionPoints:
+  type:
+    collection:
+      get_response_schema_json: connectionPoints.json
+      get_response_sample_json: {}
+      get_response_schema_xml: {}
+      get_response_sample_xml: {}
+  get:
+    is: [
+      filtered:
+    ]
+    queryParameters:
+        platform:
+          description: platform to be filtered
+          type: string
+        environment:
+          description: Environment to be filtered
+          type: string
+        serviceConsumerId:
+        logicalAddressId:
+        serviceContractId:
+        connectionPointId:
+  /{connectionPointId}:
+    uriParameters:
+      connectionPointId:
+        type: integer
+    type:
+      item:
+        get_response_schema_json: connectionPoint.json
+        get_response_sample_json: {}
+        get_response_schema_xml: {}
+        get_response_sample_xml: {}
+/serviceConsumers:
+  type:
+    collection:
+      get_response_schema_json: serviceConsumers.json
+      get_response_sample_json: {}
+      get_response_schema_xml: {}
+      get_response_sample_xml: {}
+  get:
+    is: [
+      filtered:
+    ]
+    queryParameters:
+        logicalAddressId:
+        serviceContractId:
+        connectionPointId:
+  /{serviceConsumerId}:
+    uriParameters:
+      serviceConsumerId:
+        type: integer
+    type:
+      item:
+        get_response_schema_json: serviceConsumer.json
+        get_response_sample_json: {}
+        get_response_schema_xml: {}
+        get_response_sample_xml: {}
