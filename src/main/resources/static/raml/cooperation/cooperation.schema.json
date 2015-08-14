@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cooperation",
+  "description": "A Cooperation represents a unique association between ServiceConsumer, LogicalAddress, ServiceContract and ConnectionPoint",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier for a cooperation",
+      "type": "integer"
+    },
+    "logicalAddress": {
+      "description": "A logical address",
+      "$ref": "logicalAddress"
+    },
+    "connectionPoint": {
+      "description": "A connection point",
+      "$ref": "connectionPoint"
+    },
+    "required": ["id"]
+  }
+}

@@ -1,28 +1,38 @@
-package se.skltp.cooperation.web.rest.v1.dto;
+package se.skltp.cooperation.web.rest.v1.cooperation;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
- * A ServiceProduction Data Transfer Object with associations
+ * A Cooperation Data Transfer Object
  *
  * @author Peter Merikan
  */
-public class ServiceProductionDTO extends ServiceProductionBaseDTO {
-	@JsonBackReference
-	private ServiceProducerDTO serviceProducer;
-	@JsonBackReference
+@JacksonXmlRootElement(localName="cooperation")
+@JsonInclude(Include.NON_EMPTY)
+public class CooperationDTO {
+	private Long id;
+	private ServiceConsumerDTO serviceConsumer;
 	private LogicalAddressDTO logicalAddress;
-	@JsonBackReference
 	private ConnectionPointDTO connectionPoint;
-	@JsonBackReference
 	private ServiceContractDTO serviceContract;
 
-	public ServiceProducerDTO getServiceProducer() {
-		return serviceProducer;
+	public Long getId() {
+		return id;
 	}
 
-	public void setServiceProducer(ServiceProducerDTO serviceProducer) {
-		this.serviceProducer = serviceProducer;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public ServiceConsumerDTO getServiceConsumer() {
+		return serviceConsumer;
+	}
+
+	public void setServiceConsumer(ServiceConsumerDTO serviceConsumer) {
+		this.serviceConsumer = serviceConsumer;
 	}
 
 	public LogicalAddressDTO getLogicalAddress() {
