@@ -74,9 +74,9 @@ public class DatabaseLoader {
 		loadCommonTakDataForAllEnvironmentsInPlattform();
 
 		// NTjP - Development, QA and Production
-		saveDummyConnectionPoint("NTjP", "development");
-		saveDummyConnectionPoint("NTjP", "QA");
-		saveDummyConnectionPoint("NTjP", "Production");
+		saveDummyConnectionPoint("NTJP", "DEVELOPMENT");
+		saveDummyConnectionPoint("NTJP", "QA");
+		saveDummyConnectionPoint("NTJP", "PRODUCTION");
 	}
 
 	private void saveDummyConnectionPoint(String platform, String environment) {
@@ -195,7 +195,7 @@ public class DatabaseLoader {
 		processNotification_producer2_production.setServiceProducer(processNotification_producer2);
 		processNotification_producer2_production.setServiceContract(ei_processNotification_contract);
 		serviceProductionRepository.save(processNotification_producer2_production);
-		
+
 		Cooperation cooperation3 = new Cooperation();
 		cooperation3.setConnectionPoint(connectionPoint);
 		cooperation3.setLogicalAddress(processNotification_producer1_logicalAddress);
