@@ -4,9 +4,35 @@ version: v1
 documentation:
   - title: Synopsis
     content: |
-      Detta är API dokumentationen...
       Etablerad samverkan mellan tjänstekonsumenter och tjänsteproducenter i olika miljöer och plattformar.
-      Inkludera mer dokumentation
+      
+      De olika resurser som man kan nå via detta api är :
+      
+      connectionPoint - svarar mot en installerad instans av SKL-TP. Kan vara dels den nationella tjänsteplattformer
+      och olika regionala tjänsteplattformar. För varje organisation(plattform) kan det finnas information per stagingmiljö som
+      produktion, QA, test osv. Information från Tjänsteadresseringskatalogen i respektive miljö laddas upp till api varje natt.
+      
+      serviceConsumer - någon som konsumerar en tjänst i en tjänsteplattform. Vid laddning av TAK-information slår man ihop 
+      alla serviceConsumer som har samma hsaId vilket innebär att en serviceConsumer kan finnas i flera olika connectionsPoint
+      dvs olika instanser av SKL-TP.
+      
+      cooperation - representerar en serviceConsumers användning av en tjänst (representerad av ett serviceContract) i en viss miljö 
+      (representerad av connectionPoint) mot en specifik tjänsteproducent (representerad av en logicalAdress).
+      
+      serviceProducer - någon som producerar en tjänst i en tjänsteplattform. Vid laddning av TAK-information slår man ihop 
+      alla serviceProducer som har samma hsaId vilket innebär att en serviceProducer kan finnas i flera olika connectionsPoint
+      dvs olika instanser av SKL-TP.
+      
+      serviceProduction - parallell till cooperation på producentsidan. Representerar en serviceProducers publisering av en tjänst
+      (representerad av ett serviceContract) i en viss miljö (representerad av connectionPoint) på en specifik adress 
+      (representerad av en logicalAddress). 
+      
+      logicalAddress - den adress som en viss tjänst finns på
+      
+      serviceContract - en tjänstekontrakt
+      
+      I denna version av API-et är bara URL-er till connectionPoint, serviceConsumer och cooperation publiserade.
+      
 baseUri: http://localhost:8080/{version}
 
 
