@@ -15,6 +15,7 @@ import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerBaseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,16 +46,16 @@ public class ServiceConsumerController {
 	 */
 	@RequestMapping(method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ServiceConsumerDTO> getAllAsJson(
+	public List<ServiceConsumerBaseDTO> getAllAsJson(
 		@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
 
 		log.debug("REST request to get all ServiceConsumers as Json");
-		List<ServiceConsumerDTO> result = new ArrayList<>();
+		List<ServiceConsumerBaseDTO> result = new ArrayList<>();
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria();
 		criteria.setConnectionPointId(connectionPointId);
 		List<ServiceConsumer> consumers = serviceConsumerService.findAll(criteria);
 		for (ServiceConsumer consumer : consumers) {
-			result.add(mapper.map(consumer, ServiceConsumerDTO.class));
+			result.add(mapper.map(consumer, ServiceConsumerBaseDTO.class));
 		}
 		return result;
 
@@ -83,7 +84,7 @@ public class ServiceConsumerController {
 	@RequestMapping(value = "/{id}",
 		method = RequestMethod.GET,
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ServiceConsumerDTO get(@PathVariable Long id) {
+	public ServiceConsumerBaseDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 		ServiceConsumer serviceConsumer = serviceConsumerService.find(id);
 		if (serviceConsumer == null) {
@@ -91,7 +92,7 @@ public class ServiceConsumerController {
 			throw new ResourceNotFoundException("Service consumer with id " + id + " not found");
 
 		}
-		return mapper.map(serviceConsumer, ServiceConsumerDTO.class);
+		return mapper.map(serviceConsumer, ServiceConsumerBaseDTO.class);
 	}
 
 }

@@ -3,6 +3,7 @@ package se.skltp.cooperation.web.rest.v1.serviceConsumer;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerBaseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,13 @@ public class ServiceConsumerListDTO {
 
 	@JacksonXmlProperty(localName = "serviceConsumer")
 	@JacksonXmlElementWrapper(useWrapping = false)
-	private List<ServiceConsumerDTO> serviceConsumers = new ArrayList<>();
+	private List<ServiceConsumerBaseDTO> serviceConsumers = new ArrayList<>();
 
-	public List<ServiceConsumerDTO> getServiceConsumers() {
+	public List<ServiceConsumerBaseDTO> getServiceConsumers() {
 		return serviceConsumers;
 	}
 
-	public void setServiceConsumers(List<ServiceConsumerDTO> serviceConsumers) {
+	public void setServiceConsumers(List<ServiceConsumerBaseDTO> serviceConsumers) {
 		this.serviceConsumers = serviceConsumers;
 	}
 }

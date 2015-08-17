@@ -18,8 +18,7 @@ import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.serviceConsumer.ServiceConsumerController;
-import se.skltp.cooperation.web.rest.v1.serviceConsumer.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerBaseDTO;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
@@ -61,8 +60,8 @@ public class ServiceConsumerControllerTest {
 	private MockMvc mockMvc;
 	private ServiceConsumer c1;
 	private ServiceConsumer c2;
-	private ServiceConsumerDTO dto1;
-	private ServiceConsumerDTO dto2;
+	private ServiceConsumerBaseDTO dto1;
+	private ServiceConsumerBaseDTO dto2;
 
 	@PostConstruct
 	public void setup() {
@@ -76,11 +75,11 @@ public class ServiceConsumerControllerTest {
 		c1.setId(1L);
 		c2 = new ServiceConsumer();
 		c2.setId(2L);
-		dto1 = new ServiceConsumerDTO();
+		dto1 = new ServiceConsumerBaseDTO();
 		dto1.setId(1L);
 		dto1.setDescription("dto1.description");
 		dto1.setHsaId("dto1.hsaId");
-		dto2 = new ServiceConsumerDTO();
+		dto2 = new ServiceConsumerBaseDTO();
 		dto2.setId(2L);
 		dto2.setDescription("dto2.description");
 		dto2.setHsaId("dto2.hsaId");
@@ -91,8 +90,8 @@ public class ServiceConsumerControllerTest {
 	public void getAllAsJson_shouldReturnAll() throws Exception {
 
 		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
-		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
-		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+		when(mapperMock.map(c1, ServiceConsumerBaseDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerBaseDTO.class)).thenReturn(dto2);
 
 		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -114,8 +113,8 @@ public class ServiceConsumerControllerTest {
 	public void getAllAsJson_shouldReturnWithFilter() throws Exception {
 
 		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
-		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
-		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+		when(mapperMock.map(c1, ServiceConsumerBaseDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerBaseDTO.class)).thenReturn(dto2);
 
 		mockMvc.perform(get("/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -133,8 +132,8 @@ public class ServiceConsumerControllerTest {
 	public void getAllAsXml_shouldReturnAll() throws Exception {
 
 		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
-		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
-		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+		when(mapperMock.map(c1, ServiceConsumerBaseDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerBaseDTO.class)).thenReturn(dto2);
 
 		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
@@ -155,8 +154,8 @@ public class ServiceConsumerControllerTest {
 	public void getAllAsXml_shouldReturnWithFilter() throws Exception {
 
 		when(serviceConsumerServiceMock.findAll(any(ServiceConsumerCriteria.class))).thenReturn(Arrays.asList(c1, c2));
-		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
-		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
+		when(mapperMock.map(c1, ServiceConsumerBaseDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c2, ServiceConsumerBaseDTO.class)).thenReturn(dto2);
 
 		mockMvc.perform(get("/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
@@ -201,7 +200,7 @@ public class ServiceConsumerControllerTest {
 	public void get_shouldReturnOneAsJson() throws Exception {
 
 		when(serviceConsumerServiceMock.find(c1.getId())).thenReturn(c1);
-		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c1, ServiceConsumerBaseDTO.class)).thenReturn(dto1);
 
 		mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_JSON))
@@ -217,7 +216,7 @@ public class ServiceConsumerControllerTest {
 	public void get_shouldReturnOneAsXml() throws Exception {
 
 		when(serviceConsumerServiceMock.find(c1.getId())).thenReturn(c1);
-		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
+		when(mapperMock.map(c1, ServiceConsumerBaseDTO.class)).thenReturn(dto1);
 
 		mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_XML))
