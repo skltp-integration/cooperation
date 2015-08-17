@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
+import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointBaseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +43,12 @@ public class ConnectionPointController {
 	 */
 	@RequestMapping(method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ConnectionPointDTO> getAllAsJson() {
+	public List<ConnectionPointBaseDTO> getAllAsJson() {
 		log.debug("REST request to get all ConnectionPoints");
-		List<ConnectionPointDTO> result = new ArrayList<>();
+		List<ConnectionPointBaseDTO> result = new ArrayList<>();
 		List<ConnectionPoint> connectionPoints = connectionPointService.findAll();
 		for (ConnectionPoint cp : connectionPoints) {
-			result.add(mapper.map(cp, ConnectionPointDTO.class));
+			result.add(mapper.map(cp, ConnectionPointBaseDTO.class));
 		}
 		return result;
 
@@ -65,7 +66,7 @@ public class ConnectionPointController {
 
 		List<ConnectionPoint> connectionPoints = connectionPointService.findAll();
 		for (ConnectionPoint cp : connectionPoints) {
-			result.getConnectionPoints().add(mapper.map(cp, ConnectionPointDTO.class));
+			result.getConnectionPoints().add(mapper.map(cp, ConnectionPointBaseDTO.class));
 		}
 
 		return result;
@@ -78,7 +79,7 @@ public class ConnectionPointController {
 	@RequestMapping(value = "/{id}",
 		method = RequestMethod.GET,
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ConnectionPointDTO get(@PathVariable Long id) {
+	public ConnectionPointBaseDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 
 		ConnectionPoint cp = connectionPointService.find(id);
@@ -86,7 +87,7 @@ public class ConnectionPointController {
 			log.debug("Connection point with id {} not found", id);
 			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
 		}
-		return mapper.map(cp, ConnectionPointDTO.class);
+		return mapper.map(cp, ConnectionPointBaseDTO.class);
 	}
 
 }
