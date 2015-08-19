@@ -1,38 +1,4 @@
-package se.skltp.cooperation.web.rest.v1.cooperation;
-
-import org.dozer.DozerBeanMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import se.skltp.cooperation.Application;
-import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.domain.Cooperation;
-import se.skltp.cooperation.domain.LogicalAddress;
-import se.skltp.cooperation.domain.ServiceConsumer;
-import se.skltp.cooperation.domain.ServiceContract;
-import se.skltp.cooperation.service.CooperationCriteria;
-import se.skltp.cooperation.service.CooperationService;
-import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.cooperation.ConnectionPointDTO;
-import se.skltp.cooperation.web.rest.v1.cooperation.CooperationController;
-import se.skltp.cooperation.web.rest.v1.cooperation.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.cooperation.LogicalAddressDTO;
-import se.skltp.cooperation.web.rest.v1.cooperation.ServiceConsumerDTO;
-import se.skltp.cooperation.web.rest.v1.cooperation.ServiceContractDTO;
-
-import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.Collections;
+package se.skltp.cooperation.web.rest.v1.controller;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
@@ -53,6 +19,42 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.annotation.PostConstruct;
+
+import org.dozer.DozerBeanMapper;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import se.skltp.cooperation.Application;
+import se.skltp.cooperation.domain.ConnectionPoint;
+import se.skltp.cooperation.domain.Cooperation;
+import se.skltp.cooperation.domain.LogicalAddress;
+import se.skltp.cooperation.domain.ServiceConsumer;
+import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.service.CooperationCriteria;
+import se.skltp.cooperation.service.CooperationService;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
+import se.skltp.cooperation.web.rest.v1.controller.CooperationController;
+import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
+import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
+import se.skltp.cooperation.web.rest.v1.dto.LogicalAddressDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceContractDTO;
 
 /**
  * Tests for {@link CooperationController}

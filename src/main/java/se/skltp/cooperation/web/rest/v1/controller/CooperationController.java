@@ -1,6 +1,8 @@
-package se.skltp.cooperation.web.rest.v1.cooperation;
+package se.skltp.cooperation.web.rest.v1.controller;
 
-import com.google.common.base.Splitter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
+import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
+import se.skltp.cooperation.web.rest.v1.listdto.CooperationListDTO;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.common.base.Splitter;
 
 /**
  * REST controller to handle resource Cooperation
@@ -59,14 +63,14 @@ public class CooperationController {
 		List<CooperationDTO> result = new ArrayList<>();
 
 		List<String> includes = (include != null) ? SPLITTER.splitToList(include) : new ArrayList<>();
-
+		
 		List<Cooperation> cooperations;
 		CooperationCriteria criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
 		cooperations = cooperationService.findAll(criteria);
 
 		for (Cooperation cp : cooperations) {
 			includeOrNot(includes, cp);
-			result.add(mapper.map(cp, CooperationDTO.class));
+			result.add(toDTO(cp));
 		}
 		return result;
 
@@ -88,7 +92,6 @@ public class CooperationController {
 
 		CooperationListDTO result = new CooperationListDTO();
 		result.setCooperations(getAllAsJson(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId, include));
-
 		return result;
 
 	}
@@ -101,13 +104,15 @@ public class CooperationController {
 		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public CooperationDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
+
 		Cooperation coop = cooperationService.find(id);
 		if (coop == null) {
 			log.debug("Cooperation with id {} not found", id);
 			throw new ResourceNotFoundException("Cooperation with id " + id + " not found");
 		}
-		return mapper.map(coop, CooperationDTO.class);
+		return toDTO(coop);
 	}
+
 
 	CooperationCriteria buildCriteria(Long serviceConsumerId, Long logicalAddressId, Long serviceContractId, Long connectionPointId) {
 		log.debug("buildCriteria(serviceConsumerId:{}, logicalAddressId:{}, serviceContractId:{}, connectionPointId:{})", serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
@@ -134,6 +139,10 @@ public class CooperationController {
 			if (!includes.contains(INCLUDE_SERVICECONSUMER)) cooperation.setServiceConsumer(null);
 			if (!includes.contains(INCLUDE_SERVICECONTRACT)) cooperation.setServiceContract(null);
 		}
+	}
+	
+	private CooperationDTO toDTO(Cooperation coop) {
+		return mapper.map(coop, CooperationDTO.class);
 	}
 
 }

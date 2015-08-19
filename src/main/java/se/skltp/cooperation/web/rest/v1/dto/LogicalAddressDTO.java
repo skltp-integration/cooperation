@@ -1,20 +1,23 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * A LogicalAddress Data Transfer Object
  *
  * @author Peter Merikan
  */
+@JacksonXmlRootElement(localName = "logicalAddress")
+@JsonInclude(Include.NON_EMPTY)
 public class LogicalAddressDTO {
 
 	private Long id;
 	private String description;
 	private String logicalAddress;
-	private Set<CooperationDTO> cooperations = new HashSet<>();
-	private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -30,22 +33,6 @@ public class LogicalAddressDTO {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Set<CooperationDTO> getCooperations() {
-		return cooperations;
-	}
-
-	public void setCooperations(Set<CooperationDTO> cooperations) {
-		this.cooperations = cooperations;
-	}
-
-	public Set<ServiceProductionDTO> getServiceProductions() {
-		return serviceProductions;
-	}
-
-	public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
-		this.serviceProductions = serviceProductions;
 	}
 
 	public String getLogicalAddress() {

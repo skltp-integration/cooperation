@@ -1,6 +1,7 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
@@ -10,16 +11,22 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  */
 
 @JacksonXmlRootElement(localName = "cooperation")
-public class CooperationDTO extends CooperationBaseDTO {
+@JsonInclude(Include.NON_EMPTY)
+public class CooperationDTO {
+	private Long id;
 
-	@JsonBackReference
 	private ServiceConsumerDTO serviceConsumer;
-	@JsonBackReference
 	private LogicalAddressDTO logicalAddress;
-	@JsonBackReference
 	private ConnectionPointDTO connectionPoint;
-	@JsonBackReference
 	private ServiceContractDTO serviceContract;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public ServiceConsumerDTO getServiceConsumer() {
 		return serviceConsumer;

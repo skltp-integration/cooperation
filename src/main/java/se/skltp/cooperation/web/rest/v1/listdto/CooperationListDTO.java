@@ -1,12 +1,14 @@
-package se.skltp.cooperation.web.rest.v1.cooperation;
+package se.skltp.cooperation.web.rest.v1.listdto;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A wrapper object to hold a list of {@link se.skltp.cooperation.web.rest.v1.dto.CooperationDTO} objects.

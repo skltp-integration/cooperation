@@ -1,18 +1,23 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 
 /**
  * A ServiceProducer Data Transfer Object
  *
  * @author Peter Merikan
  */
+@JacksonXmlRootElement(localName = "serviceProducer")
+@JsonInclude(Include.NON_EMPTY)
 public class ServiceProducerDTO {
 
 	private Long id;
 	private String description;
-	private Set<ServiceProductionDTO> serviceProductions = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -30,11 +35,4 @@ public class ServiceProducerDTO {
 		this.description = description;
 	}
 
-	public Set<ServiceProductionDTO> getServiceProductions() {
-		return serviceProductions;
-	}
-
-	public void setServiceProductions(Set<ServiceProductionDTO> serviceProductions) {
-		this.serviceProductions = serviceProductions;
-	}
 }

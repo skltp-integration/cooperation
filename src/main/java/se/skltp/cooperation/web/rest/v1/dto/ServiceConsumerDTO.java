@@ -1,32 +1,46 @@
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * A ServiceConsumer Data Transfer Object with associations
+ * A ServiceConsumer Data Transfer Object
  *
  * @author Peter Merikan
  */
 @JacksonXmlRootElement(localName = "serviceConsumer")
-public class ServiceConsumerDTO extends ServiceConsumerBaseDTO {
+@JsonInclude(Include.NON_EMPTY)
+public class ServiceConsumerDTO {
 
-	@JsonManagedReference
-	@JacksonXmlElementWrapper(localName = "cooperations")
-	@JacksonXmlProperty(localName = "cooperation")
-	private Set<CooperationDTO> cooperations = new HashSet<>();
+	private Long id;
+	private String description;
+	private String hsaId;
 
-	public Set<CooperationDTO> getCooperations() {
-		return cooperations;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCooperations(Set<CooperationDTO> cooperations) {
-		this.cooperations = cooperations;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getHsaId() {
+		return hsaId;
+	}
+
+	public void setHsaId(String hsaId) {
+		this.hsaId = hsaId;
 	}
 
 }
