@@ -23,6 +23,11 @@ public class ConnectionPointListDTO {
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private List<ConnectionPointDTO> connectionPoints = new ArrayList<>();
 
+	public ConnectionPointListDTO(List<ConnectionPointDTO> connectionPoints) {
+		super();
+		this.connectionPoints = connectionPoints;
+	}
+
 	@XmlElement(name = "connectionPoint")
 	public List<ConnectionPointDTO> getConnectionPoints() {
 		return connectionPoints;
