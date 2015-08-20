@@ -74,7 +74,7 @@ public class ConnectionPointController {
 	 * GET /connectionPoints/:id -> get the "id" connectionPoint. Content type
 	 * from Accept header
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, method = RequestMethod.GET)
 	public ConnectionPointDTO getOneAcceptHeader(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 
