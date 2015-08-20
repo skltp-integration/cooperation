@@ -119,10 +119,9 @@ public class ConnectionPointControllerTest {
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/api/v1/connectionPoints.json")).andDo(MockMvcResultHandlers.print())
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$", hasSize(2)))
+		mockMvc.perform(get("/api/v1/connectionPoints.json").accept(MediaType.APPLICATION_JSON))
+				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$", hasSize(2)))
 				.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 				.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 				.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
@@ -163,10 +162,9 @@ public class ConnectionPointControllerTest {
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/api/v1/connectionPoints.xml"))
-				.andDo(MockMvcResultHandlers.print())
-				.andExpect(status().isOk())
-//				.andExpect(content().contentType(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/connectionPoints.xml").accept(MediaType.APPLICATION_XML))
+				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_XML))
 				.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 				.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 				.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
@@ -207,8 +205,7 @@ public class ConnectionPointControllerTest {
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
 		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON+";charset=UTF-8"))
 				.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 				.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 				.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()));
@@ -221,21 +218,21 @@ public class ConnectionPointControllerTest {
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
 		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).accept(MediaType.APPLICATION_XML))
-				.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_XML))
+				.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_XML+";charset=UTF-8"))
 				.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 				.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 				.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())));
 	}
+
 	@Test
 	public void getJsonUrl_shouldReturnOneAsJson() throws Exception {
 
 		when(connectionPointServiceMock.find(cp1.getId())).thenReturn(cp1);
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/api/v1/connectionPoints.json/{id}", cp1.getId()))
-				.andDo(MockMvcResultHandlers.print())
-				.andExpect(status().isOk())
-//				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/connectionPoints.json/{id}", cp1.getId()).accept(MediaType.APPLICATION_JSON))
+				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON+";charset=UTF-8"))
 				.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 				.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 				.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()));
@@ -247,10 +244,22 @@ public class ConnectionPointControllerTest {
 		when(connectionPointServiceMock.find(cp1.getId())).thenReturn(cp1);
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/api/v1/connectionPoints.xml/{id}", cp1.getId()))
-				.andDo(MockMvcResultHandlers.print())
-				.andExpect(status().isOk())
-//				.andExpect(content().contentType(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/connectionPoints.xml/{id}", cp1.getId()).accept(MediaType.APPLICATION_XML))
+				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_XML+";charset=UTF-8"))
+				.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
+				.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
+				.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())));
+	}
+	@Test
+	public void getXmlUrl2_shouldReturnOneAsXml() throws Exception {
+
+		when(connectionPointServiceMock.find(cp1.getId())).thenReturn(cp1);
+		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
+
+		mockMvc.perform(get("/api/v1/connectionPoints/{id}.xml", cp1.getId()).accept(MediaType.APPLICATION_XML))
+				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_XML+";charset=UTF-8"))
 				.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 				.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 				.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())));
