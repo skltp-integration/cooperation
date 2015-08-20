@@ -3,8 +3,6 @@ package se.skltp.cooperation.web.rest.v1.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +25,7 @@ import se.skltp.cooperation.web.rest.v1.listdto.ConnectionPointListDTO;
  * @author Peter Merikan
  */
 @RestController
+@RequestMapping(value = { "/api/v1/connectionPoints", "/api/v1/connectionPoints.json", "/api/v1/connectionPoints.xml" })
 public class ConnectionPointController {
 
 	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
@@ -41,10 +40,9 @@ public class ConnectionPointController {
 	}
 
 	/**
-	 * GET /connectionPoints -> get all the connectionPoints. Accept-header: json
-	 * JSON
+	 * GET /connectionPoints -> get all the connectionPoints.Accept-header: json
 	 */
-	@RequestMapping(value = "/api/v1/connectionPoints", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ConnectionPointDTO> getAllAcceptJson() {
 		log.debug("REST request to get all ConnectionPoints Accept=json");
 
@@ -53,37 +51,12 @@ public class ConnectionPointController {
 	}
 
 	/**
-	 * GET /connectionPoints -> get all the connectionPoints. URL: json
-	 */
-	@RequestMapping(value = "/api/v1/connectionPoints.json", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
-	public List<ConnectionPointDTO> getAllJsonUrl(HttpServletRequest request) {
-		log.debug("REST request to get all ConnectionPoints URL=json");
-
-		return getAll();
-
-	}
-
-	/**
 	 * GET /connectionPoints -> get all the connectionPoints. Accept-header: xml
 	 */
-	@RequestMapping(value = "/api/v1/connectionPoints", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	public ConnectionPointListDTO getAllAcceptXml() {
 		log.debug("REST request to get all ConnectionPoints Accept=xml");
 
-		// Varför fungerar detta ? Är det pga av XML-notationen i ListDTOen 
-		return new ConnectionPointListDTO(getAll());
-
-	}
-
-	/**
-	 * GET /connectionPoints -> get all the connectionPoints. URL: xml
-	 */
-	@RequestMapping(value = "/api/v1/connectionPoints.xml", method = RequestMethod.GET)
-	public ConnectionPointListDTO getAllXmlUrl(HttpServletRequest request) {
-		log.debug("REST request to get all ConnectionPoints URL=xml");
-		
-		// Varför fungerar detta ? Är det pga av XML-notationen i ListDTOen ?
 		return new ConnectionPointListDTO(getAll());
 
 	}
@@ -98,35 +71,13 @@ public class ConnectionPointController {
 	}
 
 	/**
-	 * GET /connectionPoints/:id -> get the "id" connectionPoint. Content type from Accept header
+	 * GET /connectionPoints/:id -> get the "id" connectionPoint. Content type
+	 * from Accept header
 	 */
-	@RequestMapping(value = "/api/v1/connectionPoints/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ConnectionPointDTO getOneAcceptHeader(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {} Accept header", id);
+		log.debug("REST request to get ConnectionPoint : {}", id);
 
-		return getOne(id);
-	}
-	/**
-	 * GET /connectionPoints/:id -> get the "id" connectionPoint. Content type from Accept header
-	 */
-	@RequestMapping(value = "/api/v1/connectionPoints.json/{id}", method = RequestMethod.GET)
-	public ConnectionPointDTO getOneJsonUrl(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {} Url=json", id);
-
-		return getOne(id);
-	}
-	/**
-	 * GET /connectionPoints/:id -> get the "id" connectionPoint. Content type from Accept header
-	 */
-	@RequestMapping(value = "/api/v1/connectionPoints.xml/{id}", method = RequestMethod.GET)
-	public ConnectionPointDTO getOneXmlUrl(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {} Url=xml", id);
-
-		return getOne(id);
-	}
-
-	private ConnectionPointDTO getOne(Long id) {
 		ConnectionPoint cp = connectionPointService.find(id);
 		if (cp == null) {
 			log.debug("Connection point with id {} not found", id);
