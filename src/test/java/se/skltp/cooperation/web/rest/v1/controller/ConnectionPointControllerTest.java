@@ -1,5 +1,26 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.annotation.PostConstruct;
+
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,28 +41,7 @@ import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.controller.ConnectionPointController;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
-
-import javax.annotation.PostConstruct;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 /**
  * Test class for the ConnectionPointController REST controller.
@@ -94,8 +94,7 @@ public class ConnectionPointControllerTest {
 	@Test
 	public void getAllAcceptJson_shouldReturnAll() throws Exception {
 
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(Arrays.asList(cp1, cp2));
+		when(connectionPointServiceMock.findAll(any(ConnectionPointCriteria.class))).thenReturn(Arrays.asList(cp1, cp2));
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
@@ -109,7 +108,7 @@ public class ConnectionPointControllerTest {
 				.andExpect(jsonPath("$.[1].platform").value(is(dto2.getPlatform())))
 				.andExpect(jsonPath("$.[1].environment").value(is(dto2.getEnvironment())));
 
-		verify(connectionPointServiceMock, times(1)).findAll(criteria);
+		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
 
 	}
@@ -117,8 +116,7 @@ public class ConnectionPointControllerTest {
 	@Test
 	public void getAllJsonUrl_shouldReturnAll() throws Exception {
 
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(Arrays.asList(cp1, cp2));
+		when(connectionPointServiceMock.findAll(any(ConnectionPointCriteria.class))).thenReturn(Arrays.asList(cp1, cp2));
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
@@ -132,7 +130,7 @@ public class ConnectionPointControllerTest {
 				.andExpect(jsonPath("$.[1].platform").value(is(dto2.getPlatform())))
 				.andExpect(jsonPath("$.[1].environment").value(is(dto2.getEnvironment())));
 
-		verify(connectionPointServiceMock, times(1)).findAll(criteria);
+		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
 
 	}
@@ -140,8 +138,7 @@ public class ConnectionPointControllerTest {
 	@Test
 	public void getAllAcceptXml_shouldReturnAll() throws Exception {
 
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(Arrays.asList(cp1, cp2));
+		when(connectionPointServiceMock.findAll(any(ConnectionPointCriteria.class))).thenReturn(Arrays.asList(cp1, cp2));
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
@@ -154,7 +151,7 @@ public class ConnectionPointControllerTest {
 				.andExpect(xpath("/connectionPoints/connectionPoint[2]/platform").string(is(dto2.getPlatform())))
 				.andExpect(xpath("/connectionPoints/connectionPoint[2]/environment").string(is(dto2.getEnvironment())));
 
-		verify(connectionPointServiceMock, times(1)).findAll(criteria);
+		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
 
 	}
@@ -162,8 +159,7 @@ public class ConnectionPointControllerTest {
 	@Test
 	public void getAllXmlUrl_shouldReturnAll() throws Exception {
 		
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(Arrays.asList(cp1, cp2));
+		when(connectionPointServiceMock.findAll(any(ConnectionPointCriteria.class))).thenReturn(Arrays.asList(cp1, cp2));
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(cp2, ConnectionPointDTO.class)).thenReturn(dto2);
 
@@ -177,7 +173,7 @@ public class ConnectionPointControllerTest {
 				.andExpect(xpath("/connectionPoints/connectionPoint[2]/platform").string(is(dto2.getPlatform())))
 				.andExpect(xpath("/connectionPoints/connectionPoint[2]/environment").string(is(dto2.getEnvironment())));
 
-		verify(connectionPointServiceMock, times(1)).findAll(criteria);
+		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
 
 	}

@@ -129,7 +129,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/cooperations").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/cooperations").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$", hasSize(2)))
@@ -148,7 +148,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/cooperations?serviceConsumerId=1&logicalAddressId=2").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/cooperations?serviceConsumerId=1&logicalAddressId=2").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$", hasSize(2)))
@@ -167,7 +167,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
+		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -195,7 +195,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/cooperations").accept(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/cooperations").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
 			.andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
@@ -213,7 +213,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
+		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
 			.accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
@@ -241,7 +241,7 @@ public class CooperationControllerTest {
 		when(cooperationServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/v1/cooperations/{id}", c1.getId())
+		mockMvc.perform(get("/api/v1/cooperations/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_JSON))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(status().isOk())
@@ -255,7 +255,7 @@ public class CooperationControllerTest {
 		when(cooperationServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/v1/cooperations/{id}", c1.getId()).accept(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/cooperations/{id}", c1.getId()).accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
 			.andExpect(xpath("/cooperation/id").string(is(dto1.getId().toString())));
@@ -267,7 +267,7 @@ public class CooperationControllerTest {
 		when(cooperationServiceMock.find(anyLong())).thenReturn(null);
 
 		try {
-			mockMvc.perform(get("/v1/cooperations/{id}", Long.MAX_VALUE))
+			mockMvc.perform(get("/api/v1/cooperations/{id}", Long.MAX_VALUE))
 				.andExpect(status().isNotFound());
 			fail("Should thrown a exception");
 		} catch (Exception e) {
@@ -282,7 +282,6 @@ public class CooperationControllerTest {
 		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null);
 		assertTrue(criteria.isEmpty());
 	}
-
 
 	@Test
 	public void testIncludeOrNot() throws Exception {

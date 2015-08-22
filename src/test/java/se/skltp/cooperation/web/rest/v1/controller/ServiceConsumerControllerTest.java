@@ -96,7 +96,7 @@ public class ServiceConsumerControllerTest {
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$", hasSize(2)))
@@ -119,7 +119,7 @@ public class ServiceConsumerControllerTest {
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$", hasSize(2)))
@@ -138,7 +138,7 @@ public class ServiceConsumerControllerTest {
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
@@ -160,7 +160,7 @@ public class ServiceConsumerControllerTest {
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, ServiceConsumerDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
@@ -181,7 +181,7 @@ public class ServiceConsumerControllerTest {
 
 		when(serviceConsumerServiceMock.findAll()).thenReturn(Collections.emptyList());
 
-		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$", hasSize(0)));
@@ -192,7 +192,7 @@ public class ServiceConsumerControllerTest {
 
 		when(serviceConsumerServiceMock.findAll()).thenReturn(Collections.emptyList());
 
-		mockMvc.perform(get("/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
 			.andExpect(xpath("/serviceConsumers").nodeCount(1))
@@ -205,7 +205,7 @@ public class ServiceConsumerControllerTest {
 		when(serviceConsumerServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
+		mockMvc.perform(get("/api/v1/serviceConsumers/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -221,7 +221,7 @@ public class ServiceConsumerControllerTest {
 		when(serviceConsumerServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, ServiceConsumerDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/v1/serviceConsumers/{id}", c1.getId())
+		mockMvc.perform(get("/api/v1/serviceConsumers/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
@@ -237,7 +237,7 @@ public class ServiceConsumerControllerTest {
 		when(serviceConsumerServiceMock.find(anyLong())).thenReturn(null);
 
 		try {
-			mockMvc.perform(get("/v1/serviceConsumers/{id}", Long.MAX_VALUE))
+			mockMvc.perform(get("/api/v1/serviceConsumers/{id}", Long.MAX_VALUE))
 				.andExpect(status().isNotFound());
 			fail("Should have thrown a exception");
 		} catch (Exception e) {
