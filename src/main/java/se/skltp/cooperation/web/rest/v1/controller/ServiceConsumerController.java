@@ -48,16 +48,13 @@ public class ServiceConsumerController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceConsumerDTO> getAllAsJson(
-			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
-		log.debug("REST request to get all ServiceConsumers as Json");
+			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceContractId) {
+		log.debug("REST request to get all ServiceConsumers as json");
 
-		List<ServiceConsumerDTO> result = new ArrayList<>();
-		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria();
-		criteria.setConnectionPointId(connectionPointId);
-		List<ServiceConsumer> consumers = serviceConsumerService.findAll(criteria);
-		for (ServiceConsumer consumer : consumers) {
-			result.add(toDTO(consumer));
-		}
+		List<ServiceConsumerDTO> result = getAll(connectionPointId, logicalAddressId,
+				serviceContractId);
 		return result;
 
 	}
@@ -69,11 +66,13 @@ public class ServiceConsumerController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	public ServiceConsumerListDTO getAllAsXml(
-			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
-		log.debug("REST request to get all ServiceConsumers as Xml");
+			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceContractId) {
+		log.debug("REST request to get all ServiceConsumers as xml");
 
 		ServiceConsumerListDTO result = new ServiceConsumerListDTO();
-		result.setServiceConsumers(getAllAsJson(connectionPointId));
+		result.setServiceConsumers(getAll(connectionPointId, logicalAddressId, serviceContractId));
 		return result;
 
 	}
@@ -93,6 +92,21 @@ public class ServiceConsumerController {
 
 		}
 		return toDTO(serviceConsumer);
+	}
+
+	private List<ServiceConsumerDTO> getAll(Long connectionPointId, Long logicalAddressId,
+			Long serviceContractId) {
+
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(connectionPointId,
+				logicalAddressId, serviceContractId);
+		criteria.setConnectionPointId(connectionPointId);
+		List<ServiceConsumer> consumers = serviceConsumerService.findAll(criteria);
+
+		List<ServiceConsumerDTO> result = new ArrayList<>();
+		for (ServiceConsumer consumer : consumers) {
+			result.add(toDTO(consumer));
+		}
+		return result;
 	}
 
 	private ServiceConsumerDTO toDTO(ServiceConsumer consumer) {
