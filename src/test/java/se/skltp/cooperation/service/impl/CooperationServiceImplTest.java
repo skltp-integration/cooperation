@@ -53,7 +53,7 @@ public class CooperationServiceImplTest {
 		Cooperation c2 = new Cooperation();
 		c2.setId(2L);
 		when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
-		List<Cooperation> result = uut.findAll();
+		List<Cooperation> result = uut.findAll(new CooperationCriteria());
 		assertEquals(2, result.size());
 		assertEquals(1, result.get(0).getId().longValue());
 		assertEquals(2, result.get(1).getId().longValue());
@@ -80,7 +80,7 @@ public class CooperationServiceImplTest {
 	public void findAll_shouldReturnEmptyList() throws Exception {
 
 		when(cooperationRepositoryMock.findAll()).thenReturn(new ArrayList<Cooperation>());
-		List<Cooperation> result = uut.findAll();
+		List<Cooperation> result = uut.findAll(new CooperationCriteria());
 		assertEquals(0, result.size());
 	}
 

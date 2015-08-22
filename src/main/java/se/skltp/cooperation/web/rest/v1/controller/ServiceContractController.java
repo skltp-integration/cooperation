@@ -25,18 +25,17 @@ import se.skltp.cooperation.web.rest.v1.listdto.ServiceContractListDTO;
  * @author Jan Vasternas
  */
 @RestController
-@RequestMapping("/v1/serviceContracts")
+@RequestMapping(value = { "/api/v1/serviceContracts", "/api/v1/serviceContracts.json",
+		"/api/v1/serviceContracts.xml" })
 public class ServiceContractController {
 
-	private final Logger log = LoggerFactory
-			.getLogger(ServiceContractController.class);
+	private final Logger log = LoggerFactory.getLogger(ServiceContractController.class);
 
 	private final ServiceContractService serviceContractService;
 	private final DozerBeanMapper mapper;
 
 	@Autowired
-	public ServiceContractController(
-			ServiceContractService serviceContractService,
+	public ServiceContractController(ServiceContractService serviceContractService,
 			DozerBeanMapper mapper) {
 		this.serviceContractService = serviceContractService;
 		this.mapper = mapper;
@@ -48,10 +47,9 @@ public class ServiceContractController {
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceContractDTO> getAllAsJson() {
 		log.debug("REST request to get all ServiceContracts");
-		
+
 		List<ServiceContractDTO> result = new ArrayList<>();
-		List<ServiceContract> serviceContracts = serviceContractService
-				.findAll();
+		List<ServiceContract> serviceContracts = serviceContractService.findAll();
 		for (ServiceContract cp : serviceContracts) {
 			result.add(toDTO(cp));
 		}
@@ -75,7 +73,7 @@ public class ServiceContractController {
 	/**
 	 * GET /serviceContracts/:id -> get the "id" serviceContract.
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceContractDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ServiceContract : {}", id);
@@ -83,8 +81,7 @@ public class ServiceContractController {
 		ServiceContract cp = serviceContractService.find(id);
 		if (cp == null) {
 			log.debug("Connection point with id {} not found", id);
-			throw new ResourceNotFoundException("Connection point with id "
-					+ id + " not found");
+			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
 		}
 		return toDTO(cp);
 	}

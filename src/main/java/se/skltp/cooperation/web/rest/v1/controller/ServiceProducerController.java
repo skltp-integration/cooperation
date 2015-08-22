@@ -1,6 +1,5 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,8 @@ import se.skltp.cooperation.web.rest.v1.listdto.ServiceProducerListDTO;
  * @author Jan Vasternas
  */
 @RestController
-@RequestMapping("/v1/serviceProducers")
+@RequestMapping(value = { "/api/v1/serviceProducers", "/api/v1/serviceProducers.json",
+		"/api/v1/serviceProducers.xml" })
 public class ServiceProducerController {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceProducerController.class);
@@ -35,17 +35,16 @@ public class ServiceProducerController {
 	private final DozerBeanMapper mapper;
 
 	@Autowired
-	public ServiceProducerController(ServiceProducerService serviceProducerService, DozerBeanMapper mapper) {
+	public ServiceProducerController(ServiceProducerService serviceProducerService,
+			DozerBeanMapper mapper) {
 		this.serviceProducerService = serviceProducerService;
 		this.mapper = mapper;
 	}
 
 	/**
-	 * GET  /connectionPoints -> get all the connectionPoints.
-	 * Content type: JSON
+	 * GET /connectionPoints -> get all the connectionPoints. Content type: JSON
 	 */
-	@RequestMapping(method = RequestMethod.GET,
-		produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceProducerDTO> getAllAsJson() {
 		log.debug("REST request to get all ServiceProducers as Json");
 
@@ -59,13 +58,11 @@ public class ServiceProducerController {
 	}
 
 	/**
-	 * GET  /connectionPoints -> get all the connectionPoints.
-	 * Content type: XML
+	 * GET /connectionPoints -> get all the connectionPoints. Content type: XML
 	 * <p/>
 	 * TODO: add request param connectionPointId
 	 */
-	@RequestMapping(method = RequestMethod.GET,
-		produces = MediaType.APPLICATION_XML_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	public ServiceProducerListDTO getAllAsXml() {
 		log.debug("REST request to get all ServiceProducers as Xml");
 
@@ -76,11 +73,10 @@ public class ServiceProducerController {
 	}
 
 	/**
-	 * GET  /serviceProducers/:id -> get the "id" serviceProducer.
+	 * GET /serviceProducers/:id -> get the "id" serviceProducer.
 	 */
-	@RequestMapping(value = "/{id}",
-		method = RequestMethod.GET,
-		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@RequestMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceProducerDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 
@@ -92,10 +88,9 @@ public class ServiceProducerController {
 		}
 		return toDTO(serviceProducer);
 	}
-	
+
 	private ServiceProducerDTO toDTO(ServiceProducer Producer) {
 		return mapper.map(Producer, ServiceProducerDTO.class);
 	}
-
 
 }

@@ -1,18 +1,20 @@
 package se.skltp.cooperation.service.impl;
 
-import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.CooperationPredicates;
 import se.skltp.cooperation.repository.CooperationRepository;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 
-import java.util.List;
+import com.google.common.collect.Lists;
+import com.mysema.query.BooleanBuilder;
+import com.mysema.query.types.Predicate;
 
 /**
  * @author Peter Merikan
@@ -26,11 +28,6 @@ public class CooperationServiceImpl implements CooperationService {
 	@Autowired
 	public CooperationServiceImpl(CooperationRepository cooperationRepository) {
 		this.cooperationRepository = cooperationRepository;
-	}
-
-	@Override
-	public List<Cooperation> findAll() {
-		return cooperationRepository.findAll();
 	}
 
 	@Override

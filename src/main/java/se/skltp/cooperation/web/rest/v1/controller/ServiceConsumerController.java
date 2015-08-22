@@ -1,6 +1,5 @@
 package se.skltp.cooperation.web.rest.v1.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,8 @@ import se.skltp.cooperation.web.rest.v1.listdto.ServiceConsumerListDTO;
  * @author Peter Merikan
  */
 @RestController
-@RequestMapping("/v1/serviceConsumers")
+@RequestMapping(value = { "/api/v1/serviceConsumers", "/api/v1/serviceConsumers.json",
+		"/api/v1/serviceConsumers.xlm" })
 public class ServiceConsumerController {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceConsumerController.class);
@@ -37,21 +37,20 @@ public class ServiceConsumerController {
 	private final DozerBeanMapper mapper;
 
 	@Autowired
-	public ServiceConsumerController(ServiceConsumerService serviceConsumerService, DozerBeanMapper mapper) {
+	public ServiceConsumerController(ServiceConsumerService serviceConsumerService,
+			DozerBeanMapper mapper) {
 		this.serviceConsumerService = serviceConsumerService;
 		this.mapper = mapper;
 	}
 
 	/**
-	 * GET  /connectionPoints -> get all the connectionPoints.
-	 * Content type: JSON
+	 * GET /connectionPoints -> get all the connectionPoints. Content type: JSON
 	 */
-	@RequestMapping(method = RequestMethod.GET,
-		produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceConsumerDTO> getAllAsJson(
-		@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
+			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
 		log.debug("REST request to get all ServiceConsumers as Json");
-		
+
 		List<ServiceConsumerDTO> result = new ArrayList<>();
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria();
 		criteria.setConnectionPointId(connectionPointId);
@@ -63,19 +62,16 @@ public class ServiceConsumerController {
 
 	}
 
-
 	/**
-	 * GET  /connectionPoints -> get all the connectionPoints.
-	 * Content type: XML
+	 * GET /connectionPoints -> get all the connectionPoints. Content type: XML
 	 * <p/>
 	 * TODO: add request param connectionPointId
 	 */
-	@RequestMapping(method = RequestMethod.GET,
-		produces = MediaType.APPLICATION_XML_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	public ServiceConsumerListDTO getAllAsXml(
-		@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
+			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId) {
 		log.debug("REST request to get all ServiceConsumers as Xml");
-		
+
 		ServiceConsumerListDTO result = new ServiceConsumerListDTO();
 		result.setServiceConsumers(getAllAsJson(connectionPointId));
 		return result;
@@ -83,14 +79,13 @@ public class ServiceConsumerController {
 	}
 
 	/**
-	 * GET  /serviceConsumers/:id -> get the "id" serviceConsumer.
+	 * GET /serviceConsumers/:id -> get the "id" serviceConsumer.
 	 */
-	@RequestMapping(value = "/{id}",
-		method = RequestMethod.GET,
-		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@RequestMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceConsumerDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
-		
+
 		ServiceConsumer serviceConsumer = serviceConsumerService.find(id);
 		if (serviceConsumer == null) {
 			log.debug("Service consumer with id {} not found", id);
@@ -99,10 +94,9 @@ public class ServiceConsumerController {
 		}
 		return toDTO(serviceConsumer);
 	}
-	
+
 	private ServiceConsumerDTO toDTO(ServiceConsumer consumer) {
 		return mapper.map(consumer, ServiceConsumerDTO.class);
 	}
-
 
 }

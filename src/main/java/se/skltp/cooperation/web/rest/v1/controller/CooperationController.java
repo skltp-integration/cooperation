@@ -27,7 +27,8 @@ import com.google.common.base.Splitter;
  * REST controller to handle resource Cooperation
  */
 @RestController
-@RequestMapping("/v1/cooperations")
+@RequestMapping(value = { "/api/v1/cooperations", "/api/v1/cooperations.json",
+		"/api/v1/cooperations.xml" })
 public class CooperationController {
 
 	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
@@ -47,25 +48,25 @@ public class CooperationController {
 	}
 
 	/**
-	 * GET  /cooperations -> get all the cooperations.
-	 * Content type: JSON
+	 * GET /cooperations -> get all the cooperations. Content type: JSON
 	 */
-	@RequestMapping(method = RequestMethod.GET,
-		produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<CooperationDTO> getAllAsJson(
-		@RequestParam(required = false) Long serviceConsumerId,
-		@RequestParam(required = false) Long logicalAddressId,
-		@RequestParam(required = false) Long serviceContractId,
-		@RequestParam(required = false) Long connectionPointId,
-		@RequestParam(required = false) String include) {
+			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) String include) {
 
 		log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_JSON_VALUE);
 		List<CooperationDTO> result = new ArrayList<>();
 
-		List<String> includes = (include != null) ? SPLITTER.splitToList(include) : new ArrayList<>();
-		
+		List<String> includes = (include != null) ? SPLITTER.splitToList(include)
+				: new ArrayList<>();
+
 		List<Cooperation> cooperations;
-		CooperationCriteria criteria = buildCriteria(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
+		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,
+				serviceContractId, connectionPointId);
 		cooperations = cooperationService.findAll(criteria);
 
 		for (Cooperation cp : cooperations) {
@@ -77,31 +78,29 @@ public class CooperationController {
 	}
 
 	/**
-	 * GET  /cooperations -> get all cooperations.
-	 * Content type: XML
+	 * GET /cooperations -> get all cooperations. Content type: XML
 	 */
-	@RequestMapping(method = RequestMethod.GET,
-		produces = MediaType.APPLICATION_XML_VALUE)
-	public CooperationListDTO getAllAsXml(
-		@RequestParam(required = false) Long serviceConsumerId,
-		@RequestParam(required = false) Long logicalAddressId,
-		@RequestParam(required = false) Long serviceContractId,
-		@RequestParam(required = false) Long connectionPointId,
-		@RequestParam(required = false) String include) {
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+	public CooperationListDTO getAllAsXml(@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_XML);
 
 		CooperationListDTO result = new CooperationListDTO();
-		result.setCooperations(getAllAsJson(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId, include));
+		// Ändra på detta !!!!!!!
+		result.setCooperations(getAllAsJson(serviceConsumerId, logicalAddressId, serviceContractId,
+				connectionPointId, include));
 		return result;
 
 	}
 
 	/**
-	 * GET  /cooperations/:id -> get the "id" cooperation.
+	 * GET /cooperations/:id -> get the "id" cooperation.
 	 */
-	@RequestMapping(value = "/{id}",
-		method = RequestMethod.GET,
-		produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@RequestMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public CooperationDTO get(@PathVariable Long id) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 
@@ -113,34 +112,27 @@ public class CooperationController {
 		return toDTO(coop);
 	}
 
-
-	CooperationCriteria buildCriteria(Long serviceConsumerId, Long logicalAddressId, Long serviceContractId, Long connectionPointId) {
-		log.debug("buildCriteria(serviceConsumerId:{}, logicalAddressId:{}, serviceContractId:{}, connectionPointId:{})", serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId);
-
-		CooperationCriteria criteria = new CooperationCriteria();
-		criteria.setServiceConsumerId(serviceConsumerId);
-		criteria.setLogicalAddressId(logicalAddressId);
-		criteria.setServiceContractId(serviceContractId);
-		criteria.setConnectionPointId(connectionPointId);
-		return criteria;
-	}
-
 	/**
-	 * Decide which compound objects that should be included. If not requested to
-	 * be included it will be nulled.
+	 * Decide which compound objects that should be included. If not requested
+	 * to be included it will be nulled.
 	 *
-	 * @param includes    A list of parameter values
+	 * @param includes
+	 *            A list of parameter values
 	 * @param cooperation
 	 */
 	void includeOrNot(List<String> includes, Cooperation cooperation) {
 		if (includes != null) {
-			if (!includes.contains(INCLUDE_CONNECTIONPOINT)) cooperation.setConnectionPoint(null);
-			if (!includes.contains(INCLUDE_LOGICALADDRESS)) cooperation.setLogicalAddress(null);
-			if (!includes.contains(INCLUDE_SERVICECONSUMER)) cooperation.setServiceConsumer(null);
-			if (!includes.contains(INCLUDE_SERVICECONTRACT)) cooperation.setServiceContract(null);
+			if (!includes.contains(INCLUDE_CONNECTIONPOINT))
+				cooperation.setConnectionPoint(null);
+			if (!includes.contains(INCLUDE_LOGICALADDRESS))
+				cooperation.setLogicalAddress(null);
+			if (!includes.contains(INCLUDE_SERVICECONSUMER))
+				cooperation.setServiceConsumer(null);
+			if (!includes.contains(INCLUDE_SERVICECONTRACT))
+				cooperation.setServiceContract(null);
 		}
 	}
-	
+
 	private CooperationDTO toDTO(Cooperation coop) {
 		return mapper.map(coop, CooperationDTO.class);
 	}

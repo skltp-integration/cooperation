@@ -234,28 +234,6 @@ public class CooperationControllerTest {
 
 	}
 
-	@Test
-	public void getAllAsJson_shouldReturnEmptyList() throws Exception {
-
-		when(cooperationServiceMock.findAll()).thenReturn(Collections.emptyList());
-
-		mockMvc.perform(get("/v1/cooperations").accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-			.andExpect(jsonPath("$", hasSize(0)));
-	}
-
-	@Test
-	public void getAllAsXml_shouldReturnEmptyList() throws Exception {
-
-		when(cooperationServiceMock.findAll()).thenReturn(Collections.emptyList());
-
-		mockMvc.perform(get("/v1/cooperations").accept(MediaType.APPLICATION_XML))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
-			.andExpect(xpath("/cooperations").nodeCount(1)).
-			andExpect(xpath("/cooperations/cooperation").nodeCount(0));
-	}
 
 	@Test
 	public void get_shouldReturnOneAsJson() throws Exception {
@@ -297,29 +275,11 @@ public class CooperationControllerTest {
 		}
 	}
 
-	@Test
-	public void buildCriteria_shouldBuild() throws Exception {
-
-		CooperationCriteria criteria = uut.buildCriteria(1L, null, null, null);
-		assertThat(criteria.getServiceConsumerId(), is(1L));
-		criteria = uut.buildCriteria(1L, 2L, null, null);
-		assertThat(criteria.getServiceConsumerId(), is(1L));
-		assertThat(criteria.getLogicalAddressId(), is(2L));
-		criteria = uut.buildCriteria(1L, 2L, 3L, null);
-		assertThat(criteria.getServiceConsumerId(), is(1L));
-		assertThat(criteria.getLogicalAddressId(), is(2L));
-		assertThat(criteria.getServiceContractId(), is(3L));
-		criteria = uut.buildCriteria(1L, 2L, 3L, 4L);
-		assertThat(criteria.getServiceConsumerId(), is(1L));
-		assertThat(criteria.getLogicalAddressId(), is(2L));
-		assertThat(criteria.getServiceContractId(), is(3L));
-		assertThat(criteria.getConnectionPointId(), is(4L));
-	}
 
 	@Test
 	public void buildCriteria_shouldBeEmpty() throws Exception {
 
-		CooperationCriteria criteria = uut.buildCriteria(null, null, null, null);
+		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null);
 		assertTrue(criteria.isEmpty());
 	}
 

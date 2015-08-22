@@ -10,13 +10,6 @@ import java.util.List;
 public interface CooperationService {
 
 	/**
-	 * Find all Cooperations
-	 *
-	 * @return List A list of {@link Cooperation} objects.
-	 */
-	List<Cooperation> findAll();
-
-	/**
 	 * Find all Cooperations by given criteria
 	 *
 	 * @param criteria

@@ -11,9 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import se.skltp.cooperation.domain.ConnectionPoint;
+import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
@@ -25,7 +27,8 @@ import se.skltp.cooperation.web.rest.v1.listdto.ConnectionPointListDTO;
  * @author Peter Merikan
  */
 @RestController
-@RequestMapping(value = { "/api/v1/connectionPoints", "/api/v1/connectionPoints.json", "/api/v1/connectionPoints.xml" })
+@RequestMapping(value = { "/api/v1/connectionPoints", "/api/v1/connectionPoints.json",
+		"/api/v1/connectionPoints.xml" })
 public class ConnectionPointController {
 
 	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
@@ -34,40 +37,44 @@ public class ConnectionPointController {
 	private final DozerBeanMapper mapper;
 
 	@Autowired
-	public ConnectionPointController(ConnectionPointService connectionPointService, DozerBeanMapper mapper) {
+	public ConnectionPointController(ConnectionPointService connectionPointService,
+			DozerBeanMapper mapper) {
 		this.connectionPointService = connectionPointService;
 		this.mapper = mapper;
 	}
 
 	/**
-	 * GET /connectionPoints -> get all the connectionPoints.Accept-header: json
+	 * GET /connectionPoints -> get all the connectionPoints as json
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ConnectionPointDTO> getAllAcceptJson() {
-		log.debug("REST request to get all ConnectionPoints Accept=json");
+	public List<ConnectionPointDTO> getAllAsJson(@RequestParam(required = false) String platform,
+			@RequestParam(required = false) String environment,
+			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long serviceProducerId) {
+		log.debug("REST request to get all ConnectionPoints as json");
 
-		return getAll();
+		return getAll(platform, environment, serviceConsumerId, logicalAddressId,
+				serviceContractId, serviceProducerId);
 
 	}
 
 	/**
-	 * GET /connectionPoints -> get all the connectionPoints. Accept-header: xml
+	 * GET /connectionPoints -> get all the connectionPoints as xml
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
-	public ConnectionPointListDTO getAllAcceptXml() {
-		log.debug("REST request to get all ConnectionPoints Accept=xml");
+	public ConnectionPointListDTO getAllAsXml(@RequestParam(required = false) String platform,
+			@RequestParam(required = false) String environment,
+			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long serviceProducerId) {
+		log.debug("REST request to get all ConnectionPoints as xml");
 
-		return new ConnectionPointListDTO(getAll());
+		return new ConnectionPointListDTO(getAll(platform, environment, serviceConsumerId,
+				logicalAddressId, serviceContractId, serviceProducerId));
 
-	}
-
-	private List<ConnectionPointDTO> getAll() {
-		List<ConnectionPointDTO> result = new ArrayList<>();
-		List<ConnectionPoint> connectionPoints = connectionPointService.findAll();
-		for (ConnectionPoint cp : connectionPoints) {
-			result.add(toDTO(cp));
-		}
-		return result;
 	}
 
 	/**
@@ -84,6 +91,21 @@ public class ConnectionPointController {
 			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
 		}
 		return toDTO(cp);
+	}
+
+	private List<ConnectionPointDTO> getAll(String platform, String environment,
+			Long serviceConsumerId, Long logicalAddressId, Long serviceContractId,
+			Long serviceProducerId) {
+
+		ConnectionPointCriteria criteria = new ConnectionPointCriteria(environment, platform,
+				serviceConsumerId, logicalAddressId, serviceContractId, serviceProducerId);
+		List<ConnectionPoint> connectionPoints = connectionPointService.findAll(criteria);
+
+		List<ConnectionPointDTO> result = new ArrayList<>();
+		for (ConnectionPoint cp : connectionPoints) {
+			result.add(toDTO(cp));
+		}
+		return result;
 	}
 
 	private ConnectionPointDTO toDTO(ConnectionPoint cp) {

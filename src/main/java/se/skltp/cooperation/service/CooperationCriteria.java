@@ -12,6 +12,18 @@ public class CooperationCriteria {
 	Long serviceContractId;
 	Long connectionPointId;
 
+	
+	public CooperationCriteria() {
+	}
+
+	public CooperationCriteria(Long serviceConsumerId, Long logicalAddressId,
+			Long serviceContractId, Long connectionPointId) {
+		this.serviceConsumerId = serviceConsumerId;
+		this.logicalAddressId = logicalAddressId;
+		this.serviceContractId = serviceContractId;
+		this.connectionPointId = connectionPointId;
+	}
+
 	public boolean isEmpty() {
 
 		return (serviceConsumerId == null && logicalAddressId == null

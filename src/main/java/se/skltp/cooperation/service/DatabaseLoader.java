@@ -30,7 +30,6 @@ import javax.annotation.PostConstruct;
 @Profile("dev")
 public class DatabaseLoader {
 
-
 	private final ConnectionPointRepository connectionPointRepository;
 	private final CooperationRepository cooperationRepository;
 	private final LogicalAddressRepository logicalAddressRepository;
@@ -52,12 +51,12 @@ public class DatabaseLoader {
 
 	@Autowired
 	public DatabaseLoader(ConnectionPointRepository connectionPointRepository,
-						  CooperationRepository cooperationRepository,
-						  LogicalAddressRepository logicalAddressRepository,
-						  ServiceConsumerRepository serviceConsumerRepository,
-						  ServiceContractRepository serviceContractRepository,
-						  ServiceProducerRepository serviceProducerRepository,
-						  ServiceProductionRepository serviceProductionRepository) {
+			CooperationRepository cooperationRepository,
+			LogicalAddressRepository logicalAddressRepository,
+			ServiceConsumerRepository serviceConsumerRepository,
+			ServiceContractRepository serviceContractRepository,
+			ServiceProducerRepository serviceProducerRepository,
+			ServiceProductionRepository serviceProductionRepository) {
 		this.connectionPointRepository = connectionPointRepository;
 		this.cooperationRepository = cooperationRepository;
 		this.logicalAddressRepository = logicalAddressRepository;
@@ -70,7 +69,8 @@ public class DatabaseLoader {
 	@PostConstruct
 	private void initDatabase() {
 
-		// Load consumers, producers and logical address existing in all environments
+		// Load consumers, producers and logical address existing in all
+		// environments
 		loadCommonTakDataForAllEnvironmentsInPlattform();
 
 		// NTjP - Development, QA and Production
@@ -90,13 +90,17 @@ public class DatabaseLoader {
 	private void loadCommonTakDataForAllEnvironmentsInPlattform() {
 
 		processNotification_producer1_logicalAddress = new LogicalAddress();
-		processNotification_producer1_logicalAddress.setDescription("Producer1:processNotification");
-		processNotification_producer1_logicalAddress.setLogicalAddress("SE2120002825-LOGICALADDRESS1");
+		processNotification_producer1_logicalAddress
+				.setDescription("Producer1:processNotification");
+		processNotification_producer1_logicalAddress
+				.setLogicalAddress("SE2120002825-LOGICALADDRESS1");
 		logicalAddressRepository.save(processNotification_producer1_logicalAddress);
 
 		processNotification_producer2_logicalAddress = new LogicalAddress();
-		processNotification_producer2_logicalAddress.setDescription("Producer2:processNotification");
-		processNotification_producer2_logicalAddress.setLogicalAddress("SE2120002825-LOGICALADDRESS2");
+		processNotification_producer2_logicalAddress
+				.setDescription("Producer2:processNotification");
+		processNotification_producer2_logicalAddress
+				.setLogicalAddress("SE2120002825-LOGICALADDRESS2");
 		logicalAddressRepository.save(processNotification_producer2_logicalAddress);
 
 		processNotification_producer1 = new ServiceProducer();
@@ -137,9 +141,10 @@ public class DatabaseLoader {
 	}
 
 	private void loadTAKData(ConnectionPoint connectionPoint) {
-		String label = "[" + connectionPoint.getPlatform() + "-" + connectionPoint.getEnvironment() + "]";
+		String label = "[" + connectionPoint.getPlatform() + "-" + connectionPoint.getEnvironment()
+				+ "]";
 
-		//Contract: Update
+		// Contract: Update
 		ServiceContract ei_update_contract = new ServiceContract();
 		ei_update_contract.setName("Engagemangsindex - Update");
 		ei_update_contract.setNamespace("urn:riv:itintegration:engagementindex:UpdateResponder:1");
@@ -149,7 +154,8 @@ public class DatabaseLoader {
 
 		ServiceProduction ei_update_production = new ServiceProduction();
 		ei_update_production.setRivtaProfile("RIVTABP21");
-		ei_update_production.setPhysicalAddress("http://" + connectionPoint.getEnvironment() + "/producer1/Update/v1");
+		ei_update_production.setPhysicalAddress("http://" + connectionPoint.getEnvironment()
+				+ "/producer1/Update/v1");
 		ei_update_production.setConnectionPoint(connectionPoint);
 		ei_update_production.setLogicalAddress(ei_logicalAddress);
 		ei_update_production.setServiceProducer(ei_update_producer);
@@ -170,46 +176,56 @@ public class DatabaseLoader {
 		cooperation2.setServiceConsumer(serviceConsumer2);
 		cooperationRepository.save(cooperation2);
 
-		//Contract: ProcessNotification
-		ServiceContract ei_processNotification_contract = new ServiceContract();
-		ei_processNotification_contract.setName("Engagemangsindex - ProcessNotification");
-		ei_processNotification_contract.setNamespace("urn:riv:itintegration:engagementindex:ProcessNotificationResponder:1");
-		ei_processNotification_contract.setMajor(1);
-		ei_processNotification_contract.setMinor(0);
-		serviceContractRepository.save(ei_processNotification_contract);
+		if (connectionPoint.getEnvironment().equals("PRODUCTION")) {
+			// Contract: ProcessNotification
+			ServiceContract ei_processNotification_contract = new ServiceContract();
+			ei_processNotification_contract.setName("Engagemangsindex - ProcessNotification");
+			ei_processNotification_contract
+					.setNamespace("urn:riv:itintegration:engagementindex:ProcessNotificationResponder:1");
+			ei_processNotification_contract.setMajor(1);
+			ei_processNotification_contract.setMinor(0);
+			serviceContractRepository.save(ei_processNotification_contract);
 
-		ServiceProduction processNotification_producer1_production = new ServiceProduction();
-		processNotification_producer1_production.setRivtaProfile("RIVTABP21");
-		processNotification_producer1_production.setPhysicalAddress("http://" + connectionPoint.getEnvironment() + "/producer1/ProcessNotification/v1");
-		processNotification_producer1_production.setConnectionPoint(connectionPoint);
-		processNotification_producer1_production.setLogicalAddress(processNotification_producer1_logicalAddress);
-		processNotification_producer1_production.setServiceProducer(processNotification_producer1);
-		processNotification_producer1_production.setServiceContract(ei_processNotification_contract);
-		serviceProductionRepository.save(processNotification_producer1_production);
+			ServiceProduction processNotification_producer1_production = new ServiceProduction();
+			processNotification_producer1_production.setRivtaProfile("RIVTABP21");
+			processNotification_producer1_production.setPhysicalAddress("http://"
+					+ connectionPoint.getEnvironment() + "/producer1/ProcessNotification/v1");
+			processNotification_producer1_production.setConnectionPoint(connectionPoint);
+			processNotification_producer1_production
+					.setLogicalAddress(processNotification_producer1_logicalAddress);
+			processNotification_producer1_production
+					.setServiceProducer(processNotification_producer1);
+			processNotification_producer1_production
+					.setServiceContract(ei_processNotification_contract);
+			serviceProductionRepository.save(processNotification_producer1_production);
 
-		ServiceProduction processNotification_producer2_production = new ServiceProduction();
-		processNotification_producer2_production.setRivtaProfile("RIVTABP21");
-		processNotification_producer2_production.setPhysicalAddress("http://" + connectionPoint.getEnvironment() + "/producer2/ProcessNotification/v1");
-		processNotification_producer2_production.setConnectionPoint(connectionPoint);
-		processNotification_producer2_production.setLogicalAddress(processNotification_producer2_logicalAddress);
-		processNotification_producer2_production.setServiceProducer(processNotification_producer2);
-		processNotification_producer2_production.setServiceContract(ei_processNotification_contract);
-		serviceProductionRepository.save(processNotification_producer2_production);
+			ServiceProduction processNotification_producer2_production = new ServiceProduction();
+			processNotification_producer2_production.setRivtaProfile("RIVTABP21");
+			processNotification_producer2_production.setPhysicalAddress("http://"
+					+ connectionPoint.getEnvironment() + "/producer2/ProcessNotification/v1");
+			processNotification_producer2_production.setConnectionPoint(connectionPoint);
+			processNotification_producer2_production
+					.setLogicalAddress(processNotification_producer2_logicalAddress);
+			processNotification_producer2_production
+					.setServiceProducer(processNotification_producer2);
+			processNotification_producer2_production
+					.setServiceContract(ei_processNotification_contract);
+			serviceProductionRepository.save(processNotification_producer2_production);
 
-		Cooperation cooperation3 = new Cooperation();
-		cooperation3.setConnectionPoint(connectionPoint);
-		cooperation3.setLogicalAddress(processNotification_producer1_logicalAddress);
-		cooperation3.setServiceContract(ei_processNotification_contract);
-		cooperation3.setServiceConsumer(serviceConsumer3);
-		cooperationRepository.save(cooperation3);
-		cooperation3 = new Cooperation();
-		cooperation3.setConnectionPoint(connectionPoint);
-		cooperation3.setLogicalAddress(processNotification_producer2_logicalAddress);
-		cooperation3.setServiceContract(ei_processNotification_contract);
-		cooperation3.setServiceConsumer(serviceConsumer3);
-		cooperationRepository.save(cooperation3);
+			Cooperation cooperation3 = new Cooperation();
+			cooperation3.setConnectionPoint(connectionPoint);
+			cooperation3.setLogicalAddress(processNotification_producer1_logicalAddress);
+			cooperation3.setServiceContract(ei_processNotification_contract);
+			cooperation3.setServiceConsumer(serviceConsumer3);
+			cooperationRepository.save(cooperation3);
+			cooperation3 = new Cooperation();
+			cooperation3.setConnectionPoint(connectionPoint);
+			cooperation3.setLogicalAddress(processNotification_producer2_logicalAddress);
+			cooperation3.setServiceContract(ei_processNotification_contract);
+			cooperation3.setServiceConsumer(serviceConsumer3);
+			cooperationRepository.save(cooperation3);
 
-
+		}
 	}
 
 }

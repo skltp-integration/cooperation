@@ -20,6 +20,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/*
+ * A Servlet Filter that will add Accept-headers for json or xml if the URI string contain .json or .xml.
+ * The serialization of object return by the GET methods of the REST api depends on which Accept-headar 
+ * that is present in the reuest. This it the general solution in this api to support .json and .xml.
+ * Since the header information is read-only in the request a Request Wrapper is created containing the 
+ * extra header information. The wrapper extends javax.servlet.http.HttpServletRequestWrapper.  
+ */
 @Component
 public class AcceptHeaderModificationFilter implements Filter {
 
@@ -30,8 +37,6 @@ public class AcceptHeaderModificationFilter implements Filter {
 			ServletException {
 
 		HttpServletRequest request = (HttpServletRequest) req;
-
-		log.debug("DETTA ÄR I FILTRET " + request.getHeaders("Accept"));
 
 		HeaderMapRequestWrapper requestWrapper = new HeaderMapRequestWrapper(request);
 		String requestURI = request.getRequestURI();

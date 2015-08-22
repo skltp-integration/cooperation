@@ -8,9 +8,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
+import se.skltp.cooperation.service.ConnectionPointCriteria;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,8 +49,9 @@ public class ConnectionPointServiceImplTest {
 		cp1.setId(1L);
 		ConnectionPoint cp2 = new ConnectionPoint();
 		cp2.setId(2L);
+		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
 		when(connectionPointRepositoryMock.findAll()).thenReturn(Arrays.asList(cp1, cp2));
-		List<ConnectionPoint> result = uut.findAll();
+		List<ConnectionPoint> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 		assertEquals(1L, result.get(0).getId().longValue());
 		assertEquals(2L, result.get(1).getId().longValue());
@@ -59,8 +62,9 @@ public class ConnectionPointServiceImplTest {
 	@Test
 	public void findAll_shouldReturnEmpyList() throws Exception {
 
+		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
 		when(connectionPointRepositoryMock.findAll()).thenReturn(new ArrayList<ConnectionPoint>());
-		List<ConnectionPoint> result = uut.findAll();
+		List<ConnectionPoint> result = uut.findAll(criteria);
 		assertEquals(0, result.size());
 
 	}
