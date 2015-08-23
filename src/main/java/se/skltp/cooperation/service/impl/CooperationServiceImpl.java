@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import se.skltp.cooperation.domain.Cooperation;
-import se.skltp.cooperation.repository.CooperationPredicates;
+import se.skltp.cooperation.domain.QCooperation;
 import se.skltp.cooperation.repository.CooperationRepository;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
@@ -49,16 +49,16 @@ public class CooperationServiceImpl implements CooperationService {
 	Predicate buildPredicate(CooperationCriteria criteria) {
 		BooleanBuilder builder = new BooleanBuilder();
 		if (criteria.getServiceConsumerId() != null) {
-			builder.and(CooperationPredicates.serviceConsumerIdIs(criteria.getServiceConsumerId()));
+			builder.and(QCooperation.cooperation.serviceConsumer.id.eq(criteria.getServiceConsumerId()));
 		}
 		if (criteria.getLogicalAddressId() != null) {
-			builder.and(CooperationPredicates.logicalAddressIdIs(criteria.getLogicalAddressId()));
+			builder.and(QCooperation.cooperation.logicalAddress.id.eq(criteria.getLogicalAddressId()));
 		}
 		if (criteria.getServiceContractId() != null) {
-			builder.and(CooperationPredicates.serviceContractIdIs(criteria.getServiceContractId()));
+			builder.and(QCooperation.cooperation.serviceContract.id.eq(criteria.getServiceContractId()));
 		}
 		if (criteria.getConnectionPointId() != null) {
-			builder.and(CooperationPredicates.connectionPointIdIs(criteria.getConnectionPointId()));
+			builder.and(QCooperation.cooperation.connectionPoint.id.eq(criteria.getConnectionPointId()));
 		}
 		return builder.getValue();
 	}
