@@ -57,25 +57,13 @@ public class CooperationController {
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) String include) {
-
-		log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_JSON_VALUE);
-		List<CooperationDTO> result = new ArrayList<>();
-
-		List<String> includes = (include != null) ? SPLITTER.splitToList(include)
-				: new ArrayList<>();
-
-		List<Cooperation> cooperations;
-		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,
-				serviceContractId, connectionPointId);
-		cooperations = cooperationService.findAll(criteria);
-
-		for (Cooperation cp : cooperations) {
-			includeOrNot(includes, cp);
-			result.add(toDTO(cp));
-		}
-		return result;
+		log.debug("REST request to get all Cooperations as json");
+		
+		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,
+				include);
 
 	}
+
 
 	/**
 	 * GET /cooperations -> get all cooperations. Content type: XML
@@ -86,11 +74,10 @@ public class CooperationController {
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) String include) {
-		log.debug("REST request to get all Cooperations as {}", MediaType.APPLICATION_XML);
+		log.debug("REST request to get all Cooperations as xml");
 
 		CooperationListDTO result = new CooperationListDTO();
-		// Ändra på detta !!!!!!!
-		result.setCooperations(getAllAsJson(serviceConsumerId, logicalAddressId, serviceContractId,
+		result.setCooperations(getAll(serviceConsumerId, logicalAddressId, serviceContractId,
 				connectionPointId, include));
 		return result;
 
@@ -110,6 +97,24 @@ public class CooperationController {
 			throw new ResourceNotFoundException("Cooperation with id " + id + " not found");
 		}
 		return toDTO(coop);
+	}
+	
+	private List<CooperationDTO> getAll(Long serviceConsumerId, Long logicalAddressId,
+			Long serviceContractId, Long connectionPointId, String include) {
+
+		List<String> includes = (include != null) ? SPLITTER.splitToList(include)
+				: new ArrayList<>();
+
+		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,
+				serviceContractId, connectionPointId);
+		List<Cooperation> cooperations = cooperationService.findAll(criteria);
+
+		List<CooperationDTO> result = new ArrayList<>();
+		for (Cooperation cp : cooperations) {
+			includeOrNot(includes, cp);
+			result.add(toDTO(cp));
+		}
+		return result;
 	}
 
 	/**
