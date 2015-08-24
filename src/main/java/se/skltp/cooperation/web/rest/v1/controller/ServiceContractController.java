@@ -11,9 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.service.ServiceContractCriteria;
 import se.skltp.cooperation.service.ServiceContractService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceContractDTO;
@@ -45,27 +47,35 @@ public class ServiceContractController {
 	 * GET /serviceContracts -> get all the serviceContracts. Content type: JSON
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ServiceContractDTO> getAllAsJson() {
-		log.debug("REST request to get all ServiceContracts");
+	public List<ServiceContractDTO> getAllAsJson(
+			@RequestParam(required = false) String namespace,
+			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long serviceProducerId) {
+		log.debug("REST request to get all ServiceContracts as json");
 
-		List<ServiceContractDTO> result = new ArrayList<>();
-		List<ServiceContract> serviceContracts = serviceContractService.findAll();
-		for (ServiceContract cp : serviceContracts) {
-			result.add(toDTO(cp));
-		}
-		return result;
+		return getAll(namespace, connectionPointId, logicalAddressId, serviceConsumerId,
+				serviceProducerId);
 
 	}
+
 
 	/**
 	 * GET /serviceContracts -> get all the serviceContracts. Content type: XML
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
-	public ServiceContractListDTO getAllAsXml() {
-		log.debug("REST request to get all ServiceContracts");
+	public ServiceContractListDTO getAllAsXml(
+			@RequestParam(required = false) String namespace,
+			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long serviceProducerId) {
+		log.debug("REST request to get all ServiceContracts as xml");
 
 		ServiceContractListDTO result = new ServiceContractListDTO();
-		result.setServiceContracts(getAllAsJson());
+		result.setServiceContracts(getAll(namespace, connectionPointId, logicalAddressId, serviceConsumerId,
+				serviceProducerId));
 		return result;
 
 	}
@@ -84,6 +94,18 @@ public class ServiceContractController {
 			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
 		}
 		return toDTO(cp);
+	}
+
+	private List<ServiceContractDTO> getAll(String namespace, Long connectionPointId,
+			Long logicalAddressId, Long serviceConsumerId, Long serviceProducerId) {
+		ServiceContractCriteria criteria = new  ServiceContractCriteria(namespace, serviceConsumerId,
+				 logicalAddressId,  connectionPointId,  serviceProducerId);
+		List<ServiceContract> serviceContracts = serviceContractService.findAll(criteria);
+		List<ServiceContractDTO> result = new ArrayList<>(); 
+		for (ServiceContract cp : serviceContracts) {
+			result.add(toDTO(cp));
+		}
+		return result;
 	}
 
 	private ServiceContractDTO toDTO(ServiceContract cp) {

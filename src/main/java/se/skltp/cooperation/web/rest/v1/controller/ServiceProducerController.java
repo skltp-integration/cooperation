@@ -11,9 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import se.skltp.cooperation.domain.ServiceProducer;
+import se.skltp.cooperation.service.ServiceProducerCriteria;
 import se.skltp.cooperation.service.ServiceProducerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceProducerDTO;
@@ -45,29 +47,30 @@ public class ServiceProducerController {
 	 * GET /connectionPoints -> get all the connectionPoints. Content type: JSON
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ServiceProducerDTO> getAllAsJson() {
-		log.debug("REST request to get all ServiceProducers as Json");
+	public List<ServiceProducerDTO> getAllAsJson(@RequestParam(required = false) String hsaId,
+			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceConstractId) {
+		log.debug("REST request to get all ServiceProducers as json");
 
-		List<ServiceProducerDTO> result = new ArrayList<>();
-		List<ServiceProducer> Producers = serviceProducerService.findAll();
-		for (ServiceProducer Producer : Producers) {
-			result.add(toDTO(Producer));
-		}
-		return result;
+		return getAll(hsaId, connectionPointId, logicalAddressId, serviceConstractId);
 
 	}
 
 	/**
 	 * GET /connectionPoints -> get all the connectionPoints. Content type: XML
 	 * <p/>
-	 * TODO: add request param connectionPointId
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
-	public ServiceProducerListDTO getAllAsXml() {
-		log.debug("REST request to get all ServiceProducers as Xml");
+	public ServiceProducerListDTO getAllAsXml(@RequestParam(required = false) String hsaId,
+			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long logicalAddressId,
+			@RequestParam(required = false) Long serviceConstractId) {
+		log.debug("REST request to get all ServiceProducers as xml");
 
 		ServiceProducerListDTO result = new ServiceProducerListDTO();
-		result.setServiceProducers(getAllAsJson());
+		result.setServiceProducers(getAll(hsaId, connectionPointId, logicalAddressId,
+				serviceConstractId));
 		return result;
 
 	}
@@ -87,6 +90,19 @@ public class ServiceProducerController {
 
 		}
 		return toDTO(serviceProducer);
+	}
+
+	private List<ServiceProducerDTO> getAll(String hsaId, Long connectionPointId,
+			Long logicalAddressId, Long serviceConstractId) {
+
+		ServiceProducerCriteria criteria = new ServiceProducerCriteria(hsaId, connectionPointId,
+				logicalAddressId, serviceConstractId);
+		List<ServiceProducer> Producers = serviceProducerService.findAll(criteria);
+		List<ServiceProducerDTO> result = new ArrayList<>();
+		for (ServiceProducer Producer : Producers) {
+			result.add(toDTO(Producer));
+		}
+		return result;
 	}
 
 	private ServiceProducerDTO toDTO(ServiceProducer Producer) {

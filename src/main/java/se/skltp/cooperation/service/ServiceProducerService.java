@@ -11,10 +11,11 @@ public interface ServiceProducerService {
 
 	/**
 	 * Find all ServiceProducers
+	 * @param criteria 
 	 *
 	 * @return List A list of {@link ServiceProducer} objects.
 	 */
-	List<ServiceProducer> findAll();
+	List<ServiceProducer> findAll(ServiceProducerCriteria criteria);
 
 	/**
 	 * Find a ServiceProducer by id

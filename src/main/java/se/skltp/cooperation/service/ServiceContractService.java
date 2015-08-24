@@ -14,7 +14,7 @@ public interface ServiceContractService {
 	 *
 	 * @return List A list of {@link ServiceContract} objects.
 	 */
-	List<ServiceContract> findAll();
+	List<ServiceContract> findAll(ServiceContractCriteria criteria);
 
 	/**
 	 * Find a ServiceContract by id

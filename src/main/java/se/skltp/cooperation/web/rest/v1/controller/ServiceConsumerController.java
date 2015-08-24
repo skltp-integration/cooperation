@@ -48,7 +48,7 @@ public class ServiceConsumerController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceConsumerDTO> getAllAsJson(
-			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId,
+			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId) {
 		log.debug("REST request to get all ServiceConsumers as json");
@@ -66,7 +66,7 @@ public class ServiceConsumerController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	public ServiceConsumerListDTO getAllAsXml(
-			@RequestParam(value = "connectionPointId", required = false) Long connectionPointId,
+			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId) {
 		log.debug("REST request to get all ServiceConsumers as xml");
