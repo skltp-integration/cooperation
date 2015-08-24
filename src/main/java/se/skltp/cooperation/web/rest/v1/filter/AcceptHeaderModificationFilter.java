@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /*
- * A Servlet Filter that will add Accept-headers for json or xml if the URI string contain .json or .xml.
+ * A Servlet Filter that will add Accept-headers for json or xml if the URI string contains .json or .xml.
  * The serialization of object return by the GET methods of the REST api depends on which Accept-headar 
  * that is present in the reuest. This it the general solution in this api to support .json and .xml.
  * Since the header information is read-only in the request a Request Wrapper is created containing the 
@@ -33,8 +33,8 @@ public class AcceptHeaderModificationFilter implements Filter {
 	private final Logger log = LoggerFactory.getLogger(AcceptHeaderModificationFilter.class);
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
-			ServletException {
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
 
 		HttpServletRequest request = (HttpServletRequest) req;
 

@@ -1,9 +1,9 @@
 package se.skltp.cooperation.web.rest.exception;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  *

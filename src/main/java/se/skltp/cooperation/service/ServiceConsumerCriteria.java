@@ -32,7 +32,7 @@ public class ServiceConsumerCriteria {
 	}
 
 	public boolean isEmpty() {
-		return (connectionPointId == null);
+		return connectionPointId == null && logicalAddressId == null && serviceContractId == null;
 	}
 
 	public Long getLogicalAddressId() {

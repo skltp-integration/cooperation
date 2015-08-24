@@ -12,8 +12,8 @@ public class ConnectionPointCriteria {
 	
 	public boolean isEmpty() {
 
-		return (environment == null && platform == null && serviceConsumerId == null && logicalAddressId == null
-			&& serviceContractId == null && serviceProducerId == null);
+		return environment == null && platform == null && serviceConsumerId == null && logicalAddressId == null
+			&& serviceContractId == null && serviceProducerId == null;
 	}
 	
 	public ConnectionPointCriteria(String environment, String platform, Long serviceConsumerId,

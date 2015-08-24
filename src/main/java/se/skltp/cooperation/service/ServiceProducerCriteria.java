@@ -13,10 +13,6 @@ public class ServiceProducerCriteria {
 	private Long logicalAddressId;
 	private Long serviceContractId;
 
-	public boolean isEmpty() {
-		return (hsaId == null &&  connectionPointId == null
-				&& logicalAddressId == null && serviceContractId == null);
-	}
 
 	public ServiceProducerCriteria(String hsaId,
 			Long connectionPointId, Long logicalAddressId, Long serviceContractId) {
@@ -24,6 +20,11 @@ public class ServiceProducerCriteria {
 		this.connectionPointId = connectionPointId;
 		this.logicalAddressId = logicalAddressId;
 		this.serviceContractId = serviceContractId;
+	}
+
+	public boolean isEmpty() {
+		return hsaId == null &&  connectionPointId == null
+				&& logicalAddressId == null && serviceContractId == null;
 	}
 
 	public String getHsaId() {

@@ -1,10 +1,11 @@
 package se.skltp.cooperation.web.rest.exception;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.net.URI;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * A problem details object.

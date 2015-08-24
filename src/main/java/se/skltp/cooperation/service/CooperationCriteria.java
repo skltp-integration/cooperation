@@ -26,8 +26,8 @@ public class CooperationCriteria {
 
 	public boolean isEmpty() {
 
-		return (serviceConsumerId == null && logicalAddressId == null
-			&& serviceContractId == null && connectionPointId == null);
+		return serviceConsumerId == null && logicalAddressId == null
+			&& serviceContractId == null && connectionPointId == null;
 	}
 
 	public Long getServiceConsumerId() {

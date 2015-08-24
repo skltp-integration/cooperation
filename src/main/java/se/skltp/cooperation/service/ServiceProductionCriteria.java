@@ -29,8 +29,8 @@ public class ServiceProductionCriteria {
 	}
 
 	public boolean isEmpty() {
-		return (physicalAddress == null && rivtaProfile == null && serviceProducerId == null
-				&& logicalAddressId == null && serviceContractId == null && connectionPointId == null);
+		return physicalAddress == null && rivtaProfile == null && serviceProducerId == null
+				&& logicalAddressId == null && serviceContractId == null && connectionPointId == null;
 	}
 
 	public Long getServiceProducerId() {

@@ -11,8 +11,8 @@ public class LogicalAddressCriteria {
 	
 	public boolean isEmpty() {
 
-		return (namespace == null && serviceConsumerId == null && serviceContractId == null
-			&& connectionPointId == null && serviceProducerId == null);
+		return namespace == null && serviceConsumerId == null && serviceContractId == null
+			&& connectionPointId == null && serviceProducerId == null;
 	}
 	
 	public LogicalAddressCriteria(String namespace, Long serviceConsumerId,
