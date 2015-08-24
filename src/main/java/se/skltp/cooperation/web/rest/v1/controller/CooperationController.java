@@ -25,6 +25,8 @@ import com.google.common.base.Splitter;
 
 /**
  * REST controller to handle resource Cooperation
+ *
+ * @author Peter Merikan
  */
 @RestController
 @RequestMapping(value = { "/api/v1/cooperations", "/api/v1/cooperations.json",
