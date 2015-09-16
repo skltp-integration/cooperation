@@ -137,7 +137,7 @@ println 'START! Import all tak data to cooperation database'
 println ''
 
 //Cooperation db settings
-def url = 'jdbc:h2:tcp://localhost/~/cooperation_demo_db', username = 'sa', password = ''
+def url = 'jdbc:h2:tcp://localhost/~/cooperation', username = 'sa', password = ''
 def db = Sql.newInstance(url, username, password, 'org.hsqldb.jdbcDriver')
 
 //Import all json files in current directory
