@@ -1,8 +1,12 @@
 package se.skltp.cooperation.service;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.LogicalAddress;
@@ -83,6 +87,7 @@ public class DatabaseLoader {
 		ConnectionPoint connectionPoint = new ConnectionPoint();
 		connectionPoint.setPlatform(platform);
 		connectionPoint.setEnvironment(environment);
+		connectionPoint.setSnapshotTime(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
 		connectionPointRepository.save(connectionPoint);
 		loadTAKData(connectionPoint);
 	}

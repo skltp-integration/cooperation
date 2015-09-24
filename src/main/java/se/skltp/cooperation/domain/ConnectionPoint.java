@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +31,9 @@ public class ConnectionPoint implements Serializable {
 
 	@Column(name = "environment")
 	private String environment;
+
+	@Column(name = "snapshot_time")
+	private Date snapshotTime;
 
 	@OneToMany(mappedBy = "connectionPoint")
 	private Set<ServiceProduction> serviceProductions = new HashSet<>();
@@ -74,6 +79,14 @@ public class ConnectionPoint implements Serializable {
 
 	public void setCooperations(Set<Cooperation> cooperations) {
 		this.cooperations = cooperations;
+	}
+
+	public Date getSnapshotTime() {
+		return snapshotTime;
+	}
+
+	public void setSnapshotTime(Date snapshotTime) {
+		this.snapshotTime = snapshotTime;
 	}
 
 }
