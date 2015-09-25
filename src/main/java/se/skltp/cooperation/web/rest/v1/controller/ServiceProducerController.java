@@ -50,10 +50,10 @@ public class ServiceProducerController {
 	public List<ServiceProducerDTO> getAllAsJson(@RequestParam(required = false) String hsaId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
-			@RequestParam(required = false) Long serviceConstractId) {
+			@RequestParam(required = false) Long serviceContractId) {
 		log.debug("REST request to get all ServiceProducers as json");
 
-		return getAll(hsaId, connectionPointId, logicalAddressId, serviceConstractId);
+		return getAll(hsaId, connectionPointId, logicalAddressId, serviceContractId);
 
 	}
 
@@ -65,12 +65,12 @@ public class ServiceProducerController {
 	public ServiceProducerListDTO getAllAsXml(@RequestParam(required = false) String hsaId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
-			@RequestParam(required = false) Long serviceConstractId) {
+			@RequestParam(required = false) Long serviceContractId) {
 		log.debug("REST request to get all ServiceProducers as xml");
 
 		ServiceProducerListDTO result = new ServiceProducerListDTO();
 		result.setServiceProducers(getAll(hsaId, connectionPointId, logicalAddressId,
-				serviceConstractId));
+			serviceContractId));
 		return result;
 
 	}
@@ -93,10 +93,10 @@ public class ServiceProducerController {
 	}
 
 	private List<ServiceProducerDTO> getAll(String hsaId, Long connectionPointId,
-			Long logicalAddressId, Long serviceConstractId) {
+			Long logicalAddressId, Long serviceContractId) {
 
 		ServiceProducerCriteria criteria = new ServiceProducerCriteria(hsaId, connectionPointId,
-				logicalAddressId, serviceConstractId);
+				logicalAddressId, serviceContractId);
 		List<ServiceProducer> Producers = serviceProducerService.findAll(criteria);
 		List<ServiceProducerDTO> result = new ArrayList<>();
 		for (ServiceProducer Producer : Producers) {
