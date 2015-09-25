@@ -58,14 +58,14 @@ public class ServiceProductionController {
 	public List<ServiceProductionDTO> getAllAsJson(
 			@RequestParam(required = false) String physicalAddress,
 			@RequestParam(required = false) String rivtaProfile,
-			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long serviceProducerId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all ServiceProductions as json");
 
-		return getAll(physicalAddress, rivtaProfile, serviceConsumerId, logicalAddressId,
+		return getAll(physicalAddress, rivtaProfile, serviceProducerId, logicalAddressId,
 				serviceContractId, connectionPointId, include);
 
 	}
@@ -77,7 +77,7 @@ public class ServiceProductionController {
 	public ServiceProductionListDTO getAllAsXml(
 			@RequestParam(required = false) String physicalAddress,
 			@RequestParam(required = false) String rivtaProfile,
-			@RequestParam(required = false) Long serviceConsumerId,
+			@RequestParam(required = false) Long serviceProducerId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
@@ -85,7 +85,7 @@ public class ServiceProductionController {
 		log.debug("REST request to get all ServiceProductions as xml");
 
 		ServiceProductionListDTO result = new ServiceProductionListDTO();
-		result.setServiceProductions(getAll(physicalAddress, rivtaProfile, serviceConsumerId,
+		result.setServiceProductions(getAll(physicalAddress, rivtaProfile, serviceProducerId,
 				logicalAddressId, serviceContractId, connectionPointId, include));
 		return result;
 
@@ -108,14 +108,14 @@ public class ServiceProductionController {
 	}
 
 	private List<ServiceProductionDTO> getAll(String physicalAddress, String rivtaProfile,
-			Long serviceConsumerId, Long logicalAddressId, Long serviceContractId,
+			Long serviceProducerId, Long logicalAddressId, Long serviceContractId,
 			Long connectionPointId, String include) {
 
 		List<String> includes = (include != null) ? SPLITTER.splitToList(include)
 				: new ArrayList<>();
 
 		ServiceProductionCriteria criteria = new ServiceProductionCriteria(physicalAddress,
-				rivtaProfile, serviceConsumerId, logicalAddressId, serviceContractId,
+				rivtaProfile, serviceProducerId, logicalAddressId, serviceContractId,
 				connectionPointId);
 		List<ServiceProduction> serviceProductions = serviceProductionService.findAll(criteria);
 
