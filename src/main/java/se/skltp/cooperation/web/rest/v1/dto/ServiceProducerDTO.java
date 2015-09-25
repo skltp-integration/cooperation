@@ -16,6 +16,7 @@ public class ServiceProducerDTO {
 
 	private Long id;
 	private String description;
+	private String hsaId;
 
 	public Long getId() {
 		return id;
@@ -33,4 +34,11 @@ public class ServiceProducerDTO {
 		this.description = description;
 	}
 
+	public String getHsaId() {
+		return hsaId;
+	}
+
+	public void setHsaId(String hsaId) {
+		this.hsaId = hsaId;
+	}
 }
