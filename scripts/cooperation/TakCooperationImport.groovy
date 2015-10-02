@@ -1,7 +1,5 @@
-package se.skltp.cooperation.takimport
-import groovy.io.FileType
-import groovy.json.JsonSlurper
-import groovy.sql.Sql
+#!/usr/bin/env groovy
+
 /**
  * Imports TAK data from TAK export JSON to cooperation database
  *
@@ -11,10 +9,16 @@ import groovy.sql.Sql
  * 4, Run this groovy script by $groovy TakCooperationImport.groovy > importLog.txt
  */
 
-@GrabConfig(systemClassLoader=true)
-@Grab(group='com.h2database', module='h2', version='1.4.187')
-@Grab(group='org.hsqldb', module='hsqldb', version='2.3.3')
-@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+@Grapes([
+	@GrabConfig(systemClassLoader=true),
+	@Grab(group='com.h2database', module='h2', version='1.4.187'),
+	@Grab(group='org.hsqldb', module='hsqldb', version='2.3.3'),
+	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+])
+
+import groovy.io.FileType
+import groovy.json.JsonSlurper
+import groovy.sql.Sql
 
 def countRows = { description, table ->
 	def result = db.firstRow("SELECT COUNT(*) AS numberOfRows FROM " + table)
@@ -130,19 +134,70 @@ def serviceProduction(db, inputJSON, platform, environment){
 	}
 }
 
-/* START IMPORT */
 
-println ''
-println 'START! Import all tak data to cooperation database'
-println ''
+def clearDatabase(db) {
+
+	println ''
+	println 'START! Clearing database'
+	println ''
+	db.execute 'SET REFERENTIAL_INTEGRITY FALSE'
+//	tables = ['connectionpoint', 'cooperation', 'logicaladdress', 'serviceconsumer', 'servicecontract', 'serviceproducer', 'serviceproduction']
+//	tables.each {
+//		db.execute "delete from ${table}"
+//	}
+	db.execute "delete from connectionpoint"
+	db.execute "delete from cooperation"
+	db.execute "delete from logicaladdress"
+	db.execute "delete from serviceconsumer"
+	db.execute "delete from servicecontract"
+	db.execute "delete from serviceproducer"
+	db.execute "delete from serviceproduction"
+	db.execute 'SET REFERENTIAL_INTEGRITY TRUE'
+	println ''
+	println 'Database is cleared'
+	println ''
+
+
+}
+
+def cli = new CliBuilder(
+	usage: 'TakCooperationImport [options]',
+	header: '\nAvailable options (use -h for help):\n')
+cli.with
+	{
+		h longOpt: 'help', 'Usage Information', required: false
+		_ longOpt: 'url', 'Connection URL \n eg. jdbc:h2:tcp://localhost/~/cooperation', args: 1, required: true
+		u longOpt: 'user', 'User ID', args: 1, required: true
+		p longOpt: 'password', 'Password', args: 1, required: false
+		_ longOpt: 'clear', 'Clear database before importing', required: false
+		d longOpt: 'directory', 'Directory that holds data dump files', args:1, required: false
+	}
+
+def opt = cli.parse(args)
+if (!opt) return
+if (opt.h) cli.usage()
+
+def url = opt.url
+def username = opt.u
+def password = opt.p ? opt.p : ''
+def dataDirectory = opt.d ? opt.d : '.'
 
 //Cooperation db settings
-def url = 'jdbc:h2:tcp://localhost/~/cooperation', username = 'sa', password = ''
-def db = Sql.newInstance(url, username, password, 'org.hsqldb.jdbcDriver')
+//def url = 'jdbc:h2:tcp://localhost/~/cooperation', username = 'sa', password = ''
+def db = Sql.newInstance(url, username, password, 'org.h2.Driver')
+
+if (opt.clear) clearDatabase(db)
+
+println """\
+  START! Importing all tak data to cooperation database
+
+  Options: ${opt.options}
+
+"""
 
 //Import all json files in current directory
-def currentDir = new File('.')
-currentDir.eachFileMatch(FileType.FILES, ~/.*json/) {
+def directory = new File(dataDirectory)
+directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 
 	//Extract env and platform from file name with convention takdump_platform_environment.json
 	def fileName = it.name.replaceFirst(~/\.[^\.]+$/, '')
