@@ -1,4 +1,5 @@
-package cooperation
+#!/usr/bin/env groovy
+
 /**
  * This TAK export is customized to cooperation import scripts
  *
@@ -12,14 +13,39 @@ package cooperation
  *
  */
 
- @GrabConfig(systemClassLoader=true)
- @Grab(group='com.h2database', module='h2', version='1.4.187')
- @Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+@Grapes([
+	@GrabConfig(systemClassLoader=true),
+	@Grab(group='com.h2database', module='h2', version='1.4.187'),
+	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36'),
+])
 
 import groovy.sql.Sql
 import groovy.json.*
 
-def username = 'root', password = 'secret', database = 'tak', server = 'localhost'
+def cli = new CliBuilder(
+	usage: 'TakCooperationExport [options]',
+	header: '\nAvailable options (use -h for help):\n')
+cli.with
+	{
+		h longOpt: 'help', 'Usage Information', required: false
+		_ longOpt: 'platform', 'Platform eg. ntjp', args: 1, required: true
+		_ longOpt: 'env', 'Environment eg. prod', args: 1, required: true
+		u longOpt: 'user', 'Username', args: 1, required: true
+		p longOpt: 'password', 'Password', args: 1, required: true
+		s longOpt: 'server', 'Database host', args: 1, required: true
+		d longOpt: 'database', 'Database name', args:1, required: true
+	}
+
+def opt = cli.parse(args)
+if (!opt) return
+if (opt.h) cli.usage()
+
+def platform = opt.platform.toLowerCase()
+def env = opt.env.toLowerCase()
+def username = opt.u
+def password = opt.p
+def server = opt.s
+def database = opt.d
 
 def db = Sql.newInstance("jdbc:mysql://$server/$database", username, password, 'com.mysql.jdbc.Driver')
 
@@ -127,8 +153,8 @@ jsonBuilder{
 
 }
 
-new File('./takdump_PLATFORM_ENVIRONMENT.json').write(JsonOutput.prettyPrint(jsonWriter.toString()))
+new File("./takdump_${platform}_${env}.json").write(JsonOutput.prettyPrint(jsonWriter.toString()))
 println 'Done, exported TAK dump.'
-println 'NOTE! replace filename takdump_PLATFORM_ENVIRONMENT.json with correct platform and environemnt, e.g takdump_NTJP_TEST.json'
+//println 'NOTE! replace filename takdump_PLATFORM_ENVIRONMENT.json with correct platform and environemnt, e.g takdump_NTJP_TEST.json'
 //println jsonBuilder.prettyPrint();
 //println JsonOutput.prettyPrint(jsonWriter.toString())
