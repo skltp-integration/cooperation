@@ -11,13 +11,19 @@ package takexport
  */
 
 @GrabConfig(systemClassLoader=true)
-@Grab(group='com.h2database', module='h2', version='1.4.187')
 @Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
 
 import groovy.sql.Sql
 import groovy.json.*
 
-def username = 'root', password = 'secret', database = 'tak', server = 'localhost'
+// check script input
+if (this.args.length != 4) {
+  println "Usage: TakExport.groovy <username> <password> <database> <server>"
+  System.exit(1)
+}
+//def username = 'root', password = 'secret', database = 'tak', server = 'localhost'
+def username = this.args[0], password = this.args[1], database = this.args[2], server = this.args[3]
+
 
 def db = Sql.newInstance("jdbc:mysql://$server/$database", username, password, 'com.mysql.jdbc.Driver')
 

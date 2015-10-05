@@ -1,0 +1,9 @@
+Generate SSH-keys for automated transfer of TAK-data.
+---
+hd-mbp15:~ hakan$ ssh-keygen -t rsa -b 4096 -C "TAK data transfer"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/hakan/.ssh/id_rsa): /Users/hakan/.ssh/id_rsa_tak_data_transfer
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /Users/hakan/.ssh/id_rsa_tak_data_transfer.
+Your public key has been saved in /Users/hakan/.ssh/id_rsa_tak_data_transfer.pub.
