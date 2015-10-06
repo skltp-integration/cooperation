@@ -180,10 +180,9 @@ if (opt.h) cli.usage()
 def url = opt.url
 def username = opt.u
 def password = opt.p ? opt.p : ''
-def dataDirectory = opt.d ? opt.d : '.'
+def dataDirectory = opt.d ? opt.d.replaceFirst("^~",System.getProperty("user.home")) : '.'
 
 //Cooperation db settings
-//def url = 'jdbc:h2:tcp://localhost/~/cooperation', username = 'sa', password = ''
 def db = Sql.newInstance(url, username, password, 'org.h2.Driver')
 
 if (opt.clear) clearDatabase(db)
