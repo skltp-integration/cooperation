@@ -1,6 +1,17 @@
 #!/bin/bash
 
 #=============================================================================
+# Simple check to avoid running multiple instances via cron
+#=============================================================================
+lock=/tmp/tak-export-to-cooperation-lockdir
+
+if mkdir ${lock}; then
+  trap 'rmdir ${lock}' EXIT
+else
+  exit 1
+fi
+
+#=============================================================================
 # tak-export-to-cooperation.sh
 #
 # Export TAK-data to file from TAK-database and send the file to a
@@ -47,7 +58,7 @@ echo "Done: TAK-export: `date`" >> ${logFile}
 #-----------------------------
 echo "Begin: TAK-upload: `date`" >> ${logFile}
 
-echo "${exportFile} ${cooperationUser}@${cooperationHost}:${cooperationRemotePath}" 
+echo "Will do: scp <options> ${exportFile} ${cooperationUser}@${cooperationHost}:${cooperationRemotePath}" >> ${logFile}
 
 scp -o "PreferredAuthentications publickey" \
     -o "StrictHostKeyChecking no" \
