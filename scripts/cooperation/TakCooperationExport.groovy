@@ -56,7 +56,7 @@ def jsonBuilder = new StreamingJsonBuilder(jsonWriter)
 //Non streaming
 //def jsonBuilder = new JsonBuilder()
 
-println 'Starting to export data from TAK'
+//println 'Starting to export data from TAK'
 
 jsonBuilder{
     beskrivning "TAK versionerat format"
@@ -153,8 +153,7 @@ jsonBuilder{
 
 }
 
-new File("./takdump_${platform}_${env}.json").write(JsonOutput.prettyPrint(jsonWriter.toString()))
-println 'Done, exported TAK dump.'
-//println 'NOTE! replace filename takdump_PLATFORM_ENVIRONMENT.json with correct platform and environemnt, e.g takdump_NTJP_TEST.json'
-//println jsonBuilder.prettyPrint();
-//println JsonOutput.prettyPrint(jsonWriter.toString())
+//new File("./takdump_${platform}_${env}.json").write(JsonOutput.prettyPrint(jsonWriter.toString()))
+//println 'Done, exported TAK dump.'
+// let script invocation decide where to write data (for example using UNIX re-direction)
+println JsonOutput.prettyPrint(jsonWriter.toString())

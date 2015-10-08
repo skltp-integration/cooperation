@@ -17,6 +17,9 @@
  *
  */
 
+
+// NOTE: 2015-10-08: problems getting hsqldb using grape, had to populate local maven repo first using:
+// mvn org.apache.maven.plugins:maven-dependency-plugin:get -DartifactId=hsqldb -DgroupId=org.hsqldb -Dversion=2.3.3
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
 	@Grab(group='com.h2database', module='h2', version='1.4.187'),
