@@ -28,8 +28,25 @@ import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+
+// cooperation-config-override.properties file is for tomcat production deployment
+// should contain 
+// spring.datasource.url=jdbc:mysql://localhost/cooperation
+// spring.datasource.username=root
+// spring.datasource.password=
+// these properties are left out of the application.yml in the prod profile section
+// 
+// tomcat bin directory should contain a setenv.sh containing
+// export CATALINA_OPTS="$CATALINA_OPTS -Dspring.profiles.active=prod"
+// export CATALINA_OPTS="$CATALINA_OPTS -Dapp.conf.dir=/Users/jan/conf"
+// the cooperation-config-override.properties should be placed in the directory pointed out in the last row above
 
 @SpringBootApplication
+@PropertySources({
+    @PropertySource(value = "file:${app.conf.dir}/cooperation-config-override.properties", ignoreResourceNotFound = true)
+})
 public class Application extends SpringBootServletInitializer {
 
     @Override

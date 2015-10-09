@@ -29,9 +29,6 @@ spring:
     datasource:
         platform: mysql
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost/cooperation
-        username: root
-        password: 
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
     
