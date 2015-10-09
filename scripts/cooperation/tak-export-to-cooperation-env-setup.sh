@@ -24,7 +24,7 @@ tmpDir=/tmp/tak-export-to-cooperation
 #   on MacOSX: en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 # groovy must be in path
-export PATH=${PATH}:/local/java/groovy
+export PATH=${PATH}:/local/java/groovy/bin
 
 #-----------------------------
 # Cooperation config

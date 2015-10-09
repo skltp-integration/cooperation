@@ -27,11 +27,28 @@ fi
 trap "rm -f $LOCK_FILE" EXIT
 touch $LOCK_FILE
 
+if [ "$(ls -A incoming_data)" ]
+then
+  DATABASE_FILE=~/cooperation.mv.db
+  BACKUP_DIR=./backup
+  [ -d $BACKUP_DIR ] || mkdir -p $BACKUP_DIR | tee -a $LOG_FILE
+  echo "$(date +"%F %T") : Backing upp file $DATABASE_FILE" | tee -a $LOG_FILE
+  [ -f "$DATABASE_FILE" ] && zip $BACKUP_DIR/"$(basename $DATABASE_FILE)"_$(date +"%F-%H.%M.%S").zip "$DATABASE_FILE"
 
-DATABASE_FILE=~/cooperation.mv.db
+  echo "$(date +"%F %T") : Backing up dumpdata directory" | tee -a $LOG_FILE
+  zip -r $BACKUP_DIR/dumpdata_$(date +"%F-%H.%M.%S").zip dumpdata/ | tee -a $LOG_FILE
 
-echo "$(date +"%F %T") : Backing upp file $DATABASE_FILE" | tee -a $LOG_FILE
-[ -f "$DATABASE_FILE" ] && zip "$DATABASE_FILE"_$(date +"%F-%H.%M.%S").zip "$DATABASE_FILE"
+  echo "$(date +"%F %T") : Backing upp incoming_data directory" | tee -a $LOG_FILE
+  zip -r $BACKUP_DIR/incoming_data_$(date +"%F-%H.%M.%S").zip incoming_data/ | tee -a $LOG_FILE
 
-~/TakCooperationImport.groovy "--url" "jdbc:h2:tcp://localhost/~/cooperation" "-u" "sa" "-p" " " "-d" "~/dumpdata" "--clear" | tee -a $LOG_FILE
+  echo "$(date +"%F %T") : Copying incoming_data files to dumpdata directory" | tee -a $LOG_FILE
+  cp -f incoming_data/* dumpdata
+  rm -f incoming_data/*
+
+  ~/TakCooperationImport.groovy "--url" "jdbc:h2:tcp://localhost/~/cooperation" "-u" "sa" "-p" "" "-d" "~/dumpdata" "--clear" | tee -a $LOG_FILE
+else
+  echo "$(date +"%F %T") : No incoming data. Nothing to import so exiting now." | tee -a $LOG_FILE
+fi
+
+
 
