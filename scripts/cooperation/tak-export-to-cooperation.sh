@@ -1,6 +1,17 @@
 #!/bin/bash
 
 #=============================================================================
+# Simple check to avoid running multiple instances via cron
+#=============================================================================
+lock=/tmp/tak-export-to-cooperation-lockdir
+
+if mkdir ${lock}; then
+  trap 'rmdir ${lock}' EXIT
+else
+  exit 1
+fi
+
+#=============================================================================
 # tak-export-to-cooperation.sh
 #
 # Export TAK-data to file from TAK-database and send the file to a
@@ -37,8 +48,9 @@ echo "Begin: TAK-export: `date`" >> ${logFile}
 # TAK export file name - MUST be named like this for the cooperation-app to
 # parse TAK-site and TAK-environment from filename
 exportFile=${tmpDir}/takdump_${takSite}_${takEnvironment}.json
-groovy -Dgroovy.grape.report.downloads=true -Dgrape.root=./grape_repo TakExport.groovy \
-    ${takDbUser} ${takDbPassword} ${takDbName} ${takDbHost} > ${exportFile} 2>> ${logFile}
+groovy -Dgroovy.grape.report.downloads=true -Dgrape.root=./grape_repo TakCooperationExport.groovy \
+    --platform ${takSite} -env ${takEnvironment} -u ${takDbUser} -p ${takDbPassword} -d ${takDbName} -s ${takDbHost} \
+    > ${exportFile} 2>> ${logFile}
 echo "Done: TAK-export: `date`" >> ${logFile}
 
 #-----------------------------
@@ -46,7 +58,7 @@ echo "Done: TAK-export: `date`" >> ${logFile}
 #-----------------------------
 echo "Begin: TAK-upload: `date`" >> ${logFile}
 
-echo "${exportFile} ${cooperationUser}@${cooperationHost}:${cooperationRemotePath}" 
+echo "Will do: scp <options> ${exportFile} ${cooperationUser}@${cooperationHost}:${cooperationRemotePath}" >> ${logFile}
 
 scp -o "PreferredAuthentications publickey" \
     -o "StrictHostKeyChecking no" \
