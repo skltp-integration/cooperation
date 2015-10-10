@@ -23,7 +23,7 @@ package se.skltp.cooperation.service;
 
 public class LogicalAddressCriteria {
 
-	String namespace;
+	String logicalAdress;
 	Long serviceConsumerId;
 	Long serviceContractId;
 	Long connectionPointId;
@@ -31,13 +31,13 @@ public class LogicalAddressCriteria {
 	
 	public boolean isEmpty() {
 
-		return namespace == null && serviceConsumerId == null && serviceContractId == null
+		return logicalAdress == null && serviceConsumerId == null && serviceContractId == null
 			&& connectionPointId == null && serviceProducerId == null;
 	}
 	
-	public LogicalAddressCriteria(String namespace, Long serviceConsumerId,
+	public LogicalAddressCriteria(String logicalAdress, Long serviceConsumerId,
 			Long serviceContractId, Long connectionPointId, Long serviceProducerId) {
-		this.namespace = namespace;
+		this.logicalAdress = logicalAdress;
 		this.serviceConsumerId = serviceConsumerId;
 		this.serviceContractId = serviceContractId;
 		this.connectionPointId = connectionPointId;
@@ -68,12 +68,12 @@ public class LogicalAddressCriteria {
 		this.serviceProducerId = serviceProducerId;
 	}
 
-	public String getNamespace() {
-		return namespace;
+	public String getLogicalAdress() {
+		return logicalAdress;
 	}
 
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
+	public void setLogicalAdress(String namespace) {
+		this.logicalAdress = namespace;
 	}
 
 	public Long getConnectionPointId() {

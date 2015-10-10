@@ -66,6 +66,10 @@ public class LogicalAdressServiceImpl implements se.skltp.cooperation.service.Lo
 
 	Predicate buildPredicate(LogicalAddressCriteria criteria) {
 		BooleanBuilder builder = new BooleanBuilder();
+		if (criteria.getLogicalAdress() != null) {
+			builder.and(QLogicalAddress.logicalAddress1.logicalAddress.eq(criteria
+					.getLogicalAdress()));
+		}
 		if (criteria.getServiceConsumerId() != null) {
 			builder.and(QLogicalAddress.logicalAddress1.cooperations.any().serviceConsumer.id
 					.eq(criteria.getServiceConsumerId()));

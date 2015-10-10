@@ -68,14 +68,14 @@ public class LogicalAddressController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<LogicalAddressDTO> getAllAsJson(
-			@RequestParam(required = false) String namespace,
+			@RequestParam(required = false) String logicalAdress,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId,
 			@RequestParam(required = false) Long serviceProducerId) {
 		log.debug("REST request to get all LogicalAddresss as json");
 
-		return getAll(namespace, connectionPointId, serviceContractId, serviceConsumerId,
+		return getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
 				serviceProducerId);
 
 	}
@@ -86,7 +86,7 @@ public class LogicalAddressController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	public LogicalAddressListDTO getAllAsXml(
-			@RequestParam(required = false) String namespace,
+			@RequestParam(required = false) String logicalAdress,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId,
@@ -94,7 +94,7 @@ public class LogicalAddressController {
 		log.debug("REST request to get all LogicalAddresss as xml");
 
 		LogicalAddressListDTO result = new LogicalAddressListDTO();
-		result.setLogicalAddresss(getAll(namespace, connectionPointId, serviceContractId, serviceConsumerId,
+		result.setLogicalAddresss(getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
 				serviceProducerId));
 		return result;
 
@@ -116,9 +116,9 @@ public class LogicalAddressController {
 		return toDTO(cp);
 	}
 
-	private List<LogicalAddressDTO> getAll(String namespace, Long connectionPointId,
+	private List<LogicalAddressDTO> getAll(String logicalAdress, Long connectionPointId,
 			Long serviceContractId, Long serviceConsumerId, Long serviceProducerId) {
-		LogicalAddressCriteria criteria = new  LogicalAddressCriteria(namespace, serviceConsumerId,
+		LogicalAddressCriteria criteria = new  LogicalAddressCriteria(logicalAdress, serviceConsumerId,
 				serviceContractId,  connectionPointId,  serviceProducerId);
 		List<LogicalAddress> logicalAddresss = logicalAddressService.findAll(criteria);
 		List<LogicalAddressDTO> result = new ArrayList<>(); 
