@@ -17,7 +17,12 @@ set -o errexit
 #export PATH
 
 
-LOG_FILE="$0"_$(date +"%F").log
+LOG_DIR=./logs
+[ -d "$LOG_DIR" ] || mkdir -p "$LOG_DIR" | tee -a $LOG_FILE
+LOG_FILE="$LOG_DIR"/"$0"_$(date +"%F").log
+DATABASE_FILE=~/cooperation.h2.db
+BACKUP_DIR=./backup
+[ -d "$BACKUP_DIR" ] || mkdir -p "$BACKUP_DIR" | tee -a $LOG_FILE
 
 LOCK_FILE=/tmp/"$0".lock
 if [ -f "$LOCK_FILE" ]; then
@@ -29,21 +34,22 @@ touch $LOCK_FILE
 
 if [ "$(ls -A incoming_data)" ]
 then
-  DATABASE_FILE=~/cooperation.mv.db
-  BACKUP_DIR=./backup
-  [ -d $BACKUP_DIR ] || mkdir -p $BACKUP_DIR | tee -a $LOG_FILE
-  echo "$(date +"%F %T") : Backing upp file $DATABASE_FILE" | tee -a $LOG_FILE
-  [ -f "$DATABASE_FILE" ] && zip $BACKUP_DIR/"$(basename $DATABASE_FILE)"_$(date +"%F-%H.%M.%S").zip "$DATABASE_FILE"
+  echo "$(date +"%F %T") : Backing up file $DATABASE_FILE" | tee -a $LOG_FILE
+  DATABASE_ZIP_FILE="$BACKUP_DIR"/"$(basename $DATABASE_FILE)"_$(date +"%F-%H.%M.%S").zip
+  [ -f "$DATABASE_FILE" ] && zip  "$DATABASE_ZIP_FILE" "$DATABASE_FILE"
 
-  echo "$(date +"%F %T") : Backing up dumpdata directory" | tee -a $LOG_FILE
-  zip -r $BACKUP_DIR/dumpdata_$(date +"%F-%H.%M.%S").zip dumpdata/ | tee -a $LOG_FILE
+  DUMPDATA_ZIP_FILE="$BACKUP_DIR"/dumpdata_$(date +"%F-%H.%M.%S").zip
+  echo "$(date +"%F %T") : Backing up dumpdata directory to file $DUMPDATA_ZIP_FILE" | tee -a $LOG_FILE
+  zip -r "$DUMPDATA_ZIP_FILE" dumpdata/ | tee -a $LOG_FILE
 
-  echo "$(date +"%F %T") : Backing upp incoming_data directory" | tee -a $LOG_FILE
-  zip -r $BACKUP_DIR/incoming_data_$(date +"%F-%H.%M.%S").zip incoming_data/ | tee -a $LOG_FILE
+  INCOMING_DATA_ZIP_FILE="$BACKUP_DIR"/incoming_data_$(date +"%F-%H.%M.%S").zip
+  echo "$(date +"%F %T") : Backing upp incoming_data directory to file $INCOMING_ZIP_FILE" | tee -a $LOG_FILE
+  zip -r "$INCOMING_DATA_ZIP_FILE" incoming_data/ | tee -a $LOG_FILE
 
   echo "$(date +"%F %T") : Copying incoming_data files to dumpdata directory" | tee -a $LOG_FILE
-  cp -f incoming_data/* dumpdata
-  rm -f incoming_data/*
+  cp -f incoming_data/* dumpdata | tee -a $LOG_FILE
+  echo "$(date +"%F %T") : Cleaning incoming_data directory" | tee -a $LOG_FILE
+  rm -f incoming_data/* | tee -a $LOG_FILE
 
   ~/TakCooperationImport.groovy "--url" "jdbc:h2:tcp://localhost/~/cooperation" "-u" "sa" "-p" "" "-d" "~/dumpdata" "--clear" | tee -a $LOG_FILE
 else
