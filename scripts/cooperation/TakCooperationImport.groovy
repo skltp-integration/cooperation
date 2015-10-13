@@ -25,9 +25,9 @@ def countRows = { description, table ->
 	println "$table, $description, rows: $result.numberOfRows"
 }
 
-def connectionPoint(db, platform, environment){
+def connectionPoint(db, platform, environment, exportTime){
 	if(db.firstRow("SELECT * FROM connectionpoint WHERE platform = $platform AND environment = $environment") == null){
-		db.executeInsert "insert into connectionpoint(platform, environment)  values($platform, $environment)"
+		db.executeInsert "insert into connectionpoint(platform, environment, snapshot_time)  values($platform, $environment, $exportTime)"
 	}else{
 		println "INFO: Connectionpoint platform: $platform, environment: $environment already exist"
 	}
@@ -213,7 +213,7 @@ directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 	println "Import from platform: $platform and environment: $environment"
 	println '************************************************************'
 
-	connectionPoint(db, platform, environment)
+	connectionPoint(db, platform, environment, inputJSON.tidpunkt)
 	logicalAddress(db, inputJSON)
 	serviceContract(db, inputJSON)
 	serviceConsumer(db, inputJSON)
