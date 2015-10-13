@@ -70,10 +70,12 @@ public class ServiceProducerController {
 	public List<ServiceProducerDTO> getAllAsJson(@RequestParam(required = false) String hsaId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
-			@RequestParam(required = false) Long serviceContractId) {
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long serviceConsumerId) {
 		log.debug("REST request to get all ServiceProducers as json");
 
-		return getAll(hsaId, connectionPointId, logicalAddressId, serviceContractId);
+		return getAll(hsaId, connectionPointId, logicalAddressId, serviceContractId,
+				serviceConsumerId);
 
 	}
 
@@ -85,12 +87,13 @@ public class ServiceProducerController {
 	public ServiceProducerListDTO getAllAsXml(@RequestParam(required = false) String hsaId,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
-			@RequestParam(required = false) Long serviceContractId) {
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long serviceConsumerId) {
 		log.debug("REST request to get all ServiceProducers as xml");
 
 		ServiceProducerListDTO result = new ServiceProducerListDTO();
 		result.setServiceProducers(getAll(hsaId, connectionPointId, logicalAddressId,
-			serviceContractId));
+				serviceContractId, serviceConsumerId));
 		return result;
 
 	}
@@ -113,10 +116,10 @@ public class ServiceProducerController {
 	}
 
 	private List<ServiceProducerDTO> getAll(String hsaId, Long connectionPointId,
-			Long logicalAddressId, Long serviceContractId) {
+			Long logicalAddressId, Long serviceContractId, Long serviceConsumerId) {
 
 		ServiceProducerCriteria criteria = new ServiceProducerCriteria(hsaId, connectionPointId,
-				logicalAddressId, serviceContractId);
+				logicalAddressId, serviceContractId, serviceConsumerId);
 		List<ServiceProducer> Producers = serviceProducerService.findAll(criteria);
 		List<ServiceProducerDTO> result = new ArrayList<>();
 		for (ServiceProducer Producer : Producers) {

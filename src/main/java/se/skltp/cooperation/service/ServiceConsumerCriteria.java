@@ -30,17 +30,17 @@ public class ServiceConsumerCriteria {
 	private Long connectionPointId;
 	private Long logicalAddressId;
 	private Long serviceContractId;
+	private Long serviceProducerId;
 
-	
-	
 	public ServiceConsumerCriteria() {
 	}
 
 	public ServiceConsumerCriteria(Long connectionPointId, Long logicalAddressId,
-			Long serviceContractId) {
+			Long serviceContractId, Long serviceProducerId) {
 		this.connectionPointId = connectionPointId;
 		this.logicalAddressId = logicalAddressId;
 		this.serviceContractId = serviceContractId;
+		this.serviceProducerId = serviceProducerId;
 	}
 
 	public Long getConnectionPointId() {
@@ -52,7 +52,8 @@ public class ServiceConsumerCriteria {
 	}
 
 	public boolean isEmpty() {
-		return connectionPointId == null && logicalAddressId == null && serviceContractId == null;
+		return connectionPointId == null && logicalAddressId == null && serviceContractId == null
+				&& serviceProducerId == null;
 	}
 
 	public Long getLogicalAddressId() {
@@ -71,4 +72,12 @@ public class ServiceConsumerCriteria {
 		this.serviceContractId = serviceContractId;
 	}
 
+	public Long getServiceProducerId() {
+		return serviceProducerId;
+	}
+
+	public void setServiceProducerId(Long serviceProducerId) {
+		this.serviceProducerId = serviceProducerId;
+	}
+	
 }

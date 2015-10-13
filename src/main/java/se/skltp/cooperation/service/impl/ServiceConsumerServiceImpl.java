@@ -26,7 +26,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import se.skltp.cooperation.domain.Cooperation;
+import se.skltp.cooperation.domain.QLogicalAddress;
 import se.skltp.cooperation.domain.QServiceConsumer;
+import se.skltp.cooperation.domain.QServiceContract;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
@@ -34,6 +37,7 @@ import se.skltp.cooperation.service.ServiceConsumerService;
 
 import com.google.common.collect.Lists;
 import com.mysema.query.BooleanBuilder;
+import com.mysema.query.jpa.JPASubQuery;
 import com.mysema.query.types.Predicate;
 
 /**
@@ -84,7 +88,14 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().serviceContract.id
 					.eq(criteria.getServiceContractId()));
 		}
+		if (criteria.getServiceProducerId() != null) {
+			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id.in(new JPASubQuery()
+					.from(QLogicalAddress.logicalAddress1)
+					.where(QLogicalAddress.logicalAddress1.serviceProductions.any().serviceProducer.id
+							.eq(criteria.getServiceProducerId()))
+					.list(QLogicalAddress.logicalAddress1.id)));
+
+		}
 		return builder.getValue();
 	}
-
 }

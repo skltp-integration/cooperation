@@ -65,13 +65,17 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	ServiceConsumer serviceConsumer2;
 	LogicalAddress logicalAddress1;
 	LogicalAddress logicalAddress2;
+	LogicalAddress logicalAddress3;
 	ServiceContract serviceContract1;
 	ServiceContract serviceContract2;
 	Cooperation cooperation1;
 	Cooperation cooperation2;
 	Cooperation cooperation3;
+	Cooperation cooperation4;
 	ServiceProduction serviceProduction1;
 	ServiceProducer serviceProducer1;
+	ServiceProduction serviceProduction2;
+	ServiceProducer serviceProducer2;
 
 	@Before
 	public void setUp() throws Exception {
@@ -81,17 +85,23 @@ public class ServiceConsumerServiceImplIntegrationTest {
 		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2");
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
+		logicalAddress3 = util.createLogicalAddress("description3", "adress3");
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);
 		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0);
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer1);
 		cooperation2 = util.createCooperation(connectionPoint2, logicalAddress2, serviceContract2,
 				serviceConsumer2);
-		cooperation3 = util.createCooperation(connectionPoint1, logicalAddress2, serviceContract1,
+		cooperation3 = util.createCooperation(connectionPoint1, logicalAddress3, serviceContract1,
 				serviceConsumer2);
-		serviceProducer1 = util.createServiceProducer("description", "hsaId");
+		cooperation4 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
+				serviceConsumer2);
+		serviceProducer1 = util.createServiceProducer("description", "hsaId1");
+		serviceProducer2 = util.createServiceProducer("description", "hsaId2");
 		serviceProduction1 = util.createServiceProduction("rivtaProfile", "physicalAdress",
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);
+		serviceProduction2 = util.createServiceProduction("rivtaProfile", "physicalAdress",
+				connectionPoint1, logicalAddress3, serviceProducer2, serviceContract2);
 	}
 
 	@After
@@ -102,7 +112,7 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	@Test
 	public void findAll_shouldReturnAll() throws Exception {
 
-		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null);
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 
@@ -111,12 +121,12 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	@Test
 	public void findByConnectionPointId() throws Exception {
 
-		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(connectionPoint1.getId(), null,
-				null);
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(connectionPoint1.getId(),
+				null, null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 
-		criteria = new ServiceConsumerCriteria(connectionPoint2.getId(), null, null);
+		criteria = new ServiceConsumerCriteria(connectionPoint2.getId(), null, null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
@@ -125,7 +135,7 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	@Test
 	public void findByConnectionPointId_noHits() throws Exception {
 
-		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(999L, null, null);
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(999L, null, null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
 		assertEquals(0, result.size());
 
@@ -134,29 +144,54 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	@Test
 	public void findByLogicalAddressId() throws Exception {
 
-		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, logicalAddress1.getId(), null
-				);
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null,
+				logicalAddress1.getId(), null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
-		assertEquals(1, result.size());
-		assertEquals(serviceConsumer1.getId(), result.get(0).getId());
+		assertEquals(2, result.size());
 
-		criteria = new ServiceConsumerCriteria(null, logicalAddress2.getId(), null);
+		criteria = new ServiceConsumerCriteria(null, logicalAddress2.getId(), null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
+		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
 	}
 
 	@Test
 	public void findByServiceContractId() throws Exception {
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null,
-				serviceContract1.getId());
+				serviceContract1.getId(), null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 
-		criteria = new ServiceConsumerCriteria(null, null, serviceContract2.getId());
+		criteria = new ServiceConsumerCriteria(null, null, serviceContract2.getId(), null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
+	}
+
+	@Test
+	public void findByServiceProducerId() throws Exception {
+
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null,
+				serviceProducer1.getId());
+		List<ServiceConsumer> result = uut.findAll(criteria);
+		assertEquals(2, result.size());
+
+		 criteria = new ServiceConsumerCriteria(null, null, null,
+				serviceProducer2.getId());
+		result = uut.findAll(criteria);
+		assertEquals(1, result.size());
+		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
+
+	}
+	@Test
+	public void findByServiceProducerId_noHit() throws Exception {
+
+		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null,
+				999L);
+		List<ServiceConsumer> result = uut.findAll(criteria);
+		assertEquals(0, result.size());
+
 	}
 
 }

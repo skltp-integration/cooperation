@@ -20,7 +20,6 @@
  */
 package se.skltp.cooperation.service;
 
-
 /**
  * A criteria object to be used when fetching
  * {@link se.skltp.cooperation.domain.ServiceProducer}
@@ -32,19 +31,20 @@ public class ServiceProducerCriteria {
 	private Long connectionPointId;
 	private Long logicalAddressId;
 	private Long serviceContractId;
+	private Long serviceConsumerId;
 
-
-	public ServiceProducerCriteria(String hsaId,
-			Long connectionPointId, Long logicalAddressId, Long serviceContractId) {
+	public ServiceProducerCriteria(String hsaId, Long connectionPointId, Long logicalAddressId,
+			Long serviceContractId, Long serviceConsumerId) {
 		this.hsaId = hsaId;
 		this.connectionPointId = connectionPointId;
 		this.logicalAddressId = logicalAddressId;
 		this.serviceContractId = serviceContractId;
+		this.serviceConsumerId = serviceConsumerId;
 	}
 
 	public boolean isEmpty() {
-		return hsaId == null &&  connectionPointId == null
-				&& logicalAddressId == null && serviceContractId == null;
+		return hsaId == null && connectionPointId == null && logicalAddressId == null
+				&& serviceContractId == null && serviceConsumerId == null;
 	}
 
 	public String getHsaId() {
@@ -85,5 +85,13 @@ public class ServiceProducerCriteria {
 	public void setServiceContractIdId(Long serviceContractId) {
 		this.serviceContractId = serviceContractId;
 	}
-	
+
+	public Long getServiceConsumerId() {
+		return serviceConsumerId;
+	}
+
+	public void setServiceConsumerId(Long serviceConsumerId) {
+		this.serviceConsumerId = serviceConsumerId;
+	}
+
 }

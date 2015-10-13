@@ -70,11 +70,12 @@ public class ServiceConsumerController {
 	public List<ServiceConsumerDTO> getAllAsJson(
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
-			@RequestParam(required = false) Long serviceContractId) {
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long serviceProducerId) {
 		log.debug("REST request to get all ServiceConsumers as json");
 
 		List<ServiceConsumerDTO> result = getAll(connectionPointId, logicalAddressId,
-				serviceContractId);
+				serviceContractId, serviceProducerId);
 		return result;
 
 	}
@@ -88,11 +89,13 @@ public class ServiceConsumerController {
 	public ServiceConsumerListDTO getAllAsXml(
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
-			@RequestParam(required = false) Long serviceContractId) {
+			@RequestParam(required = false) Long serviceContractId,
+			@RequestParam(required = false) Long serviceProducerId) {
 		log.debug("REST request to get all ServiceConsumers as xml");
 
 		ServiceConsumerListDTO result = new ServiceConsumerListDTO();
-		result.setServiceConsumers(getAll(connectionPointId, logicalAddressId, serviceContractId));
+		result.setServiceConsumers(getAll(connectionPointId, logicalAddressId, serviceContractId,
+				serviceProducerId));
 		return result;
 
 	}
@@ -115,10 +118,10 @@ public class ServiceConsumerController {
 	}
 
 	private List<ServiceConsumerDTO> getAll(Long connectionPointId, Long logicalAddressId,
-			Long serviceContractId) {
+			Long serviceContractId, Long serviceProducerId) {
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(connectionPointId,
-				logicalAddressId, serviceContractId);
+				logicalAddressId, serviceContractId,serviceProducerId);
 		criteria.setConnectionPointId(connectionPointId);
 		List<ServiceConsumer> consumers = serviceConsumerService.findAll(criteria);
 
