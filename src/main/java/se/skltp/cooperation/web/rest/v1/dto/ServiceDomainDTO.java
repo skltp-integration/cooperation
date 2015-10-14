@@ -20,13 +20,8 @@
  */
 package se.skltp.cooperation.web.rest.v1.dto;
 
-import java.util.Date;
-
-import se.skltp.cooperation.web.rest.v1.config.JsonDateSerializer;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
