@@ -20,27 +20,26 @@
  */
 package se.skltp.cooperation.domain;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A ServiceContract.
  *
- * @author Peter Merikan
+ * @author Jan Vasternas
  */
 @Entity
-@Table(name = "SERVICECONTRACT")
-public class ServiceContract implements Serializable {
+@Table(name = "SERVICEDOMAIN")
+public class ServiceDomain implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,20 +51,8 @@ public class ServiceContract implements Serializable {
 	@Column(name = "namespace")
 	private String namespace;
 
-	@Column(name = "major")
-	private Integer major;
-
-	@Column(name = "minor")
-	private Integer minor;
-
-	@OneToMany(mappedBy = "serviceContract")
-	private Set<Cooperation> cooperations = new HashSet<>();
-
-	@OneToMany(mappedBy = "serviceContract")
-	private Set<ServiceProduction> serviceProductions = new HashSet<>();
-
-	@ManyToOne
-	private ServiceDomain serviceDomain;
+	@OneToMany(mappedBy = "serviceDomain")
+	private Set<ServiceContract> serviceContracts = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -91,44 +78,12 @@ public class ServiceContract implements Serializable {
 		this.namespace = namespace;
 	}
 
-	public Integer getMajor() {
-		return major;
+	public Set<ServiceContract> getServiceContracts() {
+		return serviceContracts;
 	}
 
-	public void setMajor(Integer major) {
-		this.major = major;
-	}
-
-	public Integer getMinor() {
-		return minor;
-	}
-
-	public void setMinor(Integer minor) {
-		this.minor = minor;
-	}
-
-	public Set<Cooperation> getCooperations() {
-		return cooperations;
-	}
-
-	public void setCooperations(Set<Cooperation> cooperations) {
-		this.cooperations = cooperations;
-	}
-
-	public Set<ServiceProduction> getServiceProductions() {
-		return serviceProductions;
-	}
-
-	public void setServiceProductions(Set<ServiceProduction> serviceProductions) {
-		this.serviceProductions = serviceProductions;
-	}
-
-	public ServiceDomain getServiceDomain() {
-		return serviceDomain;
-	}
-
-	public void setServiceDomain(ServiceDomain serviceDomain) {
-		this.serviceDomain = serviceDomain;
+	public void setServiceContracts(Set<ServiceContract> serviceContracts) {
+		this.serviceContracts = serviceContracts;
 	}
 
 }

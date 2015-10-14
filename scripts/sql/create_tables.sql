@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS `serviceconsumer`;
 DROP TABLE IF EXISTS `servicecontract`;
 DROP TABLE IF EXISTS `serviceproducer`;
 DROP TABLE IF EXISTS `logicaladdress`;
+DROP TABLE IF EXISTS `servicedomain`;
 
 
 --
@@ -58,6 +59,19 @@ CREATE TABLE `serviceconsumer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8;
 
 --
+-- Table structure for table `servicedomain`
+--
+
+
+CREATE TABLE `servicedomain` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `namespace` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_servicedomain_1` (`namespace`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET= utf8;
+
+--
 -- Table structure for table `servicecontract`
 --
 
@@ -67,7 +81,9 @@ CREATE TABLE `servicecontract` (
   `minor` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `namespace` varchar(255) DEFAULT NULL,
+  `service_domain_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  CONSTRAINT `FK_servicecontract_1` FOREIGN KEY (`service_domain_id`) REFERENCES `servicedomain` (`id`),
   UNIQUE KEY `UK_servicecontract_1` (`namespace`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET= utf8;
 
@@ -127,4 +143,5 @@ CREATE TABLE `cooperation` (
   CONSTRAINT `FK_cooperation_3` FOREIGN KEY (`logical_address_id`) REFERENCES `logicaladdress` (`id`),
   CONSTRAINT `FK_cooperation_4` FOREIGN KEY (`service_contract_id`) REFERENCES `servicecontract` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8;
+
 

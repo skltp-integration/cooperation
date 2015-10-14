@@ -26,8 +26,8 @@ def countRows = { description, table ->
 }
 
 def connectionPoint(db, platform, environment){
-	if(db.firstRow("SELECT * FROM connectionpoint WHERE platform = $platform AND environment = $environment") == null){
-		db.executeInsert "insert into connectionpoint(platform, environment)  values($platform, $environment)"
+	if(db.firstRow("SELECT * FROM connectionpoint_new WHERE platform = $platform AND environment = $environment") == null){
+		db.executeInsert "insert into connectionpoint_new(platform, environment)  values($platform, $environment)"
 	}else{
 		println "INFO: Connectionpoint platform: $platform, environment: $environment already exist"
 	}
@@ -35,8 +35,8 @@ def connectionPoint(db, platform, environment){
 
 def logicalAddress(db, inputJSON){
 	inputJSON.data.logiskadress.each{
-		if(db.firstRow("SELECT * FROM logicaladdress WHERE logical_address = $it.hsaId") == null){
-			db.executeInsert "insert into logicaladdress(logical_address,description)  values($it.hsaId, $it.beskrivning)"
+		if(db.firstRow("SELECT * FROM logicaladdress_new WHERE logical_address = $it.hsaId") == null){
+			db.executeInsert "insert into logicaladdress_new(logical_address,description)  values($it.hsaId, $it.beskrivning)"
 		}else{
 			println "INFO: Logical address $it already exist"
 		}
@@ -46,10 +46,25 @@ def logicalAddress(db, inputJSON){
 def serviceContract(db, inputJSON){
 	inputJSON.data.tjanstekontrakt.each{
 
-		if(db.firstRow("SELECT * FROM servicecontract WHERE namespace = $it.namnrymd") == null){
-			db.executeInsert "insert into servicecontract(major,minor,name, namespace)  values($it.majorVersion, $it.minorVersion, $it.beskrivning, $it.namnrymd)"
+		def domain = domain(it.namnrymd)
+		if(db.firstRow("SELECT * FROM servicecontract_new WHERE namespace = $it.namnrymd") == null){
+			db.executeInsert "insert into servicecontract_new(major,minor,name, namespace, service_domain_id) \
+                    select $it.majorVersion, $it.minorVersion, $it.beskrivning, $it.namnrymd, c.id from \
+                    (SELECT id FROM servicedomain_new WHERE namespace = $domain ) as c"
 		}else{
 			println "INFO: Servicecontract $it already exist"
+		}
+	}
+}
+
+def serviceDomain(db, inputJSON){
+	inputJSON.data.tjanstekontrakt.each{
+
+		def domainrymd = domain(it.namnrymd)
+		if(db.firstRow("SELECT * FROM servicedomain_new WHERE namespace = $domainrymd") == null){
+			db.executeInsert "insert into servicedomain_new(name, namespace)  values('namn', $domainrymd)"
+		}else{
+			println "INFO: Servicedomain $it already exist"
 		}
 	}
 }
@@ -57,8 +72,8 @@ def serviceContract(db, inputJSON){
 def serviceConsumer(db, inputJSON){
 	inputJSON.data.tjanstekonsument.each{
 
-		if(db.firstRow("SELECT * FROM serviceconsumer WHERE hsa_id = $it.hsaId") == null){
-			db.executeInsert "insert into serviceconsumer(hsa_id, description)  values($it.hsaId, $it.beskrivning)"
+		if(db.firstRow("SELECT * FROM serviceconsumer_new WHERE hsa_id = $it.hsaId") == null){
+			db.executeInsert "insert into serviceconsumer_new(hsa_id, description)  values($it.hsaId, $it.beskrivning)"
 		}else{
 			println "INFO: Serviceconsumer $it already exist"
 		}
@@ -68,8 +83,8 @@ def serviceConsumer(db, inputJSON){
 def serviceProducer(db, inputJSON){
 	inputJSON.data.tjansteproducent.each{
 
-		if(db.firstRow("SELECT * FROM serviceproducer WHERE hsa_id = $it.hsaId") == null){
-			db.executeInsert "insert into serviceproducer(hsa_id, description)  values($it.hsaId, $it.beskrivning)"
+		if(db.firstRow("SELECT * FROM serviceproducer_new WHERE hsa_id = $it.hsaId") == null){
+			db.executeInsert "insert into serviceproducer_new(hsa_id, description)  values($it.hsaId, $it.beskrivning)"
 		}else{
 			println "INFO: Serviceproducer $it already exist"
 		}
@@ -80,7 +95,7 @@ def cooperation(db, inputJSON, platform, environment){
 	inputJSON.data.anropsbehorighet.each{
 
 		if(db.firstRow(
-			"SELECT * FROM cooperation c, logicaladdress l, serviceconsumer s, servicecontract sc, connectionpoint cp \
+			"SELECT * FROM cooperation_new c, logicaladdress_new l, serviceconsumer_new s, servicecontract_new sc, connectionpoint_new cp \
                 WHERE c.logical_address_id = l.id \
                 AND c.service_consumer_id = s.id \
                 AND c.service_contract_id = sc.id \
@@ -92,13 +107,13 @@ def cooperation(db, inputJSON, platform, environment){
                 AND cp.platform = $platform") == null){
 
 			db.executeInsert \
-                "insert into cooperation(connection_point_id, logical_address_id, service_consumer_id, service_contract_id) \
+                "insert into cooperation_new(connection_point_id, logical_address_id, service_consumer_id, service_contract_id) \
                     select c.id, address.id, consumer.id, contract.id \
                     from \
-                        (SELECT id FROM connectionpoint WHERE platform = $platform AND environment = $environment) as c, \
-                        (SELECT id FROM logicaladdress WHERE logical_address = $it.relationships.logiskAdress) as address, \
-                        (SELECT id FROM serviceconsumer WHERE hsa_id = $it.relationships.tjanstekonsument) as consumer,\
-                        (SELECT id FROM servicecontract WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
+                        (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c, \
+                        (SELECT id FROM logicaladdress_new WHERE logical_address = $it.relationships.logiskAdress) as address, \
+                        (SELECT id FROM serviceconsumer_new WHERE hsa_id = $it.relationships.tjanstekonsument) as consumer,\
+                        (SELECT id FROM servicecontract_new WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
 		}else{
 			println "INFO: Cooperation for serviceconsumer $it already exist"
 		}
@@ -109,7 +124,7 @@ def serviceProduction(db, inputJSON, platform, environment){
 	inputJSON.data.vagval.each{
 
 		if(db.firstRow(
-			"SELECT * FROM serviceproduction c, logicaladdress l, serviceproducer s, servicecontract sc, connectionpoint cp \
+			"SELECT * FROM serviceproduction_new c, logicaladdress_new l, serviceproducer_new s, servicecontract_new sc, connectionpoint_new cp \
                 WHERE c.logical_address_id = l.id \
                 AND c.service_producer_id = s.id \
                 AND c.service_contract_id = sc.id \
@@ -121,17 +136,24 @@ def serviceProduction(db, inputJSON, platform, environment){
                 AND cp.platform = $platform") == null){
 
 			db.executeInsert \
-                "insert into serviceproduction(physical_address, rivta_profile, connection_point_id, logical_address_id, service_producer_id, service_contract_id) \
+                "insert into serviceproduction_new(physical_address, rivta_profile, connection_point_id, logical_address_id, service_producer_id, service_contract_id) \
                     select $it.relationships.anropsadress, $it.relationships.rivtaProfil, c.id, address.id, producer.id, contract.id \
                     from \
-                        (SELECT id FROM connectionpoint WHERE platform = $platform AND environment = $environment) as c, \
-                        (SELECT id FROM logicaladdress WHERE logical_address = $it.relationships.logiskadress) as address, \
-                        (SELECT id FROM serviceproducer WHERE hsa_id = $it.relationships.tjansteproducent) as producer,\
-                        (SELECT id FROM servicecontract WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
+                        (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c, \
+                        (SELECT id FROM logicaladdress_new WHERE logical_address = $it.relationships.logiskadress) as address, \
+                        (SELECT id FROM serviceproducer_new WHERE hsa_id = $it.relationships.tjansteproducent) as producer,\
+                        (SELECT id FROM servicecontract_new WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
 		}else{
 			println "INFO: Serviceproduction already exist $it"
 		}
 	}
+}
+
+def domain(namespace){
+
+	def temp = namespace.replaceFirst('urn:riv:', '')
+	def domain = temp.split(':[A-Z]')[0]
+	return domain
 }
 
 
@@ -141,10 +163,6 @@ def clearDatabase(db) {
 	println 'START! Clearing database'
 	println ''
 	db.execute 'SET REFERENTIAL_INTEGRITY FALSE'
-//	tables = ['connectionpoint', 'cooperation', 'logicaladdress', 'serviceconsumer', 'servicecontract', 'serviceproducer', 'serviceproduction']
-//	tables.each {
-//		db.execute "delete from ${table}"
-//	}
 	db.execute "delete from connectionpoint"
 	db.execute "delete from cooperation"
 	db.execute "delete from logicaladdress"
@@ -152,6 +170,7 @@ def clearDatabase(db) {
 	db.execute "delete from servicecontract"
 	db.execute "delete from serviceproducer"
 	db.execute "delete from serviceproduction"
+	db.execute "delete from servicedomain"
 	db.execute 'SET REFERENTIAL_INTEGRITY TRUE'
 	println ''
 	println 'Database is cleared'
@@ -183,14 +202,14 @@ def password = opt.p ? opt.p : ''
 def dataDirectory = opt.d ? opt.d.replaceFirst("^~",System.getProperty("user.home")) : '.'
 
 //Cooperation db settings
-def db = Sql.newInstance(url, username, password, 'org.h2.Driver')
+def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
 
 if (opt.clear) clearDatabase(db)
 
 println """\
   START! Importing all tak data to cooperation database
 
-  Options: ${opt.options}
+  Options: $opt
 
 """
 
@@ -215,6 +234,7 @@ directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 
 	connectionPoint(db, platform, environment)
 	logicalAddress(db, inputJSON)
+	serviceDomain(db, inputJSON)
 	serviceContract(db, inputJSON)
 	serviceConsumer(db, inputJSON)
 	serviceProducer(db, inputJSON)

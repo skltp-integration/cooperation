@@ -11,8 +11,7 @@ DROP TABLE IF EXISTS `serviceconsumer_old`;
 DROP TABLE IF EXISTS `servicecontract_old`;
 DROP TABLE IF EXISTS `serviceproducer_old`;
 DROP TABLE IF EXISTS `logicaladdress_old`;
-
-
+DROP TABLE IF EXISTS `servicedomain_old`;
 
 --
 -- Rename to old
@@ -24,27 +23,17 @@ ALTER TABLE `cooperation`.`serviceconsumer` RENAME TO  `cooperation`.`servicecon
 ALTER TABLE `cooperation`.`servicecontract` RENAME TO  `cooperation`.`servicecontract_old` ;
 ALTER TABLE `cooperation`.`serviceproducer` RENAME TO  `cooperation`.`serviceproducer_old` ;
 ALTER TABLE `cooperation`.`logicaladdress` RENAME TO  `cooperation`.`logicaladdress_old` ;
+ALTER TABLE `cooperation`.`servicedomain` RENAME TO  `cooperation`.`servicedomain_old` ;
+
+ALTER TABLE `cooperation`.`serviceproduction_new` RENAME TO  `cooperation`.`serviceproduction` ;
+ALTER TABLE `cooperation`.`cooperation_new` RENAME TO  `cooperation`.`cooperation` ;
+ALTER TABLE `cooperation`.`connectionpoint_new` RENAME TO  `cooperation`.`connectionpoint` ;
+ALTER TABLE `cooperation`.`serviceconsumer_new` RENAME TO  `cooperation`.`serviceconsumer` ;
+ALTER TABLE `cooperation`.`servicecontract_new` RENAME TO  `cooperation`.`servicecontract` ;
+ALTER TABLE `cooperation`.`serviceproducer_new` RENAME TO  `cooperation`.`serviceproducer` ;
+ALTER TABLE `cooperation`.`logicaladdress_new` RENAME TO  `cooperation`.`logicaladdress` ;
+ALTER TABLE `cooperation`.`servicedomain_new` RENAME TO  `cooperation`.`servicedomain` ;
 
 
---
--- remove contstraints old tables, otherwise create new tabls will fail
---
 
-ALTER TABLE `cooperation`.`cooperation_old` DROP FOREIGN KEY `FK_cooperation_1`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP FOREIGN KEY `FK_cooperation_2`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP FOREIGN KEY `FK_cooperation_3`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP FOREIGN KEY `FK_cooperation_4`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP INDEX `IX_cooperation_1`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP INDEX `IX_cooperation_2`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP INDEX `IX_cooperation_3`;
-ALTER TABLE `cooperation`.`cooperation_old` DROP INDEX `IX_cooperation_4`;
-
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP FOREIGN KEY `FK_serviceproduction_1`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP FOREIGN KEY `FK_serviceproduction_2`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP FOREIGN KEY `FK_serviceproduction_3`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP FOREIGN KEY `FK_serviceproduction_4`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP INDEX `IX_serviceproduction_1`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP INDEX `IX_serviceproduction_2`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP INDEX `IX_serviceproduction_3`;
-ALTER TABLE `cooperation`.`serviceproduction_old` DROP INDEX `IX_serviceproduction_4`;
   

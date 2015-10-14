@@ -23,6 +23,8 @@ package se.skltp.cooperation.service;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,7 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.domain.ServiceDomain;
 import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
@@ -39,10 +42,9 @@ import se.skltp.cooperation.repository.CooperationRepository;
 import se.skltp.cooperation.repository.LogicalAddressRepository;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.repository.ServiceContractRepository;
+import se.skltp.cooperation.repository.ServiceDomainRepository;
 import se.skltp.cooperation.repository.ServiceProducerRepository;
 import se.skltp.cooperation.repository.ServiceProductionRepository;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Load database with test data
@@ -54,13 +56,22 @@ import javax.annotation.PostConstruct;
 @Profile("dev")
 public class DatabaseLoader {
 
-	private final ConnectionPointRepository connectionPointRepository;
-	private final CooperationRepository cooperationRepository;
-	private final LogicalAddressRepository logicalAddressRepository;
-	private final ServiceConsumerRepository serviceConsumerRepository;
-	private final ServiceContractRepository serviceContractRepository;
-	private final ServiceProducerRepository serviceProducerRepository;
-	private final ServiceProductionRepository serviceProductionRepository;
+	@Autowired
+	private  ConnectionPointRepository connectionPointRepository;
+	@Autowired
+	private  CooperationRepository cooperationRepository;
+	@Autowired
+	private  LogicalAddressRepository logicalAddressRepository;
+	@Autowired
+	private  ServiceConsumerRepository serviceConsumerRepository;
+	@Autowired
+	private  ServiceContractRepository serviceContractRepository;
+	@Autowired
+	private  ServiceProducerRepository serviceProducerRepository;
+	@Autowired
+	private  ServiceProductionRepository serviceProductionRepository;
+	@Autowired
+	private  ServiceDomainRepository serviceDomainRepository;
 
 	private LogicalAddress ei_logicalAddress;
 	private ServiceProducer ei_update_producer;
@@ -73,25 +84,10 @@ public class DatabaseLoader {
 	private ServiceProducer producer1;
 	private ServiceProducer producer2;
 	
-	ServiceContract ei_update_contract;
-	ServiceContract ei_contract;
+	private ServiceContract ei_update_contract;
+	private ServiceContract ei_contract;
+	private ServiceDomain serviceDomain_ei;
 
-	@Autowired
-	public DatabaseLoader(ConnectionPointRepository connectionPointRepository,
-			CooperationRepository cooperationRepository,
-			LogicalAddressRepository logicalAddressRepository,
-			ServiceConsumerRepository serviceConsumerRepository,
-			ServiceContractRepository serviceContractRepository,
-			ServiceProducerRepository serviceProducerRepository,
-			ServiceProductionRepository serviceProductionRepository) {
-		this.connectionPointRepository = connectionPointRepository;
-		this.cooperationRepository = cooperationRepository;
-		this.logicalAddressRepository = logicalAddressRepository;
-		this.serviceConsumerRepository = serviceConsumerRepository;
-		this.serviceContractRepository = serviceContractRepository;
-		this.serviceProducerRepository = serviceProducerRepository;
-		this.serviceProductionRepository = serviceProductionRepository;
-	}
 
 	@PostConstruct
 	private void initDatabase() {
@@ -173,19 +169,23 @@ public class DatabaseLoader {
 		ei_update_contract.setMinor(0);
 		serviceContractRepository.save(ei_update_contract);
 
+		serviceDomain_ei = new ServiceDomain();
+		serviceDomain_ei.setName("EI");
+		serviceDomain_ei.setNamespace("urn:riv:itintegration:engagementindex");
+		serviceDomainRepository.save(serviceDomain_ei);
+		
 		ei_contract = new ServiceContract();
 		ei_contract.setName("Engagemangsindex - ProcessNotification");
 		ei_contract
 				.setNamespace("urn:riv:itintegration:engagementindex:ProcessNotificationResponder:1");
 		ei_contract.setMajor(1);
 		ei_contract.setMinor(0);
+		ei_contract.setServiceDomain(serviceDomain_ei);
 		serviceContractRepository.save(ei_contract);
 
 	}
 
 	private void loadTAKData(ConnectionPoint connectionPoint) {
-		String label = "[" + connectionPoint.getPlatform() + "-" + connectionPoint.getEnvironment()
-				+ "]";
 
 		ServiceProduction ei_update_production = new ServiceProduction();
 		ei_update_production.setRivtaProfile("RIVTABP21");
