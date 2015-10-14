@@ -67,35 +67,34 @@ public class ServiceContractController {
 	 * GET /serviceContracts -> get all the serviceContracts. Content type: JSON
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ServiceContractDTO> getAllAsJson(
-			@RequestParam(required = false) String namespace,
+	public List<ServiceContractDTO> getAllAsJson(@RequestParam(required = false) String namespace,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceConsumerId,
-			@RequestParam(required = false) Long serviceProducerId) {
+			@RequestParam(required = false) Long serviceProducerId,
+			@RequestParam(required = false) Long serviceDomainId) {
 		log.debug("REST request to get all ServiceContracts as json");
 
 		return getAll(namespace, connectionPointId, logicalAddressId, serviceConsumerId,
-				serviceProducerId);
+				serviceProducerId, serviceDomainId);
 
 	}
-
 
 	/**
 	 * GET /serviceContracts -> get all the serviceContracts. Content type: XML
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
-	public ServiceContractListDTO getAllAsXml(
-			@RequestParam(required = false) String namespace,
+	public ServiceContractListDTO getAllAsXml(@RequestParam(required = false) String namespace,
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceConsumerId,
-			@RequestParam(required = false) Long serviceProducerId) {
+			@RequestParam(required = false) Long serviceProducerId,
+			@RequestParam(required = false) Long serviceDomainId) {
 		log.debug("REST request to get all ServiceContracts as xml");
 
 		ServiceContractListDTO result = new ServiceContractListDTO();
-		result.setServiceContracts(getAll(namespace, connectionPointId, logicalAddressId, serviceConsumerId,
-				serviceProducerId));
+		result.setServiceContracts(getAll(namespace, connectionPointId, logicalAddressId,
+				serviceConsumerId, serviceProducerId, serviceDomainId));
 		return result;
 
 	}
@@ -117,11 +116,14 @@ public class ServiceContractController {
 	}
 
 	private List<ServiceContractDTO> getAll(String namespace, Long connectionPointId,
-			Long logicalAddressId, Long serviceConsumerId, Long serviceProducerId) {
-		ServiceContractCriteria criteria = new  ServiceContractCriteria(namespace, serviceConsumerId,
-				 logicalAddressId,  connectionPointId,  serviceProducerId);
+			Long logicalAddressId, Long serviceConsumerId, Long serviceProducerId,
+			Long serviceDomainId) {
+
+		ServiceContractCriteria criteria = new ServiceContractCriteria(namespace,
+				serviceConsumerId, logicalAddressId, connectionPointId, serviceProducerId,
+				serviceDomainId);
 		List<ServiceContract> serviceContracts = serviceContractService.findAll(criteria);
-		List<ServiceContractDTO> result = new ArrayList<>(); 
+		List<ServiceContractDTO> result = new ArrayList<>();
 		for (ServiceContract cp : serviceContracts) {
 			result.add(toDTO(cp));
 		}

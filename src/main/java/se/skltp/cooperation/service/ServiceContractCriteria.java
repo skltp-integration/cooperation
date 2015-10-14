@@ -28,15 +28,16 @@ public class ServiceContractCriteria {
 	Long logicalAddressId;
 	Long connectionPointId;
 	Long serviceProducerId;
-	
+	Long serviceDomainId;	
 	
 	public ServiceContractCriteria(String namespace, Long serviceConsumerId,
-			Long logicalAddressId, Long connectionPointId, Long serviceProducerId) {
+			Long logicalAddressId, Long connectionPointId, Long serviceProducerId, Long serviceDomainId) {
 		this.namespace = namespace;
 		this.serviceConsumerId = serviceConsumerId;
 		this.logicalAddressId = logicalAddressId;
 		this.connectionPointId = connectionPointId;
 		this.serviceProducerId = serviceProducerId;
+		this.serviceDomainId = serviceDomainId;
 	}
 
 	public boolean isEmpty() {
@@ -83,6 +84,14 @@ public class ServiceContractCriteria {
 
 	public void setConnectionPointId(Long connectionPointId) {
 		this.connectionPointId = connectionPointId;
+	}
+
+	public Long getServiceDomainId() {
+		return serviceDomainId;
+	}
+
+	public void setServiceDomainId(Long serviceDomainId) {
+		this.serviceDomainId = serviceDomainId;
 	}
 
 }

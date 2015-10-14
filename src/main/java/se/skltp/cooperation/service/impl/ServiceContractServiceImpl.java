@@ -85,6 +85,10 @@ public class ServiceContractServiceImpl implements se.skltp.cooperation.service.
 			builder.and(QServiceContract.serviceContract.serviceProductions.any().serviceProducer.id
 					.eq(criteria.getServiceProducerId()));
 		}
+		if (criteria.getServiceDomainId() != null) {
+			builder.and(QServiceContract.serviceContract.serviceDomain.id
+					.eq(criteria.getServiceDomainId()));
+		}
 		return builder.getValue();
 	}
 

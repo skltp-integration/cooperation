@@ -39,10 +39,11 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.domain.ServiceDomain;
 import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
-import se.skltp.cooperation.service.ServiceContractService;
 import se.skltp.cooperation.service.ServiceContractCriteria;
+import se.skltp.cooperation.service.ServiceContractService;
 import se.skltp.cooperation.web.rest.TestUtil;
 
 /**
@@ -76,6 +77,8 @@ public class ServiceContractServiceImplIntegrationTest {
 	ServiceProducer serviceProducer1;
 	ServiceProducer serviceProducer2;
 
+	ServiceDomain serviceDomain;
+
 	@Before
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
@@ -85,8 +88,9 @@ public class ServiceContractServiceImplIntegrationTest {
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);
-		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0);
+		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain);
 
+		serviceDomain = util.createServiceDomain("name", "namespace");
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer1);
 		cooperation2 = util.createCooperation(connectionPoint2, logicalAddress2, serviceContract2,
@@ -111,7 +115,8 @@ public class ServiceContractServiceImplIntegrationTest {
 	@Test
 	public void findAll_shouldReturnAll() throws Exception {
 
-		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null, null, null);
+		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null, null,
+				null, null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 
@@ -121,7 +126,7 @@ public class ServiceContractServiceImplIntegrationTest {
 	public void findByNamespace() throws Exception {
 
 		ServiceContractCriteria criteria = new ServiceContractCriteria("namespace1", null, null,
-				null, null);
+				null, null, null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceContract1.getId(), result.get(0).getId());
@@ -131,11 +136,12 @@ public class ServiceContractServiceImplIntegrationTest {
 	public void findByConnectionPointId() throws Exception {
 
 		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null,
-				connectionPoint1.getId(), null);
+				connectionPoint1.getId(), null, null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 
-		criteria = new ServiceContractCriteria(null, null, null, connectionPoint2.getId(), null);
+		criteria = new ServiceContractCriteria(null, null, null, connectionPoint2.getId(), null,
+				null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceContract2.getId(), result.get(0).getId());
@@ -144,7 +150,8 @@ public class ServiceContractServiceImplIntegrationTest {
 	@Test
 	public void findByConnectionPointId_noHits() throws Exception {
 
-		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null, 999L, null);
+		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null, 999L,
+				null, null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(0, result.size());
 
@@ -154,12 +161,13 @@ public class ServiceContractServiceImplIntegrationTest {
 	public void findByLogicalAddressId() throws Exception {
 
 		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null,
-				logicalAddress1.getId(), null, null);
+				logicalAddress1.getId(), null, null, null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceContract1.getId(), result.get(0).getId());
 
-		criteria = new ServiceContractCriteria(null, null, logicalAddress2.getId(), null, null);
+		criteria = new ServiceContractCriteria(null, null, logicalAddress2.getId(), null, null,
+				null);
 		result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 	}
@@ -168,11 +176,12 @@ public class ServiceContractServiceImplIntegrationTest {
 	public void findByServiceConsumerId() throws Exception {
 
 		ServiceContractCriteria criteria = new ServiceContractCriteria(null,
-				serviceConsumer1.getId(), null, null, null);
+				serviceConsumer1.getId(), null, null, null, null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 
-		criteria = new ServiceContractCriteria(null, serviceConsumer2.getId(), null, null, null);
+		criteria = new ServiceContractCriteria(null, serviceConsumer2.getId(), null, null, null,
+				null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceContract2.getId(), result.get(0).getId());
@@ -182,14 +191,24 @@ public class ServiceContractServiceImplIntegrationTest {
 	public void findByServiceProducerId() throws Exception {
 
 		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null, null,
-				serviceProducer1.getId());
+				serviceProducer1.getId(), null);
 		List<ServiceContract> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(serviceContract2.getId(), result.get(0).getId());
 
-		criteria = new ServiceContractCriteria(null, null, null, null, serviceProducer2.getId());
+		criteria = new ServiceContractCriteria(null, null, null, null, serviceProducer2.getId(),
+				null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
+	}
+	public void findByServiceDomainId() throws Exception {
+
+		ServiceContractCriteria criteria = new ServiceContractCriteria(null, null, null, null,null,
+				serviceDomain.getId());
+		List<ServiceContract> result = uut.findAll(criteria);
+		assertEquals(1, result.size());
+		assertEquals(serviceContract2.getId(), result.get(0).getId());
+
 	}
 
 }
