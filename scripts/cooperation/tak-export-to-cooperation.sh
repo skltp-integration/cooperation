@@ -20,6 +20,7 @@ fi
 # break on error
 set -e
 
+cd `dirname $0`
 #=============================================================================
 # Configure per environment.
 #=============================================================================
@@ -29,7 +30,6 @@ set -e
 #=============================================================================
 # Export TAK data and upload to cooperation.
 #=============================================================================
-cd `dirname $0`
 mkdir -p ${tmpDir}
 logFile=${tmpDir}/tak-export-to-cooperation.log
 # clear logfile
