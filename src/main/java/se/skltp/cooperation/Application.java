@@ -31,11 +31,16 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 // cooperation-config-override.properties file is for tomcat production deployment
 // should contain 
 // spring.datasource.url=jdbc:mysql://localhost/cooperation
 // spring.datasource.username=root
 // spring.datasource.password=
+// se.skltp.cooperation.accesscontrol=true
+//se.skltp.cooperation.secretword=blabla1234
 // these properties are left out of the application.yml in the prod profile section
 // 
 // tomcat bin directory should contain a setenv.sh containing
@@ -58,6 +63,16 @@ public class Application extends SpringBootServletInitializer {
 		SpringApplication.run(Application.class, args);
 	}
 
+	// To produce formattet output in a browser
+	// Not sure that we should do this
+	// But is a good place to configure Jackson, possible with other information
+	@Bean
+    public ObjectMapper objectMapper() {
+		ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return objectMapper;
+    }
+	
 	@Bean
 	@Profile("dev")
 	public ServletRegistrationBean h2servletRegistration() {

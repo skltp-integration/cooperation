@@ -1,3 +1,4 @@
+spring.profiles.active: dev
 server:
     port: 8080
 ---
@@ -11,6 +12,9 @@ spring:
         password:
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
+se.skltp.cooperation:
+        accesscontrol: false
+        secretword: nothing
 ---
 spring:
     profiles: amazon
@@ -23,6 +27,9 @@ spring:
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
       hibernate.ddl-auto: update
+se.skltp.cooperation:
+        accesscontrol: false
+        secretword: nothing
 ---
 spring:
     profiles: prod
@@ -31,4 +38,3 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
-    
