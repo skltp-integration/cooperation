@@ -1,9 +1,0 @@
-{
-  "$schema": "http://json-schema.org/draft-04/schema",
-  "title": "Cooperations",
-  "description": "a collection of cooperations",
-  "type": "array",
-  "items": {
-    "$ref": "cooperation.schema.json"
-  }
-}

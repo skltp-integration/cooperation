@@ -1,9 +1,0 @@
-{
-  "$schema": "http://json-schema.org/draft-04/schema",
-  "title": "Logical Addresses",
-  "description": "A collection of logical addresses",
-  "type": "array",
-  "items": {
-    "$ref": "logicalAddress.schema.json"
-  }
-}
