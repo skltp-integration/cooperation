@@ -302,7 +302,7 @@
                     }
                 ],
                 "tags": [
-                    "ServiceConsumer"
+                    "Cooperation"
                 ],
                 "responses": {
                     "200": {
@@ -433,7 +433,109 @@
                 }
             }
         },
-        "/serviceDomais": {
+        "/logicalAddresss": {
+            "get": {
+                "summary": "LogicalAddress - logisk adress",
+                "description": "Alla logiska adresser. Identifieras versamhetsmässigt av attributet logisk adress. Olika förekomster av logiska adresser som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt  \n",
+                "parameters": [
+                    {
+                        "name": "logicalAdress",
+                        "in": "query",
+                        "description": "Sök logiska adresser som har ett visst logisk adress. Resultatlistan kommer bara att innehålla ett objekt",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "connectionPointId",
+                        "in": "query",
+                        "description": "Filtrerar logiska adresser som används i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
+                        "name": "serviceProducerId",
+                        "in": "query",
+                        "description": "Filtrerar bara logiska adresser som publiseras av en specifik tjänsteproducent. Ange den tekniska nyckeln för ServiceProducer tex 123.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
+                        "name": "serviceContractId",
+                        "in": "query",
+                        "description": "Filtrerar bara logiska adresser som används vid publiseras av ett specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
+                        "name": "serviceConsumerId",
+                        "in": "query",
+                        "description": "Filtrerar bara logiska adresser som anropas av en viss tjänstekonsument. Ange den tekniska nyckeln för ServiceConsumer tex 538.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    }
+                ],
+                "tags": [
+                    "LogicalAddress"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "En lista av LogicalAddress",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LogicalAddress"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/logicalAddresss/{id}": {
+            "get": {
+                "summary": "LogicalAddress - logisk adress",
+                "description": "En specifikt logisk adress.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "teknisk nyckel",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "tags": [
+                    "LogicalAddress"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ett logisk adress",
+                        "schema": {
+                            "$ref": "#/definitions/LogicalAddress"
+                        }
+                    },
+                    "404": {
+                        "description": "LogicalAddress not found"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/serviceDomains": {
             "get": {
                 "summary": "ServiceDomain - tjänstedomän",
                 "description": "Alla tjänstedomäner. Identifieras verksamhetsmässigt av namespace. Härleds från tjänstekontraktens namespace genom att ta bort avslutningen. Olika förekomster av tjänstedomäner som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt.  \n",
@@ -686,6 +788,41 @@
                     }
                 }
             }
+        },
+        "/serviceProductions/{id}": {
+            "get": {
+                "summary": "ServiceProduction - tjänsteproduktion",
+                "description": "En specifik tjänsteproduktion. Alla 4 relaterade objekt är alltdi inkluderade.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "teknisk nyckel",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "tags": [
+                    "ServiceProduction"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "En tjänsteproduktion",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceProduction"
+                        }
+                    },
+                    "404": {
+                        "description": "ServiceProduction not found"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -759,9 +896,9 @@
                     "type": "number",
                     "description": "Unik teknisk nyckel"
                 },
-                "hsaId": {
+                "logicalAddress": {
                     "type": "string",
-                    "description": "hsa-id."
+                    "description": "logisk adress."
                 },
                 "description": {
                     "type": "string",
