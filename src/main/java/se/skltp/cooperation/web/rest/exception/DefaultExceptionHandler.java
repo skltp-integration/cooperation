@@ -46,14 +46,6 @@ public class DefaultExceptionHandler {
 
 	private static final Logger log = LoggerFactory.getLogger(DefaultExceptionHandler.class);
 
-	private MessageSource messageSource;
-
-	@Autowired
-	public DefaultExceptionHandler(MessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
-
-
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public void handle(HttpMessageNotReadableException e) {
