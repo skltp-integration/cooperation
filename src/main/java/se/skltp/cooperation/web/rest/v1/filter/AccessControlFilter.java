@@ -39,7 +39,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component;
 
 /*
- * A Servlet Filter that will check if the Secret String is present in the Request.
+ * A Servlet Filter that will check if the api-key String is present in the Request.
  * Implements an extremely basic access limitation.
  * Need to be replaced by a better solution if this application is to be considered a permanent one.
  * 
@@ -52,15 +52,15 @@ import org.springframework.stereotype.Component;
 @EnableConfigurationProperties
 public class AccessControlFilter implements Filter {
 
-	private static final String SECRET_WORD = "SecretWord";
+	private static final String API_KEY = "api-key";
 
 	private final Logger log = LoggerFactory.getLogger(AccessControlFilter.class);
 
 	@Value("${se.skltp.cooperation.accesscontrol}")
 	private Boolean accesscontrol;
 
-	@Value("${se.skltp.cooperation.secretword}")
-	private String secretword;
+	@Value("${se.skltp.cooperation.api-key}")
+	private String api_key;
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -69,15 +69,17 @@ public class AccessControlFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 
-		log.debug("AccessControl is " + accesscontrol + request.getParameter(SECRET_WORD)
-				+ " header: " + request.getHeader(SECRET_WORD));
+		log.debug("AccessControl is " + accesscontrol + request.getParameter(API_KEY) + " header: "
+				+ request.getHeader(API_KEY));
 
 		if (accesscontrol) {
-			if (!secretword.equals(request.getHeader(SECRET_WORD))) {
-				if (!secretword.equals(request.getParameter(SECRET_WORD))) {
-					response.sendError(HttpServletResponse.SC_FORBIDDEN,
-							"Nonexisting or invalid API key");
-					return;
+			if (request.getRequestURI().contains("/v1/")) {
+				if (!api_key.equals(request.getHeader(API_KEY))) {
+					if (!api_key.equals(request.getParameter(API_KEY))) {
+						response.sendError(HttpServletResponse.SC_FORBIDDEN,
+								"Nonexisting or invalid API key");
+						return;
+					}
 				}
 			}
 		}
