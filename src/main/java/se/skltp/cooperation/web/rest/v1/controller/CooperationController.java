@@ -124,8 +124,8 @@ public class CooperationController {
 	private List<CooperationDTO> getAll(Long serviceConsumerId, Long logicalAddressId,
 			Long serviceContractId, Long connectionPointId, String include) {
 
-		List<String> includes = (include != null) ? SPLITTER.splitToList(include)
-				: new ArrayList<>();
+		List<String> includes = (List<String>) ((include != null) ? SPLITTER.splitToList(include)
+				: new ArrayList<>());
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,
 				serviceContractId, connectionPointId);

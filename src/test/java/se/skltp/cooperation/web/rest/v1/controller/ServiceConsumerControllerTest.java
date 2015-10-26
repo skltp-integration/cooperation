@@ -35,6 +35,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import se.skltp.cooperation.Application;
+import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
@@ -44,6 +45,7 @@ import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
 
 import javax.annotation.PostConstruct;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -199,7 +201,7 @@ public class ServiceConsumerControllerTest {
 	@Test
 	public void getAllAsJson_shouldReturnEmptyList() throws Exception {
 
-		when(serviceConsumerServiceMock.findAll()).thenReturn(Collections.emptyList());
+		when(serviceConsumerServiceMock.findAll()).thenReturn(new ArrayList<ServiceConsumer>());
 
 		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -210,7 +212,7 @@ public class ServiceConsumerControllerTest {
 	@Test
 	public void getAllAsXml_shouldReturnEmptyList() throws Exception {
 
-		when(serviceConsumerServiceMock.findAll()).thenReturn(Collections.emptyList());
+		when(serviceConsumerServiceMock.findAll()).thenReturn(new ArrayList<ServiceConsumer>());
 
 		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())

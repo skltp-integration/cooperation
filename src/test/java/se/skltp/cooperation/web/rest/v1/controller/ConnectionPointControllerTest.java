@@ -20,6 +20,28 @@
  */
 package se.skltp.cooperation.web.rest.v1.controller;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.annotation.PostConstruct;
+
 import org.dozer.DozerBeanMapper;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -36,32 +58,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
-
-import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 /**
  * Test class for the ConnectionPointController REST controller.
@@ -216,7 +219,7 @@ public class ConnectionPointControllerTest {
 	public void getAllAcceptJson_shouldReturnEmptyList() throws Exception {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null, null, null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(Collections.emptyList());
+		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<ConnectionPoint>());
 
 		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -228,7 +231,7 @@ public class ConnectionPointControllerTest {
 	public void getAllAcceptXml_shouldReturnEmptyList() throws Exception {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null, null, null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(Collections.emptyList());
+		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<ConnectionPoint>());
 
 		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_XML)).andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
