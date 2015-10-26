@@ -39,7 +39,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component;
 
 /*
- * A Servlet Filter that will check if the api-key String is present in the Request.
+ * A Servlet Filter that will check if the api_key String is present in the Request.
  * Implements an extremely basic access limitation.
  * Need to be replaced by a better solution if this application is to be considered a permanent one.
  * 
@@ -52,14 +52,14 @@ import org.springframework.stereotype.Component;
 @EnableConfigurationProperties
 public class AccessControlFilter implements Filter {
 
-	private static final String API_KEY = "api-key";
+	private static final String API_KEY = "api_key";
 
 	private final Logger log = LoggerFactory.getLogger(AccessControlFilter.class);
 
 	@Value("${se.skltp.cooperation.accesscontrol}")
 	private Boolean accesscontrol;
 
-	@Value("${se.skltp.cooperation.api-key}")
+	@Value("${se.skltp.cooperation.api_key}")
 	private String api_key;
 
 	@Override

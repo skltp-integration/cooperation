@@ -40,7 +40,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 // spring.datasource.username=root
 // spring.datasource.password=
 // se.skltp.cooperation.accesscontrol=true
-// se.skltp.cooperation.api-key=blabla1234
+// se.skltp.cooperation.api_key=blabla1234
 // these properties are left out of the application.yml in the prod profile section
 // 
 // tomcat bin directory should contain a setenv.sh containing

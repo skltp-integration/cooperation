@@ -5,7 +5,7 @@
         "description": "Information om tjänster, producenter och konsumenter baserad på tjänsteaddresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida ändringar syns inte i api:et, enbart hur det ser ut just nu. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i hsa-trädet, och avser alla noder därunder. Detta spegla rakt av i api:et, hsa-trädet evalueras inte här. De tekniska id-begrepper på alla objekt genereras om en gång per dygn, de garanteras alltså inte ha samma värde två dagar i rad. Det kan behöva anges en api-nyckel för att accessa api:et.",
         "version": "1.1.0"
     },
-    "basePath": "/api/v1",
+    "basePath": "/coop/api/v1",
     "produces": [
         "application/json",
         "application/xml"
