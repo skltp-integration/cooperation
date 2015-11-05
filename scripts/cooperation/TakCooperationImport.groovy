@@ -19,6 +19,7 @@
 import groovy.io.FileType
 import groovy.json.JsonSlurper
 import groovy.sql.Sql
+import java.text.SimpleDateFormat;
 
 def countRows = { description, table ->
 	def result = db.firstRow("SELECT COUNT(*) AS numberOfRows FROM " + table)
@@ -232,7 +233,11 @@ directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 	println "Import from platform: $platform and environment: $environment"
 	println '************************************************************'
 
-	connectionPoint(db, platform, environment, inputJSON.tidpunkt)
+	def	formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+	formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+	def snapshotTime = formatter.parse(inputJSON.tidpunkt);
+
+	connectionPoint(db, platform, environment, snapshotTime)
 	logicalAddress(db, inputJSON)
 	serviceDomain(db, inputJSON)
 	serviceContract(db, inputJSON)
