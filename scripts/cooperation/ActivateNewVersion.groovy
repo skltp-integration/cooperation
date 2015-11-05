@@ -58,14 +58,14 @@ db.execute "ALTER TABLE cooperation.serviceproduction_new RENAME TO  cooperation
 db.execute "ALTER TABLE cooperation.cooperation_new RENAME TO  cooperation.cooperation"
 db.execute "ALTER TABLE cooperation.connectionpoint_new RENAME TO  cooperation.connectionpoint"
 db.execute "ALTER TABLE cooperation.serviceconsumer_new RENAME TO  cooperation.serviceconsumer"
-db.execute "ALTER TABLE cooperation.servicecontract_new RENAME TO  cooperation.servicecontract""	
+db.execute "ALTER TABLE cooperation.servicecontract_new RENAME TO  cooperation.servicecontract"	
 db.execute "ALTER TABLE cooperation.serviceproducer_new RENAME TO  cooperation.serviceproducer"
 db.execute "ALTER TABLE cooperation.logicaladdress_new RENAME TO  cooperation.logicaladdress"
 db.execute "ALTER TABLE cooperation.servicedomain_new RENAME TO  cooperation.servicedomain"
 
 
 println "******* END  *****************************************************"
-println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
+println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss", TimeZone.getTimeZone("UTC"))
 println '************************************************************'
 
 db.close();
