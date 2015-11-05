@@ -53,16 +53,16 @@ echo "Done: fetch tak data files" >> ${logFile}
 # and import of data from TAK-exported files.
 #=============================================================================
 echo "Begin: create new tables: `date`" >> ${logFile}
-groovy -Dgroovy.grape.report.downloads=true -Dgrape.root=./grape_repo CreateNewTables.groovy \
+groovy CreateNewTables.groovy \
     -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new >> ${logFile} 2>&1
 echo "Done: create new tables: `date`" >> ${logFile}
 
 echo "Begin: import tak data from dir: ${coopImportFilesDir} : `date`" >> ${logFile}
-groovy -Dgroovy.grape.report.downloads=true -Dgrape.root=./grape_repo TakCooperationImport.groovy \
+groovy TakCooperationImport.groovy \
     -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -d ${coopImportFilesDir} >> ${logFile} 2>&1
 echo "Done: import tak data: `date`" >> ${logFile}
 
 echo "Begin: activate new tak data version: `date`" >> ${logFile}
-groovy -Dgroovy.grape.report.downloads=true -Dgrape.root=./grape_repo ActivateNewVersion \
+groovy ActivateNewVersion \
     -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} >> ${logFile} 2>&1
 echo "Done: activate new tak data version: `date`" >> ${logFile}
