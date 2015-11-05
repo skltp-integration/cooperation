@@ -54,7 +54,7 @@ echo "Done: fetch tak data files" >> ${logFile}
 #=============================================================================
 echo "Begin: create new tables: `date`" >> ${logFile}
 groovy -Dgroovy.grape.report.downloads=true -Dgrape.root=./grape_repo CreateNewTables.groovy \
-    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} >> ${logFile} 2>&1
+    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new >> ${logFile} 2>&1
 echo "Done: create new tables: `date`" >> ${logFile}
 
 echo "Begin: import tak data from dir: ${coopImportFilesDir} : `date`" >> ${logFile}
