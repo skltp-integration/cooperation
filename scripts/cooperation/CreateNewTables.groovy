@@ -21,6 +21,7 @@ cli.with
 		url longOpt: 'url', 'Connection URL \n eg. jdbc:mysql://localhost/cooperation', args: 1, required: true
 		u longOpt: 'user', 'User ID', args: 1, required: true
 		p longOpt: 'password', 'Password', args: 1, required: false
+		s longOpt: 'suffix', 'Suffix', args: 1, required: false		
 	}
 
 def opt = cli.parse(args)
@@ -30,6 +31,7 @@ if (opt.h) cli.usage()
 def url = opt.url
 def username = opt.u
 def password = opt.p ? opt.p : ''
+def suffix = opt.s ? opt.s : ''
 
 //Cooperation db settings
 def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
@@ -38,18 +40,18 @@ def random(){
 	return String.valueOf(Math.random()).split("0.")[1]
 }
 
-println "START! Create _new tables in cooperation database"
+println "START! Create " + suffix + " tables in cooperation database"
 
-db.execute "DROP TABLE IF EXISTS serviceproduction_new"
-db.execute "DROP TABLE IF EXISTS cooperation_new"
-db.execute "DROP TABLE IF EXISTS connectionpoint_new"
-db.execute "DROP TABLE IF EXISTS serviceconsumer_new"
-db.execute "DROP TABLE IF EXISTS servicecontract_new"
-db.execute "DROP TABLE IF EXISTS serviceproducer_new"
-db.execute "DROP TABLE IF EXISTS logicaladdress_new"
-db.execute "DROP TABLE IF EXISTS servicedomain_new"
+db.execute "DROP TABLE IF EXISTS serviceproduction" + suffix
+db.execute "DROP TABLE IF EXISTS cooperation" + suffix
+db.execute "DROP TABLE IF EXISTS connectionpoint" + suffix
+db.execute "DROP TABLE IF EXISTS serviceconsumer" + suffix
+db.execute "DROP TABLE IF EXISTS servicecontract" + suffix
+db.execute "DROP TABLE IF EXISTS serviceproducer" + suffix
+db.execute "DROP TABLE IF EXISTS logicaladdress" + suffix
+db.execute "DROP TABLE IF EXISTS servicedomain" + suffix
 
-db.execute "CREATE TABLE connectionpoint_new (  \
+db.execute "CREATE TABLE connectionpoint" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT, \
   environment varchar(255) DEFAULT NULL, \
   platform varchar(255) DEFAULT NULL, \
@@ -57,7 +59,7 @@ db.execute "CREATE TABLE connectionpoint_new (  \
   PRIMARY KEY (id) \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8"
 
-db.execute "CREATE TABLE logicaladdress_new (  \
+db.execute "CREATE TABLE logicaladdress" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   description varchar(255) DEFAULT NULL,  \
   logical_address varchar(255) DEFAULT NULL,   \
@@ -65,7 +67,7 @@ db.execute "CREATE TABLE logicaladdress_new (  \
   UNIQUE KEY UK_logicaladdress_1 (logical_address)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
-db.execute "CREATE TABLE serviceconsumer_new (  \
+db.execute "CREATE TABLE serviceconsumer" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   description varchar(255) DEFAULT NULL,  \
   hsa_id varchar(255) DEFAULT NULL,  \
@@ -74,7 +76,7 @@ db.execute "CREATE TABLE serviceconsumer_new (  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
 
-db.execute "CREATE TABLE servicedomain_new (  \
+db.execute "CREATE TABLE servicedomain" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   name varchar(255) DEFAULT NULL,  \
   namespace varchar(255) DEFAULT NULL,  \
@@ -82,7 +84,7 @@ db.execute "CREATE TABLE servicedomain_new (  \
   UNIQUE KEY UK_servicedomain_1 (namespace)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET= utf8"
 
-db.execute "CREATE TABLE servicecontract_new (  \
+db.execute "CREATE TABLE servicecontract" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   major int(11) DEFAULT NULL,  \
   minor int(11) DEFAULT NULL,  \
@@ -90,11 +92,11 @@ db.execute "CREATE TABLE servicecontract_new (  \
   namespace varchar(255) DEFAULT NULL,  \
   service_domain_id bigint(20) DEFAULT NULL,  \
   PRIMARY KEY (id),  \
-  CONSTRAINT FK_servicecontract_1" + random() +" FOREIGN KEY (service_domain_id) REFERENCES servicedomain_new (id),  \
+  CONSTRAINT FK_servicecontract_1" + random() +" FOREIGN KEY (service_domain_id) REFERENCES servicedomain" + suffix + " (id),  \
   UNIQUE KEY UK_servicecontract_1 (namespace)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET= utf8"
 
-db.execute "CREATE TABLE serviceproducer_new (  \
+db.execute "CREATE TABLE serviceproducer" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   description varchar(255) DEFAULT NULL,  \
   hsa_id varchar(255) DEFAULT NULL,  \
@@ -103,7 +105,7 @@ db.execute "CREATE TABLE serviceproducer_new (  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
 
-db.execute "CREATE TABLE serviceproduction_new (  \
+db.execute "CREATE TABLE serviceproduction" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   physical_address varchar(255) DEFAULT NULL,  \
   rivta_profile varchar(255) DEFAULT NULL,  \
@@ -116,14 +118,14 @@ db.execute "CREATE TABLE serviceproduction_new (  \
   KEY IX_serviceproduction_2 (logical_address_id),  \
   KEY IX_serviceproduction_3 (service_contract_id),  \
   KEY IX_serviceproduction_4 (service_producer_id),  \
-  CONSTRAINT FK_serviceproduction_1" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract_new (id),  \
-  CONSTRAINT FK_serviceproduction_2" + random() +" FOREIGN KEY (service_producer_id) REFERENCES serviceproducer_new (id),  \
-  CONSTRAINT FK_serviceproduction_3" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint_new (id),  \
-  CONSTRAINT FK_serviceproduction_4" + random() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress_new (id)  \
+  CONSTRAINT FK_serviceproduction_1" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id),  \
+  CONSTRAINT FK_serviceproduction_2" + random() +" FOREIGN KEY (service_producer_id) REFERENCES serviceproducer" + suffix + " (id),  \
+  CONSTRAINT FK_serviceproduction_3" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
+  CONSTRAINT FK_serviceproduction_4" + random() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress" + suffix + " (id)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET= utf8"
 
 
-db.execute "CREATE TABLE cooperation_new (  \
+db.execute "CREATE TABLE cooperation" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   connection_point_id bigint(20) DEFAULT NULL,  \
   logical_address_id bigint(20) DEFAULT NULL,  \
@@ -134,10 +136,10 @@ db.execute "CREATE TABLE cooperation_new (  \
   KEY IX_cooperation_2 (logical_address_id),  \
   KEY IX_cooperation_3 (service_consumer_id),  \
   KEY IX_cooperation_4 (service_contract_id),  \
-  CONSTRAINT FK_cooperation_1" + random() +" FOREIGN KEY (service_consumer_id) REFERENCES serviceconsumer_new (id),  \
-  CONSTRAINT FK_cooperation_2" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint_new (id),  \
-  CONSTRAINT FK_cooperation_3" + random() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress_new (id),  \
-  CONSTRAINT FK_cooperation_4" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract_new (id)   \
+  CONSTRAINT FK_cooperation_1" + random() +" FOREIGN KEY (service_consumer_id) REFERENCES serviceconsumer" + suffix + " (id),  \
+  CONSTRAINT FK_cooperation_2" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
+  CONSTRAINT FK_cooperation_3" + random() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress" + suffix + " (id),  \
+  CONSTRAINT FK_cooperation_4" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8"
 
 
@@ -148,5 +150,5 @@ println '************************************************************'
 db.close();
 
 println ''
-println 'DONE! Create _new tables in cooperation database'
+println 'DONE! Create ' + suffix + ' tables in cooperation database'
 println ''
