@@ -78,10 +78,12 @@ jsonBuilder{
 
         anropsbehorighet db.rows(
                 '''select a.id, a.fromTidpunkt, a.tomTidpunkt, a.integrationsavtal, l.hsaId as logiskAdress_id, t.hsaId as tjanstekonsument_id, tk.namnrymd as tjanstekontrakt_id
-                from Anropsbehorighet a, LogiskAdress l, Tjanstekomponent t, Tjanstekontrakt tk
-                where a.logiskAdress_id = l.id
-                and a.tjanstekonsument_id = t.id
-                and a.tjanstekontrakt_id = tk.id'''
+								from Anropsbehorighet a, LogiskAdress l, Tjanstekomponent t, Tjanstekontrakt tk
+								where DATE(a.fromTidpunkt) <= CURDATE()
+								and DATE(a.tomTidpunkt) >= CURDATE()
+								and a.logiskAdress_id = l.id
+								and a.tjanstekonsument_id = t.id
+								and a.tjanstekontrakt_id = tk.id'''
         ).collect{ row ->
             ["id": row.id,
              "fromTidpunkt": row.fromTidpunkt,
@@ -130,14 +132,19 @@ jsonBuilder{
         }
 
         //FIXME: För nu anges anropsadress: fysiskt url. Här behövs troligtvis en annan nyckel?
+
+				//Hämta ut alla vägval som har ett startdatum som är samma eller föra dagens datum,
+				//samt ett slutdatum som är samma eller senare än dagens datum
         vagval db.rows(
                 '''select v.id, v.fromTidpunkt, v.tomTidpunkt, a.adress as anropsadress, l.hsaId as logiskadress_id, tk.namnrymd as tjanstekontrakt_id, riv.namn as rivTaProfil_id, t.hsaId as tjansteproducent_id
-                   from Vagval v, LogiskAdress l, Tjanstekontrakt tk, AnropsAdress a, RivTaProfil riv, Tjanstekomponent t
-                   where v.logiskAdress_id = l.id
-                   and v.tjanstekontrakt_id = tk.id
-                   and v.anropsAdress_id = a.id
-                   and a.rivTaProfil_id = riv.id
-                   and a.tjanstekomponent_id = t.id'''
+								from Vagval v, LogiskAdress l, Tjanstekontrakt tk, AnropsAdress a, RivTaProfil riv, Tjanstekomponent t
+								where DATE(v.fromTidpunkt) <= CURDATE()
+								and DATE(v.tomTidpunkt) >= CURDATE()
+								and v.logiskAdress_id = l.id
+								and v.tjanstekontrakt_id = tk.id
+								and v.anropsAdress_id = a.id
+								and a.rivTaProfil_id = riv.id
+								and a.tjanstekomponent_id = t.id'''
         ).collect{ row ->
             ["id": row.id,
              "fromTidpunkt": row.fromTidpunkt,
