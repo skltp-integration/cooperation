@@ -51,12 +51,8 @@
 
   <script type="text/javascript">
     $(function () {
-      var url = window.location.search.match(/url=([^&]+)/);
-      if (url && url.length > 1) {
-        url = decodeURIComponent(url[1]);
-      } else {
-        url = "/coop/doc/swagger.json";
-      }
+      var x = window.location.href.indexOf("/doc/");
+      url = window.location.href.substring(0,x) + "/doc/swagger.json";
 
       // Pre load translate...
       if(window.SwaggerTranslator) {
