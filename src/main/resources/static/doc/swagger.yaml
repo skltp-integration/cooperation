@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
   title: Etablerad samverkan i vården
-  description: 'Information om tjänster, producenter och konsumenter baserad på tjänsteaddresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida ändringar syns inte i api:et, enbart hur det ser ut just nu. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i hsa-trädet, och avser alla noder därunder. Detta spegla rakt av i api:et, hsa-trädet evalueras inte här. De tekniska id-begrepper på alla objekt genereras om en gång per dygn, de garanteras alltså inte ha samma värde två dagar i rad.
+  description: 'Information om tjänster, producenter och konsumenter baserad på tjänsteaddresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida konfigurations-ändringar syns inte i api:et, enbart hur det ser ut just nu. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i hsa-trädet, och avser alla noder därunder. Detta speglas rakt av i api:et, hsa-trädet evalueras inte här. De tekniska id-begrepper på alla objekt genereras om en gång per dygn, de garanteras alltså inte ha samma värde två dagar i rad.
     Det kan behöva anges en api-nyckel för att accessa api:et.' 
   version: 1.1.0
-basePath: /api/v1
+basePath: /coop/api/v1
 produces:
   - application/json
   - application/xml
@@ -13,7 +13,7 @@ paths:
     get:
       summary: Connection Point - TP instans
       description: |
-        Alla instanser av tjänsteplattformar som har exporterat information till detta api. Idag sker exporten en gång per dygn. En instans identifieras versamhetsmässigt av kombinationen mellan en plattform och vilken staging-miljö som avses.
+        Alla instanser av tjänsteplattformar som har exporterat information till detta api. Idag sker exporten en gång per dygn. En instans identifieras verksamhetsmässigt av kombinationen mellan en plattform och vilken staging-miljö som avses.
       parameters:
         - name: platform
           in: query
@@ -663,10 +663,10 @@ definitions:
         description: Namnrymd.
       major:
         type: string
-        description: Major-version.
+        description: Major-version exvis 1 eller 2.
       minor:
         type: string
-        description: Minor-version.
+        description: Minor-version exvis 0 eller 1.
   ServiceDomain:
     type: object
     properties:

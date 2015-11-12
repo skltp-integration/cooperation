@@ -39,6 +39,7 @@ public class ServiceContractDTO {
 	private String name;
 	private String namespace;
 	private Integer major;
+	private Integer minor;
 
 	public Long getId() {
 		return id;
@@ -70,6 +71,14 @@ public class ServiceContractDTO {
 
 	public void setMajor(Integer major) {
 		this.major = major;
+	}
+
+	public Integer getMinor() {
+		return minor;
+	}
+
+	public void setMinor(Integer minor) {
+		this.minor = minor;
 	}
 
 }

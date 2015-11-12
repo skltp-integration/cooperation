@@ -5,7 +5,7 @@
 > **Förutsättning:**
 
 > Följande programvaror måste finnas installerade för att kunna bygga och köra applikationen.
-> - Java 8 eller högre
+> - Java 7 eller högre
 > - Maven 3.*
 > - Git
 
@@ -27,7 +27,7 @@ Med  Maven:
 
 ### API-dokumentationen finns på
 ```
-http://localhost:8080/doc/index.html
+http://localhost:8080/coop/doc/index.html
 ```
 
 Som standalone:
@@ -36,5 +36,5 @@ Som standalone:
 ```
 ### Anropa en tjänst
 ```
-curl -X GET 'http://localhost:8080/api/v1/cooperations?include=logicalAddress,connectionPoint'
+curl -X GET 'http://localhost:8080/coop/api/v1/cooperations?include=logicalAddress,connectionPoint'
 ```
