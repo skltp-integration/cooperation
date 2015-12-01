@@ -11,6 +11,8 @@ spring:
         driverClassName: org.h2.Driver
         username: sa
         password:
+        testOnBorrow: true
+        validationQuery: SELECT 1
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
 se.skltp.cooperation:
@@ -37,5 +39,7 @@ spring:
     datasource:
         platform: mysql
         driverClassName: com.mysql.jdbc.Driver
+        testOnBorrow: true
+        validationQuery: SELECT 1
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
