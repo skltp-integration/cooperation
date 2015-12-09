@@ -38,9 +38,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 // should contain 
 // spring.datasource.url=jdbc:mysql://localhost/cooperation
 // spring.datasource.username=root
+// spring.datasource.testOnBorrow: true
+// spring.datasource.validationQuery: SELECT 1
 // spring.datasource.password=
 // se.skltp.cooperation.accesscontrol=true
 // se.skltp.cooperation.api_key=blabla1234
+
 // these properties are left out of the application.yml in the prod profile section
 // 
 // tomcat bin directory should contain a setenv.sh containing
@@ -76,6 +79,7 @@ public class Application extends SpringBootServletInitializer {
 	@Bean
 	@Profile("dev")
 	public ServletRegistrationBean h2servletRegistration() {
+		
 		ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
 		registration.addUrlMappings("/console/*");
 		return registration;
