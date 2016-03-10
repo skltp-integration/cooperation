@@ -6,7 +6,7 @@
 baseDir=${PWD##*/}
 gitVersion=`git log --pretty=format:'%h' -n 1`
 versionFile=release-version-$gitVersion.txt
-archiveFile=skltp-cooperation-export-import-$gitVersion.tar
+archiveFile=skltp-cooperation-import-$gitVersion.tar
 
 # create version info file
 echo "Git commit: $gitVersion" > $versionFile
