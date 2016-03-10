@@ -17,13 +17,13 @@ Deploy av cooperation 1.1.0
 Notera förväntningar angående att hämta filer från ett dir i nästa punkt.
 
 3.2 Konfigurera miljöberoende variabler i: cooperation-import-from-tak-env-setup.sh
-Här finns just nu en förväntan om att alla TAK-filer kommer att kunna hämtas med SCP från samma katalog.
+Här finns just nu en förväntan om att alla TAK-filer kommer att kunna hämtas med SFTP från samma katalog.
 Sätt upp SSH-nycklar, skapa nya med: ssh-keygen -t rsa -b 2048 -C "TAK data transfer"
 
 4 För att få igång rullandet av tabeller från "_new"  till normal till "_old": Kör cooperation-import-from-tak.sh som exekverar tre groovy-script som skapar nya tabeller, laddar in filer och döper om tabellerna
 (går bra med ett tomt directory eller med filer)
 
-cooperation-import-from-tak.sh skall även köras scheduleras på natten kl02.30
+cooperation-import-from-tak.sh skall även köras schedulerat varje natt kl 03.00.
 
 5. På Tomcat-maskinen: skapa en katalog för en konfigurationfil för webappen
 Skapa en konfigfil som heter cooperation-config-override.properties i den katalogen
