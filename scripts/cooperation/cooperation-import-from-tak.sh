@@ -40,13 +40,11 @@ echo "Done: environment check" >> ${logFile}
 #=============================================================================
 # Fetching TAK-data files from SFTP-server
 #=============================================================================
-echo "Begin: fetch tak data files" >> ${logFile}
-scp -o "PreferredAuthentications publickey" \
-    -o "StrictHostKeyChecking no" \
-    -o "UserKnownHostsFile /dev/null" \
-    -o "IdentityFile ${sshIdentityFile}" \
-    -r * ${scpTakDataUser}@${scpTakDataHost}:${scpTakDataRemotePath} ${coopImportFilesDir} >> ${logFile} 2>&1
-echo "Done: fetch tak data files" >> ${logFile}
+echo "Begin: SFTP-download of TAK export files" >> ${logFile}
+sftp -o IdentityFile=${sshIdentityFile} ${sftpUser}@${sftpHost} >> ${logFile} 2>&1 <<EOF
+get ${sftpRemotePath}*.json ${coopImportFilesDir}
+EOF
+echo "Done: SFTP-download of TAK export files" >> ${logFile}
 
 #=============================================================================
 # Handle creation of new DB tables (to support rolling over old data, 1 backup)
@@ -56,6 +54,11 @@ echo "Begin: create new tables: `date`" >> ${logFile}
 groovy CreateNewTables.groovy \
     -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new >> ${logFile} 2>&1
 echo "Done: create new tables: `date`" >> ${logFile}
+
+echo "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`" >> ${logFile}
+groovy TransformTakExportFormatToCooperationImportFormat.groovy \
+    -d ${coopImportFilesDir} >> ${logFile} 2>&1
+echo "Done: transform tak export files: `date`" >> ${logFile}
 
 echo "Begin: import tak data from dir: ${coopImportFilesDir} : `date`" >> ${logFile}
 groovy TakCooperationImport.groovy \

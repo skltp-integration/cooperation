@@ -228,7 +228,6 @@ directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 	println "****** START IMPORT FILE $it.name ******************************************************"
 	println 'Timestamp starting: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
 	println "Format version: $inputJSON.formatVersion"
-	println "Description: $inputJSON.beskrivning"
 	println "Timestamp of exported TAK data: $inputJSON.tidpunkt"
 	println "Import from platform: $platform and environment: $environment"
 	println '************************************************************'

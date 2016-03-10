@@ -14,12 +14,12 @@ tmpDir=/tmp/cooperation-import-from-tak
 coopImportFilesDir=${tmpDir}/import
 
 #-----------------------------
-# SCP settings for getting TAK data
+# SFTP settings for getting TAK data
 #-----------------------------
+sftpHost=ine-pib-misc01.sth.basefarm.net
+sftpUser=coop-user
+sftpRemotePath="/upload/"
 sshIdentityFile=~/.ssh/id_rsa_tak_data_transfer
-scpTakDataHost=localhost
-scpTakDataUser=coop-user
-scpTakDataRemotePath="~/tak_data"
 
 #-----------------------------
 # Script environment config
