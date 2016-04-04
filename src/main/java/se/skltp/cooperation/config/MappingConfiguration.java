@@ -38,7 +38,7 @@ public class MappingConfiguration {
 	@Bean
 	public DozerBeanMapper mapper() {
 
-		List mappingFiles = new ArrayList<>();
+		List<String> mappingFiles = new ArrayList<>();
 		mappingFiles.add("dozerBeanMapping.xml");
 
 		return new DozerBeanMapper(mappingFiles);

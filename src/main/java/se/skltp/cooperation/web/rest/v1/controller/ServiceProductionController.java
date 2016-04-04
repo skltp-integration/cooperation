@@ -131,8 +131,10 @@ public class ServiceProductionController {
 			Long serviceProducerId, Long logicalAddressId, Long serviceContractId,
 			Long connectionPointId, String include) {
 
-		List<String> includes = (List<String>) ((include != null) ? SPLITTER.splitToList(include)
-				: new ArrayList<>());
+		List<String> includes = new ArrayList<>();
+		if (include != null) {
+			includes.addAll(SPLITTER.splitToList(include));
+		}	
 
 		ServiceProductionCriteria criteria = new ServiceProductionCriteria(physicalAddress,
 				rivtaProfile, serviceProducerId, logicalAddressId, serviceContractId,
