@@ -31,23 +31,24 @@ public class CooperationCriteria {
 	Long logicalAddressId;
 	Long serviceContractId;
 	Long connectionPointId;
+	Long serviceDomainId;
 
-	
 	public CooperationCriteria() {
 	}
 
 	public CooperationCriteria(Long serviceConsumerId, Long logicalAddressId,
-			Long serviceContractId, Long connectionPointId) {
+			Long serviceContractId, Long connectionPointId, Long serviceDomainId) {
 		this.serviceConsumerId = serviceConsumerId;
 		this.logicalAddressId = logicalAddressId;
 		this.serviceContractId = serviceContractId;
 		this.connectionPointId = connectionPointId;
+		this.serviceDomainId = serviceDomainId;
 	}
 
 	public boolean isEmpty() {
 
-		return serviceConsumerId == null && logicalAddressId == null
-			&& serviceContractId == null && connectionPointId == null;
+		return serviceConsumerId == null && logicalAddressId == null && serviceContractId == null
+				&& connectionPointId == null && serviceDomainId == null;
 	}
 
 	public Long getServiceConsumerId() {
@@ -81,4 +82,14 @@ public class CooperationCriteria {
 	public void setConnectionPointId(Long connectionPointId) {
 		this.connectionPointId = connectionPointId;
 	}
+
+	public Long getServiceDomainId() {
+		return serviceDomainId;
+	}
+
+	public void setServiceDomainId(Long serviceDomainId) {
+		this.serviceDomainId = serviceDomainId;
+	}
+	
+	
 }

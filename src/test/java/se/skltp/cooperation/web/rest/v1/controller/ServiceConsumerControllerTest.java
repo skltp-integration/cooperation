@@ -20,35 +20,6 @@
  */
 package se.skltp.cooperation.web.rest.v1.controller;
 
-import org.dozer.DozerBeanMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import se.skltp.cooperation.Application;
-import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.domain.ServiceConsumer;
-import se.skltp.cooperation.service.ServiceConsumerCriteria;
-import se.skltp.cooperation.service.ServiceConsumerService;
-import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.controller.ServiceConsumerController;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
-
-import javax.annotation.PostConstruct;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
@@ -64,6 +35,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.annotation.PostConstruct;
+
+import org.dozer.DozerBeanMapper;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import se.skltp.cooperation.Application;
+import se.skltp.cooperation.domain.ServiceConsumer;
+import se.skltp.cooperation.service.ServiceConsumerCriteria;
+import se.skltp.cooperation.service.ServiceConsumerService;
+import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
+import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
 
 /**
  * Test class for the ServiceConsumerController REST controller.

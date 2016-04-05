@@ -33,8 +33,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.jayway.jsonpath.Criteria;
-
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.domain.Cooperation;

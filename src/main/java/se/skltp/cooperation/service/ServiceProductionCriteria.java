@@ -33,24 +33,26 @@ public class ServiceProductionCriteria {
 	Long logicalAddressId;
 	Long serviceContractId;
 	Long connectionPointId;
+	Long domainId;
 
 	public ServiceProductionCriteria() {
 	}
 
 	public ServiceProductionCriteria(String physicalAddress, String rivtaProfile,
 			Long serviceProducerId, Long logicalAddressId, Long serviceContractId,
-			Long connectionPointId) {
+			Long connectionPointId, Long domainId) {
 		this.physicalAddress = physicalAddress;
 		this.rivtaProfile = rivtaProfile;
 		this.serviceProducerId = serviceProducerId;
 		this.logicalAddressId = logicalAddressId;
 		this.serviceContractId = serviceContractId;
 		this.connectionPointId = connectionPointId;
+		this.domainId = domainId;
 	}
 
 	public boolean isEmpty() {
 		return physicalAddress == null && rivtaProfile == null && serviceProducerId == null
-				&& logicalAddressId == null && serviceContractId == null && connectionPointId == null;
+				&& logicalAddressId == null && serviceContractId == null && connectionPointId == null && domainId == null;
 	}
 
 	public Long getServiceProducerId() {
@@ -100,6 +102,13 @@ public class ServiceProductionCriteria {
 	public void setRivtaProfile(String rivtaProfile) {
 		this.rivtaProfile = rivtaProfile;
 	}
-	
+
+	public Long getDomainId() {
+		return domainId;
+	}
+
+	public void setDomainId(Long domainId) {
+		this.domainId = domainId;
+	}	
 	
 }

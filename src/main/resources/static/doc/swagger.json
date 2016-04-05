@@ -248,7 +248,15 @@
                     {
                         "name": "serviceConsumerId",
                         "in": "query",
-                        "description": "Filtrerar bara samverkan avseende en specifik tjänstekonsument.  Ange den tekniska nyckeln för ServiceConsumerId tex 538.",
+                        "description": "Filtrerar bara samverkan avseende en specifik tjänstekonsument.  Ange den tekniska nyckeln för ServiceConsumer tex 538.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
+                        "name": "serviceDomainId",
+                        "in": "query",
+                        "description": "Filtrerar bara samverkan avseende alla kontrakt som ingår i en viss tjänstedomän.  Ange den tekniska nyckeln för ServiceDomain tex 825.",
                         "required": false,
                         "type": "number",
                         "format": "long"
@@ -755,6 +763,14 @@
                         "format": "long"
                     },
                     {
+                        "name": "serviceDomainId",
+                        "in": "query",
+                        "description": "Filtrerar bara samverkan avseende alla kontrakt som ingår i en viss tjänstedomän.  Ange den tekniska nyckeln för ServiceDomain tex 825.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
                         "name": "include",
                         "in": "query",
                         "description": "Styr hur mycket information som skall skickas tillbaka i svaret.  Ange en eller flera av följande objekt kommaseparerade connectionPoint,logicalAddress,serviceContract,serviceProducer",
@@ -772,7 +788,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/"
+                                "$ref": "#/definitions/ServiceProduction"
                             }
                         }
                     },

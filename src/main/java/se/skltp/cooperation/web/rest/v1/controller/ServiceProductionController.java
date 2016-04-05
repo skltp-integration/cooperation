@@ -82,11 +82,12 @@ public class ServiceProductionController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all ServiceProductions as json");
 
 		return getAll(physicalAddress, rivtaProfile, serviceProducerId, logicalAddressId,
-				serviceContractId, connectionPointId, include);
+				serviceContractId, connectionPointId, serviceDomainId, include);
 
 	}
 
@@ -101,12 +102,13 @@ public class ServiceProductionController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all ServiceProductions as xml");
 
 		ServiceProductionListDTO result = new ServiceProductionListDTO();
 		result.setServiceProductions(getAll(physicalAddress, rivtaProfile, serviceProducerId,
-				logicalAddressId, serviceContractId, connectionPointId, include));
+				logicalAddressId, serviceContractId, connectionPointId, serviceDomainId, include));
 		return result;
 
 	}
@@ -129,7 +131,7 @@ public class ServiceProductionController {
 
 	private List<ServiceProductionDTO> getAll(String physicalAddress, String rivtaProfile,
 			Long serviceProducerId, Long logicalAddressId, Long serviceContractId,
-			Long connectionPointId, String include) {
+			Long connectionPointId, Long serviceDomainId, String include) {
 
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
@@ -138,7 +140,7 @@ public class ServiceProductionController {
 
 		ServiceProductionCriteria criteria = new ServiceProductionCriteria(physicalAddress,
 				rivtaProfile, serviceProducerId, logicalAddressId, serviceContractId,
-				connectionPointId);
+				connectionPointId, serviceDomainId);
 		List<ServiceProduction> serviceProductions = serviceProductionService.findAll(criteria);
 
 		List<ServiceProductionDTO> result = new ArrayList<>();

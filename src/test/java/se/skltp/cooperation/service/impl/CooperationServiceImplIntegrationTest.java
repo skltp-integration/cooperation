@@ -39,6 +39,7 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.domain.ServiceDomain;
 import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.repository.CooperationRepository;
@@ -73,6 +74,8 @@ public class CooperationServiceImplIntegrationTest {
 	Cooperation cooperation3;
 	ServiceProduction serviceProduction1;
 	ServiceProducer serviceProducer1;
+	ServiceDomain serviceDomain1;
+	ServiceDomain serviceDomain2;
 
 	@Before
 	public void setUp() throws Exception {
@@ -82,8 +85,12 @@ public class CooperationServiceImplIntegrationTest {
 		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2");
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
-		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);
-		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0);
+
+		serviceDomain1 = util.createServiceDomain("domain1", "namespace1");
+		serviceDomain2 = util.createServiceDomain("domain2", "namespace2");
+
+		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0, serviceDomain1);
+		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain2);
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer1);
 		cooperation2 = util.createCooperation(connectionPoint2, logicalAddress2, serviceContract2,
@@ -103,7 +110,7 @@ public class CooperationServiceImplIntegrationTest {
 	@Test
 	public void findAll_shouldReturnAll() throws Exception {
 
-		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null);
+		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null, null);
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(3, result.size());
 
@@ -113,12 +120,12 @@ public class CooperationServiceImplIntegrationTest {
 	public void findByServiceConsumerId() throws Exception {
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumer1.getId(), null,
-				null, null);
+				null, null, null);
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(cooperation1.getId(), result.get(0).getId());
 
-		criteria = new CooperationCriteria(serviceConsumer2.getId(), null, null, null);
+		criteria = new CooperationCriteria(serviceConsumer2.getId(), null, null, null, null);
 		result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 	}
@@ -126,7 +133,7 @@ public class CooperationServiceImplIntegrationTest {
 	@Test
 	public void findByServiceConsumerId_noHits() throws Exception {
 
-		CooperationCriteria criteria = new CooperationCriteria(999L, null, null, null);
+		CooperationCriteria criteria = new CooperationCriteria(999L, null, null, null, null);
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(0, result.size());
 
@@ -136,13 +143,13 @@ public class CooperationServiceImplIntegrationTest {
 	public void findByLogicalAddressId() throws Exception {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, logicalAddress1.getId(), null,
-				null);
+				null, null);
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(cooperation1.getId(), result.get(0).getId());
 
 		assertEquals(cooperation1.getId(), result.get(0).getId());
-		criteria = new CooperationCriteria(null, logicalAddress2.getId(), null, null);
+		criteria = new CooperationCriteria(null, logicalAddress2.getId(), null, null, null);
 		result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 	}
@@ -151,11 +158,25 @@ public class CooperationServiceImplIntegrationTest {
 	public void findByServiceContractId() throws Exception {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, null,
-				serviceContract1.getId(), null);
+				serviceContract1.getId(), null, null);
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 
-		criteria = new CooperationCriteria(null, null, serviceContract2.getId(), null);
+		criteria = new CooperationCriteria(null, null, serviceContract2.getId(), null, null);
+		result = uut.findAll(criteria);
+		assertEquals(1, result.size());
+		assertEquals(cooperation2.getId(), result.get(0).getId());
+	}
+
+	@Test
+	public void findByServiceDomainId() throws Exception {
+
+		CooperationCriteria criteria = new CooperationCriteria(null, null,
+				null, null, serviceDomain1.getId());
+		List<Cooperation> result = uut.findAll(criteria);
+		assertEquals(2, result.size());
+
+		criteria = new CooperationCriteria(null, null, null, null, serviceDomain2.getId());
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(cooperation2.getId(), result.get(0).getId());
@@ -165,11 +186,11 @@ public class CooperationServiceImplIntegrationTest {
 	public void findByConnectionPointId() throws Exception {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, null, null,
-				connectionPoint1.getId());
+				connectionPoint1.getId(), null);
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
 
-		criteria = new CooperationCriteria(null, null, null, connectionPoint2.getId());
+		criteria = new CooperationCriteria(null, null, null, connectionPoint2.getId(), null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
 		assertEquals(cooperation2.getId(), result.get(0).getId());

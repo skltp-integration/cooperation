@@ -52,11 +52,11 @@ public class CooperationServiceImpl implements CooperationService {
 
 	@Override
 	public List<Cooperation> findAll(CooperationCriteria criteria) {
-		Predicate predicate = buildPredicate(criteria);
 
 		if (criteria.isEmpty()) {
 			return cooperationRepository.findAll();
 		} else {
+			Predicate predicate = buildPredicate(criteria);
 			return Lists.newArrayList(cooperationRepository.findAll(predicate));
 		}
 	}
@@ -79,6 +79,9 @@ public class CooperationServiceImpl implements CooperationService {
 		}
 		if (criteria.getConnectionPointId() != null) {
 			builder.and(QCooperation.cooperation.connectionPoint.id.eq(criteria.getConnectionPointId()));
+		}
+		if (criteria.getServiceDomainId() != null) {
+			builder.and(QCooperation.cooperation.serviceContract.serviceDomain.id.eq(criteria.getServiceDomainId()));
 		}
 		return builder.getValue();
 	}

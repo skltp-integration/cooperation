@@ -78,10 +78,11 @@ public class CooperationController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all Cooperations as json");
 		
-		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,
+		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,serviceDomainId,
 				include);
 
 	}
@@ -95,12 +96,13 @@ public class CooperationController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long connectionPointId,
+			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all Cooperations as xml");
 
 		CooperationListDTO result = new CooperationListDTO();
 		result.setCooperations(getAll(serviceConsumerId, logicalAddressId, serviceContractId,
-				connectionPointId, include));
+				connectionPointId, serviceDomainId,include));
 		return result;
 
 	}
@@ -122,7 +124,7 @@ public class CooperationController {
 	}
 	
 	private List<CooperationDTO> getAll(Long serviceConsumerId, Long logicalAddressId,
-			Long serviceContractId, Long connectionPointId, String include) {
+			Long serviceContractId, Long connectionPointId, Long serviceDomainId, String include) {
 
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
@@ -130,7 +132,7 @@ public class CooperationController {
 		}	
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,
-				serviceContractId, connectionPointId);
+				serviceContractId, connectionPointId, serviceDomainId);
 		List<Cooperation> cooperations = cooperationService.findAll(criteria);
 
 		List<CooperationDTO> result = new ArrayList<>();
