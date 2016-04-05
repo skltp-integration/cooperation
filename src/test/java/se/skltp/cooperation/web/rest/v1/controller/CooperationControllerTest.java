@@ -187,7 +187,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
+		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint,serviceConsumer,logicalAddress,serviceContract")
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -233,7 +233,7 @@ public class CooperationControllerTest {
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
 		when(mapperMock.map(c2, CooperationDTO.class)).thenReturn(dto2);
 
-		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint, serviceConsumer   , logicalAddress, serviceContract")
+		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint,serviceConsumer,logicalAddress,serviceContract")
 			.accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML))
@@ -299,7 +299,7 @@ public class CooperationControllerTest {
 	@Test
 	public void buildCriteria_shouldBeEmpty() throws Exception {
 
-		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null);
+		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null, null);
 		assertTrue(criteria.isEmpty());
 	}
 

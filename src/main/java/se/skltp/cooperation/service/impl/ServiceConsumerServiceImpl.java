@@ -26,10 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.domain.QLogicalAddress;
 import se.skltp.cooperation.domain.QServiceConsumer;
-import se.skltp.cooperation.domain.QServiceContract;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
