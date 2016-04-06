@@ -85,7 +85,7 @@ public class ServiceProductionServiceImplIntegrationTest {
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
 
 		serviceDomain1 = util.createServiceDomain("domain1", "namespace1");
-				serviceDomain2 = util.createServiceDomain("domain2", "namespace2");
+		serviceDomain2 = util.createServiceDomain("domain2", "namespace2");
 		
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0,serviceDomain1);
 		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain2);

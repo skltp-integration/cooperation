@@ -20,8 +20,11 @@
  */
 package se.skltp.cooperation.web.rest.v1.dto;
 
+import se.skltp.cooperation.web.rest.v1.format.HTTPObfuscator;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
@@ -34,6 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 public class ServiceProductionDTO {
 
 	private Long id;
+    @JsonSerialize(using = HTTPObfuscator.class)
 	private String physicalAddress;
 	private String rivtaProfile;
 
