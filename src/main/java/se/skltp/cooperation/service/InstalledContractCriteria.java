@@ -21,61 +21,21 @@
 package se.skltp.cooperation.service;
 
 
-public class ServiceContractCriteria {
+public class InstalledContractCriteria {
 
-	String namespace;
-	Long serviceConsumerId;
-	Long logicalAddressId;
 	Long connectionPointId;
-	Long serviceProducerId;
+	Long serviceContractId;
 	Long serviceDomainId;	
 	
-	public ServiceContractCriteria(String namespace, Long serviceConsumerId,
-			Long logicalAddressId, Long connectionPointId, Long serviceProducerId, Long serviceDomainId) {
-		this.namespace = namespace;
-		this.serviceConsumerId = serviceConsumerId;
-		this.logicalAddressId = logicalAddressId;
+	public InstalledContractCriteria(Long connectionPointId, Long serviceContractId, Long serviceDomainId) {
 		this.connectionPointId = connectionPointId;
-		this.serviceProducerId = serviceProducerId;
+		this.serviceContractId = serviceContractId;
 		this.serviceDomainId = serviceDomainId;
 	}
 
 	public boolean isEmpty() {
 
-		return namespace == null && serviceConsumerId == null && logicalAddressId == null
-			&& connectionPointId == null && serviceProducerId == null && serviceDomainId == null;
-	}
-
-	public Long getServiceConsumerId() {
-		return serviceConsumerId;
-	}
-
-	public void setServiceConsumerId(Long serviceConsumerId) {
-		this.serviceConsumerId = serviceConsumerId;
-	}
-
-	public Long getLogicalAddressId() {
-		return logicalAddressId;
-	}
-
-	public void setLogicalAddressId(Long logicalAddressId) {
-		this.logicalAddressId = logicalAddressId;
-	}
-
-	public Long getServiceProducerId() {
-		return serviceProducerId;
-	}
-
-	public void setServiceProducerId(Long serviceProducerId) {
-		this.serviceProducerId = serviceProducerId;
-	}
-
-	public String getNamespace() {
-		return namespace;
-	}
-
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
+		return connectionPointId == null && serviceContractId == null && serviceDomainId == null;
 	}
 
 	public Long getConnectionPointId() {
@@ -84,6 +44,14 @@ public class ServiceContractCriteria {
 
 	public void setConnectionPointId(Long connectionPointId) {
 		this.connectionPointId = connectionPointId;
+	}
+
+	public Long getServiceContractId() {
+		return serviceContractId;
+	}
+
+	public void setServiceContractId(Long serviceContractId) {
+		this.serviceContractId = serviceContractId;
 	}
 
 	public Long getServiceDomainId() {

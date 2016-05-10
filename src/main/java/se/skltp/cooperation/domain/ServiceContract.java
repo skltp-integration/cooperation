@@ -64,6 +64,9 @@ public class ServiceContract implements Serializable {
 	@OneToMany(mappedBy = "serviceContract")
 	private Set<ServiceProduction> serviceProductions = new HashSet<>();
 
+	@OneToMany(mappedBy = "serviceContract")
+	private Set<InstalledContract> installedContracts = new HashSet<>();
+	
 	@ManyToOne
 	private ServiceDomain serviceDomain;
 
@@ -129,6 +132,14 @@ public class ServiceContract implements Serializable {
 
 	public void setServiceDomain(ServiceDomain serviceDomain) {
 		this.serviceDomain = serviceDomain;
+	}
+
+	public Set<InstalledContract> getInstalledContracts() {
+		return installedContracts;
+	}
+
+	public void setInstalledContracts(Set<InstalledContract> installedContracts) {
+		this.installedContracts = installedContracts;
 	}
 
 }

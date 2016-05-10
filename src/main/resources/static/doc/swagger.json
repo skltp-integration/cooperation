@@ -835,6 +835,93 @@
                     }
                 }
             }
+        },
+        "/installedContracts": {
+            "get": {
+                "summary": "InstalledContract - installerade tjänstekontrakt",
+                "description": "Alla tjänstekontrakt som är installerade i en viss miljö.  Kontraktet kan vara installerat även om det inte finns några kopplingar mot det ännu  \n",
+                "parameters": [
+                    {
+                        "name": "connectionPointId",
+                        "in": "query",
+                        "description": "Filtrerar installerade tjänstekontrakt som finns i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
+                        "name": "serviceContractId",
+                        "in": "query",
+                        "description": "Filtrerar bara installerade tjänstekontrakt av en viss typ. Ange den tekniska nyckeln för ServiceContract tex 123.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    },
+                    {
+                        "name": "serviceDomainId",
+                        "in": "query",
+                        "description": "Filtrerar bara installerade tjänstekontrakt avseende kontrakt som ingår i en specifik tjänstedomän.  Ange den tekniska nyckeln för ServiceDomain tex 538.",
+                        "required": false,
+                        "type": "number",
+                        "format": "long"
+                    }
+                ],
+                "tags": [
+                    "InstalledContract"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "En lista av InstalledContract",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/InstalledContract"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/installedContracts/{id}": {
+            "get": {
+                "summary": "InstalledContract - installerade tjänstekontrakt",
+                "description": "En specifikt installation av ett tjänstekontrakt i en viss miljö. Returobjekten inkluderar alltid ConnectionPoint och ServiceContract, annars hade det bara blivit en lista av tekniska nycklar.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "teknisk nyckel",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "tags": [
+                    "InstalledContract"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ett installerat tjänstekontrakt",
+                        "schema": {
+                            "$ref": "#/definitions/InstalledContract"
+                        }
+                    },
+                    "404": {
+                        "description": "InstalledContract not found"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -884,20 +971,16 @@
                     "description": "Unik teknisk nyckel"
                 },
                 "serviceConsumer": {
-                    "$ref": "#/definitions/ServiceConsumer",
-                    "description": "en inkluderad tjänstekonsument"
+                    "$ref": "#/definitions/ServiceConsumer"
                 },
                 "logicalAdress": {
-                    "$ref": "#/definitions/LogicalAddress",
-                    "description": "en inkluderad logisk adress"
+                    "$ref": "#/definitions/LogicalAddress"
                 },
                 "serviceContract": {
-                    "$ref": "#/definitions/ServiceContract",
-                    "description": "en inkluderat tjänstekontrakt"
+                    "$ref": "#/definitions/ServiceContract"
                 },
                 "connectionPoint": {
-                    "$ref": "#/definitions/ConnectionPoint",
-                    "description": "en inkluderad tp-instans"
+                    "$ref": "#/definitions/ConnectionPoint"
                 }
             }
         },
@@ -993,20 +1076,31 @@
                     "description": "Den profil som tjänsten stöder."
                 },
                 "serviceProducer": {
-                    "$ref": "#/definitions/ServiceProducer",
-                    "description": "en inkluderad tjänsteproducent"
+                    "$ref": "#/definitions/ServiceProducer"
                 },
                 "logicalAdress": {
-                    "$ref": "#/definitions/LogicalAddress",
-                    "description": "en inkluderad logisk adress"
+                    "$ref": "#/definitions/LogicalAddress"
                 },
                 "serviceContract": {
-                    "$ref": "#/definitions/ServiceContract",
-                    "description": "en inkluderat tjänstekontrakt"
+                    "$ref": "#/definitions/ServiceContract"
                 },
                 "connectionPoint": {
-                    "$ref": "#/definitions/ConnectionPoint",
-                    "description": "en inkluderad tp-instans"
+                    "$ref": "#/definitions/ConnectionPoint"
+                }
+            }
+        },
+        "InstalledContract": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "Unik teknisk nyckel"
+                },
+                "connectionPoint": {
+                    "$ref": "#/definitions/ConnectionPoint"
+                },
+                "serviceContract": {
+                    "$ref": "#/definitions/ServiceContract"
                 }
             }
         },

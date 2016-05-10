@@ -61,6 +61,9 @@ public class ConnectionPoint implements Serializable {
 	@OneToMany(mappedBy = "connectionPoint")
 	private Set<Cooperation> cooperations = new HashSet<>();
 
+	@OneToMany(mappedBy = "connectionPoint")
+	private Set<InstalledContract> installedContracts = new HashSet<>();
+
 	public Long getId() {
 		return id;
 	}
@@ -107,6 +110,14 @@ public class ConnectionPoint implements Serializable {
 
 	public void setSnapshotTime(Date snapshotTime) {
 		this.snapshotTime = snapshotTime;
+	}
+
+	public Set<InstalledContract> getInstalledContracts() {
+		return installedContracts;
+	}
+
+	public void setInstalledContracts(Set<InstalledContract> installedContracts) {
+		this.installedContracts = installedContracts;
 	}
 
 }

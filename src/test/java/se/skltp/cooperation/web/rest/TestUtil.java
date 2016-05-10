@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.domain.Cooperation;
+import se.skltp.cooperation.domain.InstalledContract;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
@@ -39,6 +40,7 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.repository.InstalledContractRepository;
 import se.skltp.cooperation.repository.LogicalAddressRepository;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.repository.ServiceContractRepository;
@@ -67,6 +69,8 @@ public class TestUtil {
 	private ServiceConsumerRepository serviceConsumerRepository;
 	@Autowired
 	private ServiceContractRepository serviceContractRepository;
+	@Autowired
+	private InstalledContractRepository installedContractRepository;
 	@Autowired
 	private ServiceProducerRepository serviceProducerRepository;
 	@Autowired
@@ -158,6 +162,13 @@ public class TestUtil {
 		serviceContractRepository.save(serviceContract);
 		return serviceContract;
 	}
+	public InstalledContract createInstlledContract(ConnectionPoint connectionPoint, ServiceContract serviceContract) {
+		InstalledContract installedContract = new InstalledContract();
+		installedContract.setConnectionPoint(connectionPoint);;
+		installedContract.setServiceContract(serviceContract);;
+		installedContractRepository.save(installedContract);
+		return installedContract;
+	}
 
 	public ServiceDomain createServiceDomain(String name, String namespace) {
 		ServiceDomain serviceDomain = new ServiceDomain();
@@ -176,6 +187,7 @@ public class TestUtil {
 	}
 
 	public void deleteAll() {
+		installedContractRepository.deleteAll();
 		cooperationRepository.deleteAll();
 		serviceProductionRepository.deleteAll();
 		serviceProducerRepository.deleteAll();

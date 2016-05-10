@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.domain.Cooperation;
+import se.skltp.cooperation.domain.InstalledContract;
 import se.skltp.cooperation.domain.LogicalAddress;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.domain.ServiceContract;
@@ -39,6 +40,7 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.repository.CooperationRepository;
+import se.skltp.cooperation.repository.InstalledContractRepository;
 import se.skltp.cooperation.repository.LogicalAddressRepository;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.repository.ServiceContractRepository;
@@ -72,6 +74,8 @@ public class DatabaseLoader {
 	private  ServiceProductionRepository serviceProductionRepository;
 	@Autowired
 	private  ServiceDomainRepository serviceDomainRepository;
+	@Autowired
+	private  InstalledContractRepository installedContractRepository;
 
 	private LogicalAddress ei_logicalAddress;
 	private ServiceProducer ei_update_producer;
@@ -182,10 +186,21 @@ public class DatabaseLoader {
 		ei_contract.setMinor(0);
 		ei_contract.setServiceDomain(serviceDomain_ei);
 		serviceContractRepository.save(ei_contract);
+		
 
 	}
 
 	private void loadTAKData(ConnectionPoint connectionPoint) {
+		
+		InstalledContract installedContract = new InstalledContract();
+		installedContract.setConnectionPoint(connectionPoint);
+		installedContract.setServiceContract(ei_contract);
+		installedContractRepository.save(installedContract);
+
+		 installedContract = new InstalledContract();
+		installedContract.setConnectionPoint(connectionPoint);
+		installedContract.setServiceContract(ei_update_contract);
+		installedContractRepository.save(installedContract);
 
 		ServiceProduction ei_update_production = new ServiceProduction();
 		ei_update_production.setRivtaProfile("RIVTABP21");
