@@ -44,6 +44,7 @@ println "START! Create " + suffix + " tables in cooperation database"
 
 db.execute "DROP TABLE IF EXISTS serviceproduction" + suffix
 db.execute "DROP TABLE IF EXISTS cooperation" + suffix
+db.execute "DROP TABLE IF EXISTS installedcontract" + suffix
 db.execute "DROP TABLE IF EXISTS connectionpoint" + suffix
 db.execute "DROP TABLE IF EXISTS serviceconsumer" + suffix
 db.execute "DROP TABLE IF EXISTS servicecontract" + suffix
@@ -142,6 +143,16 @@ db.execute "CREATE TABLE cooperation" + suffix + " (  \
   CONSTRAINT FK_cooperation_4" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8"
 
+db.execute "CREATE TABLE installedcontract" + suffix + " (  \
+  id bigint(20) NOT NULL AUTO_INCREMENT,  \
+  connection_point_id bigint(20) DEFAULT NULL,  \
+  service_contract_id bigint(20) DEFAULT NULL,  \
+  PRIMARY KEY (id),  \
+  KEY IX_installedcontract_1 (connection_point_id),  \
+  KEY IX_installedcontract_2 (service_contract_id),  \
+  CONSTRAINT FK_installedcontract_1" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
+  CONSTRAINT FK_installedcontract_2" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8"
 
 println "******* END  *****************************************************"
 println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))

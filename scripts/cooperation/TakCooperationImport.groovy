@@ -121,6 +121,29 @@ def cooperation(db, inputJSON, platform, environment){
 	}
 }
 
+def installedContract(db, inputJSON, platform, environment){
+	inputJSON.data.tjanstekontrakt.each{
+
+		if(db.firstRow(
+			"SELECT * FROM installedcontract_new ic, servicecontract_new sc, connectionpoint_new cp \
+                WHERE ic.service_contract_id = sc.id \
+                AND ic.connection_point_id = cp.id \
+                AND sc.namespace = $it.namnrymd \
+                AND cp.environment = $environment \
+                AND cp.platform = $platform") == null){
+
+			db.executeInsert \
+                "insert into installedcontract_new(connection_point_id, service_contract_id) \
+                    select c.id, contract.id \
+                    from \
+                        (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c, \
+                         (SELECT id FROM servicecontract_new WHERE namespace = $it.namnrymd) as contract"
+		}else{
+			println "INFO: InstalledContract_new for serviceContract $it already exist"
+		}
+	}
+}
+
 def serviceProduction(db, inputJSON, platform, environment){
 	inputJSON.data.vagval.each{
 
@@ -172,6 +195,7 @@ def clearDatabase(db) {
 	db.execute "delete from serviceproducer"
 	db.execute "delete from serviceproduction"
 	db.execute "delete from servicedomain"
+	db.execute "delete from installedcontract"
 	db.execute 'SET REFERENTIAL_INTEGRITY TRUE'
 	println ''
 	println 'Database is cleared'
@@ -244,6 +268,7 @@ directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 	serviceProducer(db, inputJSON)
 	cooperation(db, inputJSON, platform, environment)
 	serviceProduction(db, inputJSON, platform, environment)
+	installedContract(db, inputJSON, platform, environment)
 
 	println "******* END IMPORT FILE $it.name *****************************************************"
 	println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))

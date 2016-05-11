@@ -38,6 +38,7 @@ println "START! Rename tables in cooperation database"
 
 db.execute "DROP TABLE IF EXISTS serviceproduction_old"
 db.execute "DROP TABLE IF EXISTS cooperation_old"
+db.execute "DROP TABLE IF EXISTS installedcontract_old"
 db.execute "DROP TABLE IF EXISTS connectionpoint_old"
 db.execute "DROP TABLE IF EXISTS serviceconsumer_old"
 db.execute "DROP TABLE IF EXISTS servicecontract_old"
@@ -53,6 +54,7 @@ db.execute "ALTER TABLE cooperation.servicecontract RENAME TO  cooperation.servi
 db.execute "ALTER TABLE cooperation.serviceproducer RENAME TO  cooperation.serviceproducer_old"
 db.execute "ALTER TABLE cooperation.logicaladdress RENAME TO  cooperation.logicaladdress_old"
 db.execute "ALTER TABLE cooperation.servicedomain RENAME TO  cooperation.servicedomain_old"
+db.execute "ALTER TABLE cooperation.installedcontract RENAME TO  cooperation.installedcontract_old"
 
 db.execute "ALTER TABLE cooperation.serviceproduction_new RENAME TO  cooperation.serviceproduction"
 db.execute "ALTER TABLE cooperation.cooperation_new RENAME TO  cooperation.cooperation"
@@ -62,6 +64,7 @@ db.execute "ALTER TABLE cooperation.servicecontract_new RENAME TO  cooperation.s
 db.execute "ALTER TABLE cooperation.serviceproducer_new RENAME TO  cooperation.serviceproducer"
 db.execute "ALTER TABLE cooperation.logicaladdress_new RENAME TO  cooperation.logicaladdress"
 db.execute "ALTER TABLE cooperation.servicedomain_new RENAME TO  cooperation.servicedomain"
+db.execute "ALTER TABLE cooperation.installedcontract_new RENAME TO  cooperation.installedcontract"
 
 
 println "******* END  *****************************************************"
