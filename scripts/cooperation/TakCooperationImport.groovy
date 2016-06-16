@@ -70,22 +70,38 @@ def serviceDomain(db, inputJSON){
 	}
 }
 
-def serviceConsumer(db, inputJSON){
+def serviceConsumer(db, inputJSON, platform, environment){
 	inputJSON.data.tjanstekonsument.each{
 
-		if(db.firstRow("SELECT * FROM serviceconsumer_new WHERE hsa_id = $it.hsaId") == null){
-			db.executeInsert "insert into serviceconsumer_new(hsa_id, description)  values($it.hsaId, $it.beskrivning)"
+		if(db.firstRow(
+		    "SELECT * FROM serviceconsumer_new s, connectionpoint_new cp \
+		    WHERE s.connection_point_id = cp.id \
+		    AND s.hsa_id = $it.hsaId \
+		    AND cp.environment = $environment \
+            AND cp.platform = $platform") == null){
+			db.executeInsert \
+			        "insert into serviceconsumer_new(hsa_id, description, connection_point_id) \
+			         select $it.hsaId, $it.beskrivning, c.id  \
+			         from (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c"   \
 		}else{
 			println "INFO: Serviceconsumer $it already exist"
 		}
 	}
 }
 
-def serviceProducer(db, inputJSON){
+def serviceProducer(db, inputJSON, platform, environment){
 	inputJSON.data.tjansteproducent.each{
 
-		if(db.firstRow("SELECT * FROM serviceproducer_new WHERE hsa_id = $it.hsaId") == null){
-			db.executeInsert "insert into serviceproducer_new(hsa_id, description)  values($it.hsaId, $it.beskrivning)"
+		if(db.firstRow(
+		    "SELECT * FROM serviceproducer_new s, connectionpoint_new cp \
+		    WHERE s.connection_point_id = cp.id \
+		    AND s.hsa_id = $it.hsaId \
+		    AND cp.environment = $environment \
+            AND cp.platform = $platform") == null){
+			db.executeInsert \
+			        "insert into serviceproducer_new(hsa_id, description, connection_point_id) \
+			         select $it.hsaId, $it.beskrivning, c.id  \
+			         from (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c"   \
 		}else{
 			println "INFO: Serviceproducer $it already exist"
 		}
@@ -264,8 +280,8 @@ directory.eachFileMatch(FileType.FILES, ~/.*json/) {
 	logicalAddress(db, inputJSON)
 	serviceDomain(db, inputJSON)
 	serviceContract(db, inputJSON)
-	serviceConsumer(db, inputJSON)
-	serviceProducer(db, inputJSON)
+	serviceConsumer(db, inputJSON, platform, environment)
+	serviceProducer(db, inputJSON, platform, environment)
 	cooperation(db, inputJSON, platform, environment)
 	serviceProduction(db, inputJSON, platform, environment)
 	installedContract(db, inputJSON, platform, environment)

@@ -45,10 +45,10 @@ println "START! Create " + suffix + " tables in cooperation database"
 db.execute "DROP TABLE IF EXISTS serviceproduction" + suffix
 db.execute "DROP TABLE IF EXISTS cooperation" + suffix
 db.execute "DROP TABLE IF EXISTS installedcontract" + suffix
-db.execute "DROP TABLE IF EXISTS connectionpoint" + suffix
 db.execute "DROP TABLE IF EXISTS serviceconsumer" + suffix
 db.execute "DROP TABLE IF EXISTS servicecontract" + suffix
 db.execute "DROP TABLE IF EXISTS serviceproducer" + suffix
+db.execute "DROP TABLE IF EXISTS connectionpoint" + suffix
 db.execute "DROP TABLE IF EXISTS logicaladdress" + suffix
 db.execute "DROP TABLE IF EXISTS servicedomain" + suffix
 
@@ -72,8 +72,10 @@ db.execute "CREATE TABLE serviceconsumer" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   description varchar(255) DEFAULT NULL,  \
   hsa_id varchar(255) DEFAULT NULL,  \
+  connection_point_id bigint(20) DEFAULT NULL,  \
   PRIMARY KEY (id),  \
-  UNIQUE KEY UK_serviceconsumer_1 (hsa_id)  \
+  KEY IX_serviconsumer_1 (connection_point_id),  \
+  CONSTRAINT FK_serviceconsumer_1" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
 
@@ -101,8 +103,10 @@ db.execute "CREATE TABLE serviceproducer" + suffix + " (  \
   id bigint(20) NOT NULL AUTO_INCREMENT,  \
   description varchar(255) DEFAULT NULL,  \
   hsa_id varchar(255) DEFAULT NULL,  \
+  connection_point_id bigint(20) DEFAULT NULL,  \
   PRIMARY KEY (id),  \
-  UNIQUE KEY UK_serviceproducer_1 (hsa_id)  \
+  KEY IX_serviceproducer_1 (connection_point_id),  \
+  CONSTRAINT FK_serviceproducer_1" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
 
