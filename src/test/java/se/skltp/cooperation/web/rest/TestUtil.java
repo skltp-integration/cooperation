@@ -98,10 +98,11 @@ public class TestUtil {
 		return connectionPoint;
 	}
 
-	public ServiceConsumer createServiceConsumer(String description, String hsaId) {
+	public ServiceConsumer createServiceConsumer(String description, String hsaId, ConnectionPoint connectionPoint) {
 		ServiceConsumer serviceConsumer = new ServiceConsumer();
 		serviceConsumer.setDescription(description);
 		serviceConsumer.setHsaId(hsaId);
+		serviceConsumer.setConnectionPoint(connectionPoint);
 		serviceConsumerRepository.save(serviceConsumer);
 		return serviceConsumer;
 	}
@@ -178,10 +179,11 @@ public class TestUtil {
 		return serviceDomain;
 	}
 
-	public ServiceProducer createServiceProducer(String description, String hsaId) {
+	public ServiceProducer createServiceProducer(String description, String hsaId, ConnectionPoint connectionPoint) {
 		ServiceProducer serviceProducer = new ServiceProducer();
 		serviceProducer.setDescription(description);
 		serviceProducer.setHsaId(hsaId);
+		serviceProducer.setConnectionPoint(connectionPoint);
 		serviceProducerRepository.save(serviceProducer);
 		return serviceProducer;
 	}
@@ -191,11 +193,11 @@ public class TestUtil {
 		cooperationRepository.deleteAll();
 		serviceProductionRepository.deleteAll();
 		serviceProducerRepository.deleteAll();
-		connectionPointRepository.deleteAll();
 		logicalAddressRepository.deleteAll();
 		serviceConsumerRepository.deleteAll();
 		serviceContractRepository.deleteAll();
 		serviceDomainRepository.deleteAll();
+		connectionPointRepository.deleteAll();
 
 	}
 

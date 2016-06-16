@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "Etablerad samverkan i vården",
-        "description": "Information om tjänster, producenter och konsumenter baserad på tjänsteaddresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida konfigurations-ändringar syns inte i api:et, enbart hur det ser ut just nu. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i hsa-trädet, och avser alla noder därunder. Detta speglas rakt av i api:et, hsa-trädet evalueras inte här. De tekniska id-begrepper på alla objekt genereras om en gång per dygn, de garanteras alltså inte ha samma värde två dagar i rad. Det kan behöva anges en api-nyckel för att accessa api:et.",
+        "description": "Information om tjänster, producenter och konsumenter baserad på tjänsteaddresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida konfigurations-ändringar syns inte i api:et, enbart hur det ser ut just nu. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i hsa-trädet, och avser alla noder därunder. Detta speglas rakt av i api:et, hsa-trädet evalueras inte här. De tekniska id-begrepper på alla objekt genereras om en gång per dygn, de garanteras alltså inte ha samma värde två dagar i rad. Applikationer bör skrivas så de inet är beroende av de tekniska nycklarna. Varje resurs har sin egen nummerserie för de tekniska id-begreppen. Det kan behöva anges en api-nyckel för att accessa api:et.",
         "version": "1.1.0"
     },
     "basePath": "/coop/api/v1",
@@ -124,12 +124,12 @@
         "/serviceConsumers": {
             "get": {
                 "summary": "Service Consumer - tjänstekonsument",
-                "description": "Alla tjänstekonsumenter. En konsument identifieras versamhetsmässigt av hsa-id. Olika förekomster av konsumenter som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt. Däremot är det inte garanterat att ett konsumerande system har samma hsa-id i olika staging-miljöer, det kan bli två olika objekt i detta api även om man logiskt sett kan tycka att de är samma system. \n",
+                "description": "Alla tjänstekonsumenter. En konsument identifieras versamhetsmässigt av hsa-id. En förekomster av konsument i detta api representerar en konsument i en instans instanser av tjänsteplattformen. slås ihop till ett objekt. Samma hsa-id kan alltså förekomma i mer är ett objekt.  \n",
                 "parameters": [
                     {
                         "name": "connectionPointId",
                         "in": "query",
-                        "description": "Filtrerar bara tjänstekonsumenter som har någon samverkan konfigurerad i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.",
+                        "description": "Filtrerar bara tjänstekonsumenter som hör till den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.",
                         "required": false,
                         "type": "number",
                         "format": "long"
@@ -612,19 +612,19 @@
         "/serviceProducers": {
             "get": {
                 "summary": "Service Producer - tjänsteproducent",
-                "description": "Alla tjänsteproducenter. En producent identifieras verksamhetsmässigt av hsa-id. Olika förekomster av producenter som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt. Däremot är det inte garanterat att ett producerande system har samma hsa-id i olika staging-miljöer, det kan bli två olika objekt i detta api även om man logiskt sett kan tycka att de är samma system. \n",
+                "description": "Alla tjänsteproducenter. En producent identifieras verksamhetsmässigt av hsa-id. En förekomster av detta objet representerar en producent i en instans av tjänsteplattformen. Innebär att samma hsa-id kan förekomma på två objekt. \n",
                 "parameters": [
                     {
                         "name": "hsaId",
                         "in": "query",
-                        "description": "Sök bara tjänsteproducenter som har angivet hsaId. Bör bara ge en träff i listan.",
+                        "description": "Sök bara tjänsteproducenter som har angivet hsaId.",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "connectionPointId",
                         "in": "query",
-                        "description": "Filtrerar bara tjänsteproducenter som publiserar någon tjänst någon i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.",
+                        "description": "Filtrerar bara tjänsteproducenter som hör till den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.",
                         "required": false,
                         "type": "number",
                         "format": "long"

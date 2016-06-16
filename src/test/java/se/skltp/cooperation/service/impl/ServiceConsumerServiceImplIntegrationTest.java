@@ -81,8 +81,8 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
-		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1");
-		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2");
+		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
+		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2",connectionPoint2);
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
 		logicalAddress3 = util.createLogicalAddress("description3", "adress3");
@@ -96,8 +96,8 @@ public class ServiceConsumerServiceImplIntegrationTest {
 				serviceConsumer2);
 		cooperation4 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer2);
-		serviceProducer1 = util.createServiceProducer("description", "hsaId1");
-		serviceProducer2 = util.createServiceProducer("description", "hsaId2");
+		serviceProducer1 = util.createServiceProducer("description", "hsaId1",connectionPoint1);
+		serviceProducer2 = util.createServiceProducer("description", "hsaId2",connectionPoint2);
 		serviceProduction1 = util.createServiceProduction("rivtaProfile", "physicalAdress",
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);
 		serviceProduction2 = util.createServiceProduction("rivtaProfile", "physicalAdress",
@@ -124,7 +124,7 @@ public class ServiceConsumerServiceImplIntegrationTest {
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(connectionPoint1.getId(),
 				null, null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
-		assertEquals(2, result.size());
+		assertEquals(1, result.size());
 
 		criteria = new ServiceConsumerCriteria(connectionPoint2.getId(), null, null, null);
 		result = uut.findAll(criteria);

@@ -80,8 +80,8 @@ public class LogicalAdressServiceImplIntegrationTest {
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
-		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1");
-		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2");
+		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
+		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2",connectionPoint2);
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);
@@ -92,8 +92,8 @@ public class LogicalAdressServiceImplIntegrationTest {
 		cooperation2 = util.createCooperation(connectionPoint2, logicalAddress2, serviceContract2,
 				serviceConsumer2);
 
-		serviceProducer1 = util.createServiceProducer("description1", "hsaId1");
-		serviceProducer2 = util.createServiceProducer("description2", "hsaId2");
+		serviceProducer1 = util.createServiceProducer("description1", "hsaId1",connectionPoint1);
+		serviceProducer2 = util.createServiceProducer("description2", "hsaId2",connectionPoint2);
 
 		serviceProduction1 = util.createServiceProduction("rivTa1", "physicalAdress1",
 				connectionPoint1, logicalAddress1, serviceProducer2, serviceContract1);

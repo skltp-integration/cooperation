@@ -73,12 +73,12 @@ public class ConnectionPointServiceImplIntegrationTest {
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
-		serviceConsumer1 = util.createServiceConsumer("description", "hsaId");
+		serviceConsumer1 = util.createServiceConsumer("description", "hsaId", connectionPoint1);
 		logicalAddress1 = util.createLogicalAddress("","");
 		serviceContract1 = util.createServiceContract("name", "namespace", 0, 0);
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer1);
-		serviceProducer1 = util.createServiceProducer("description", "hsaId"); 
+		serviceProducer1 = util.createServiceProducer("description", "hsaId", connectionPoint1); 
 		serviceProduction1 = util.createServiceProduction("rivtaProfile", "physicalAdress",
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);
 	}

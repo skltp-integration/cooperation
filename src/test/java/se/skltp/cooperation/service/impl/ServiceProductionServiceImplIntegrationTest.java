@@ -90,8 +90,8 @@ public class ServiceProductionServiceImplIntegrationTest {
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0,serviceDomain1);
 		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain2);
 
-		serviceProducer1 = util.createServiceProducer("description1", "hsaId1");
-		serviceProducer2 = util.createServiceProducer("description2", "hsaId2");
+		serviceProducer1 = util.createServiceProducer("description1", "hsaId1",connectionPoint1);
+		serviceProducer2 = util.createServiceProducer("description2", "hsaId2",connectionPoint2);
 
 		serviceProduction1 = util.createServiceProduction("rivTa1", "physicalAdress1",
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);

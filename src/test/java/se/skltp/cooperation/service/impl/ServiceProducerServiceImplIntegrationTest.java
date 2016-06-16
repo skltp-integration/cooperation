@@ -80,8 +80,8 @@ public class ServiceProducerServiceImplIntegrationTest {
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
-		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1");
-		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2");
+		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
+		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2",connectionPoint2);
 		
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
@@ -92,8 +92,8 @@ public class ServiceProducerServiceImplIntegrationTest {
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress2, serviceContract2,
 				serviceConsumer2);
 
-		serviceProducer1 = util.createServiceProducer("description1", "hsaId1");
-		serviceProducer2 = util.createServiceProducer("description2", "hsaId2");
+		serviceProducer1 = util.createServiceProducer("description1", "hsaId1",connectionPoint1);
+		serviceProducer2 = util.createServiceProducer("description2", "hsaId2",connectionPoint2);
 
 		serviceProduction1 = util.createServiceProduction("rivTa1", "physicalAdress1",
 				connectionPoint1, logicalAddress1, serviceProducer2, serviceContract1);
@@ -137,7 +137,7 @@ public class ServiceProducerServiceImplIntegrationTest {
 		criteria = new ServiceProducerCriteria(null, connectionPoint2.getId(), null, null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceProducer1.getId(), result.get(0).getId());
+		assertEquals(serviceProducer2.getId(), result.get(0).getId());
 	}
 
 	@Test
