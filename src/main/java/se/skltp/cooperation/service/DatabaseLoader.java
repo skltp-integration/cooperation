@@ -243,8 +243,8 @@ public class DatabaseLoader {
 
 			ServiceProduction producer2_production = new ServiceProduction();
 			producer2_production.setRivtaProfile("RIVTABP21");
-			producer2_production.setPhysicalAddress("http://"
-					+ connectionPoint.getEnvironment() + "/producer2/ProcessNotification/v1");
+			producer2_production.setPhysicalAddress(
+					connectionPoint.getEnvironment() + "123455678/");
 			producer2_production.setConnectionPoint(connectionPoint);
 			producer2_production
 					.setLogicalAddress(producer2_logicalAddress);
