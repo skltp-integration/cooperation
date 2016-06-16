@@ -20,6 +20,11 @@
  */
 package se.skltp.cooperation.domain;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +32,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A ConnectionPoint.
@@ -63,6 +63,12 @@ public class ConnectionPoint implements Serializable {
 
 	@OneToMany(mappedBy = "connectionPoint")
 	private Set<InstalledContract> installedContracts = new HashSet<>();
+
+	@OneToMany(mappedBy = "connectionPoint")
+	private Set<ServiceConsumer> serviceConsumers = new HashSet<>();
+
+	@OneToMany(mappedBy = "connectionPoint")
+	private Set<ServiceProducer> serviceProducers = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -119,5 +125,22 @@ public class ConnectionPoint implements Serializable {
 	public void setInstalledContracts(Set<InstalledContract> installedContracts) {
 		this.installedContracts = installedContracts;
 	}
+
+	public Set<ServiceConsumer> getServiceConsumers() {
+		return serviceConsumers;
+	}
+
+	public void setServiceConsumers(Set<ServiceConsumer> serviceConsumers) {
+		this.serviceConsumers = serviceConsumers;
+	}
+
+	public Set<ServiceProducer> getServiceProducers() {
+		return serviceProducers;
+	}
+
+	public void setServiceProducers(Set<ServiceProducer> serviceProducers) {
+		this.serviceProducers = serviceProducers;
+	}
+	
 
 }

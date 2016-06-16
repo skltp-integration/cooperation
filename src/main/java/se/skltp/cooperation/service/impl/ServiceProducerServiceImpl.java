@@ -81,7 +81,7 @@ public class ServiceProducerServiceImpl implements
 					.eq(criteria.getLogicalAddressId()));
 		}
 		if (criteria.getConnectionPointId() != null) {
-			builder.and(QServiceProducer.serviceProducer.serviceProductions.any().connectionPoint.id
+			builder.and(QServiceProducer.serviceProducer.connectionPoint.id
 					.eq(criteria.getConnectionPointId()));
 		}
 		if (criteria.getServiceConsumerId() != null) {

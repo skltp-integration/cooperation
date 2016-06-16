@@ -76,7 +76,7 @@ public class ConnectionPointServiceImpl implements ConnectionPointService {
 			builder.and(QConnectionPoint.connectionPoint.environment.eq(criteria.getEnvironment()));
 		}
 		if (criteria.getServiceConsumerId() != null) {
-			builder.and(QConnectionPoint.connectionPoint.cooperations.any().serviceConsumer.id
+			builder.and(QConnectionPoint.connectionPoint.serviceConsumers.any().id
 					.eq(criteria.getServiceConsumerId()));
 		}
 		if (criteria.getLogicalAddressId() != null) {
@@ -88,7 +88,7 @@ public class ConnectionPointServiceImpl implements ConnectionPointService {
 					.eq(criteria.getServiceContractId()));
 		}
 		if (criteria.getServiceProducerId() != null) {
-			builder.and(QConnectionPoint.connectionPoint.serviceProductions.any().serviceProducer.id
+			builder.and(QConnectionPoint.connectionPoint.serviceProducers.any().id
 					.eq(criteria.getServiceProducerId()));
 		}
 		return builder.getValue();

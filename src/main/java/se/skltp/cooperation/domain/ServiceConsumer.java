@@ -25,8 +25,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,11 +49,14 @@ public class ServiceConsumer implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "hsa_id", unique = true)
+	@Column(name = "hsa_id")
 	private String hsaId;
 
 	@OneToMany(mappedBy = "serviceConsumer")
 	private Set<Cooperation> cooperations = new HashSet<>();
+
+	@ManyToOne
+	private ConnectionPoint connectionPoint;
 
 	public Long getId() {
 		return id;
@@ -83,6 +88,14 @@ public class ServiceConsumer implements Serializable {
 
 	public void setCooperations(Set<Cooperation> cooperations) {
 		this.cooperations = cooperations;
+	}
+
+	public ConnectionPoint getConnectionPoint() {
+		return connectionPoint;
+	}
+
+	public void setConnectionPoint(ConnectionPoint connectionPoint) {
+		this.connectionPoint = connectionPoint;
 	}
 
 }

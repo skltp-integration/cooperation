@@ -75,7 +75,7 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 	Predicate buildPredicate(ServiceConsumerCriteria criteria) {
 		BooleanBuilder builder = new BooleanBuilder();
 		if (criteria.getConnectionPointId() != null) {
-			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().connectionPoint.id
+			builder.and(QServiceConsumer.serviceConsumer.connectionPoint.id
 					.eq(criteria.getConnectionPointId()));
 		}
 		if (criteria.getLogicalAddressId() != null) {
