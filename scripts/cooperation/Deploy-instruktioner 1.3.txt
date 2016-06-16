@@ -1,0 +1,19 @@
+
+Uppgradering till cooperation 1.3.0
+----------
+1 Uppdatera scripten CreateNewTables och TakCooperationImport.groovy
+
+2 Kör cooperation-import-from-tak.sh som exekverar tre groovy-script som skapar nya tabeller, laddar in filer och döper om tabellerna
+
+3. Deploya den nya WAR-filen i Tomcat
+
+4. Starta om
+
+5. Verifiera deployment
+
+Öppna webläsare 
+url-till-tomcat[:port]/coop/api/v1/connectionPoints?api_key=abcd
+
+Skall ge en xml-utskrift
+
+6. Klart
