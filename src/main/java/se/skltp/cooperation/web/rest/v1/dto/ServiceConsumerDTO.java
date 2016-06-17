@@ -37,6 +37,16 @@ public class ServiceConsumerDTO {
 	private String description;
 	private String hsaId;
 
+	private ConnectionPointDTO connectionPoint;
+
+	public ConnectionPointDTO getConnectionPoint() {
+		return connectionPoint;
+	}
+
+	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
+		this.connectionPoint = connectionPoint;
+	}
+
 	public Long getId() {
 		return id;
 	}

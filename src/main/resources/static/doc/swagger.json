@@ -124,7 +124,7 @@
         "/serviceConsumers": {
             "get": {
                 "summary": "Service Consumer - tjänstekonsument",
-                "description": "Alla tjänstekonsumenter. En konsument identifieras versamhetsmässigt av hsa-id. En förekomster av konsument i detta api representerar en konsument i en instans instanser av tjänsteplattformen. slås ihop till ett objekt. Samma hsa-id kan alltså förekomma i mer är ett objekt.  \n",
+                "description": "Alla tjänstekonsumenter. En konsument identifieras versamhetsmässigt av hsa-id. En förekomster av konsument i detta api representerar en konsument i en instans instanser av tjänsteplattformen. slås ihop till ett objekt. Samma hsa-id kan alltså förekomma i mer är ett objekt. Om connectionPoint inte anges som query-parameter så inkluderas connectionPoint till varje objekt i svaret  \n",
                 "parameters": [
                     {
                         "name": "connectionPointId",
@@ -612,7 +612,7 @@
         "/serviceProducers": {
             "get": {
                 "summary": "Service Producer - tjänsteproducent",
-                "description": "Alla tjänsteproducenter. En producent identifieras verksamhetsmässigt av hsa-id. En förekomster av detta objet representerar en producent i en instans av tjänsteplattformen. Innebär att samma hsa-id kan förekomma på två objekt. \n",
+                "description": "Alla tjänsteproducenter. En producent identifieras verksamhetsmässigt av hsa-id. En förekomster av detta objet representerar en producent i en instans av tjänsteplattformen. Innebär att samma hsa-id kan förekomma på två objekt. Om connectionPoint inte anges som query-parameter så inkluderas connectionPoint till varje objekt i svaret \n",
                 "parameters": [
                     {
                         "name": "hsaId",

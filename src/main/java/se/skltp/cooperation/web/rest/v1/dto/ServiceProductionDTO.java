@@ -37,7 +37,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 public class ServiceProductionDTO {
 
 	private Long id;
-    @JsonSerialize(using = HTTPObfuscator.class)
 	private String physicalAddress;
 	private String rivtaProfile;
 

@@ -120,10 +120,13 @@ public class ServiceProducerController {
 
 		ServiceProducerCriteria criteria = new ServiceProducerCriteria(hsaId, connectionPointId,
 				logicalAddressId, serviceContractId, serviceConsumerId);
-		List<ServiceProducer> Producers = serviceProducerService.findAll(criteria);
+		List<ServiceProducer> producers = serviceProducerService.findAll(criteria);
 		List<ServiceProducerDTO> result = new ArrayList<>();
-		for (ServiceProducer Producer : Producers) {
-			result.add(toDTO(Producer));
+		for (ServiceProducer producer : producers) {
+			if ( ! (connectionPointId == null)) {
+				producer.setConnectionPoint(null);
+			}
+			result.add(toDTO(producer));
 		}
 		return result;
 	}

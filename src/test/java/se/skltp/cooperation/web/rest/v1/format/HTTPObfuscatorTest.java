@@ -31,7 +31,7 @@ public class HTTPObfuscatorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		uut = new HTTPObfuscator();
+		uut = new HTTPObfuscatorImpl();
 
 	}
 

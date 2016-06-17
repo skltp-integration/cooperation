@@ -127,6 +127,9 @@ public class ServiceConsumerController {
 
 		List<ServiceConsumerDTO> result = new ArrayList<>();
 		for (ServiceConsumer consumer : consumers) {
+			if ( ! (connectionPointId == null)) {
+				consumer.setConnectionPoint(null);
+			}
 			result.add(toDTO(consumer));
 		}
 		return result;

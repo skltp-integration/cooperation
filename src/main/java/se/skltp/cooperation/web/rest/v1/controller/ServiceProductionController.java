@@ -39,6 +39,7 @@ import se.skltp.cooperation.service.ServiceProductionCriteria;
 import se.skltp.cooperation.service.ServiceProductionService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceProductionDTO;
+import se.skltp.cooperation.web.rest.v1.format.HTTPObfuscator;
 import se.skltp.cooperation.web.rest.v1.listdto.ServiceProductionListDTO;
 
 import com.google.common.base.Splitter;
@@ -54,21 +55,22 @@ import com.google.common.base.Splitter;
 public class ServiceProductionController {
 
 	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
-	public static String INCLUDE_SERVICEPRODUCER = "serviceProducer";
-	public static String INCLUDE_SERVICECONTRACT = "serviceContract";
-	public static String INCLUDE_CONNECTIONPOINT = "connectionPoint";
-	public static String INCLUDE_LOGICALADDRESS = "logicalAddress";
+	private static final String INCLUDE_PHYSICAL_ADRESS = "physicalAdress";
+	public static final String INCLUDE_SERVICEPRODUCER = "serviceProducer";
+	public static final String INCLUDE_SERVICECONTRACT = "serviceContract";
+	public static final String INCLUDE_CONNECTIONPOINT = "connectionPoint";
+	public static final String INCLUDE_LOGICALADDRESS = "logicalAddress";
 
 	private final Logger log = LoggerFactory.getLogger(ServiceProductionController.class);
-	private final ServiceProductionService serviceProductionService;
-	private final DozerBeanMapper mapper;
+	
+	@Autowired
+	private  ServiceProductionService serviceProductionService;
+	
+	@Autowired
+	private  DozerBeanMapper mapper;
 
 	@Autowired
-	public ServiceProductionController(ServiceProductionService serviceProductionService,
-			DozerBeanMapper mapper) {
-		this.serviceProductionService = serviceProductionService;
-		this.mapper = mapper;
-	}
+	HTTPObfuscator httpObfuscator;
 
 	/**
 	 * GET /serviceProductions -> get all the serviceProductions. Content type:
@@ -169,6 +171,8 @@ public class ServiceProductionController {
 				serviceProduction.setServiceProducer(null);
 			if (!includes.contains(INCLUDE_SERVICECONTRACT))
 				serviceProduction.setServiceContract(null);
+			if (!includes.contains(INCLUDE_PHYSICAL_ADRESS))
+				serviceProduction.setPhysicalAddress(httpObfuscator.obfuscate(serviceProduction.getPhysicalAddress()));;
 		}
 	}
 

@@ -110,8 +110,8 @@ public class LogicalAddressController {
 
 		LogicalAddress cp = logicalAddressService.find(id);
 		if (cp == null) {
-			log.debug("Connection point with id {} not found", id);
-			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
+			log.debug("Logical Adress with id {} not found", id);
+			throw new ResourceNotFoundException("Logical Adress with id " + id + " not found");
 		}
 		return toDTO(cp);
 	}
@@ -122,14 +122,14 @@ public class LogicalAddressController {
 				serviceContractId,  connectionPointId,  serviceProducerId);
 		List<LogicalAddress> logicalAddresss = logicalAddressService.findAll(criteria);
 		List<LogicalAddressDTO> result = new ArrayList<>(); 
-		for (LogicalAddress cp : logicalAddresss) {
-			result.add(toDTO(cp));
+		for (LogicalAddress la : logicalAddresss) {
+			result.add(toDTO(la));
 		}
 		return result;
 	}
 
-	private LogicalAddressDTO toDTO(LogicalAddress cp) {
-		return mapper.map(cp, LogicalAddressDTO.class);
+	private LogicalAddressDTO toDTO(LogicalAddress la) {
+		return mapper.map(la, LogicalAddressDTO.class);
 	}
 
 }
