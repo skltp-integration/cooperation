@@ -117,6 +117,7 @@ def cooperation(db, inputJSON, platform, environment){
                 AND c.service_consumer_id = s.id \
                 AND c.service_contract_id = sc.id \
                 AND c.connection_point_id = cp.id \
+                AND s.connection_point_id = cp.id \
                 AND l.logical_address = $it.relationships.logiskAdress \
                 AND s.hsa_id = $it.relationships.tjanstekonsument \
                 AND sc.namespace = $it.relationships.tjanstekontrakt \
@@ -129,7 +130,10 @@ def cooperation(db, inputJSON, platform, environment){
                     from \
                         (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c, \
                         (SELECT id FROM logicaladdress_new WHERE logical_address = $it.relationships.logiskAdress) as address, \
-                        (SELECT id FROM serviceconsumer_new WHERE hsa_id = $it.relationships.tjanstekonsument) as consumer,\
+                        (SELECT s.id FROM serviceconsumer_new s, connectionpoint_new cp WHERE s.hsa_id = $it.relationships.tjanstekonsument \
+                                   AND s.connection_point_id = cp.id \
+                                   AND cp.environment = $environment \
+                                   AND cp.platform = $platform ) as consumer, \
                         (SELECT id FROM servicecontract_new WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
 		}else{
 			println "INFO: Cooperation for serviceconsumer $it already exist"
@@ -169,6 +173,7 @@ def serviceProduction(db, inputJSON, platform, environment){
                 AND c.service_producer_id = s.id \
                 AND c.service_contract_id = sc.id \
                 AND c.connection_point_id = cp.id \
+                AND s.connection_point_id = cp.id \
                 AND l.logical_address = $it.relationships.logiskadress \
                 AND s.hsa_id = $it.relationships.tjansteproducent \
                 AND sc.namespace = $it.relationships.tjanstekontrakt \
@@ -181,7 +186,10 @@ def serviceProduction(db, inputJSON, platform, environment){
                     from \
                         (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c, \
                         (SELECT id FROM logicaladdress_new WHERE logical_address = $it.relationships.logiskadress) as address, \
-                        (SELECT id FROM serviceproducer_new WHERE hsa_id = $it.relationships.tjansteproducent) as producer,\
+                        (SELECT s.id FROM serviceproducer_new s, connectionpoint_new cp WHERE s.hsa_id = $it.relationships.tjansteproducent \
+                                   AND s.connection_point_id = cp.id \
+                                   AND cp.environment = $environment \
+                                   AND cp.platform = $platform ) as producer, \
                         (SELECT id FROM servicecontract_new WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
 		}else{
 			println "INFO: Serviceproduction already exist $it"
