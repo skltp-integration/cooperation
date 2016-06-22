@@ -55,7 +55,7 @@ import com.google.common.base.Splitter;
 public class ServiceProductionController {
 
 	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
-	private static final String INCLUDE_PHYSICAL_ADRESS = "physicalAdress";
+	private static final String INCLUDE_PHYSICAL_ADDRESS = "physicalAddress";
 	public static final String INCLUDE_SERVICEPRODUCER = "serviceProducer";
 	public static final String INCLUDE_SERVICECONTRACT = "serviceContract";
 	public static final String INCLUDE_CONNECTIONPOINT = "connectionPoint";
@@ -171,7 +171,8 @@ public class ServiceProductionController {
 				serviceProduction.setServiceProducer(null);
 			if (!includes.contains(INCLUDE_SERVICECONTRACT))
 				serviceProduction.setServiceContract(null);
-			if (!includes.contains(INCLUDE_PHYSICAL_ADRESS))
+			// Secret parameter to show complete physicalAddress
+			if (!includes.contains(INCLUDE_PHYSICAL_ADDRESS))
 				serviceProduction.setPhysicalAddress(httpObfuscator.obfuscate(serviceProduction.getPhysicalAddress()));;
 		}
 	}
