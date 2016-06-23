@@ -62,12 +62,12 @@ public class ServiceProductionController {
 	public static final String INCLUDE_LOGICALADDRESS = "logicalAddress";
 
 	private final Logger log = LoggerFactory.getLogger(ServiceProductionController.class);
-	
+
 	@Autowired
-	private  ServiceProductionService serviceProductionService;
-	
+	private ServiceProductionService serviceProductionService;
+
 	@Autowired
-	private  DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 
 	@Autowired
 	HTTPObfuscator httpObfuscator;
@@ -120,15 +120,20 @@ public class ServiceProductionController {
 	 */
 	@RequestMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ServiceProductionDTO get(@PathVariable Long id) {
+	public ServiceProductionDTO get(@PathVariable Long id,
+			@RequestParam(required = false) String include) {
 		log.debug("REST request to get ConnectionPoint : {}", id);
 
-		ServiceProduction coop = serviceProductionService.find(id);
-		if (coop == null) {
+		ServiceProduction serviceProduction = serviceProductionService.find(id);
+		if (serviceProduction == null) {
 			log.debug("ServiceProduction with id {} not found", id);
 			throw new ResourceNotFoundException("ServiceProduction with id " + id + " not found");
 		}
-		return toDTO(coop);
+		if (!INCLUDE_PHYSICAL_ADDRESS.equals(include)) {
+			serviceProduction.setPhysicalAddress(httpObfuscator.obfuscate(serviceProduction
+					.getPhysicalAddress()));
+		}
+		return toDTO(serviceProduction);
 	}
 
 	private List<ServiceProductionDTO> getAll(String physicalAddress, String rivtaProfile,
@@ -138,7 +143,7 @@ public class ServiceProductionController {
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
 			includes.addAll(SPLITTER.splitToList(include));
-		}	
+		}
 
 		ServiceProductionCriteria criteria = new ServiceProductionCriteria(physicalAddress,
 				rivtaProfile, serviceProducerId, logicalAddressId, serviceContractId,
@@ -162,19 +167,18 @@ public class ServiceProductionController {
 	 * @param serviceProduction
 	 */
 	void includeOrNot(List<String> includes, ServiceProduction serviceProduction) {
-		if (includes != null) {
-			if (!includes.contains(INCLUDE_CONNECTIONPOINT))
-				serviceProduction.setConnectionPoint(null);
-			if (!includes.contains(INCLUDE_LOGICALADDRESS))
-				serviceProduction.setLogicalAddress(null);
-			if (!includes.contains(INCLUDE_SERVICEPRODUCER))
-				serviceProduction.setServiceProducer(null);
-			if (!includes.contains(INCLUDE_SERVICECONTRACT))
-				serviceProduction.setServiceContract(null);
-			// Secret parameter to show complete physicalAddress
-			if (!includes.contains(INCLUDE_PHYSICAL_ADDRESS))
-				serviceProduction.setPhysicalAddress(httpObfuscator.obfuscate(serviceProduction.getPhysicalAddress()));;
-		}
+		if (!includes.contains(INCLUDE_CONNECTIONPOINT))
+			serviceProduction.setConnectionPoint(null);
+		if (!includes.contains(INCLUDE_LOGICALADDRESS))
+			serviceProduction.setLogicalAddress(null);
+		if (!includes.contains(INCLUDE_SERVICEPRODUCER))
+			serviceProduction.setServiceProducer(null);
+		if (!includes.contains(INCLUDE_SERVICECONTRACT))
+			serviceProduction.setServiceContract(null);
+		// Secret parameter to show complete physicalAddress
+		if (!includes.contains(INCLUDE_PHYSICAL_ADDRESS))
+			serviceProduction.setPhysicalAddress(httpObfuscator.obfuscate(serviceProduction
+					.getPhysicalAddress()));
 	}
 
 	private ServiceProductionDTO toDTO(ServiceProduction coop) {
