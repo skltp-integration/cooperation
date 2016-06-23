@@ -81,12 +81,11 @@ public class CooperationController {
 			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
 		log.debug("REST request to get all Cooperations as json");
-		
-		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,serviceDomainId,
-				include);
+
+		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,
+				serviceDomainId, include);
 
 	}
-
 
 	/**
 	 * GET /cooperations -> get all cooperations. Content type: XML
@@ -102,7 +101,7 @@ public class CooperationController {
 
 		CooperationListDTO result = new CooperationListDTO();
 		result.setCooperations(getAll(serviceConsumerId, logicalAddressId, serviceContractId,
-				connectionPointId, serviceDomainId,include));
+				connectionPointId, serviceDomainId, include));
 		return result;
 
 	}
@@ -122,14 +121,14 @@ public class CooperationController {
 		}
 		return toDTO(coop);
 	}
-	
+
 	private List<CooperationDTO> getAll(Long serviceConsumerId, Long logicalAddressId,
 			Long serviceContractId, Long connectionPointId, Long serviceDomainId, String include) {
 
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
 			includes.addAll(SPLITTER.splitToList(include));
-		}	
+		}
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,
 				serviceContractId, connectionPointId, serviceDomainId);
@@ -152,15 +151,19 @@ public class CooperationController {
 	 * @param cooperation
 	 */
 	void includeOrNot(List<String> includes, Cooperation cooperation) {
-		if (includes != null) {
-			if (!includes.contains(INCLUDE_CONNECTIONPOINT))
-				cooperation.setConnectionPoint(null);
-			if (!includes.contains(INCLUDE_LOGICALADDRESS))
-				cooperation.setLogicalAddress(null);
-			if (!includes.contains(INCLUDE_SERVICECONSUMER))
-				cooperation.setServiceConsumer(null);
-			if (!includes.contains(INCLUDE_SERVICECONTRACT))
-				cooperation.setServiceContract(null);
+		if (!includes.contains(INCLUDE_CONNECTIONPOINT)){
+			cooperation.setConnectionPoint(null);			
+		}
+		if (!includes.contains(INCLUDE_LOGICALADDRESS)){
+			cooperation.setLogicalAddress(null);			
+		}
+		if (!includes.contains(INCLUDE_SERVICECONSUMER)){
+			cooperation.setServiceConsumer(null);			
+		} else {
+			cooperation.getServiceConsumer().setConnectionPoint(null);
+		}
+		if (!includes.contains(INCLUDE_SERVICECONTRACT)){
+			cooperation.setServiceContract(null);
 		}
 	}
 

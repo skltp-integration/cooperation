@@ -167,14 +167,20 @@ public class ServiceProductionController {
 	 * @param serviceProduction
 	 */
 	void includeOrNot(List<String> includes, ServiceProduction serviceProduction) {
-		if (!includes.contains(INCLUDE_CONNECTIONPOINT))
-			serviceProduction.setConnectionPoint(null);
-		if (!includes.contains(INCLUDE_LOGICALADDRESS))
-			serviceProduction.setLogicalAddress(null);
-		if (!includes.contains(INCLUDE_SERVICEPRODUCER))
-			serviceProduction.setServiceProducer(null);
-		if (!includes.contains(INCLUDE_SERVICECONTRACT))
-			serviceProduction.setServiceContract(null);
+		if (!includes.contains(INCLUDE_CONNECTIONPOINT)){
+			serviceProduction.setConnectionPoint(null);			
+		}
+		if (!includes.contains(INCLUDE_LOGICALADDRESS)){
+			serviceProduction.setLogicalAddress(null);			
+		}
+		if (!includes.contains(INCLUDE_SERVICEPRODUCER)){
+			serviceProduction.setServiceProducer(null);			
+		} else {
+			serviceProduction.getServiceProducer().setConnectionPoint(null);
+		}
+		if (!includes.contains(INCLUDE_SERVICECONTRACT)){
+			serviceProduction.setServiceContract(null);			
+		}
 		// Secret parameter to show complete physicalAddress
 		if (!includes.contains(INCLUDE_PHYSICAL_ADDRESS))
 			serviceProduction.setPhysicalAddress(httpObfuscator.obfuscate(serviceProduction
