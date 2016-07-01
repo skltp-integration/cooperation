@@ -44,4 +44,6 @@ Om IDE är Eclipse generate eclipse .classpath och .project fil genom att köra 
 mvn eclipse:eclipse
 ```
 Sedan importera projekt Import-> Maven project-> ...
-Obs: Ladda ner plugin Spring Tools från eclipse marketplace för att köra Spring Boot från IDE.
+
+### Spring Boot i IDE
+Ladda ner plugin Spring Tools från eclipse marketplace för att köra Spring Boot från IDE.
