@@ -1,11 +1,12 @@
 
-Uppgradering till cooperation 1.3.0
+Uppgradering till cooperation 1.3.1 från valfri tidigare version
 ----------
-1 Uppdatera scripten CreateNewTables och TakCooperationImport.groovy
+1 Uppdatera scripten CreateNewTables.groovy och TakCooperationImport.groovy och ActivateNewVersion.grrovy
 
-2 Kör cooperation-import-from-tak.sh som exekverar tre groovy-script som skapar nya tabeller, laddar in filer och döper om tabellerna
+2 Kör cooperation-import-from-tak.sh som exekverar tre groovy-script som skapar nya tabeller, laddar in filer och döper om tabellerna.
+Kontrollera att inga felutskrifter
 
-3. Deploya den nya WAR-filen i Tomcat
+3. Deploya den nya WAR-filen  1.3.1 i Tomcat
 
 4. Starta om
 
