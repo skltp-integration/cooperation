@@ -38,3 +38,10 @@ Som standalone:
 ```
 curl -X GET 'http://localhost:8080/coop/api/v1/cooperations?include=logicalAddress,connectionPoint'
 ```
+### Utveckling
+Om IDE är Eclipse generate eclipse .classpath och .project fil genom att köra från terminal under projekt:
+```
+mvn eclipse:eclipse
+```
+Sedan importera projekt Import-> Maven project-> ...
+Obs: Ladda ner plugin Spring Tools från eclipse marketplace för att köra Spring Boot från IDE.
