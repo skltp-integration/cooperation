@@ -168,6 +168,22 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+                <groupId>com.ruleoftech</groupId>
+                <artifactId>markdown-page-generator-plugin</artifactId>
+                <version>0.10</version>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+             		<inputDirectory>${project.basedir}/.</inputDirectory>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
