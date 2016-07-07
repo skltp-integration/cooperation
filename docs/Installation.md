@@ -9,6 +9,7 @@
 > - Skapa MySQL-schema "cooperation" och ett konto som kan accessa det.
 
 > - Kör ett groovy-script för initial create av tabeller.
+  - Alla skript filer ligger under ../scripts/cooperation/
 ```
 > groovy CreateNewTables  -url  url-till-cooperation-databasen  -u user -p password
 ```
