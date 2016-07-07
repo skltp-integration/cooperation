@@ -8,6 +8,6 @@ An API for Tjänsteadressering katalog (TAK)
 ***
 
 ## Read More
-* [How To] (docs/Synopsis)
-* [Installation] (docs/Installation)
-* [Upgradation] (docs/Upgrade)
+* [How To] (docs//Synopsis)
+* [Installation] (docs//Installation)
+* [Upgradation] (docs//Upgrade)
