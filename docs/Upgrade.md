@@ -1,6 +1,7 @@
 ### Uppgradering till cooperation 1.3.1 från valfri tidigare version
 
-> - Uppdatera scripten CreateNewTables.groovy och TakCooperationImport.groovy och ActivateNewVersion.grrovy
+> - Uppdatera scripten CreateNewTables.groovy och TakCooperationImport.groovy och ActivateNewVersion.groovy
+  - Alla skript filer ligger under ../scripts/cooperation/
 
 > - Kör cooperation-import-from-tak.sh som exekverar tre groovy-script som skapar nya tabeller, laddar in filer och döper om tabellerna.
 > Kontrollera att inga felutskrifter
