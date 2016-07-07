@@ -20,6 +20,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
 		<jsonpath.version>0.9.1</jsonpath.version>
 		<querydsl.version>3.6.5</querydsl.version>
@@ -104,7 +105,7 @@
 	</dependencies>
 
 	<build>
-
+		<finalName>cooperation-${project.version}</finalName>
 			<pluginManagement>
 			<plugins>
 				<plugin>
@@ -215,6 +216,23 @@
                 </execution>
             </executions>
         </plugin>
+		<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.5</version>
+                <configuration>
+                    <descriptor>src/assembly/zip.xml</descriptor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 
