@@ -17,6 +17,12 @@
 > mvn clean package
 ```
 
+> Under /target kommer skapas ett paket (cooperation-x.x.x.bin.zip) som innehåller:
+> - scripts (cooperation-import* script)
+  - Under scripts finns en fil som talar om version (version.info)
+> - war paket (.war fil)
+  - Version info finns under META-INF/MANIFEST.MF 
+
 ### Starta Applikationen
 Med  Maven:
 ```
