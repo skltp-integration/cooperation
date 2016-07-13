@@ -11,7 +11,7 @@
 > - Kör ett groovy-script för initial create av tabeller.
   - Alla skript filer ligger under ../scripts/cooperation/
 ```
-> groovy CreateNewTables  -url  url-till-cooperation-databasen  -u user -p password
+> groovy CreateNewTables.groovy  -url  url-till-cooperation-databasen  -u user -p password
 ```
 
 > - Skapa en katalog där inputfilerna (tak-exporter från olika miljöer som skall komma via sftp/scp) skall ligga - input-file-dir.
