@@ -18,9 +18,10 @@ def transformFile(File infile) {
     if (!infile.renameTo(originalInFilename + ".original.before.transform")) {
         throw new IOException("Could not rename file: " + originalInFilename)
     }
-    
-    transformJson(inJsonRoot, outJsonRoot)
-
+	// only files from new format needs transformation
+    if (inJsonRoot.utforare && inJsonRoot.utforare.equalsIgnoreCase("TakExport script")) {
+		transformJson(inJsonRoot, outJsonRoot)
+	}
     new File(originalInFilename).write(JsonOutput.prettyPrint(JsonOutput.toJson(outJsonRoot)))
 }
 
