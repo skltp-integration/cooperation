@@ -36,8 +36,12 @@ def suffix = opt.s ? opt.s : ''
 //Cooperation db settings
 def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
 
+def tstamp(){
+	return new Date().format( 'ddHHmm' )
+}
+
 def random(){
-	return String.valueOf(Math.random()).split("0.")[1]
+	return String.valueOf(Math.random()).split("0\.")[1]
 }
 
 println "START! Create " + suffix + " tables in cooperation database"
@@ -75,7 +79,7 @@ db.execute "CREATE TABLE serviceconsumer" + suffix + " (  \
   connection_point_id bigint(20) DEFAULT NULL,  \
   PRIMARY KEY (id),  \
   KEY IX_serviconsumer_1 (connection_point_id),  \
-  CONSTRAINT FK_serviceconsumer_1" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id)  \
+  CONSTRAINT FK_serviceconsumer_1" + tstamp() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
 
@@ -95,7 +99,7 @@ db.execute "CREATE TABLE servicecontract" + suffix + " (  \
   namespace varchar(255) DEFAULT NULL,  \
   service_domain_id bigint(20) DEFAULT NULL,  \
   PRIMARY KEY (id),  \
-  CONSTRAINT FK_servicecontract_1" + random() +" FOREIGN KEY (service_domain_id) REFERENCES servicedomain" + suffix + " (id),  \
+  CONSTRAINT FK_servicecontract_1" + tstamp() +" FOREIGN KEY (service_domain_id) REFERENCES servicedomain" + suffix + " (id),  \
   UNIQUE KEY UK_servicecontract_1 (namespace)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET= utf8"
 
@@ -106,7 +110,7 @@ db.execute "CREATE TABLE serviceproducer" + suffix + " (  \
   connection_point_id bigint(20) DEFAULT NULL,  \
   PRIMARY KEY (id),  \
   KEY IX_serviceproducer_1 (connection_point_id),  \
-  CONSTRAINT FK_serviceproducer_1" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id)  \
+  CONSTRAINT FK_serviceproducer_1" + tstamp() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET= utf8"
 
 
@@ -123,10 +127,10 @@ db.execute "CREATE TABLE serviceproduction" + suffix + " (  \
   KEY IX_serviceproduction_2 (logical_address_id),  \
   KEY IX_serviceproduction_3 (service_contract_id),  \
   KEY IX_serviceproduction_4 (service_producer_id),  \
-  CONSTRAINT FK_serviceproduction_1" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id),  \
-  CONSTRAINT FK_serviceproduction_2" + random() +" FOREIGN KEY (service_producer_id) REFERENCES serviceproducer" + suffix + " (id),  \
-  CONSTRAINT FK_serviceproduction_3" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
-  CONSTRAINT FK_serviceproduction_4" + random() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress" + suffix + " (id)  \
+  CONSTRAINT FK_serviceproduction_1" + tstamp() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id),  \
+  CONSTRAINT FK_serviceproduction_2" + tstamp() +" FOREIGN KEY (service_producer_id) REFERENCES serviceproducer" + suffix + " (id),  \
+  CONSTRAINT FK_serviceproduction_3" + tstamp() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
+  CONSTRAINT FK_serviceproduction_4" + tstamp() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress" + suffix + " (id)  \
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET= utf8"
 
 
@@ -141,10 +145,10 @@ db.execute "CREATE TABLE cooperation" + suffix + " (  \
   KEY IX_cooperation_2 (logical_address_id),  \
   KEY IX_cooperation_3 (service_consumer_id),  \
   KEY IX_cooperation_4 (service_contract_id),  \
-  CONSTRAINT FK_cooperation_1" + random() +" FOREIGN KEY (service_consumer_id) REFERENCES serviceconsumer" + suffix + " (id),  \
-  CONSTRAINT FK_cooperation_2" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
-  CONSTRAINT FK_cooperation_3" + random() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress" + suffix + " (id),  \
-  CONSTRAINT FK_cooperation_4" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
+  CONSTRAINT FK_cooperation_1" + tstamp() +" FOREIGN KEY (service_consumer_id) REFERENCES serviceconsumer" + suffix + " (id),  \
+  CONSTRAINT FK_cooperation_2" + tstamp() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
+  CONSTRAINT FK_cooperation_3" + tstamp() +" FOREIGN KEY (logical_address_id) REFERENCES logicaladdress" + suffix + " (id),  \
+  CONSTRAINT FK_cooperation_4" + tstamp() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8"
 
 db.execute "CREATE TABLE installedcontract" + suffix + " (  \
@@ -154,8 +158,8 @@ db.execute "CREATE TABLE installedcontract" + suffix + " (  \
   PRIMARY KEY (id),  \
   KEY IX_installedcontract_1 (connection_point_id),  \
   KEY IX_installedcontract_2 (service_contract_id),  \
-  CONSTRAINT FK_installedcontract_1" + random() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
-  CONSTRAINT FK_installedcontract_2" + random() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
+  CONSTRAINT FK_installedcontract_1" + tstamp() +" FOREIGN KEY (connection_point_id) REFERENCES connectionpoint" + suffix + " (id),  \
+  CONSTRAINT FK_installedcontract_2" + tstamp() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8"
 
 println "******* END  *****************************************************"
