@@ -41,7 +41,7 @@ def tstamp(){
 }
 
 def random(){
-	return String.valueOf(Math.random()).split("0\.")[1]
+	return String.valueOf(Math.random()).split("0\\.")[1]
 }
 
 println "START! Create " + suffix + " tables in cooperation database"
