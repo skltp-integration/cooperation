@@ -20,6 +20,7 @@ import groovy.io.FileType
 import groovy.json.JsonSlurper
 import groovy.sql.Sql
 import java.text.SimpleDateFormat;
+import groovy.util.ConfigSlurper 
 
 def countRows = { description, table ->
 	def result = db.firstRow("SELECT COUNT(*) AS numberOfRows FROM " + table)
@@ -262,41 +263,56 @@ println """\
 
 """
 
+// Read configuration
+final ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groovy").toURI().toURL());
+
 //Import all json files in current directory
 def directory = new File(dataDirectory)
-directory.eachFileMatch(FileType.FILES, ~/.*json/) {
+config.environments.each {envs ->
+	println "Environment ${envs}"
+	directory.eachFileMatch(FileType.FILES, ~".*${envs}\\.json") { fil ->
 
-	//Extract env and platform from file name with convention takdump_platform_environment.json
-	def fileName = it.name.replaceFirst(~/\.[^\.]+$/, '')
-	def platform = fileName.split('_')[1].toUpperCase()
-	def environment = fileName.split('_')[2].toUpperCase()
+		//Extract env and platform from file name with convention takdump_platform_environment.json
+		def fileName = fil.name.replaceFirst(~/\.[^\.]+$/, '')
+		def platform = fileName.split('_')[1].toUpperCase()
+		def environment = fileName.split('_')[2].toUpperCase()
 
-	def inputJSON = new JsonSlurper().parseText(it.text)
+		def inputJSON = new JsonSlurper().parseText(fil.text)
 
-	println "****** START IMPORT FILE $it.name ******************************************************"
-	println 'Timestamp starting: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
-	println "Format version: $inputJSON.formatVersion"
-	println "Timestamp of exported TAK data: $inputJSON.tidpunkt"
-	println "Import from platform: $platform and environment: $environment"
-	println '************************************************************'
+		println "****** START IMPORT FILE $fil.name ******************************************************"
+		println 'Timestamp starting: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
+		println "Format version: $inputJSON.formatVersion"
+		println "Timestamp of exported TAK data: $inputJSON.tidpunkt"
+		println "Import from platform: $platform and environment: $environment"
+		println '************************************************************'
 
-	def	formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-	formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-	def snapshotTime = formatter.parse(inputJSON.tidpunkt);
+		def	formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		def snapshotTime = formatter.parse(inputJSON.tidpunkt);
 
-	connectionPoint(db, platform, environment, snapshotTime)
-	logicalAddress(db, inputJSON)
-	serviceDomain(db, inputJSON)
-	serviceContract(db, inputJSON)
-	serviceConsumer(db, inputJSON, platform, environment)
-	serviceProducer(db, inputJSON, platform, environment)
-	cooperation(db, inputJSON, platform, environment)
-	serviceProduction(db, inputJSON, platform, environment)
-	installedContract(db, inputJSON, platform, environment)
+		println "INFO: Processing connectionPoints"
+		connectionPoint(db, platform, environment, snapshotTime)
+		println "INFO: Processing logicalAddress"
+		logicalAddress(db, inputJSON)
+		println "INFO: Processing serviceDomain"
+		serviceDomain(db, inputJSON)
+		println "INFO: Processing serviceContract"
+		serviceContract(db, inputJSON)
+		println "INFO: Processing serviceConsumer"
+		serviceConsumer(db, inputJSON, platform, environment)
+		println "INFO: Processing serviceProducer"
+		serviceProducer(db, inputJSON, platform, environment)
+		println "INFO: Processing cooperation"
+		cooperation(db, inputJSON, platform, environment)
+		println "INFO: Processing serviceProduction"
+		serviceProduction(db, inputJSON, platform, environment)
+		println "INFO: Processing installedContract"
+		installedContract(db, inputJSON, platform, environment)
 
-	println "******* END IMPORT FILE $it.name *****************************************************"
-	println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
-	println '************************************************************'
+		println "******* END IMPORT FILE $fil.name *****************************************************"
+		println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
+		println '************************************************************'
+	}
 }
 
 db.close();
