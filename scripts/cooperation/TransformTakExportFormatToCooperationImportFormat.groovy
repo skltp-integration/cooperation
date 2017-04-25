@@ -6,7 +6,7 @@
 import groovy.io.FileType
 import groovy.json.*
 import java.text.SimpleDateFormat
-
+import groovy.util.ConfigSlurper 
 
 def transformFile(File infile) {
     def jsonSlurper = new JsonSlurper();
@@ -153,13 +153,19 @@ def opt = cli.parse(args)
 if (!opt) return
 if (opt.h) cli.usage()
 
+// Read configuration
+final ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groovy").toURI().toURL());
+
 def dataDirectory = opt.d ? opt.d.replaceFirst("^~",System.getProperty("user.home")) : '.'
 
 println "Begin: transform files in dir: " + dataDirectory
 def directory = new File(dataDirectory)
-directory.eachFileMatch(FileType.FILES, ~/.*json/) {
-    println "Begin: transform file: " + it.name
-    transformFile(it)
-    println "End: transform file: " + it.name
+config.environments.each {envs ->
+	println "Environment ${envs}"
+	directory.eachFileMatch(FileType.FILES, ~".*${envs}\\.json") {
+		println "Begin: transform file: " + it.name
+		transformFile(it)
+		println "End: transform file: " + it.name
+	}
 }
 println "End: transform files"
