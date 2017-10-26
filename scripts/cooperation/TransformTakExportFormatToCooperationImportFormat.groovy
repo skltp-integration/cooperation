@@ -93,7 +93,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
 
     long nowMs = System.currentTimeMillis()
     // Example date: 2014-08-12T22:00:00+0000
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
     Iterator i = outJsonRoot.data.anropsbehorighet.iterator()
     while(i.hasNext()) {
         it = i.next()
