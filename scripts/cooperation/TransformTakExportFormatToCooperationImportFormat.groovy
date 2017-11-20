@@ -18,7 +18,12 @@ def transformFile(File infile) {
     if (!infile.renameTo(originalInFilename + ".original.before.transform")) {
         throw new IOException("Could not rename file: " + originalInFilename)
     }
-	// only files from new format needs transformation
+	/* only files from new format may need transformation
+	   the difference is that some files use id rather than hsaId
+	   and in som case tjanstekomponent instead of tjanstekonsument
+	   in relationships.
+	   We need to make more formal versions.
+	*/
     if (inJsonRoot.utforare && inJsonRoot.utforare.equalsIgnoreCase("TakExport script")) {
 		transformJson(inJsonRoot, outJsonRoot)
 	}
@@ -101,7 +106,13 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
         Date dTom = dateFormat.parse(it.tomTidpunkt)
         if (dFrom.getTime() <= nowMs && dTom.getTime() >= nowMs) {
             it.relationships.logiskAdress = idMapLogiskAdress.get(it.relationships.logiskAdress).hsaId
-            it.relationships.tjanstekonsument = idMapTjanstekomponent.get(it.relationships.tjanstekonsument).hsaId
+			
+			def tjkId = it.relationships.tjanstekonsument == null ? it.relationships.tjanstekomponent : it.relationships.tjanstekonsument
+			
+			//remove if exists
+			it.relationships.remove("tjanstekomponent");
+			
+            it.relationships.tjanstekonsument = idMapTjanstekomponent.get(tjkId).hsaId
             it.relationships.tjanstekontrakt = idMapTjanstekontrakt.get(it.relationships.tjanstekontrakt).namnrymd
         }
         else {
