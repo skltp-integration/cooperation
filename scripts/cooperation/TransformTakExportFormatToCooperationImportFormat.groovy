@@ -26,6 +26,8 @@ def transformFile(File infile) {
 	*/
     if (inJsonRoot.utforare && inJsonRoot.utforare.equalsIgnoreCase("TakExport script")) {
 		transformJson(inJsonRoot, outJsonRoot)
+	} else {
+		transformJsonOnlyDateFiltrering(outJsonRoot);
 	}
     new File(originalInFilename).write(JsonOutput.prettyPrint(JsonOutput.toJson(outJsonRoot)))
 }
@@ -151,6 +153,32 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
     }
 }
 
+
+def transformJsonOnlyDateFiltrering(Map outJsonRoot)
+{
+	long nowMs = System.currentTimeMillis()
+	// Example date: 2014-08-12T22:00:00+0000
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
+	Iterator i = outJsonRoot.data.anropsbehorighet.iterator()
+	while(i.hasNext()) {
+ 		it = i.next()
+		Date dFrom = dateFormat.parse(it.fromTidpunkt)
+		Date dTom = dateFormat.parse(it.tomTidpunkt)
+		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
+			i.remove()
+		}
+	}
+
+	i = outJsonRoot.data.vagval.iterator()
+	while(i.hasNext()) {
+		it = i.next()
+		Date dFrom = dateFormat.parse(it.fromTidpunkt)
+		Date dTom = dateFormat.parse(it.tomTidpunkt)
+		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
+			i.remove()
+		}
+	}
+}
 
 def cli = new CliBuilder(
     usage: 'TransformTakExportFormatToCooperationImportFormat.groovy [options]',
