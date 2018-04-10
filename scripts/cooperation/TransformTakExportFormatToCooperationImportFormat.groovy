@@ -98,6 +98,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
         idMapTjanstekontrakt.put(it.id, it)
     }
 
+	long nr = 0
     long nowMs = System.currentTimeMillis()
     // Example date: 2014-08-12T22:00:00+0000
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
@@ -118,9 +119,12 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
             it.relationships.tjanstekontrakt = idMapTjanstekontrakt.get(it.relationships.tjanstekontrakt).namnrymd
         }
         else {
+			nr++
             i.remove()
+			println "Removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
         }
     }
+	println "Removed " + nr + " anropsbehörigheter"
 
     /*
      * vagval: filter on date-interval,
@@ -132,6 +136,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
         idMapAnropsadress.put(it.id, it)
     }
 
+	nr = 0
     i = outJsonRoot.data.vagval.iterator()
     while(i.hasNext()) {
         it = i.next()
@@ -148,14 +153,18 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
             it.relationships.rivtaProfil = idMapRivtaprofil.get(anropsAdress.relationships.rivtaprofil).namn
         }
         else {
+			nr++
             i.remove()
+			println "Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
         }
     }
+	println "Removed " + nr + " vägval"
 }
 
 
 def transformJsonOnlyDateFiltrering(Map outJsonRoot)
 {
+	long nr = 0
 	long nowMs = System.currentTimeMillis()
 	// Example date: 2014-08-12T22:00:00+0000
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
@@ -165,19 +174,26 @@ def transformJsonOnlyDateFiltrering(Map outJsonRoot)
 		Date dFrom = dateFormat.parse(it.fromTidpunkt)
 		Date dTom = dateFormat.parse(it.tomTidpunkt)
 		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
+			nr++
 			i.remove()
+			println "removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
 		}
 	}
-
+	println "Removed " + nr + " anropsbehörigheter"
+	
+	nr=0
 	i = outJsonRoot.data.vagval.iterator()
 	while(i.hasNext()) {
 		it = i.next()
 		Date dFrom = dateFormat.parse(it.fromTidpunkt)
 		Date dTom = dateFormat.parse(it.tomTidpunkt)
 		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
+			nr++
+			println "Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
 			i.remove()
 		}
 	}
+	println "Removed " + nr + " vägval"
 }
 
 def cli = new CliBuilder(
