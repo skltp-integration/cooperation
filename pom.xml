@@ -27,36 +27,40 @@
 		<querydsl.version>3.6.5</querydsl.version>
 		<woodstox-core-asl.version>4.4.1</woodstox-core-asl.version>
 		<dozer.version>5.5.1</dozer.version>
+		<commons-collection.version>3.2.1</commons-collection.version>
 	</properties>
-	
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Override commons-collections version 3.2.1 -->
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons-collection.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>release-nexus</id>
+			<name>Release Nexus</name>
+			<url>${releases-nexus-url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-nexus</id>
+			<name>Snapshot Nexus</name>
+			<url>${snapshot-nexus-url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<scm>
       <url>https://github.com/skltp-incubator/cooperation.git</url>
       <connection>scm:git:git://github.com/skltp-incubator/cooperation.git</connection>
       <developerConnection>scm:git:git://github.com/skltp-incubator/cooperation.git</developerConnection>
       <tag>HEAD</tag>
     </scm>
-	
-	<repositories>
-        <!-- Sonatype staging repo added to be able to build Coop using artifacts
-            not yet pushed to central maven. 
-         -->
-        <repository>
-          <id>sonatype-nexus-staging-repository</id>
-          <url>https://oss.sonatype.org/content/repositories/staging/</url>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </repository>
-    </repositories>
-	
-	<distributionManagement>		
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -316,7 +320,7 @@
 		<profile>
 			<id>license</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
