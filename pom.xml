@@ -27,7 +27,7 @@
 		<querydsl.version>3.6.5</querydsl.version>
 		<woodstox-core-asl.version>4.4.1</woodstox-core-asl.version>
 		<dozer.version>5.5.1</dozer.version>
-		<commons-collection.version>3.2.1</commons-collection.version>
+		<commons-collection.version>3.2.2</commons-collection.version>
 	</properties>
 
 	<dependencyManagement>
