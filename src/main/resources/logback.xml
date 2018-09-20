@@ -2,7 +2,7 @@
 
 <configuration scan="true">
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>cooperation.log</file>
+		<file>${catalina.base}/logs/cooperation.log</file>
 		<append>true</append>
 		<encoder>
 			<pattern>%d{YYYY/MM/dd HH:mm:ss.SSS} %-5level - %msg%n</pattern>
