@@ -2,11 +2,24 @@
  * Transform files in directory from the TAK export format into the format
  * expected by the Cooperation import-to-database script.
  */
+@Grapes([
+		@GrabConfig(systemClassLoader=true),
+		@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
+		@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4')
+])
 
+
+import groovy.transform.Field
 import groovy.io.FileType
 import groovy.json.*
 import java.text.SimpleDateFormat
 import groovy.util.ConfigSlurper 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+@Field
+static Logger logger = LoggerFactory.getLogger("scriptLogger")
+
 
 def transformFile(File infile) {
     def jsonSlurper = new JsonSlurper();
@@ -38,6 +51,7 @@ def transformFile(File infile) {
  * transformation to outJsonRoot.
  */
 def transformJson(Map inJsonRoot, Map outJsonRoot) {
+
     /*
      * tjanstekomponent: split into: tjanstekonsument, tjansteproducent
      */
@@ -71,6 +85,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
      * anropsadress: resolve: rivtaprofil, tjanstekomponent
      */
     Map idMapRivtaprofil = new HashMap()
+	
     inJsonRoot.data.rivtaprofil.each {
         idMapRivtaprofil.put(it.id, it)
     }
@@ -121,10 +136,10 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
         else {
 			nr++
             i.remove()
-			println "Removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
+			logger.info("Removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
         }
     }
-	println "Removed " + nr + " anropsbehörigheter"
+	logger.info("Removed " + nr + " anropsbehörigheter")
 
     /*
      * vagval: filter on date-interval,
@@ -155,10 +170,10 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
         else {
 			nr++
             i.remove()
-			println "Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
+			logger.info("Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
         }
     }
-	println "Removed " + nr + " vägval"
+	logger.info("Removed " + nr + " vägval")
 }
 
 
@@ -176,10 +191,10 @@ def transformJsonOnlyDateFiltrering(Map outJsonRoot)
 		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
 			nr++
 			i.remove()
-			println "removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
+			logger.info("removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
 		}
 	}
-	println "Removed " + nr + " anropsbehörigheter"
+	logger.info("Removed " + nr + " anropsbehörigheter")
 	
 	nr=0
 	i = outJsonRoot.data.vagval.iterator()
@@ -189,11 +204,11 @@ def transformJsonOnlyDateFiltrering(Map outJsonRoot)
 		Date dTom = dateFormat.parse(it.tomTidpunkt)
 		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
 			nr++
-			println "Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt
+			logger.info("Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
 			i.remove()
 		}
 	}
-	println "Removed " + nr + " vägval"
+	logger.info("Removed " + nr + " vägval")
 }
 
 def cli = new CliBuilder(
@@ -213,14 +228,14 @@ final ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groov
 
 def dataDirectory = opt.d ? opt.d.replaceFirst("^~",System.getProperty("user.home")) : '.'
 
-println "Begin: transform files in dir: " + dataDirectory
+logger.info("Begin: transform files in dir: " + dataDirectory)
 def directory = new File(dataDirectory)
 config.environments.each {envs ->
-	println "Environment ${envs}"
+	logger.info("Environment ${envs}")
 	directory.eachFileMatch(FileType.FILES, ~".*${envs}\\.json") {
-		println "Begin: transform file: " + it.name
+		logger.info("Begin: transform file: " + it.name)
 		transformFile(it)
-		println "End: transform file: " + it.name
+		logger.info("End: transform file: " + it.name)
 	}
 }
-println "End: transform files"
+logger.info("End: transform files")

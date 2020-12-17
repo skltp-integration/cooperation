@@ -7,10 +7,18 @@
 
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36'),
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
+	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4')
 ])
 
+import groovy.transform.Field
 import groovy.sql.Sql
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+@Field
+static Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 def cli = new CliBuilder(
 	usage: 'CreateNewTables [options]',
@@ -34,7 +42,7 @@ def password = opt.p ? opt.p : ''
 //Cooperation db settings
 def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
 
-println "START! Rename tables in cooperation database"
+logger.info("START! Rename tables in cooperation database") 
 
 db.execute "DROP TABLE IF EXISTS serviceproduction_old"
 db.execute "DROP TABLE IF EXISTS cooperation_old"
@@ -66,13 +74,7 @@ db.execute "ALTER TABLE cooperation.logicaladdress_new RENAME TO  cooperation.lo
 db.execute "ALTER TABLE cooperation.servicedomain_new RENAME TO  cooperation.servicedomain"
 db.execute "ALTER TABLE cooperation.installedcontract_new RENAME TO  cooperation.installedcontract"
 
-
-println "******* END  *****************************************************"
-println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss", TimeZone.getTimeZone("UTC"))
-println '************************************************************'
-
 db.close();
 
-println ''
-println 'DONE! renamed tables in cooperation database'
-println ''
+logger.info("DONE! renamed tables in cooperation database")
+

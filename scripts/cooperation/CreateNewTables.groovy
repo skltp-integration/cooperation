@@ -4,17 +4,22 @@
  * Will create an empty version of all tables, suffixed _new 
  *
  */
-
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36'),
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
+	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4')
 ])
 
+import groovy.transform.Field
 import groovy.sql.Sql
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 def cli = new CliBuilder(
 	usage: 'CreateNewTables [options]',
 	header: '\nAvailable options (use -h for help):\n')
+	
 cli.with
 	{
 		h longOpt: 'help', 'Usage Information', required: false
@@ -27,6 +32,10 @@ cli.with
 def opt = cli.parse(args)
 if (!opt) return
 if (opt.h) cli.usage()
+
+
+@Field
+static Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 def url = opt.url
 def username = opt.u
@@ -44,7 +53,7 @@ def random(){
 	return String.valueOf(Math.random()).split("0\\.")[1]
 }
 
-println "START! Create " + suffix + " tables in cooperation database"
+logger.info("START! Create " + suffix + " tables in cooperation database")
 
 db.execute "DROP TABLE IF EXISTS serviceproduction" + suffix
 db.execute "DROP TABLE IF EXISTS cooperation" + suffix
@@ -162,12 +171,7 @@ db.execute "CREATE TABLE installedcontract" + suffix + " (  \
   CONSTRAINT FK_installedcontract_2" + tstamp() +" FOREIGN KEY (service_contract_id) REFERENCES servicecontract" + suffix + " (id)   \
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET= utf8"
 
-println "******* END  *****************************************************"
-println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
-println '************************************************************'
-
 db.close();
 
-println ''
-println 'DONE! Create ' + suffix + ' tables in cooperation database'
-println ''
+logger.info("DONE! Create " + suffix + " tables in cooperation database")
+

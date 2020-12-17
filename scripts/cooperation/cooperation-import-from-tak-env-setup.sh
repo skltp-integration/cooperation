@@ -40,7 +40,7 @@ export PATH=${PATH}:/local/java/groovy/bin
 #-----------------------------
 # Mail for send fail report
 #-----------------------------
-to_mail=mail@support.se
-from_mail=test@test.com
-alert_mail_subject="TEST miljo. Problem med Cooperation import"
-
+to_mail=problem@soprasteria.com
+from_mail=cooperationImportProblem@soprasteria.se
+alert_mail_subject="XXX miljo. Problem med Cooperation import"
+alert_mail_text="Ett fel inträffades under cooperation import"

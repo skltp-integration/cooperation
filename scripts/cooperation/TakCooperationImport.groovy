@@ -13,25 +13,33 @@
 	@GrabConfig(systemClassLoader=true),
 	@Grab(group='com.h2database', module='h2', version='1.4.187'),
 	@Grab(group='org.hsqldb', module='hsqldb', version='2.3.3'),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36'),
+    @Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
+	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4')
 ])
 
+import groovy.transform.Field
 import groovy.io.FileType
 import groovy.json.JsonSlurper
 import groovy.sql.Sql
-import java.text.SimpleDateFormat;
 import groovy.util.ConfigSlurper 
+import java.text.SimpleDateFormat;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+@Field
+static Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 def countRows = { description, table ->
 	def result = db.firstRow("SELECT COUNT(*) AS numberOfRows FROM " + table)
-	println "$table, $description, rows: $result.numberOfRows"
+	logger.info("$table, $description, rows: $result.numberOfRows")
 }
 
 def connectionPoint(db, platform, environment, exportTime){
 	if(db.firstRow("SELECT * FROM connectionpoint_new WHERE platform = $platform AND environment = $environment") == null){
 		db.executeInsert "insert into connectionpoint_new(platform, environment, snapshot_time)  values($platform, $environment, $exportTime)"
 	}else{
-		println "INFO: Connectionpoint platform: $platform, environment: $environment already exist"
+		logger.info("INFO: Connectionpoint platform: $platform, environment: $environment already exist")
 	}
 }
 
@@ -40,7 +48,7 @@ def logicalAddress(db, inputJSON){
 		if(db.firstRow("SELECT * FROM logicaladdress_new WHERE logical_address = $it.hsaId") == null){
 			db.executeInsert "insert into logicaladdress_new(logical_address,description)  values($it.hsaId, $it.beskrivning)"
 		}else{
-			println "INFO: Logical address $it already exist"
+			logger.info("INFO: Logical address $it already exist")
 		}
 	}
 }
@@ -54,7 +62,7 @@ def serviceContract(db, inputJSON){
                     select $it.majorVersion, $it.minorVersion, $it.beskrivning, $it.namnrymd, c.id from \
                     (SELECT id FROM servicedomain_new WHERE namespace = $domain ) as c"
 		}else{
-			println "INFO: Servicecontract $it already exist"
+			logger.info("INFO: Servicecontract $it already exist")
 		}
 	}
 }
@@ -66,7 +74,7 @@ def serviceDomain(db, inputJSON){
 		if(db.firstRow("SELECT * FROM servicedomain_new WHERE namespace = $domainrymd") == null){
 			db.executeInsert "insert into servicedomain_new(name, namespace)  values('namn', $domainrymd)"
 		}else{
-			println "INFO: Servicedomain $it already exist"
+			logger.info("INFO: Servicedomain $it already exist")
 		}
 	}
 }
@@ -85,7 +93,7 @@ def serviceConsumer(db, inputJSON, platform, environment){
 			         select $it.hsaId, $it.beskrivning, c.id  \
 			         from (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c"   \
 		}else{
-			println "INFO: Serviceconsumer $it already exist"
+			logger.info("INFO: Serviceconsumer $it already exist")
 		}
 	}
 }
@@ -104,7 +112,7 @@ def serviceProducer(db, inputJSON, platform, environment){
 			         select $it.hsaId, $it.beskrivning, c.id  \
 			         from (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c"   \
 		}else{
-			println "INFO: Serviceproducer $it already exist"
+			logger.info("INFO: Serviceproducer $it already exist")
 		}
 	}
 }
@@ -137,7 +145,7 @@ def cooperation(db, inputJSON, platform, environment){
                                    AND cp.platform = $platform ) as consumer, \
                         (SELECT id FROM servicecontract_new WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
 		}else{
-			println "INFO: Cooperation for serviceconsumer $it already exist"
+			logger.info("INFO: Cooperation for serviceconsumer $it already exist")
 		}
 	}
 }
@@ -160,7 +168,7 @@ def installedContract(db, inputJSON, platform, environment){
                         (SELECT id FROM connectionpoint_new WHERE platform = $platform AND environment = $environment) as c, \
                          (SELECT id FROM servicecontract_new WHERE namespace = $it.namnrymd) as contract"
 		}else{
-			println "INFO: InstalledContract_new for serviceContract $it already exist"
+			logger.info("INFO: InstalledContract_new for serviceContract $it already exist")
 		}
 	}
 }
@@ -193,7 +201,7 @@ def serviceProduction(db, inputJSON, platform, environment){
                                    AND cp.platform = $platform ) as producer, \
                         (SELECT id FROM servicecontract_new WHERE namespace = $it.relationships.tjanstekontrakt) as contract"
 		}else{
-			println "INFO: Serviceproduction already exist $it"
+			logger.info("INFO: Serviceproduction already exist $it")
 		}
 	}
 }
@@ -207,10 +215,7 @@ def domain(namespace){
 
 
 def clearDatabase(db) {
-
-	println ''
-	println 'START! Clearing database'
-	println ''
+	logger.info("START! Clearing database")
 	db.execute 'SET REFERENTIAL_INTEGRITY FALSE'
 	db.execute "delete from connectionpoint"
 	db.execute "delete from cooperation"
@@ -222,11 +227,7 @@ def clearDatabase(db) {
 	db.execute "delete from servicedomain"
 	db.execute "delete from installedcontract"
 	db.execute 'SET REFERENTIAL_INTEGRITY TRUE'
-	println ''
-	println 'Database is cleared'
-	println ''
-
-
+	logger.info("Database is cleared")
 }
 
 def cli = new CliBuilder(
@@ -256,12 +257,7 @@ def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
 
 if (opt.clear) clearDatabase(db)
 
-println """\
-  START! Importing all tak data to cooperation database
-
-  Options: $opt
-
-"""
+logger.info("START! Importing all tak data to cooperation database")
 
 // Read configuration
 final ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groovy").toURI().toURL());
@@ -269,7 +265,7 @@ final ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groov
 //Import all json files in current directory
 def directory = new File(dataDirectory)
 config.environments.each {envs ->
-	println "Environment ${envs}"
+	logger.info("Environment: ${envs}")
 	directory.eachFileMatch(FileType.FILES, ~".*${envs}\\.json") { fil ->
 
 		//Extract env and platform from file name with convention takdump_platform_environment.json
@@ -279,44 +275,37 @@ config.environments.each {envs ->
 
 		def inputJSON = new JsonSlurper().parseText(fil.text)
 
-		println "****** START IMPORT FILE $fil.name ******************************************************"
-		println 'Timestamp starting: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
-		println "Format version: $inputJSON.formatVersion"
-		println "Timestamp of exported TAK data: $inputJSON.tidpunkt"
-		println "Import from platform: $platform and environment: $environment"
-		println '************************************************************'
+		logger.info("START IMPORT FILE $fil.name")
+		logger.info("Format version: $inputJSON.formatVersion")
+		logger.info("Import from platform: $platform and environment: $environment")
 
 		def	formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 		def snapshotTime = formatter.parse(inputJSON.tidpunkt);
 
-		println "INFO: Processing connectionPoints"
+		logger.info("INFO: Processing connectionPoints")
 		connectionPoint(db, platform, environment, snapshotTime)
-		println "INFO: Processing logicalAddress"
+		logger.info("INFO: Processing logicalAddress")
 		logicalAddress(db, inputJSON)
-		println "INFO: Processing serviceDomain"
+		logger.info("INFO: Processing serviceDomain")
 		serviceDomain(db, inputJSON)
-		println "INFO: Processing serviceContract"
+		logger.info("INFO: Processing serviceContract")
 		serviceContract(db, inputJSON)
-		println "INFO: Processing serviceConsumer"
+		logger.info("INFO: Processing serviceConsumer")
 		serviceConsumer(db, inputJSON, platform, environment)
-		println "INFO: Processing serviceProducer"
+		logger.info("INFO: Processing serviceProducer")
 		serviceProducer(db, inputJSON, platform, environment)
-		println "INFO: Processing cooperation"
+		logger.info("INFO: Processing cooperation")
 		cooperation(db, inputJSON, platform, environment)
-		println "INFO: Processing serviceProduction"
+		logger.info("INFO: Processing serviceProduction")
 		serviceProduction(db, inputJSON, platform, environment)
-		println "INFO: Processing installedContract"
+		logger.info("INFO: Processing installedContract")
 		installedContract(db, inputJSON, platform, environment)
 
-		println "******* END IMPORT FILE $fil.name *****************************************************"
-		println 'Timestamp finishing: ' + new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))
-		println '************************************************************'
+		logger.info("END IMPORT FILE $fil.name")
+
 	}
 }
-
 db.close();
+logger.info("DONE! Import all tak data to cooperation database")
 
-println ''
-println 'DONE! Import all tak data to cooperation database'
-println ''

@@ -3,6 +3,8 @@
 @Grapes([
         @Grab(group = 'com.sun.mail', module = 'javax.mail', version = '1.6.1'),
 		@Grab(group='commons-lang', module='commons-lang', version='2.6'),
+		    @Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
+		@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4'),
         @GrabConfig(systemClassLoader = true)
 ])
 
@@ -15,6 +17,12 @@ import javax.mail.internet.MimeMessage
 import groovy.transform.Field
 import org.apache.commons.lang.exception.ExceptionUtils
 import groovy.json.JsonSlurper
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import groovy.transform.Field
+
+@Field
+static Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 def cli = new CliBuilder(
 	usage: 'Verify cooperation import [options]',
@@ -48,36 +56,44 @@ def ok_file = opt.ok_file
 Properties appProperties = downloadProperties(smtp_prop_file)
 String connectionPointsJson = connection_points_url.toURL().text
 
+logger.info("Verify cooperation import")
+
 def connectionPoints = new JsonSlurper().parseText(connectionPointsJson)
 
-def errors = []
 
+def error_data = []
 dump_list.each{dump_name -> 
 	Dump current_dump = Dump.getDump(dump_name)
 	if(current_dump == null) {
-		errors << "Finns inte beskrivning av en dump med namn [" + dump_name + "] i ett skript! Fix skriptet"
+		error = "Finns inte beskrivning av en dump med namn [" + dump_name + "] i ett skript! Fix verify_cooperation.groovy skriptet"
+		logger.error(error)
+		error_data << error
 		return
 	}
 	
 	connectionPoint = connectionPoints.find{dump -> dump.platform==current_dump.platform && dump.environment==current_dump.environment}
 
 	if(connectionPoint == null){
-			errors << "Dump med parametrar: [" + current_dump + "] finns inte i cooperation"
+			error = "Dump med parametrar: [" + current_dump + "] finns inte i cooperation"
+			logger.error(error)
+			error_data << error
 			return
 	}
 	
 	if(!isToday(connectionPoint.snapshotTime)){
-			errors << "Dump ["+ connectionPoint+"] ar gamal"
+			error = "Dump [" + connectionPoint + "] ar gamal"
+			logger.error(error)
+			error_data << error
 			return
 	}
-	println dump_name + " = " + connectionPoint
+	logger.info(dump_name + " = " + connectionPoint)
 }
 
-if(!errors.isEmpty()){
-	println "Cooperation import fail. " + errors
-	sendProblemMail(appProperties, to_mail, from_mail, subjekt, errors)
+if(!error_data.isEmpty()){
+	logger.error("Cooperation import fail. ")
+	sendProblemMail(appProperties, to_mail, from_mail, subjekt, error_data)
 }else{
-	println "Cooperation import lyckades."
+	logger.info("Cooperation import lyckades.")
 }
 
 def okFile = new File(ok_file)
@@ -141,9 +157,9 @@ private static void sendProblemMail(Properties smtpProperties, String to_mail, S
 
         Transport.send(msg);
 
-        println "Mail skickad till support " + to_mail
+        logger.info("Mail skickad till support " + to_mail)
     } catch (Exception ex) {
-        println(ExceptionUtils.getStackTrace(ex))
+        logger.error((ExceptionUtils.getStackTrace(ex)))
     }
 }
 
