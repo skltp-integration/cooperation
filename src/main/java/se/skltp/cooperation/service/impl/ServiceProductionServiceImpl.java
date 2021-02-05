@@ -35,8 +35,8 @@ import se.skltp.cooperation.service.ServiceProductionCriteria;
 import se.skltp.cooperation.service.ServiceProductionService;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Jan Vasternas
@@ -67,7 +67,7 @@ public class ServiceProductionServiceImpl implements ServiceProductionService {
 
 	@Override
 	public ServiceProduction find(Long id) {
-		return serviceProductionRepository.findOne(id);
+		return serviceProductionRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(ServiceProductionCriteria criteria) {

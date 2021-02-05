@@ -30,13 +30,14 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -45,7 +46,7 @@ import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.types.Predicate;
 
 /**
  * Tests for {@link ServiceConsumerServiceImpl}
@@ -53,7 +54,7 @@ import com.mysema.query.types.Predicate;
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class ServiceConsumerServiceImplTest {
 
@@ -111,17 +112,18 @@ public class ServiceConsumerServiceImplTest {
 
 	@Test
 	public void find_shouldReturnOne() throws Exception {
-		when(serviceConsumerRepositoryMock.findOne(sc1.getId())).thenReturn(sc1);
+		when(serviceConsumerRepositoryMock.findById(sc1.getId())).thenReturn(Optional.of(sc1));
 		ServiceConsumer result = uut.find(sc1.getId());
 		assertEquals(1, result.getId().longValue());
 	}
 
 	@Test
 	public void find_shouldReturnNullWhenNotFound() throws Exception {
-		when(serviceConsumerRepositoryMock.findOne(sc1.getId())).thenReturn(null);
+		Optional<ServiceConsumer> osc1 = Optional.empty();
+		when(serviceConsumerRepositoryMock.findById(sc1.getId())).thenReturn(osc1);
 		ServiceConsumer result = uut.find(sc1.getId());
 		assertNull(result);
-		verify(serviceConsumerRepositoryMock, times(1)).findOne(sc1.getId());
+		verify(serviceConsumerRepositoryMock, times(1)).findById(sc1.getId());
 
 	}
 

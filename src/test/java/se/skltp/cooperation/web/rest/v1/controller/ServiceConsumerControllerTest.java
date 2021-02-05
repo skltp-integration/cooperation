@@ -23,6 +23,7 @@ package se.skltp.cooperation.web.rest.v1.controller;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
@@ -48,12 +49,16 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ServiceConsumer;
@@ -69,22 +74,27 @@ import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
  * @see ServiceConsumerController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@WebMvcTest(ServiceConsumerController.class)
 @WebAppConfiguration
 public class ServiceConsumerControllerTest {
 
 	@InjectMocks
 	ServiceConsumerController uut;
-	@Mock
+	@MockBean
 	private ServiceConsumerService serviceConsumerServiceMock;
-	@Mock
+	@MockBean
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
+	
 	private ServiceConsumer c1;
 	private ServiceConsumer c2;
 	private ServiceConsumerDTO dto1;
 	private ServiceConsumerDTO dto2;
 
+
+    @Autowired
+    private WebApplicationContext wac;
+    
 	@PostConstruct
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
@@ -93,6 +103,12 @@ public class ServiceConsumerControllerTest {
 
 	@Before
 	public void setUpTestData() throws Exception {
+		
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
+            response.setCharacterEncoding("UTF-8");
+            chain.doFilter(request, response);
+        })).build();
+		
 		c1 = new ServiceConsumer();
 		c1.setId(1L);
 		c2 = new ServiceConsumer();
@@ -255,15 +271,14 @@ public class ServiceConsumerControllerTest {
 
 		when(serviceConsumerServiceMock.find(anyLong())).thenReturn(null);
 
-		try {
-			mockMvc.perform(get("/api/v1/serviceConsumers/{id}", Long.MAX_VALUE))
-				.andExpect(status().isNotFound());
-			fail("Should have thrown a exception");
-		} catch (Exception e) {
-			assertEquals(e.getCause().getClass(), ResourceNotFoundException.class);
-		}
+		mockMvc.perform(get("/api/v1/serviceConsumers/{id}", Long.MAX_VALUE)
+		  	      .contentType(MediaType.APPLICATION_JSON))
+		  	      .andExpect(status().isNotFound())
+		  	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException)
+		  	      );
 
 	}
+
 
 }
 

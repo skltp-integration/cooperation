@@ -33,8 +33,8 @@ import se.skltp.cooperation.service.InstalledContractCriteria;
 import se.skltp.cooperation.service.InstalledContractService;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Jan Vasternas
@@ -62,7 +62,7 @@ public class InstalledContractServiceImpl implements InstalledContractService {
 
 	@Override
 	public InstalledContract find(Long id) {
-		return installedContractRepository.findOne(id);
+		return installedContractRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(InstalledContractCriteria criteria) {

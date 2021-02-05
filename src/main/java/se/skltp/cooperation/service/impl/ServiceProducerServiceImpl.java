@@ -33,9 +33,9 @@ import se.skltp.cooperation.repository.ServiceProducerRepository;
 import se.skltp.cooperation.service.ServiceProducerCriteria;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.jpa.JPASubQuery;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.JPAExpressions;
 
 /**
  * @author Jan Vasternas
@@ -64,7 +64,7 @@ public class ServiceProducerServiceImpl implements
 
 	@Override
 	public ServiceProducer find(Long id) {
-		return serviceProducerRepository.findOne(id);
+		return serviceProducerRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(ServiceProducerCriteria criteria) {
@@ -85,11 +85,13 @@ public class ServiceProducerServiceImpl implements
 					.eq(criteria.getConnectionPointId()));
 		}
 		if (criteria.getServiceConsumerId() != null) {
-			builder.and(QServiceProducer.serviceProducer.serviceProductions.any().logicalAddress.id.in(new JPASubQuery()
+			builder.and(QServiceProducer.serviceProducer.serviceProductions.any().logicalAddress.id.in(
+					JPAExpressions
+					.select(QLogicalAddress.logicalAddress1.id)
 					.from(QLogicalAddress.logicalAddress1)
 					.where(QLogicalAddress.logicalAddress1.cooperations.any().serviceConsumer.id
 							.eq(criteria.getServiceConsumerId()))
-					.list(QLogicalAddress.logicalAddress1.id)));
+					));
 		}
 		return builder.getValue();
 	}

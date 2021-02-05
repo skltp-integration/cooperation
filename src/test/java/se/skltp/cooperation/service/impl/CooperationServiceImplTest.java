@@ -20,13 +20,13 @@
  */
 package se.skltp.cooperation.service.impl;
 
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.types.Predicate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import se.skltp.cooperation.Application;
@@ -38,6 +38,7 @@ import se.skltp.cooperation.service.CooperationCriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -52,7 +53,7 @@ import static org.mockito.Mockito.when;
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class CooperationServiceImplTest {
 
@@ -108,7 +109,8 @@ public class CooperationServiceImplTest {
 	public void find_shouldReturnOne() throws Exception {
 		Cooperation c1 = new Cooperation();
 		c1.setId(1L);
-		when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(c1);
+		Optional<Cooperation> oc1 = Optional.of(c1);
+		when(cooperationRepositoryMock.findById(c1.getId())).thenReturn(oc1);
 		Cooperation result = uut.find(c1.getId());
 		assertEquals(1, result.getId().longValue());
 	}
@@ -117,10 +119,11 @@ public class CooperationServiceImplTest {
 	public void find_shouldReturnNullWhenNotFound() throws Exception {
 		Cooperation c1 = new Cooperation();
 		c1.setId(1L);
-		when(cooperationRepositoryMock.findOne(c1.getId())).thenReturn(null);
+		Optional<Cooperation> oc1 = Optional.empty();
+		when(cooperationRepositoryMock.findById(c1.getId())).thenReturn(oc1);
 		Cooperation result = uut.find(c1.getId());
 		assertNull(result);
-		verify(cooperationRepositoryMock, times(1)).findOne(c1.getId());
+		verify(cooperationRepositoryMock, times(1)).findById(c1.getId());
 
 	}
 
