@@ -7,7 +7,7 @@
 		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
 			<providers>
 				<timestamp>
-					<fieldName>ts</fieldName>
+					<fieldName>@timestamp</fieldName>
 					<pattern>yyyy-MM-dd HH:mm:ss.SSSZZZ</pattern>
 					<timeZone>CET</timeZone>
 				</timestamp>
@@ -17,12 +17,9 @@
 				<message>
 					<fieldName>msg</fieldName>
 				</message>
-				<callerData>
-					<classFieldName>class</classFieldName>
-					<methodFieldName>method</methodFieldName>
-					<lineFieldName>line</lineFieldName>
-					<fileFieldName>file</fileFieldName>
-				</callerData>
+			    <loggerName>
+			    	<fieldName>logger</fieldName>
+			    </loggerName>
 				<mdc />
 				<arguments>
 					<includeNonStructuredArguments>false</includeNonStructuredArguments>
@@ -30,7 +27,6 @@
 				<stackTrace>
 					<fieldName>stack</fieldName>
 				</stackTrace>
-
 			</providers>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
