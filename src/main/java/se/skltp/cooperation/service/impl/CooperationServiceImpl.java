@@ -33,8 +33,8 @@ import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Peter Merikan
@@ -63,7 +63,7 @@ public class CooperationServiceImpl implements CooperationService {
 
 	@Override
 	public Cooperation find(Long id) {
-		return cooperationRepository.findOne(id);
+		return cooperationRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(CooperationCriteria criteria) {

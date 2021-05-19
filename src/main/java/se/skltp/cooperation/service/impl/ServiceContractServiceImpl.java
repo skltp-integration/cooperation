@@ -32,8 +32,8 @@ import se.skltp.cooperation.repository.ServiceContractRepository;
 import se.skltp.cooperation.service.ServiceContractCriteria;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Jan Vasternas
@@ -61,7 +61,7 @@ public class ServiceContractServiceImpl implements se.skltp.cooperation.service.
 
 	@Override
 	public ServiceContract find(Long id) {
-		return serviceContractRepository.findOne(id);
+		return serviceContractRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(ServiceContractCriteria criteria) {

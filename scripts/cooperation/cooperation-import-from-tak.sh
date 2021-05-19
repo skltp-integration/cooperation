@@ -1,5 +1,17 @@
 #!/bin/bash
 
+printlog(){
+	level=$1
+	message=$2
+	printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$message"
+}
+
+
+if [[ $EUID -eq 0 ]]; then
+   echo "This script must be run as ind-app" 
+   exit 1
+fi
+
 #=============================================================================
 # Simple check to avoid running multiple instances via cron
 #=============================================================================
@@ -27,45 +39,84 @@ cd `dirname $0`
 # Init.
 #=============================================================================
 mkdir -p ${tmpDir}
-logFile=${tmpDir}/cooperation-import-fom-tak.log
+mkdir -p ${tmpDir}/import
+logFile=/var/log/ind-app/cooperation-import-from-tak.log
+rm ${logFile}
 # clear logfile
-date > ${logFile}
-echo "Begin: environment check" >> ${logFile}
+printlog "INFO" "Begin: ny cooperation import" >> ${logFile}
+printlog "INFO" "Begin: environment check" >> ${logFile}
 # check that groovy is available
-groovy -version >> ${logFile} 2>&1
-# check locale
-locale >> ${logFile} 2>&1
-echo "Done: environment check" >> ${logFile}
+groovyVesion=$(groovy -version)
+printlog "INFO" "$groovyVesion" >> ${logFile} 2>&1
+printlog "INFO" "Done: environment check" >> ${logFile}
 
 #=============================================================================
 # Fetching TAK-data files from SFTP-server
 #=============================================================================
-echo "Begin: SFTP-download of TAK export files" >> ${logFile}
-sftp -o IdentityFile=${sshIdentityFile} ${sftpUser}@${sftpHost} >> ${logFile} 2>&1 <<EOF
+printlog "INFO" "Begin: SFTP-download of TAK export files" >> ${logFile}
+sftpOut=$(sftp -o IdentityFile=${sshIdentityFile} ${sftpUser}@${sftpHost} 2>&1 <<EOF
 get ${sftpRemotePath}*.json ${coopImportFilesDir}
-EOF
-echo "Done: SFTP-download of TAK export files" >> ${logFile}
+EOF) 
+printlog "INFO" "$sftpOut" >> ${logFile} 
+printlog "INFO" "Done: SFTP-download of TAK export files" >> ${logFile}
+
+#=============================================================================
+# Check dump-file list
+#=============================================================================
+printlog "INFO" "Begin: Check file list" >> ${logFile}
+
+no_existing_dumps=()
+
+for dump_file in "${dump_files[@]}"
+do
+file_exists=false
+for file_ in "${coopImportFilesDir}"/*
+do
+if $file_exists
+then
+continue
+fi
+
+if [[ "$file_" == *"$dump_file"* ]]; then
+file_exists=true
+fi
+done
+
+if [ "$file_exists" = false ]
+then
+no_existing_dumps+=("$dump_file")
+fi
+
+done
+
+if (( ${#no_existing_dumps[@]} )); then
+printlog "ERROR" "Error: Not existing dumps: ${no_existing_dumps[@]}" >> ${logFile}
+echo "Error: No existing dumps: ${no_existing_dumps[@]}"
+mail -s "$alert_mail_subject" $to_mail <<< "Not existing dumps: ${no_existing_dumps[@]}"
+fi
+printlog "INFO" "Done: Check file list: OK" >> ${logFile}
+
 
 #=============================================================================
 # Handle creation of new DB tables (to support rolling over old data, 1 backup)
 # and import of data from TAK-exported files.
 #=============================================================================
-echo "Begin: create new tables: `date`" >> ${logFile}
+printlog "INFO"  "Begin: create new tables: `date`" >> ${logFile}
 groovy CreateNewTables.groovy \
-    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new >> ${logFile} 2>&1
-echo "Done: create new tables: `date`" >> ${logFile}
+    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new 
+printlog "INFO"  "Done: create new tables: `date`" >> ${logFile}
 
-echo "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`" >> ${logFile}
+printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`" >> ${logFile}
 groovy TransformTakExportFormatToCooperationImportFormat.groovy \
-    -d ${coopImportFilesDir} >> ${logFile} 2>&1
-echo "Done: transform tak export files: `date`" >> ${logFile}
+    -d ${coopImportFilesDir} 
+printlog "INFO"  "Done: transform tak export files: `date`" >> ${logFile}
 
-echo "Begin: import tak data from dir: ${coopImportFilesDir} : `date`" >> ${logFile}
+printlog "INFO"  "Begin: import tak data from dir: ${coopImportFilesDir} : `date`" >> ${logFile}
 groovy TakCooperationImport.groovy \
-    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -d ${coopImportFilesDir} >> ${logFile} 2>&1
-echo "Done: import tak data: `date`" >> ${logFile}
+    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -d ${coopImportFilesDir}
+printlog "INFO"  "Done: import tak data: `date`" >> ${logFile}
 
-echo "Begin: activate new tak data version: `date`" >> ${logFile}
+printlog "INFO"  "Begin: activate new tak data version: `date`" >> ${logFile}
 groovy ActivateNewVersion \
-    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} >> ${logFile} 2>&1
-echo "Done: activate new tak data version: `date`" >> ${logFile}
+    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} 
+printlog "INFO"  "Done: activate new tak data version: `date`" >> ${logFile}

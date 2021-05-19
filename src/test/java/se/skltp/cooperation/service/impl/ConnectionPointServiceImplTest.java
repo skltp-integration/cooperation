@@ -25,18 +25,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
+import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -48,7 +50,7 @@ import static org.mockito.Mockito.when;
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class ConnectionPointServiceImplTest {
 
@@ -93,7 +95,8 @@ public class ConnectionPointServiceImplTest {
 	public void find_shouldReturnOne() throws Exception {
 		ConnectionPoint cp = new ConnectionPoint();
 		cp.setId(1L);
-		when(connectionPointRepositoryMock.findOne(cp.getId())).thenReturn(cp);
+		Optional<ConnectionPoint> ocp = Optional.of(cp);
+		when(connectionPointRepositoryMock.findById(cp.getId())).thenReturn(ocp);
 		ConnectionPoint result = uut.find(cp.getId());
 		assertEquals(1L, result.getId().longValue());
 	}
@@ -102,7 +105,8 @@ public class ConnectionPointServiceImplTest {
 	public void find_shouldReturnNullWhenNotFound() throws Exception {
 		ConnectionPoint cp = new ConnectionPoint();
 		cp.setId(1L);
-		when(connectionPointRepositoryMock.findOne(cp.getId())).thenReturn(null);
+		Optional<ConnectionPoint> ocp = Optional.empty();
+		when(connectionPointRepositoryMock.findById(cp.getId())).thenReturn(ocp);
 		ConnectionPoint result = uut.find(cp.getId());
 		assertNull(result);
 

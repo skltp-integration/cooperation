@@ -21,7 +21,7 @@
 package se.skltp.cooperation.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import se.skltp.cooperation.domain.ServiceDomain;
 
@@ -29,6 +29,6 @@ import se.skltp.cooperation.domain.ServiceDomain;
  * Spring Data JPA repository for the ConnectionPoint entity.
  */
 public interface ServiceDomainRepository extends JpaRepository<ServiceDomain, Long>,
-		QueryDslPredicateExecutor<ServiceDomain> {
+		QuerydslPredicateExecutor<ServiceDomain> {
 
 }

@@ -21,7 +21,7 @@
 package se.skltp.cooperation.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import se.skltp.cooperation.domain.InstalledContract;
 
@@ -29,6 +29,6 @@ import se.skltp.cooperation.domain.InstalledContract;
  * Spring Data JPA repository for the InstalledContract entity.
  */
 public interface InstalledContractRepository extends JpaRepository<InstalledContract, Long>,
-		QueryDslPredicateExecutor<InstalledContract> {
+		QuerydslPredicateExecutor<InstalledContract> {
 
 }

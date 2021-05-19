@@ -14,6 +14,12 @@ tmpDir=/tmp/cooperation-import-from-tak
 coopImportFilesDir=${tmpDir}/import
 
 #-----------------------------
+# Cooperation config validering
+#-----------------------------
+dump_files=(ntjp_test ntjp_qa ntjp_prod sll_qa sll_prod)
+connection_points_url=http://<cooperation_url>/coop/api/v1/connectionPoints
+
+#-----------------------------
 # SFTP settings for getting TAK data
 #-----------------------------
 sftpHost=ine-pib-misc01.sth.basefarm.net
@@ -30,3 +36,11 @@ sshIdentityFile=~/.ssh/id_rsa_tak_data_transfer
 export LC_CTYPE=en_US.utf8
 # groovy must be in path
 export PATH=${PATH}:/local/java/groovy/bin
+
+#-----------------------------
+# Mail for send fail report
+#-----------------------------
+to_mail=problem@soprasteria.com
+from_mail=cooperationImportProblem@soprasteria.se
+alert_mail_subject="XXX miljo. Problem med Cooperation import"
+alert_mail_text="Ett fel inträffades under cooperation import"

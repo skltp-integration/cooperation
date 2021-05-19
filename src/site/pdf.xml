@@ -28,6 +28,6 @@
     <projectName>${project.name}</projectName>
     <projectLogo></projectLogo>
     <companyName>Inera - Information tjänster</companyName>
-    <companyLogo>http://www.inera.se/images/design/logo.png</companyLogo>
+    <companyLogo>inera.png</companyLogo>
   </cover>
 </document>

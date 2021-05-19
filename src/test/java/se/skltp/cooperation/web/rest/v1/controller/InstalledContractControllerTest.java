@@ -43,12 +43,15 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.InstalledContract;
@@ -63,32 +66,32 @@ import se.skltp.cooperation.web.rest.v1.dto.InstalledContractDTO;
  * @see InstalledContractController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class InstalledContractControllerTest {
 
 
-	@InjectMocks
-	InstalledContractController uut;
 	InstalledContract ic1;
 	InstalledContract ic2;
 	InstalledContractDTO dto1;
 	InstalledContractDTO dto2;
-	@Mock
+	@MockBean
 	private InstalledContractService installedContractServiceMock;
-	@Mock
+	@MockBean
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
 
-	@PostConstruct
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
-	}
-
+    @Autowired
+    private WebApplicationContext wac;
+    
 	@Before
 	public void setUpTestData() throws Exception {
 
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
+            response.setCharacterEncoding("UTF-8");
+            chain.doFilter(request, response);
+        })).build();
+		
 		ic1 = new InstalledContract();
 		ic1.setId(1L);
 		ic2 = new InstalledContract();

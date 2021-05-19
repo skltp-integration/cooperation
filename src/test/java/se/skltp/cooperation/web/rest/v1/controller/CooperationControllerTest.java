@@ -52,13 +52,17 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
@@ -82,30 +86,34 @@ import se.skltp.cooperation.web.rest.v1.dto.ServiceContractDTO;
  * @author Peter Merikan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@WebMvcTest(CooperationController.class)
 @WebAppConfiguration
 public class CooperationControllerTest {
 
-	@InjectMocks
-	CooperationController uut;
-	@Mock
+	
+	@MockBean
 	private CooperationService cooperationServiceMock;
-	@Mock
+	@MockBean
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
 	private Cooperation c1;
 	private Cooperation c2;
 	private CooperationDTO dto1;
-	private CooperationDTO dto2;
+	private CooperationDTO dto2;
 
-	@PostConstruct
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
-	}
-
+    @Autowired
+    private WebApplicationContext wac;
+    
+	@InjectMocks
+	CooperationController uut;
 	@Before
 	public void setUpTestData() throws Exception {
+		
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
+            response.setCharacterEncoding("UTF-8");
+            chain.doFilter(request, response);
+        })).build();
+
 		c1 = new Cooperation();
 		c1.setId(1L);
 		c2 = new Cooperation();
@@ -286,13 +294,11 @@ public class CooperationControllerTest {
 
 		when(cooperationServiceMock.find(anyLong())).thenReturn(null);
 
-		try {
-			mockMvc.perform(get("/api/v1/cooperations/{id}", Long.MAX_VALUE))
-				.andExpect(status().isNotFound());
-			fail("Should thrown a exception");
-		} catch (Exception e) {
-			assertEquals(ResourceNotFoundException.class, e.getCause().getClass());
-		}
+		mockMvc.perform(get("/api/v1/cooperations/{id}", Long.MAX_VALUE)
+	    	      .contentType(MediaType.APPLICATION_JSON))
+	    	      .andExpect(status().isNotFound())
+	    	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException)
+	    	      );
 	}
 
 

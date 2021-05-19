@@ -3,7 +3,7 @@
 > **Förutsättning:**
 
 > Följande programvaror måste finnas installerade för att kunna bygga och köra applikationen.
-> - Java 7 eller högre
+> - Java 8 eller högre
 > - Maven 3.*
 > - Git
 

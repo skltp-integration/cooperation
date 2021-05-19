@@ -22,8 +22,7 @@ package se.skltp.cooperation.web.rest.v1.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -38,10 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-
-import javax.annotation.PostConstruct;
-
 import org.dozer.DozerBeanMapper;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -49,17 +44,16 @@ import org.joda.time.format.DateTimeFormatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
-import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
@@ -73,32 +67,35 @@ import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
  * @see ConnectionPointController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@WebMvcTest(ConnectionPointController.class)
 @WebAppConfiguration
 public class ConnectionPointControllerTest {
 
 	private static DateTimeFormatter isoDateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").withZone(DateTimeZone.forID("CET"));
-
-	@InjectMocks
-	ConnectionPointController uut;
+	
 	ConnectionPoint cp1;
 	ConnectionPoint cp2;
 	ConnectionPointDTO dto1;
 	ConnectionPointDTO dto2;
-	@Mock
+	
+	@MockBean
 	private ConnectionPointService connectionPointServiceMock;
-	@Mock
+	@MockBean
 	private DozerBeanMapper mapperMock;
+	
+	@Autowired
 	private MockMvc mockMvc;
 
-	@PostConstruct
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
-	}
-
+    @Autowired
+    private WebApplicationContext wac;
+    	
 	@Before
 	public void setUpTestData() throws Exception {
+
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
+            response.setCharacterEncoding("UTF-8");
+            chain.doFilter(request, response);
+        })).build();
 
 		cp1 = new ConnectionPoint();
 		cp1.setId(1L);
@@ -243,12 +240,13 @@ public class ConnectionPointControllerTest {
 	@Test
 	public void getAccept_shouldReturnOneAsJson() throws Exception {
 
-		when(connectionPointServiceMock.find(cp1.getId())).thenReturn(cp1);
+		when(connectionPointServiceMock.find(anyLong())).thenReturn(cp1);
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+			.andExpect(content().encoding("UTF-8"))
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 			.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()))
@@ -264,6 +262,7 @@ public class ConnectionPointControllerTest {
 		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
+			.andExpect(content().encoding("UTF-8"))
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
@@ -278,7 +277,8 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints.json/{id}", cp1.getId()).accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().encoding("UTF-8"))
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 			.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()))
@@ -294,6 +294,7 @@ public class ConnectionPointControllerTest {
 		mockMvc.perform(get("/api/v1/connectionPoints.xml/{id}", cp1.getId()).accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
+			.andExpect(content().encoding("UTF-8"))
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
@@ -319,12 +320,12 @@ public class ConnectionPointControllerTest {
 	public void get_shouldThrowNotFoundException() throws Exception {
 
 		when(connectionPointServiceMock.find(anyLong())).thenReturn(null);
-		try {
-			mockMvc.perform(get("/api/v1/connectionPoints/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
-			fail("Should thrown a exception");
-		} catch (Exception e) {
-			assertEquals(e.getCause().getClass(), ResourceNotFoundException.class);
-		}
+		mockMvc.perform(get("/api/v1/connectionPoints/{id}", Long.MAX_VALUE)
+	    	      .contentType(MediaType.APPLICATION_JSON))
+	    	      .andExpect(status().isNotFound())
+	    	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException)
+	    	      );
+
 	}
 
 }

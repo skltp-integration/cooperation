@@ -34,9 +34,9 @@ import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.jpa.JPASubQuery;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.JPAExpressions;
 
 /**
  * @author Peter Merikan
@@ -69,7 +69,7 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 
 	@Override
 	public ServiceConsumer find(Long id) {
-		return serviceConsumerRepository.findOne(id);
+		return serviceConsumerRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(ServiceConsumerCriteria criteria) {
@@ -87,11 +87,13 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 					.eq(criteria.getServiceContractId()));
 		}
 		if (criteria.getServiceProducerId() != null) {
-			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id.in(new JPASubQuery()
+			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id.in(
+					JPAExpressions
+					.select(QLogicalAddress.logicalAddress1.id)
 					.from(QLogicalAddress.logicalAddress1)
 					.where(QLogicalAddress.logicalAddress1.serviceProductions.any().serviceProducer.id
 							.eq(criteria.getServiceProducerId()))
-					.list(QLogicalAddress.logicalAddress1.id)));
+					));
 
 		}
 		return builder.getValue();

@@ -61,7 +61,7 @@ public class HTTPObfuscatorImpl implements HTTPObfuscator {
 			} else if (slashPosition > 0) {
 				buffer.append(remainder.substring(Math.max(slashPosition - 6,0), slashPosition));
 			} else {
-				buffer.append(remainder.substring(remainder.length() - 6));			
+				buffer.append(remainder.substring(Math.max(remainder.length() - 6, 0)));			
 			}
 			int lastIndexSlash = remainder.lastIndexOf("/");
 			if ( lastIndexSlash > 0 && remainder.length() > lastIndexSlash +1){

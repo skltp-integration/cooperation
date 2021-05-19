@@ -32,8 +32,8 @@ import se.skltp.cooperation.repository.LogicalAddressRepository;
 import se.skltp.cooperation.service.LogicalAddressCriteria;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Jan Vasternas
@@ -61,7 +61,7 @@ public class LogicalAdressServiceImpl implements se.skltp.cooperation.service.Lo
 
 	@Override
 	public LogicalAddress find(Long id) {
-		return logicalAddressRepository.findOne(id);
+		return logicalAddressRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(LogicalAddressCriteria criteria) {

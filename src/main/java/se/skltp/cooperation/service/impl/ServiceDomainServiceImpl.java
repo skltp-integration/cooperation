@@ -33,8 +33,8 @@ import se.skltp.cooperation.service.ServiceDomainCriteria;
 import se.skltp.cooperation.service.ServiceDomainService;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Jan Vasternas
@@ -64,7 +64,7 @@ public class ServiceDomainServiceImpl implements ServiceDomainService {
 
 	@Override
 	public ServiceDomain find(Long id) {
-		return serviceDomainRepository.findOne(id);
+		return serviceDomainRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(ServiceDomainCriteria criteria) {

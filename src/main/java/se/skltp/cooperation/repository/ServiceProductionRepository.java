@@ -21,13 +21,13 @@
 package se.skltp.cooperation.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import se.skltp.cooperation.domain.ServiceProduction;
 
 /**
  * Spring Data JPA repository for the ServiceProduction entity.
  */
-public interface ServiceProductionRepository extends JpaRepository<ServiceProduction, Long>,QueryDslPredicateExecutor<ServiceProduction> {
+public interface ServiceProductionRepository extends JpaRepository<ServiceProduction, Long>,QuerydslPredicateExecutor<ServiceProduction> {
 
 }

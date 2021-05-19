@@ -21,6 +21,7 @@
 package se.skltp.cooperation.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
 
 import com.google.common.collect.Lists;
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 
 /**
  * @author Peter Merikan
@@ -64,7 +65,7 @@ public class ConnectionPointServiceImpl implements ConnectionPointService {
 
 	@Override
 	public ConnectionPoint find(Long id) {
-		return connectionPointRepository.findOne(id);
+		return connectionPointRepository.findById(id).orElse(null);
 	}
 
 	Predicate buildPredicate(ConnectionPointCriteria criteria) {

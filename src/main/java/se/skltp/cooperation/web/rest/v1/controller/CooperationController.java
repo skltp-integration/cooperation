@@ -41,6 +41,8 @@ import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
 import se.skltp.cooperation.web.rest.v1.listdto.CooperationListDTO;
 
+import se.skltp.cooperation.util.TimeDiffUtil;
+
 import com.google.common.base.Splitter;
 
 /**
@@ -124,7 +126,9 @@ public class CooperationController {
 
 	private List<CooperationDTO> getAll(Long serviceConsumerId, Long logicalAddressId,
 			Long serviceContractId, Long connectionPointId, Long serviceDomainId, String include) {
-
+		
+		TimeDiffUtil tdu = new TimeDiffUtil();
+		
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
 			includes.addAll(SPLITTER.splitToList(include));
@@ -139,6 +143,8 @@ public class CooperationController {
 			includeOrNot(includes, cp);
 			result.add(toDTO(cp));
 		}
+		log.info("Benchmark: getAll took " + tdu.timeElapsed() + " s to process " + cooperations.size() + " records.");
+		
 		return result;
 	}
 
