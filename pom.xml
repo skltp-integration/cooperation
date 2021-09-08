@@ -56,9 +56,9 @@
 	</distributionManagement>
 
 	<scm>
-      <url>https://github.com/skltp-incubator/cooperation.git</url>
-      <connection>scm:git:https://github.com:443/skltp-incubator/cooperation.git</connection>
-      <developerConnection>scm:git:https://github.com:443/skltp-incubator/cooperation.git</developerConnection>
+      <url>https://github.com/skltp-integration/cooperation.git</url>
+      <connection>scm:git:https://github.com:443/skltp-integration/cooperation.git</connection>
+      <developerConnection>scm:git:https://github.com:443/skltp-integration/cooperation.git</developerConnection>
       <tag>HEAD</tag>
     </scm>
 
