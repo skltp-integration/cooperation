@@ -3,11 +3,9 @@
 printlog(){
 	level=$1
 	message=$2
-	IFS="\n" read -r -a messageArray <<< "$message"
-	echo ${messageArray[@]}
-	for currentMessage in "${messageArray[@]}"
-	printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$currentMessage"
-	done
+	while IFS=$'\n' read -r currentMessage; do
+		    printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$currentMessage"
+	done <<< "$message"
 }
 
 
