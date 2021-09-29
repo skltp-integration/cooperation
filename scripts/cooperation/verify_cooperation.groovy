@@ -152,8 +152,12 @@ private static void sendProblemMail(Properties smtpProperties, String to_mail, S
 
         msg.setText(errorText + errors);
         msg.setSubject(subject)
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_mail))
         msg.setFrom(new InternetAddress(from_mail))
+
+		String [] mailAddress = to_mail.split("\\s*,\\s*")
+		for(String currentAddress:mailAddress){
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(currentAddress.trim()))
+		}
 
         Transport.send(msg);
 
