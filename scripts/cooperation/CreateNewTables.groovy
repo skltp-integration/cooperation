@@ -1,8 +1,10 @@
 #!/usr/bin/env groovy
 
 /**
- * Will create an empty version of all tables, suffixed _new 
+ * Will create an empty version of all tables, suffixed _new
  *
+ * This is no longer used by cooperation-import-from-tak.sh
+ * (left here in case someone wants to create tables manually for some reason)
  */
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
