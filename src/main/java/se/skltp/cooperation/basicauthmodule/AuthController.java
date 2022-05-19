@@ -99,7 +99,7 @@ public final class AuthController {
 
 	@GetMapping("/admin/generate_crypto") // TODO: Enable if you want a convenient BCrypt generator.
 	public String getHash(@RequestParam String rawpassword) {
-		if (!Settings.allowEndpoint_bCryptGenerator) {
+		if (!Settings.allowEndpoint_generateCryptHash) {
 			throw new ResponseStatusException(
 				HttpStatus.LOCKED, "Not Available."
 			);
@@ -112,7 +112,7 @@ public final class AuthController {
 	// TODO: Implement if desirable.
 	@GetMapping("/admin/get_users")
 	public ServiceUserListWrapper getUsers() {
-		if (!Settings.allowEndpoint_usersDownload) {
+		if (!Settings.allowEndpoint_downloadUsers) {
 			throw new ResponseStatusException(
 				HttpStatus.LOCKED, "Not Available."
 			);

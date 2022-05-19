@@ -19,8 +19,9 @@ public class Settings {
 	/** Primary sub-uri path for the endpoints within the AuthController. */
 	static final String authAdministrationSubPath = "/authoring";
 
-	static final boolean allowEndpoint_bCryptGenerator = false;
-	static final boolean allowEndpoint_usersDownload = false;
+	// On-Off flags for endpoints or types of endpoints.
+	static final boolean allowEndpoint_generateCryptHash = false;
+	static final boolean allowEndpoint_downloadUsers = false;
 	static final boolean allowEndpoint_rescanUserFile = true;
 	static final boolean allowEndpoint_resetUserFile = false;
 	static final boolean allowEndpoint_downloadSampleUserFile = true;
