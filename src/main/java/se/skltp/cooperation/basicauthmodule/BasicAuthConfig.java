@@ -20,48 +20,52 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 
-  @Bean
-  protected MyUserDetailsService userDetailsService() {
-    return new MyUserDetailsService();
-  }
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder(10);
-  }
-  @Bean
-  public DaoAuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    authenticationProvider.setUserDetailsService(userDetailsService());
-    authenticationProvider.setPasswordEncoder(passwordEncoder());
-    return authenticationProvider;
-  }
+	@Bean
+	protected MyUserDetailsService userDetailsService() {
+		return new MyUserDetailsService();
+	}
 
-  // Authorization : Role -> Access
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(10);
+	}
 
-    http.csrf().disable()
-        .authorizeRequests()
-          .antMatchers("/authoring/ping").permitAll() // TODO: Open Door for Auth controller Ping test. Close if undesirable.
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService());
+		authenticationProvider.setPasswordEncoder(passwordEncoder());
+		return authenticationProvider;
+	}
 
-          .antMatchers("/authoring/user/**").hasAnyAuthority("ADMIN","USER") // Multi-Role capable variant.
-          .antMatchers("/authoring/admin/**").hasAuthority("ADMIN")
+	// Authorization : Role -> Access
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-          .antMatchers("/user/**").hasAnyAuthority("ADMIN","USER")
-          .antMatchers("/admin/**").hasAuthority("ADMIN")
+		http.csrf().disable()
+			.authorizeRequests()
 
-          .antMatchers("/**").hasAnyAuthority("ADMIN","USER") // Default level for all other endpoints.
-          .anyRequest().authenticated()
-          .and()
-            .httpBasic()
-        ;
-  }
+			.antMatchers("/authoring/ping").permitAll() // TODO: Open Door for Auth controller Ping test. Close if undesirable.
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth)
-      throws Exception {
-    auth.userDetailsService(userDetailsService());
-    auth.authenticationProvider(authenticationProvider());
-  }
+			.antMatchers("/authoring/user/**").hasAnyAuthority("ADMIN", "USER") // Multi-Role capable variant.
+			.antMatchers("/authoring/admin/**").hasAuthority("ADMIN")
+
+			.antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers("/admin/**").hasAuthority("ADMIN")
+
+			.antMatchers("/**").hasAnyAuthority("ADMIN", "USER") // Default level for all other endpoints.
+
+			.anyRequest().authenticated()
+			.and()
+			.httpBasic()
+		;
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth)
+		throws Exception {
+		auth.userDetailsService(userDetailsService());
+		auth.authenticationProvider(authenticationProvider());
+	}
 }

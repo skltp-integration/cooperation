@@ -13,5 +13,5 @@ import java.util.List;
  * Could be expanded with further metadata.
  */
 public final class ServiceUserListWrapper {
-  public List<ServiceUser> users = new ArrayList<>();
+	public List<ServiceUser> users = new ArrayList<>();
 }

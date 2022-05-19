@@ -15,25 +15,25 @@ import java.util.ArrayList;
 
 public final class MyUserDetailsService implements UserDetailsService {
 
-  @Autowired
-  ServiceUserManagement userManagement;
+	@Autowired
+	ServiceUserManagement userManagement;
 
-  @Override
-  public User loadUserByUsername(String username) {
-    ServiceUser user = userManagement.getServiceUser(username);
+	@Override
+	public User loadUserByUsername(String username) {
+		ServiceUser user = userManagement.getServiceUser(username);
 
-    ArrayList<SimpleGrantedAuthority> grants = new ArrayList<>();
-    for (String role : user.roles
-    ) {
-      SimpleGrantedAuthority grant = new SimpleGrantedAuthority(role);
-      grants.add(grant);
-    }
+		ArrayList<SimpleGrantedAuthority> grants = new ArrayList<>();
+		for (String role : user.roles
+		) {
+			SimpleGrantedAuthority grant = new SimpleGrantedAuthority(role);
+			grants.add(grant);
+		}
 
-    return new User(user.username, user.bCryptHash, grants);
-  }
+		return new User(user.username, user.bCryptHash, grants);
+	}
 
-  public static String generateBCryptHashedPassword(String rawPassword) {
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
-    return passwordEncoder.encode(rawPassword);
-  }
+	public static String generateBCryptHashedPassword(String rawPassword) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+		return passwordEncoder.encode(rawPassword);
+	}
 }

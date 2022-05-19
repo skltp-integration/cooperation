@@ -68,7 +68,7 @@ public class Application extends SpringBootServletInitializer {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// To produce formattet output in a browser
+	// To produce formatted output in a browser
 	// Not sure that we should do this
 	// But is a good place to configure Jackson, possible with other information
 	@Bean
