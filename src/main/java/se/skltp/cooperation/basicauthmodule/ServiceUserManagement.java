@@ -7,11 +7,13 @@ package se.skltp.cooperation.basicauthmodule;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.annotation.PostConstruct;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,6 +25,9 @@ import java.util.HashMap;
 @Service
 public final class ServiceUserManagement {
 
+	@Autowired
+	Settings settings;
+
 	private final HashMap<String, ServiceUser> allKnownUsers;
 	private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
@@ -31,7 +36,10 @@ public final class ServiceUserManagement {
 	 */
 	private ServiceUserManagement() {
 		this.allKnownUsers = new HashMap<>();
+	}
 
+	@PostConstruct
+	private void initialization() {
 		this.readUserFile();
 	}
 
@@ -43,7 +51,7 @@ public final class ServiceUserManagement {
 	 * Triggers a read of the user file.
 	 * Can be triggered manually, but will also run periodically once per hour (cron-able expression).
 	 */
-	@Scheduled(cron = Settings.fileReadCron)
+	@Scheduled(cron = "${settings.fileReadCron:0 5 * * * *}")
 	public void triggerFileRead() {
 		readUserFile();
 	}
@@ -53,14 +61,14 @@ public final class ServiceUserManagement {
 	 */
 	private void readUserFile() {
 		try {
-			Files.createDirectories(Paths.get(Settings.folderPath));
+			Files.createDirectories(Paths.get(settings.folderPath));
 
-			Path path = Paths.get(Settings.filePath);
+			Path path = Paths.get(settings.getFilePath());
 			if (!Files.exists(path)) {
 				setupDummyUserFile();
 			}
 
-			String fileContentJSON = new String(Files.readAllBytes(Paths.get(Settings.filePath)));
+			String fileContentJSON = new String(Files.readAllBytes(Paths.get(settings.getFilePath())));
 			ServiceUserListWrapper usersFromFile = gson.fromJson(fileContentJSON, ServiceUserListWrapper.class);
 
 			this.allKnownUsers.clear();
@@ -118,13 +126,13 @@ public final class ServiceUserManagement {
 		String content = retrieveDummyUsersAsJSON();
 
 		try {
-			Files.createDirectories(Paths.get(Settings.folderPath));
+			Files.createDirectories(Paths.get(settings.folderPath));
 
-			Path path = Paths.get(Settings.filePath);
+			Path path = Paths.get(settings.getFilePath());
 			if (!Files.exists(path)) {
 				Files.createFile(path);
 			}
-			FileWriter file = new FileWriter(Settings.filePath);
+			FileWriter file = new FileWriter(settings.getFilePath());
 			file.write(content);
 			file.flush();
 			file.close();
