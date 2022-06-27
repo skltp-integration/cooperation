@@ -31,6 +31,8 @@ public final class ServiceUserManagement {
 	private final HashMap<String, ServiceUser> allKnownUsers;
 	private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
+
+
 	/**
 	 * Constructor. Sets up space for holding users in memory.
 	 */
@@ -86,6 +88,16 @@ public final class ServiceUserManagement {
 	// GET- & SETTERS
 	///
 
+
+	/**
+	 * Checks if User is present by name.
+	 * @param username
+	 * @return
+	 */
+	public boolean hasServiceUser(String username) {
+		return allKnownUsers.containsKey(username);
+	}
+
 	/**
 	 * Retrieves the information held for one user by username.
 	 *
@@ -106,8 +118,20 @@ public final class ServiceUserManagement {
 	/**
 	 * Records one user entry into the in-memory user list.
 	 */
-	private void addServiceUser(ServiceUser user) {
-		this.allKnownUsers.put(user.username, user);
+	public void addServiceUser(ServiceUser user) {
+		if (!this.allKnownUsers.containsKey(user.username)) {
+			this.allKnownUsers.put(user.username, user);
+		} else {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, "Entity ID already exists.");
+		}
+	}
+
+	public void dropServiceUser(String username) {
+		if (this.allKnownUsers.containsKey(username)) {
+			this.allKnownUsers.remove(username);
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity ID not found for deletion.");
+		}
 	}
 
 
@@ -177,11 +201,11 @@ public final class ServiceUserManagement {
 	 *
 	 * @return A payload of dummy users.
 	 */
-	private ServiceUserListWrapper createDummyUserList() {
+	public ServiceUserListWrapper createDummyUserList() {
 		ServiceUserListWrapper userList = new ServiceUserListWrapper();
 		userList.users.add(getQuickDummyUser1());
-		userList.users.add(getQuickDummyUser2());
-		userList.users.add(getQuickDummyUser3());
+		// userList.users.add(getQuickDummyUser2());
+		// userList.users.add(getQuickDummyUser3());
 		return userList;
 	}
 
@@ -200,51 +224,5 @@ public final class ServiceUserManagement {
 			Arrays.asList("USER", "ADMIN")
 		);
 		return user;
-	}
-
-	// Do NOT use these Dummy users for actual service usage, for obvious security reasons.
-	private ServiceUser getQuickDummyUser2() {
-		ServiceUser user = new ServiceUser(
-			"Anders",
-			MyUserDetailsService.generateBCryptHashedPassword("abcdefg"),
-			"Anders Andersson",
-			"NMT",
-			"aa@a.aa",
-			"073-1234567",
-			Arrays.asList("USER")
-		);
-		return user;
-	}
-
-	// Do NOT use these Dummy users for actual service usage, for obvious security reasons.
-	private ServiceUser getQuickDummyUser3() {
-		ServiceUser user = new ServiceUser(
-			"Bertil",
-			MyUserDetailsService.generateBCryptHashedPassword("1234567"),
-			"Bertil Bertilsson",
-			"NMT",
-			"bb@a.aa",
-			"073-1234567",
-			Arrays.asList("ADMIN")
-		);
-		return user;
-	}
-
-	////
-	// DEBUGS
-	////
-
-	/**
-	 * Uses one of the dummy users to run serialization and deserialization tests.
-	 *
-	 * @return A serialized string of a dummy user.
-	 */
-	public String serializationTest() {
-		ServiceUser user = getQuickDummyUser1();
-		String userSerialized = gson.toJson(user); // Serialize.
-		System.out.println(userSerialized);
-		ServiceUser user2 = gson.fromJson(userSerialized, ServiceUser.class); // Deserialize.
-		System.out.println(user2.username); //John
-		return userSerialized;
 	}
 }

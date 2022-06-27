@@ -123,19 +123,4 @@ public final class AuthController {
 
 		throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Not Available.");
 	}
-
-	////
-	// Debug.
-	////
-
-	@GetMapping("/admin/serialize_test")
-	public String serializationTest() {
-		if (!settings.allowEndpoint_testSerialization) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
-			);
-		}
-
-		return users.serializationTest();
-	}
 }

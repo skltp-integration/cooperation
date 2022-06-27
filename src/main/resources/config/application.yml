@@ -39,3 +39,16 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
+        
+settings:
+    folderPath: ./config/
+    fileName: userlist.json
+    fileReadCron: 0 5 * * * *
+    authAdministrationSubPath: /authoring
+    allowEndpoint_generateCryptHash: false
+    allowEndpoint_downloadUsers: false
+    allowEndpoint_rescanUserFile: true
+    allowEndpoint_resetUserFile: false
+    allowEndpoint_downloadSampleUserFile: true
+    allowEndpoint_testSerialization: false
+    allowEndpoint_hellosAndPings: true
