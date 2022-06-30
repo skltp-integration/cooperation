@@ -33,9 +33,10 @@ import org.springframework.context.annotation.PropertySources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 // cooperation-config-override.properties file is for tomcat production deployment
-// should contain 
+// should contain
 // spring.datasource.url=jdbc:mysql://localhost/cooperation
 // spring.datasource.username=root
 // spring.datasource.testOnBorrow: true
@@ -45,7 +46,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 // se.skltp.cooperation.api_key=blabla1234
 
 // these properties are left out of the application.yml in the prod profile section
-// 
+//
 // tomcat bin directory should contain a setenv.sh containing
 // export CATALINA_OPTS="$CATALINA_OPTS -Dspring.profiles.active=prod"
 // export CATALINA_OPTS="$CATALINA_OPTS -Dapp.conf.dir=/Users/jan/conf"
@@ -55,18 +56,19 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @PropertySources({
     @PropertySource(value = "file:${app.conf.dir}/cooperation-config-override.properties", ignoreResourceNotFound = true)
 })
+@EnableScheduling
 public class Application extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
-    }    
-		
+    }
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// To produce formattet output in a browser
+	// To produce formatted output in a browser
 	// Not sure that we should do this
 	// But is a good place to configure Jackson, possible with other information
 	@Bean
@@ -75,11 +77,11 @@ public class Application extends SpringBootServletInitializer {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         return objectMapper;
     }
-	
+
 	@Bean
 	@Profile("dev")
 	public ServletRegistrationBean h2servletRegistration() {
-		
+
 		ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
 		registration.addUrlMappings("/console/*");
 		return registration;
