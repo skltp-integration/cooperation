@@ -37,6 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import org.apache.catalina.security.SecurityConfig;
 import org.dozer.DozerBeanMapper;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -45,15 +47,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
@@ -66,33 +71,37 @@ import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
  * @author Peter Merikan
  * @see ConnectionPointController
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(ConnectionPointController.class)
+
+@SpringBootTest(classes = Application.class)
+@ContextConfiguration(classes = SecurityConfig.class)
+@RunWith(SpringRunner.class)
+@AutoConfigureMockMvc
 @WebAppConfiguration
 public class ConnectionPointControllerTest {
 
 	private static DateTimeFormatter isoDateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").withZone(DateTimeZone.forID("CET"));
-	
+
 	ConnectionPoint cp1;
 	ConnectionPoint cp2;
 	ConnectionPointDTO dto1;
 	ConnectionPointDTO dto2;
-	
+
 	@MockBean
 	private ConnectionPointService connectionPointServiceMock;
+
 	@MockBean
 	private DozerBeanMapper mapperMock;
-	
+
 	@Autowired
 	private MockMvc mockMvc;
 
     @Autowired
-    private WebApplicationContext wac;
-    	
+    private WebApplicationContext context;
+
 	@Before
 	public void setUpTestData() throws Exception {
 
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(context).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
         })).build();
@@ -123,7 +132,7 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$", hasSize(2)))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8")).andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 			.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
@@ -148,7 +157,7 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints.json").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$", hasSize(2)))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8")).andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 			.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
@@ -173,7 +182,7 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_XML)).andExpect(status().isOk())
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
@@ -197,7 +206,7 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints.xml").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
@@ -220,7 +229,8 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
+			.andExpect(content().encoding("UTF-8"))
 			.andExpect(jsonPath("$", hasSize(0)));
 	}
 
@@ -230,8 +240,10 @@ public class ConnectionPointControllerTest {
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null, null, null);
 		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<ConnectionPoint>());
 
-		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_XML)).andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+		mockMvc.perform(get("/api/v1/connectionPoints").accept(MediaType.APPLICATION_XML_VALUE))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
+			.andExpect(content().encoding("UTF-8"))
 			.andExpect(xpath("/connectionPoints").nodeCount(1))
 			.andExpect(xpath("/connectionPoints/*").nodeCount(0));
 
@@ -243,9 +255,9 @@ public class ConnectionPointControllerTest {
 		when(connectionPointServiceMock.find(anyLong())).thenReturn(cp1);
 		when(mapperMock.map(cp1, ConnectionPointDTO.class)).thenReturn(dto1);
 
-		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).contentType(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/api/v1/connectionPoints/{id}", cp1.getId()).accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8"))
 			.andExpect(content().encoding("UTF-8"))
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
@@ -277,7 +289,7 @@ public class ConnectionPointControllerTest {
 
 		mockMvc.perform(get("/api/v1/connectionPoints.json/{id}", cp1.getId()).accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(content().encoding("UTF-8"))
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
