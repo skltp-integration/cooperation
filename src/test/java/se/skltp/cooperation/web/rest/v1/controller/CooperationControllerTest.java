@@ -20,77 +20,55 @@
  */
 package se.skltp.cooperation.web.rest.v1.controller;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-import javax.annotation.PostConstruct;
-
+import org.apache.catalina.security.SecurityConfig;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import se.skltp.cooperation.Application;
-import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.domain.Cooperation;
-import se.skltp.cooperation.domain.LogicalAddress;
-import se.skltp.cooperation.domain.ServiceConsumer;
-import se.skltp.cooperation.domain.ServiceContract;
+import se.skltp.cooperation.domain.*;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
-import se.skltp.cooperation.web.rest.v1.controller.CooperationController;
-import se.skltp.cooperation.web.rest.v1.dto.ConnectionPointDTO;
-import se.skltp.cooperation.web.rest.v1.dto.CooperationDTO;
-import se.skltp.cooperation.web.rest.v1.dto.LogicalAddressDTO;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
-import se.skltp.cooperation.web.rest.v1.dto.ServiceContractDTO;
+import se.skltp.cooperation.web.rest.v1.dto.*;
+
+import java.util.Arrays;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Tests for {@link CooperationController}
  *
  * @author Peter Merikan
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(CooperationController.class)
+@SpringBootTest(classes = Application.class)
+@ContextConfiguration(classes = SecurityConfig.class)
+@RunWith(SpringRunner.class)
+@AutoConfigureMockMvc
 @WebAppConfiguration
 public class CooperationControllerTest {
 
-	
+
 	@MockBean
 	private CooperationService cooperationServiceMock;
 	@MockBean
@@ -99,16 +77,18 @@ public class CooperationControllerTest {
 	private Cooperation c1;
 	private Cooperation c2;
 	private CooperationDTO dto1;
-	private CooperationDTO dto2;
+	private CooperationDTO dto2;
+
 
     @Autowired
     private WebApplicationContext wac;
-    
+
 	@InjectMocks
-	CooperationController uut;
+	CooperationController uut;
+
 	@Before
 	public void setUpTestData() throws Exception {
-		
+
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
@@ -159,7 +139,7 @@ public class CooperationControllerTest {
 
 		mockMvc.perform(get("/api/v1/cooperations").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
@@ -178,7 +158,7 @@ public class CooperationControllerTest {
 
 		mockMvc.perform(get("/api/v1/cooperations?serviceConsumerId=1&logicalAddressId=2").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
@@ -198,7 +178,7 @@ public class CooperationControllerTest {
 		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint,serviceConsumer,logicalAddress,serviceContract")
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].connectionPoint.platform").value(is(dto1.getConnectionPoint().getPlatform())))
@@ -225,7 +205,7 @@ public class CooperationControllerTest {
 
 		mockMvc.perform(get("/api/v1/cooperations").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/cooperations/cooperation[2]/id").string(is(dto2.getId().toString())));
 
@@ -244,7 +224,7 @@ public class CooperationControllerTest {
 		mockMvc.perform(get("/api/v1/cooperations?include?connectionPoint,serviceConsumer,logicalAddress,serviceContract")
 			.accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/cooperations/cooperation[1]/connectionPoint/platform").string(is(dto1.getConnectionPoint().getPlatform())))
 			.andExpect(xpath("/cooperations/cooperation[1]/logicalAddress/description").string(is(dto1.getLogicalAddress().getDescription())))
@@ -273,7 +253,7 @@ public class CooperationControllerTest {
 			.accept(MediaType.APPLICATION_JSON))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()));
 	}
 
@@ -285,7 +265,7 @@ public class CooperationControllerTest {
 
 		mockMvc.perform(get("/api/v1/cooperations/{id}", c1.getId()).accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/cooperation/id").string(is(dto1.getId().toString())));
 	}
 

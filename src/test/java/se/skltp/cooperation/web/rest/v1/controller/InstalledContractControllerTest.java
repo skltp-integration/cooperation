@@ -83,7 +83,7 @@ public class InstalledContractControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
-    
+
 	@Before
 	public void setUpTestData() throws Exception {
 
@@ -91,7 +91,7 @@ public class InstalledContractControllerTest {
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
         })).build();
-		
+
 		ic1 = new InstalledContract();
 		ic1.setId(1L);
 		ic2 = new InstalledContract();
@@ -111,7 +111,7 @@ public class InstalledContractControllerTest {
 
 		mockMvc.perform(get("/api/v1/installedContracts").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$", hasSize(2)))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8")).andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
 		;

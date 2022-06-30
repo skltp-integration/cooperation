@@ -20,46 +20,24 @@
  */
 package se.skltp.cooperation.web.rest.v1.controller;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.annotation.PostConstruct;
-
+import org.apache.catalina.security.SecurityConfig;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
@@ -67,14 +45,29 @@ import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.web.rest.exception.ResourceNotFoundException;
 import se.skltp.cooperation.web.rest.v1.dto.ServiceConsumerDTO;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 /**
  * Test class for the ServiceConsumerController REST controller.
  *
  * @author Peter Merikan
  * @see ServiceConsumerController
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(ServiceConsumerController.class)
+@SpringBootTest(classes = Application.class)
+@ContextConfiguration(classes = SecurityConfig.class)
+@RunWith(SpringRunner.class)
+@AutoConfigureMockMvc
 @WebAppConfiguration
 public class ServiceConsumerControllerTest {
 
@@ -85,7 +78,7 @@ public class ServiceConsumerControllerTest {
 	@MockBean
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
-	
+
 	private ServiceConsumer c1;
 	private ServiceConsumer c2;
 	private ServiceConsumerDTO dto1;
@@ -94,7 +87,7 @@ public class ServiceConsumerControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
-    
+
 	@PostConstruct
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
@@ -103,12 +96,12 @@ public class ServiceConsumerControllerTest {
 
 	@Before
 	public void setUpTestData() throws Exception {
-		
+
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
         })).build();
-		
+
 		c1 = new ServiceConsumer();
 		c1.setId(1L);
 		c2 = new ServiceConsumer();
@@ -133,7 +126,7 @@ public class ServiceConsumerControllerTest {
 
 		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].description").value(is(dto1.getDescription())))
@@ -156,7 +149,7 @@ public class ServiceConsumerControllerTest {
 
 		mockMvc.perform(get("/api/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())));
@@ -175,7 +168,7 @@ public class ServiceConsumerControllerTest {
 
 		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/description").string(is(dto1.getDescription())))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/hsaId").string(is(dto1.getHsaId())))
@@ -197,7 +190,7 @@ public class ServiceConsumerControllerTest {
 
 		mockMvc.perform(get("/api/v1/serviceConsumers?connectionPointId=1").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/description").string(is(dto1.getDescription())))
 			.andExpect(xpath("/serviceConsumers/serviceConsumer[1]/hsaId").string(is(dto1.getHsaId())))
@@ -218,7 +211,7 @@ public class ServiceConsumerControllerTest {
 
 		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(0)));
 	}
 
@@ -229,7 +222,7 @@ public class ServiceConsumerControllerTest {
 
 		mockMvc.perform(get("/api/v1/serviceConsumers").accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/serviceConsumers").nodeCount(1))
 			.andExpect(xpath("/serviceConsumers/*").nodeCount(0));
 	}
@@ -243,7 +236,7 @@ public class ServiceConsumerControllerTest {
 		mockMvc.perform(get("/api/v1/serviceConsumers/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$.id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.description").value(is(dto1.getDescription())))
 			.andExpect(jsonPath("$.hsaId").value(is(dto1.getHsaId())));
@@ -259,7 +252,7 @@ public class ServiceConsumerControllerTest {
 		mockMvc.perform(get("/api/v1/serviceConsumers/{id}", c1.getId())
 			.accept(MediaType.APPLICATION_XML))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
+			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/serviceConsumer/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/serviceConsumer/description").string(is(dto1.getDescription())))
 			.andExpect(xpath("/serviceConsumer/hsaId").string(is(dto1.getHsaId())));
