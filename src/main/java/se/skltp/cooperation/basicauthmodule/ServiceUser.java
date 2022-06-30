@@ -8,6 +8,7 @@ package se.skltp.cooperation.basicauthmodule;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A representation of a User entry for the app's security.
@@ -76,5 +77,24 @@ public final class ServiceUser {
 	@NonNull
 	public List<String> getRoles() {
 		return roles;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ServiceUser that = (ServiceUser) o;
+		return getUsername().equals(that.getUsername())
+			&& getbCryptHash().equals(that.getbCryptHash())
+			&& getContactName().equals(that.getContactName())
+			&& getContactOrganization().equals(that.getContactOrganization())
+			&& getContactMail().equals(that.getContactMail())
+			&& Objects.equals(getContactPhone(), that.getContactPhone())
+			&& getRoles().equals(that.getRoles());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getUsername(), getbCryptHash(), getContactName(), getContactOrganization(), getContactMail(), getContactPhone(), getRoles());
 	}
 }
