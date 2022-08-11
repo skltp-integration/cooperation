@@ -4,7 +4,7 @@
 
 	<groupId>se.skltp.cooperation</groupId>
 	<artifactId>cooperation</artifactId>
-	<version>1.5.0-RC2-SNAPSHOT</version>
+	<version>1.5.0-RC2</version>
 	<packaging>war</packaging>
 
 	<name>Cooperation</name>
@@ -59,7 +59,7 @@
       <url>https://github.com/skltp-integration/cooperation.git</url>
       <connection>scm:git:https://github.com:443/skltp-integration/cooperation.git</connection>
       <developerConnection>scm:git:https://github.com:443/skltp-integration/cooperation.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v1.5.0-RC2</tag>
     </scm>
 
 	<dependencies>
