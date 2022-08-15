@@ -18,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
-import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Configuration
 @EnableWebSecurity
@@ -75,7 +74,7 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 
 	// Set the used firewall to the most lax possible safety settings.
 	@Bean
-	public HttpFirewall allowSemicolonHttpFirewall() {
+	public HttpFirewall constructFairlyOpenFirewall() {
 		DefaultHttpFirewall firewall = new DefaultHttpFirewall();
 		firewall.setAllowUrlEncodedSlash(true);
 		return firewall;
@@ -84,6 +83,6 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		super.configure(web);
-		web.httpFirewall(allowSemicolonHttpFirewall());
+		web.httpFirewall(constructFairlyOpenFirewall());
 	}
 }
