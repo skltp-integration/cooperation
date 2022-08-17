@@ -1,13 +1,13 @@
 #!/usr/bin/env groovy
 
 /**
- * Will create an empty version of all tables, suffixed _new 
+ * Will create an empty version of all tables, suffixed _new
  *
  */
 
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36'),
+	@Grab(group='mysql', module='mysql-connector-java', version='8.0.29'),
 	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
 	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4')
 ])

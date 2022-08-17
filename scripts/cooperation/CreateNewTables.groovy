@@ -8,7 +8,7 @@
  */
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36'),
+	@Grab(group='mysql', module='mysql-connector-java', version='8.0.29'),
 	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
 	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='6.4')
 ])
@@ -25,14 +25,14 @@ static Logger logger = LoggerFactory.getLogger("scriptLogger")
 def cli = new CliBuilder(
 	usage: 'CreateNewTables [options]',
 	header: '\nAvailable options (use -h for help):\n')
-	
+
 cli.with
 	{
 		h longOpt: 'help', 'Usage Information', required: false
 		url longOpt: 'url', 'Connection URL \n eg. jdbc:mysql://localhost/cooperation', args: 1, required: true
 		u longOpt: 'user', 'User ID', args: 1, required: true
 		p longOpt: 'password', 'Password', args: 1, required: false
-		s longOpt: 'suffix', 'Suffix', args: 1, required: false		
+		s longOpt: 'suffix', 'Suffix', args: 1, required: false
 	}
 
 def tstamp(){
