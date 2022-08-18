@@ -24,7 +24,7 @@
 	@GrabConfig(systemClassLoader=true),
 	@Grab(group='com.h2database', module='h2', version='1.4.187'),
 	@Grab(group='org.hsqldb', module='hsqldb', version='2.3.3'),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+	@Grab(group='mysql', module='mysql-connector-java', version='8.0.29')
 ])
 
 import groovy.sql.Sql
