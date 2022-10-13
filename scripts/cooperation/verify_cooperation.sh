@@ -35,7 +35,7 @@ groovy verify_cooperation.groovy \
     -dumps "${dump}" \
     -coop "${connection_points_url}" \
     -ok_file "${okFile}" \
-    -user_and_pass "${coop_auth_user_and_pass}" #"Caesar:qwerty"
+    -user_and_pass "${coop_auth_user_and_pass}"
 
 sleep 10
 

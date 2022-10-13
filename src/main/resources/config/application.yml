@@ -52,3 +52,4 @@ settings:
     allowEndpoint_downloadSampleUserFile: true
     allowEndpoint_testSerialization: false
     allowEndpoint_hellosAndPings: true
+    security_enabled: true
