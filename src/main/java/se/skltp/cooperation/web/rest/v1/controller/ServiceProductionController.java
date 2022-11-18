@@ -50,8 +50,14 @@ import com.google.common.base.Splitter;
  * @author Jan Vasternas
  */
 @RestController
-@RequestMapping(value = { "/api/v1/serviceProductions", "/api/v1/serviceProductions.json",
-		"/api/v1/serviceProductions.xml" })
+@RequestMapping(value = {
+	"/api/v1/serviceProductions",
+	"/api/v1/serviceProductions.json",
+	"/api/v1/serviceProductions.xml",
+	"/api/v2/serviceProductions",
+	"/api/v2/serviceProductions.json",
+	"/api/v2/serviceProductions.xml"
+})
 public class ServiceProductionController {
 
 	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
@@ -168,18 +174,18 @@ public class ServiceProductionController {
 	 */
 	void includeOrNot(List<String> includes, ServiceProduction serviceProduction) {
 		if (!includes.contains(INCLUDE_CONNECTIONPOINT)){
-			serviceProduction.setConnectionPoint(null);			
+			serviceProduction.setConnectionPoint(null);
 		}
 		if (!includes.contains(INCLUDE_LOGICALADDRESS)){
-			serviceProduction.setLogicalAddress(null);			
+			serviceProduction.setLogicalAddress(null);
 		}
 		if (!includes.contains(INCLUDE_SERVICEPRODUCER)){
-			serviceProduction.setServiceProducer(null);			
+			serviceProduction.setServiceProducer(null);
 		} else {
 			serviceProduction.getServiceProducer().setConnectionPoint(null);
 		}
 		if (!includes.contains(INCLUDE_SERVICECONTRACT)){
-			serviceProduction.setServiceContract(null);			
+			serviceProduction.setServiceContract(null);
 		}
 		// Secret parameter to show complete physicalAddress
 		if (!includes.contains(INCLUDE_PHYSICAL_ADDRESS))

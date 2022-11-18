@@ -6,7 +6,7 @@ server:
 settings:
   folderPath: ./config/
   fileName: userlist.json
-  fileReadCron: 0 5 * * * *
+  fileReadCron: 0 0/5 * * * *
   authAdministrationSubPath: /authoring
   allowEndpoint_generateCryptHash: false
   allowEndpoint_downloadUsers: false
@@ -15,7 +15,6 @@ settings:
   allowEndpoint_downloadSampleUserFile: true
   allowEndpoint_testSerialization: false
   allowEndpoint_hellosAndPings: true
-  security_enabled: false
   
 ---
 spring:

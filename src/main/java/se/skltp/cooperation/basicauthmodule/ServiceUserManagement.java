@@ -7,12 +7,13 @@ package se.skltp.cooperation.basicauthmodule;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.annotation.PostConstruct;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,13 +26,13 @@ import java.util.HashMap;
 @Service
 public final class ServiceUserManagement {
 
+	private final Logger log = LoggerFactory.getLogger(ServiceUserManagement.class);
+
 	@Autowired
 	Settings settings;
 
 	private final HashMap<String, ServiceUser> allKnownUsers;
 	private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-
-
 
 	/**
 	 * Constructor. Sets up space for holding users in memory.
@@ -52,8 +53,9 @@ public final class ServiceUserManagement {
 	/**
 	 * Triggers a read of the user file.
 	 * Can be triggered manually, but will also run periodically once per hour (cron-able expression).
+	 * Currently: "(0 0/5 * * * *) = Every 5 minutes, every hour, every day."
 	 */
-	@Scheduled(cron = "${settings.fileReadCron:0 5 * * * *}")
+	@Scheduled(cron = "${settings.fileReadCron:0 0/5 * * * *}")
 	public void triggerFileRead() {
 		readUserFile();
 	}
@@ -69,6 +71,8 @@ public final class ServiceUserManagement {
 			if (!Files.exists(path)) {
 				setupDummyUserFile();
 			}
+
+			//log.debug("Refreshing user list.");
 
 			String fileContentJSON = new String(Files.readAllBytes(Paths.get(settings.getFilePath())));
 			ServiceUserListWrapper usersFromFile = gson.fromJson(fileContentJSON, ServiceUserListWrapper.class);

@@ -53,9 +53,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 // export CATALINA_OPTS="$CATALINA_OPTS -Dapp.conf.dir=/Users/jan/conf"
 // the cooperation-config-override.properties should be placed in the directory pointed out in the last row above
 
-@SpringBootApplication(exclude = {
-	SecurityAutoConfiguration.class}
-)
+@SpringBootApplication
 @PropertySources({
     @PropertySource(value = "file:${app.conf.dir}/cooperation-config-override.properties", ignoreResourceNotFound = true)
 })

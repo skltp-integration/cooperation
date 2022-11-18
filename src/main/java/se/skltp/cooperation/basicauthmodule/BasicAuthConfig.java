@@ -22,9 +22,6 @@ import org.springframework.security.web.firewall.DefaultHttpFirewall;
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(
-	name = "settings.security_enabled",
-	matchIfMissing = true) // havingValue = "foo" for further customization if need be.
 public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
@@ -53,6 +50,10 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 			.authorizeRequests()
 
+			.antMatchers("/api/v2/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers("/api/v1/**").permitAll()
+			.antMatchers("/authoring/api/v2/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers("/authoring/api/v1/**").permitAll()
 			.antMatchers("/authoring/ping").permitAll() // TODO: Open Door for Auth controller Ping test. Close if undesirable.
 
 			.antMatchers("/authoring/user/**").hasAnyAuthority("ADMIN", "USER") // Multi-Role capable variant.

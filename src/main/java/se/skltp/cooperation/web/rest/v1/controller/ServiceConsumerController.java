@@ -47,8 +47,14 @@ import se.skltp.cooperation.web.rest.v1.listdto.ServiceConsumerListDTO;
  * @author Peter Merikan
  */
 @RestController
-@RequestMapping(value = { "/api/v1/serviceConsumers", "/api/v1/serviceConsumers.json",
-		"/api/v1/serviceConsumers.xlm" })
+@RequestMapping(value = {
+	"/api/v1/serviceConsumers",
+	"/api/v1/serviceConsumers.json",
+	"/api/v1/serviceConsumers.xlm", // TODO: Misspelled... Are users consuming on this?
+	"/api/v2/serviceConsumers",
+	"/api/v2/serviceConsumers.json",
+	"/api/v2/serviceConsumers.xml" // <-- Fixed spelling for v2.
+})
 public class ServiceConsumerController {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceConsumerController.class);

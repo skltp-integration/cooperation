@@ -47,8 +47,14 @@ import se.skltp.cooperation.web.rest.v1.listdto.ServiceDomainListDTO;
  * @author Jan Vasternas
  */
 @RestController
-@RequestMapping(value = { "/api/v1/serviceDomains", "/api/v1/serviceDomains.json",
-		"/api/v1/serviceDomains.xml" })
+@RequestMapping(value = {
+	"/api/v1/serviceDomains",
+	"/api/v1/serviceDomains.json",
+	"/api/v1/serviceDomains.xml",
+	"/api/v2/serviceDomains",
+	"/api/v2/serviceDomains.json",
+	"/api/v2/serviceDomains.xml"
+})
 public class ServiceDomainController {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceDomainController.class);
