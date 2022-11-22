@@ -43,8 +43,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 // spring.datasource.testOnBorrow: true
 // spring.datasource.validationQuery: SELECT 1
 // spring.datasource.password=
-// se.skltp.cooperation.accesscontrol=true
-// se.skltp.cooperation.api_key=blabla1234
 
 // these properties are left out of the application.yml in the prod profile section
 //

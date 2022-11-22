@@ -27,9 +27,6 @@ spring:
         password:
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
-se.skltp.cooperation:
-        accesscontrol: false
-        api_key: nothing
 ---
 spring:
     profiles: amazon
@@ -42,9 +39,6 @@ spring:
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
       hibernate.ddl-auto: update
-se.skltp.cooperation:
-        accesscontrol: false
-        api_key: nothing
 ---
 spring:
     profiles: prod

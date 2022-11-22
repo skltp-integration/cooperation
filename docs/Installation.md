@@ -33,12 +33,7 @@ Sätt upp SSH-nycklar, skapa nya med: ssh-keygen -t rsa -b 2048 -C "TAK data tra
 spring.datasource.url=jdbc:mysql://localhost/cooperation
 spring.datasource.username=root
 spring.datasource.password=
-se.skltp.cooperation.accesscontrol=true	
-se.skltp.cooperation.api_key=abcd
 ```
-> api_key kan sättas till valfri sträng
-
-
 > - Konfigurera Tomcat-environment variabler i environment fil
 ```
 CATALINA_OPTS="-Xms1024m -Xmx2048m -XX:NewSize=256m -XX:PermSize=128m -XX:MaxPermSize=512m -Dspring.profiles.active=production -Dapp.conf.dir=/var/spool/tomcat/cooperation/etc"
@@ -54,7 +49,7 @@ CATALINA_OPTS="-Xms1024m -Xmx2048m -XX:NewSize=256m -XX:PermSize=128m -XX:MaxPer
 > - Verifiera deployment
 > Öppna webläsare 
 ```
-url-till-tomcat[:port]/coop/api/v1/connectionPoints?api_key=abcd
+url-till-tomcat[:port]/coop/api/v1/connectionPoints
 ```
 Skall ge en xml-utskrift
 
