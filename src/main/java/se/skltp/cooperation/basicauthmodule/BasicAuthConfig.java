@@ -5,7 +5,6 @@
 
 package se.skltp.cooperation.basicauthmodule;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -50,19 +49,32 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 			.authorizeRequests()
 
+			// For the two versions of the primary API.
 			.antMatchers("/api/v2/**").hasAnyAuthority("ADMIN", "USER")
 			.antMatchers("/api/v1/**").permitAll()
+
+			// For the two test endpoints used to test Spring Boot Security configuration.
 			.antMatchers("/authoring/api/v2/**").hasAnyAuthority("ADMIN", "USER")
 			.antMatchers("/authoring/api/v1/**").permitAll()
-			.antMatchers("/authoring/ping").permitAll() // TODO: Open Door for Auth controller Ping test. Close if undesirable.
 
-			.antMatchers("/authoring/user/**").hasAnyAuthority("ADMIN", "USER") // Multi-Role capable variant.
-			.antMatchers("/authoring/admin/**").hasAuthority("ADMIN")
+			// The swagger Docs are open outward.
+			.antMatchers("/doc/**").permitAll()
 
-			.antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
+			// Ping always responds openly.
+			.antMatchers("/authoring/ping").permitAll()
+
+			// Roles assumed to inherit hierarchically.
+			.antMatchers(Settings.authAdministrationSubPath + "/user/**").hasAnyAuthority("ADMIN", "USER")
+			.antMatchers(Settings.authAdministrationSubPath + "/admin/**").hasAuthority("ADMIN")
+
+			/*
+			// Examples of how to configure user/admin-differentiated URLs.
+			.antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER") // Roles assumed to inherit hierarchically.
 			.antMatchers("/admin/**").hasAuthority("ADMIN")
+			 */
 
-			.antMatchers("/**").hasAnyAuthority("ADMIN", "USER") // Default level for all other endpoints.
+			// Default level for all other endpoints is assumed restricted.
+			.antMatchers("/**").hasAnyAuthority("ADMIN", "USER")
 
 			.anyRequest().authenticated()
 			.and()
