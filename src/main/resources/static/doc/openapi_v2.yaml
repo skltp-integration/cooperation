@@ -1,0 +1,944 @@
+openapi: 3.0.1
+info:
+  title: Etablerad samverkan i vården
+  description: "![Informationsmodell - Cooperation](images/cooperation.png)\r\n\r\nInformation om tjänster, producenter och konsumenter baserad på tjänsteadresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida konfigurationsändringar syns inte i api:et, enbart hur det ser ut i dagsläget. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i HSA-trädet, och avser alla noder därunder. Detta speglas rakt av i api:et och HSA-trädet evalueras inte här. De tekniska id-begreppen på alla objekt genereras om en gång per dygn och garanteras således inte ha samma värde två dagar i rad. Applikationer bör skrivas så att de är oberoende av de tekniska nycklarna. Varje resurs har sin egen nummerserie för de tekniska id-begreppen. En api-nyckel kan behövas för att nå api:et."
+  version: 2.0.0
+servers:
+  - url: /coop/api/v2
+paths:
+  /connectionPoints:
+    get:
+      summary: Connection Point - TP instans
+      description: |
+        Alla instanser av tjänsteplattformar som har exporterat information till detta api. Idag sker exporten en gång per dygn. En instans identifieras verksamhetsmässigt av kombinationen mellan en plattform och vilken staging-miljö som avses.
+      parameters:
+        - name: platform
+          in: query
+          description: Filtrera på plattform, tex NTJP
+          required: false
+          schema:
+            type: string
+        - name: environment
+          in: query
+          description: Filtrerar på miljö tex PRODUCTION
+          required: false
+          schema:
+            type: string
+        - name: serviceConsumerId
+          in: query
+          description: Filtrerar bara ConnectionPoints som innehåller någon samverkan med en specifik tjänstekonsument. Ange den tekniska nyckeln för serviceConsumer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: logicalAddressId
+          in: query
+          description: Filtrerar bara ConnectionPoints som innehåller någon samverkan med en specifik logisk adress. Ange den tekniska nyckeln för LogicalAddress tex 42.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara ConnectionPoints som innehåller någon samverkan med en specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceProducerId
+          in: query
+          description: Filtrerar bara ConnectionPoints som innehåller någon samverkan med en specifik tjänsteproducent. Sökningen utförs genom att titta på tjänstproducenter som publicerar en tjänst på en viss logisk adress samtidigt som någon tjänstekonsument är konfigurerad att anropa samma logiska adress.  Ange den tekniska nyckeln för ServiceProducer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - ConnectionPoint
+      responses:
+        '200':
+          description: En lista av tjänsteplattformsinstanser
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectionPoint'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectionPoint'
+                xml:
+                  wrapped: true
+                  name: connectionPoints
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /connectionPoints/{id}:
+    get:
+      summary: Connection Point - TP instans
+      description: |
+        En specifik instans av tjänsteplattformen.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - ConnectionPoint
+      responses:
+        '200':
+          description: En ConnectionPoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPoint'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConnectionPoint'
+        '404':
+          description: ConnectionPoint not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceConsumers:
+    get:
+      summary: Service Consumer - tjänstekonsument
+      description: |
+        Alla tjänstekonsumenter. En konsument identifieras versamhetsmässigt av hsa-id. En förekomster av konsument i detta api representerar en konsument i en instans instanser av tjänsteplattformen. slås ihop till ett objekt. Samma hsa-id kan alltså förekomma i mer är ett objekt. Om connectionPoint inte anges som query-parameter så inkluderas connectionPoint till varje objekt i svaret  
+      parameters:
+        - name: connectionPointId
+          in: query
+          description: Filtrerar bara tjänstekonsumenter som hör till den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: logicalAddressId
+          in: query
+          description: Filtrerar bara tjänstekonsumenter som har någon samverkan med en specifik logisk adress. Ange den tekniska nyckeln för LogicalAddress tex 42.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara tjänstekonsumenter som har någon samverkan med ett specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceProducerId
+          in: query
+          description: Filtrerar bara tjänstekonsumenter som har någon samverkan med en specifik tjänsteproducent. Sökningen utförs genom att titta på tjänstproducenter som publicerar en tjänst på en viss logisk adress samtidigt som någon tjänstekonsument är konfigurerad att anropa samma logiska adress.  Ange den tekniska nyckeln för ServiceProducer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - ServiceConsumer
+      responses:
+        '200':
+          description: En lista av tjänstekonsumenter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceConsumer'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceConsumer'
+                xml:
+                  wrapped: true
+                  name: serviceConsumers
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceConsumers/{id}:
+    get:
+      summary: Service Consumer - tjänstekonsument
+      description: |
+        En specifik tjänstekonsument.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - ServiceConsumer
+      responses:
+        '200':
+          description: En tjänstekonsument
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceConsumer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceConsumer'
+        '404':
+          description: ServiceConsumer not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /cooperations:
+    get:
+      summary: Cooperation - samverkan
+      description: |
+        Alla samverkan. En tjänstekonsument är konfigurerad att samverka via en logisk adress avseende ett tjänstekontrakt. Objektet i sig innehåller inga attribut men genom att använda include-parametern hängs det på information från 1-4 relaterade objekt som beskriver samverkan. OBS prova inte denna resurs på denna sida utan att ange minst en filtrerings-parameter. Det är ganska stor träffbild om man får alla förekomster tillbaka och de skall parsas i dokumentverktyget, tar lång tid.  
+      parameters:
+        - name: connectionPointId
+          in: query
+          description: Filtrerar bara samverkan som är konfigurerad i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: logicalAddressId
+          in: query
+          description: Filtrerar bara samverkan som avser en specifik logisk adress. Ange den tekniska nyckeln för LogicalAddress tex 42.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara samverkan som avser ett specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceConsumerId
+          in: query
+          description: Filtrerar bara samverkan avseende en specifik tjänstekonsument. Ange den tekniska nyckeln för ServiceConsumer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceDomainId
+          in: query
+          description: Filtrerar bara samverkan avseende alla kontrakt som ingår i en viss tjänstedomän. Ange den tekniska nyckeln för ServiceDomain tex 825.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: include
+          in: query
+          description: 'Styr hur mycket information som skall skickas tillbaka i svaret. Ange en eller flera av följande objekt kommaseparerade: connectionPoint,logicalAddress,serviceContract,serviceConsumer'
+          required: false
+          schema:
+            type: string
+            default: connectionPoint,logicalAddress,serviceContract,serviceConsumer
+      tags:
+        - Cooperation
+      responses:
+        '200':
+          description: En lista av samverkan
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cooperation'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cooperation'
+                xml:
+                  wrapped: true
+                  name: cooperations
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /cooperations/{id}:
+    get:
+      summary: Cooperation - samverkan
+      description: |
+        En specifik samverkan. Alla 4 relaterade objekt är alltid inkluderade.
+      parameters:
+        - name: id
+          in: path
+          description: Teknisk nyckel
+          required: true
+          schema:
+            type: number
+      tags:
+        - Cooperation
+      responses:
+        '200':
+          description: En samverkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cooperation'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Cooperation'
+        '404':
+          description: Cooperation not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceContracts:
+    get:
+      summary: ServiceContract - tjänstekontrakt
+      description: |
+        Alla tjänstekontrakt. Identifieras versamhetsmässigt av namespace. Olika förekomster av tjänstekontrakt som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt  
+      parameters:
+        - name: namespace
+          in: query
+          description: Sök tjänstekontrakt som har ett visst namespace. Resultatlistan kommer bara att innehålla ett tjänstekontrakt
+          required: false
+          schema:
+            type: string
+        - name: connectionPointId
+          in: query
+          description: Filtrerar tjänstekontrakt som används i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: logicalAddressId
+          in: query
+          description: Filtrerar bara tjänstekontrakt som publiseras via en specifik logisk adress. Ange den tekniska nyckeln för LogicalAddress tex 42.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceProducerId
+          in: query
+          description: Filtrerar bara tjänstekontrakt som publiseras av en specifik tjänsteproducent. Ange den tekniska nyckeln för ServiceProducer tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceConsumerId
+          in: query
+          description: Filtrerar bara tjänstekontrakt som anropas av en viss tjänstekonsument.  Ange den tekniska nyckeln för ServiceConsumer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceDomainId
+          in: query
+          description: Filtrerar bara tjänstekontrakt som ingår i en specifik tjänstedomän.  Ange den tekniska nyckeln för ServiceDomain tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - ServiceContract
+      responses:
+        '200':
+          description: En lista av tjänstekontrakt
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceContract'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceContract'
+                xml:
+                  wrapped: true
+                  name: serviceContracts
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceContracts/{id}:
+    get:
+      summary: ServiceContract - tjänstekontrakt
+      description: |
+        Ett specifikt tjänstekontrakt.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - ServiceContract
+      responses:
+        '200':
+          description: Ett tjänstekontrakt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceContract'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceContract'
+        '404':
+          description: ServiceContract not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /logicalAddresses:
+    get:
+      summary: LogicalAddress - logisk adress
+      description: |
+        Alla logiska adresser. Identifieras versamhetsmässigt av attributet logisk adress. Olika förekomster av logiska adresser som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt  
+      parameters:
+        - name: logicalAdress
+          in: query
+          description: Sök logiska adresser som har en viss logisk adress. Resultatlistan kommer bara att innehålla ett objekt.
+          required: false
+          schema:
+            type: string
+        - name: connectionPointId
+          in: query
+          description: Filtrerar logiska adresser som används i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceProducerId
+          in: query
+          description: Filtrerar bara logiska adresser som publiseras av en specifik tjänsteproducent. Ange den tekniska nyckeln för ServiceProducer tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara logiska adresser som används vid publiseras av ett specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceConsumerId
+          in: query
+          description: Filtrerar bara logiska adresser som anropas av en viss tjänstekonsument. Ange den tekniska nyckeln för ServiceConsumer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - LogicalAddress
+      responses:
+        '200':
+          description: En lista av logiska adresser
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogicalAddress'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogicalAddress'
+                xml:
+                  wrapped: true
+                  name: logicalAddresses
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /logicalAddresses/{id}:
+    get:
+      summary: LogicalAddress - logisk adress
+      description: |
+        En specifik logisk adress.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - LogicalAddress
+      responses:
+        '200':
+          description: En logisk adress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogicalAddress'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LogicalAddress'
+        '404':
+          description: LogicalAddress not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceDomains:
+    get:
+      summary: ServiceDomain - tjänstedomän
+      description: |
+        Alla tjänstedomäner. Identifieras verksamhetsmässigt av namespace. Härleds från tjänstekontraktens namespace genom att ta bort avslutningen. Olika förekomster av tjänstedomäner som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt.  
+      parameters:
+        - name: namespace
+          in: query
+          description: 'Sök tjänstedomäner som har ett visst namespace. Exempel: ''itintegration:engagementindex''. Resultatlistan kommer bara att innehålla en tjänstedomän.'
+          required: false
+          schema:
+            type: string
+      tags:
+        - ServiceDomain
+      responses:
+        '200':
+          description: En lista av tjänstedomäner
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceDomain'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceDomain'
+                xml:
+                  wrapped: true
+                  name: serviceDomain
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceDomains/{id}:
+    get:
+      summary: ServiceDomain - tjänstedomän
+      description: |
+        En specifik tjänstedomän.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - ServiceDomain
+      responses:
+        '200':
+          description: En tjänstedomän
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDomain'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceDomain'
+        '404':
+          description: ServiceDomain not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceProducers:
+    get:
+      summary: Service Producer - tjänsteproducent
+      description: |
+        Alla tjänsteproducenter. En producent identifieras verksamhetsmässigt av hsa-id. En förekomster av detta objet representerar en producent i en instans av tjänsteplattformen. Innebär att samma hsa-id kan förekomma på två objekt. Om connectionPoint inte anges som query-parameter så inkluderas connectionPoint till varje objekt i svaret 
+      parameters:
+        - name: hsaId
+          in: query
+          description: Sök bara tjänsteproducenter som har angivet hsaId.
+          required: false
+          schema:
+            type: string
+        - name: connectionPointId
+          in: query
+          description: Filtrerar bara tjänsteproducenter som hör till den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: logicalAddressId
+          in: query
+          description: Filtrerar bara tjänsteproducenter som publicerar någon tjänst med en specifik logisk adress. Ange den tekniska nyckeln för LogicalAddress tex 42.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara tjänsteproducenter som publicerar någon tjänst med ett specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceConsumerId
+          in: query
+          description: Filtrerar bara tjänsteproducenter som har någon samverkan med en specifik tjänstekonsument. Sökningen utförs genom att titta på tjänstproducenter som publicerar en tjänst på en viss logisk adress samtidigt som någon tjänstekonsument är konfigurerad att anropa samma logiska adress.  Ange den tekniska nyckeln för ServiceConsumer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - ServiceProducer
+      responses:
+        '200':
+          description: En lista av tjänsteproducenter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceProducer'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceProducer'
+                xml:
+                  wrapped: true
+                  name: serviceProducers
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceProducers/{id}:
+    get:
+      summary: Service Producer - tjänsteproducent
+      description: |
+        En specifik tjänsteproducent.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - ServiceProducer
+      responses:
+        '200':
+          description: En tjänsteproducent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceProducer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceProducer'
+        '404':
+          description: ServiceProducer not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceProductions:
+    get:
+      summary: ServiceProduction - tjänsteproduktion
+      description: |
+        Alla tjänsteproduktioner. En tjänsteproducent är konfigurerad att publicera en tjänst via en logisk adress avseende ett tjänstekontrakt. Genom att använda include-parametern hängs det på information från 1-4 relaterade objekt som beskriver tjänsteproduktionen. OBS prova inte denna resurs på denna sida utan att ange minst en filtrerings-parameter. Det är ganska stor träffbild om man får alla förekomster tillbaka och de skall parsas i dokumentverktyget, tar lång tid.  
+      parameters:
+        - name: physicalAddress
+          in: query
+          description: Sök bara tjänsteproduktioner som har angiven fysisk adress.
+          required: false
+          schema:
+            type: string
+        - name: rivtaProfile
+          in: query
+          description: Sök bara tjänsteproduktioner som har angivet rivTaProfil.
+          required: false
+          schema:
+            type: string
+        - name: connectionPointId
+          in: query
+          description: Filtrerar bara tjänsteproduktioner som är konfigurerade i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: logicalAddressId
+          in: query
+          description: Filtrerar bara tjänsteproduktioner som avser en specifik logisk adress. Ange den tekniska nyckeln för LogicalAddress tex 42.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara tjänsteproduktioner som avser ett specifik tjänstekontrakt. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceProducerId
+          in: query
+          description: Filtrerar bara tjänsteproduktioner avseende en specifik tjänsteproducent.  Ange den tekniska nyckeln för ServiceProducer tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceDomainId
+          in: query
+          description: Filtrerar bara samverkan avseende alla kontrakt som ingår i en viss tjänstedomän.  Ange den tekniska nyckeln för ServiceDomain tex 825.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: include
+          in: query
+          description: 'Styr hur mycket information som skall skickas tillbaka i svaret.  Ange en eller flera av följande objekt kommaseparerade: connectionPoint,logicalAddress,serviceContract,serviceProducer'
+          required: false
+          schema:
+            type: string
+            default: connectionPoint,logicalAddress,serviceContract,serviceProducer
+      tags:
+        - ServiceProduction
+      responses:
+        '200':
+          description: En lista av tjänsteproduktioner
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceProduction'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceProduction'
+                xml:
+                  wrapped: true
+                  name: serviceProductions
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /serviceProductions/{id}:
+    get:
+      summary: ServiceProduction - tjänsteproduktion
+      description: |
+        En specifik tjänsteproduktion. Alla 4 relaterade objekt är alltid inkluderade.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - ServiceProduction
+      responses:
+        '200':
+          description: En tjänsteproduktion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceProduction'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServiceProduction'
+        '404':
+          description: ServiceProduction not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /installedContracts:
+    get:
+      summary: InstalledContract - installerade tjänstekontrakt
+      description: |
+        Alla tjänstekontrakt som är installerade i en viss miljö.  Kontraktet kan vara installerat även om det inte finns några kopplingar mot det ännu  
+      parameters:
+        - name: connectionPointId
+          in: query
+          description: Filtrerar installerade tjänstekontrakt som finns i den aktulla instansen av tjänsteplattformen. Ange den tekniska nyckeln för connectionPoint tex 376.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceContractId
+          in: query
+          description: Filtrerar bara installerade tjänstekontrakt av en viss typ. Ange den tekniska nyckeln för ServiceContract tex 123.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: serviceDomainId
+          in: query
+          description: Filtrerar bara installerade tjänstekontrakt avseende kontrakt som ingår i en specifik tjänstedomän.  Ange den tekniska nyckeln för ServiceDomain tex 538.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - InstalledContract
+      responses:
+        '200':
+          description: En lista av installerade tjänstekontrakt
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InstalledContract'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InstalledContract'
+                xml:
+                  wrapped: true
+                  name: installedContracts
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+  /installedContracts/{id}:
+    get:
+      summary: InstalledContract - installerade tjänstekontrakt
+      description: |
+        En specifik installation av ett tjänstekontrakt i en viss miljö. Returobjekten inkluderar alltid ConnectionPoint och ServiceContract, annars hade det bara blivit en lista av tekniska nycklar.
+      parameters:
+        - $ref: '#/components/parameters/TechnicalKeyParam'
+      tags:
+        - InstalledContract
+      responses:
+        '200':
+          description: Ett installerat tjänstekontrakt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstalledContract'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/InstalledContract'
+        '404':
+          description: InstalledContract not found
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+security:
+  - basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:     # <-- arbitrary name for the security scheme
+      type: http
+      scheme: basic
+  responses:
+    UnexpectedErrorResponse:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    TechnicalKeyParam:
+      name: id
+      in: path
+      description: Teknisk nyckel
+      required: true
+      schema:
+        type: number
+  schemas:
+    ConnectionPoint:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        platform:
+          type: string
+          description: Plattform tex NTJP.
+        environment:
+          type: string
+          description: Miljö tex PRODUCTION.
+        snapshotTime:
+          type: string
+          description: Den tidpunkt som informationen lästes av från tjänsteplattformen.
+      xml:
+        name: connectionPoint
+    ServiceConsumer:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        hsaId:
+          type: string
+          description: hsa-id.
+        description:
+          type: string
+          description: Beskrivning.
+      xml:
+        name: serviceConsumer
+    Cooperation:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        serviceConsumer:
+          $ref: '#/components/schemas/ServiceConsumer'
+        logicalAdress:
+          $ref: '#/components/schemas/LogicalAddress'
+        serviceContract:
+          $ref: '#/components/schemas/ServiceContract'
+        connectionPoint:
+          $ref: '#/components/schemas/ConnectionPoint'
+      xml:
+        name: cooperation
+    LogicalAddress:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        logicalAddress:
+          type: string
+          description: logisk adress.
+        description:
+          type: string
+          description: Beskrivning.
+      xml:
+        name: logicalAddress
+    ServiceContract:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        name:
+          type: string
+          description: Namn.
+        namespace:
+          type: string
+          description: Namnrymd.
+        major:
+          type: number
+          description: Major-version exvis 1 eller 2.
+        minor:
+          type: number
+          description: Minor-version exvis 0 eller 1.
+      xml:
+        name: serviceContract
+    ServiceDomain:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        name:
+          type: string
+          description: Namn.
+        namespace:
+          type: string
+          description: Namnrymd.
+      xml:
+        name: serviceDomain
+    ServiceProducer:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        hsaId:
+          type: string
+          description: hsa-id.
+        description:
+          type: string
+          description: Beskrivning.
+      xml:
+        name: serviceProducer
+    ServiceProduction:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        physicalAddress:
+          type: string
+          description: fysisk adress för tjänsten.
+        rivtaProfile:
+          type: string
+          description: Den profil som tjänsten stöder.
+        serviceProducer:
+          $ref: '#/components/schemas/ServiceProducer'
+        logicalAdress:
+          $ref: '#/components/schemas/LogicalAddress'
+        serviceContract:
+          $ref: '#/components/schemas/ServiceContract'
+        connectionPoint:
+          $ref: '#/components/schemas/ConnectionPoint'
+      xml:
+        name: serviceProduction
+    InstalledContract:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unik teknisk nyckel
+        connectionPoint:
+          $ref: '#/components/schemas/ConnectionPoint'
+        serviceContract:
+          $ref: '#/components/schemas/ServiceContract'
+      xml:
+        name: installedContract
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+      xml:
+        name: error
