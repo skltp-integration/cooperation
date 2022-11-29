@@ -9,6 +9,8 @@ coopJdbcUrl=jdbc:mysql://localhost/cooperation
 coopJdbcUser=coop_user
 coopJdbcPassword=coop_pw
 
+coop_auth_user_and_pass=Caesar:qwerty
+
 tmpDir=/tmp/cooperation-import-from-tak
 
 coopImportFilesDir=${tmpDir}/import

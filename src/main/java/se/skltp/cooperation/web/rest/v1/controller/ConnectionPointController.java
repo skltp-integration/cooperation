@@ -43,8 +43,14 @@ import se.skltp.cooperation.web.rest.v1.listdto.ConnectionPointListDTO;
  * @author Peter Merikan
  */
 @RestController
-@RequestMapping(value = { "/api/v1/connectionPoints", "/api/v1/connectionPoints.json",
-		"/api/v1/connectionPoints.xml" })
+@RequestMapping(value = {
+	"/api/v1/connectionPoints",
+	"/api/v1/connectionPoints.json",
+	"/api/v1/connectionPoints.xml",
+	"/api/v2/connectionPoints",
+	"/api/v2/connectionPoints.json",
+	"/api/v2/connectionPoints.xml"
+})
 public class ConnectionPointController {
 
 	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);

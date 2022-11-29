@@ -38,7 +38,7 @@ cli.with
 		coop longOpt: 'coop', 'Cooperation url', args: 1, required: true
 		smtp_prop longOpt: 'smtp_prop', 'File with smtp server properties', args: 1, required: true
 		ok_file longOpt: 'ok_file', 'Signal fil för visa att verifikation lyckades', args: 1, required: true
-
+		userandpass longOpt: 'user_and_pass', 'Username and Password separated by a colon : character', args: 1, required: true
 	}
 
 def opt = cli.parse(args)
@@ -52,6 +52,7 @@ def dump_list = opt.dumps.split("\n")
 def connection_points_url = opt.coop
 def smtp_prop_file = opt.smtp_prop
 def ok_file = opt.ok_file
+String auth_userandpass = opt.userandpass
 
 Properties appProperties = downloadProperties(smtp_prop_file)
 
@@ -61,7 +62,7 @@ logger.info("Preparing Request and Auth.")
 //   String connectionPointsJson = connection_points_url.toURL().text
 
 // Encode Auth string.
-def authString = new String(Base64.getEncoder().encode("Caesar:qwerty".getBytes()));
+def authString = new String(Base64.getEncoder().encode(auth_userandpass.getBytes()))
 
 // Open connection and attach header.
 def conn = connection_points_url.toURL().openConnection()

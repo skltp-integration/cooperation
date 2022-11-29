@@ -20,8 +20,8 @@ public class Settings {
 	public final String getFilePath() { return folderPath + fileName ;}
 
 	/** A CRON temporal expression for how often the user file should be read.<br>
-	 * Currently: "At 5 minutes past the hour, every hour, every day." */
-	@Value("${settings.fileReadCron:0 5 * * * *}")
+	 * Currently: "(0 0/5 * * * *) = Every 5 minutes, every hour, every day." */
+	@Value("${settings.fileReadCron:0 0/5 * * * *}")
 	public String cron;
 
 	// API settings:

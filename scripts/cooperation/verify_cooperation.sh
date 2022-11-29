@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $EUID -eq 0 ]]; then
-   echo "This script must be run as ine-app" 
+   echo "This script must be run as ine-app"
    exit 1
 fi
 
@@ -28,8 +28,15 @@ rm -f ${okFile}
 dump=$( IFS=$'\n'; echo "${dump_files[*]}" )
 
 groovy verify_cooperation.groovy \
-    -smtp_prop "smtp.properties" -mail ${to_mail} -from_mail ${from_mail} -subj "${alert_mail_subject}" -dumps "${dump}" -coop "${connection_points_url}" -ok_file "${okFile}" 
-	
+    -smtp_prop "smtp.properties" \
+    -mail ${to_mail} \
+    -from_mail ${from_mail} \
+    -subj "${alert_mail_subject}" \
+    -dumps "${dump}" \
+    -coop "${connection_points_url}" \
+    -ok_file "${okFile}" \
+    -user_and_pass "${coop_auth_user_and_pass}"
+
 sleep 10
 
 if [ ! -f ${okFile} ]; then

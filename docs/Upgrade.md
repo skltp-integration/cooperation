@@ -14,7 +14,7 @@
 
 > Öppna webläsare 
 ```
-url-till-tomcat[:port]/coop/api/v1/connectionPoints?api_key=abcd
+url-till-tomcat[:port]/coop/api/v1/connectionPoints
 ```
 > Skall ge en xml-utskrift
 

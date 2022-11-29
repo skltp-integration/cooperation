@@ -21,6 +21,20 @@ public final class AuthController {
 	Settings settings;
 
 	////
+	// TEST IMPLEMENT OF V1 AND V2
+	////
+
+	@GetMapping("/api/v1/test") // v1 is to be open access.
+	public String v1getter(){
+		return "I'm Open and Accessible!";
+	}
+
+	@GetMapping("/api/v2/test") // v2 is to be set behind Basic Authorization.
+	public String v2getter() {
+		return "I'm hidden behind Auth!";
+	}
+
+	////
 	// Pings and Hellos.
 	////
 

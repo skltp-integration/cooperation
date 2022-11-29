@@ -47,8 +47,14 @@ import se.skltp.cooperation.web.rest.v1.listdto.ServiceProducerListDTO;
  * @author Jan Vasternas
  */
 @RestController
-@RequestMapping(value = { "/api/v1/serviceProducers", "/api/v1/serviceProducers.json",
-		"/api/v1/serviceProducers.xml" })
+@RequestMapping(value = {
+	"/api/v1/serviceProducers",
+	"/api/v1/serviceProducers.json",
+	"/api/v1/serviceProducers.xml",
+	"/api/v2/serviceProducers",
+	"/api/v2/serviceProducers.json",
+	"/api/v2/serviceProducers.xml"
+})
 public class ServiceProducerController {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceProducerController.class);

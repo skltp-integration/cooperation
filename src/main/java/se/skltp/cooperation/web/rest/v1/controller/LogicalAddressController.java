@@ -47,8 +47,14 @@ import se.skltp.cooperation.web.rest.v1.listdto.LogicalAddressListDTO;
  * @author Jan Vasternas
  */
 @RestController
-@RequestMapping(value = { "/api/v1/logicalAddresss", "/api/v1/logicalAddresss.json",
-		"/api/v1/logicalAddresss.xml" })
+@RequestMapping(value = {
+	"/api/v1/logicalAddresss", // TODO: All of these v1s are misspelled.
+	"/api/v1/logicalAddresss.json",
+	"/api/v1/logicalAddresss.xml",
+	"/api/v2/logicalAddresses", // Fixed addresses for v2.
+	"/api/v2/logicalAddresses.json",
+	"/api/v2/logicalAddresses.xml"
+})
 public class LogicalAddressController {
 
 	private final Logger log = LoggerFactory.getLogger(LogicalAddressController.class);
@@ -73,7 +79,7 @@ public class LogicalAddressController {
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all LogicalAddresss as json");
+		log.debug("REST request to get all LogicalAddresses as json");
 
 		return getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
 				serviceProducerId);
@@ -91,7 +97,7 @@ public class LogicalAddressController {
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all LogicalAddresss as xml");
+		log.debug("REST request to get all LogicalAddresses as xml");
 
 		LogicalAddressListDTO result = new LogicalAddressListDTO();
 		result.setLogicalAddresss(getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
@@ -121,7 +127,7 @@ public class LogicalAddressController {
 		LogicalAddressCriteria criteria = new  LogicalAddressCriteria(logicalAdress, serviceConsumerId,
 				serviceContractId,  connectionPointId,  serviceProducerId);
 		List<LogicalAddress> logicalAddresss = logicalAddressService.findAll(criteria);
-		List<LogicalAddressDTO> result = new ArrayList<>(); 
+		List<LogicalAddressDTO> result = new ArrayList<>();
 		for (LogicalAddress la : logicalAddresss) {
 			result.add(toDTO(la));
 		}
