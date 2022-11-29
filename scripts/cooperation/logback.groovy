@@ -28,7 +28,15 @@ appender("FILE", FileAppender) {
   }
 }
 
+appender("STDOUT", ConsoleAppender) {
+  encoder(PatternLayoutEncoder) {
+    pattern = "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  }
+}
+
 logger("org.hibernate", ERROR)
 logger("org.hibernate.cache", ERROR)
 
-root(DEBUG, ["FILE"])
+// Use file only or stdout for easier debugging
+//root(DEBUG, ["FILE"])
+root(DEBUG, ["FILE", "STDOUT"])

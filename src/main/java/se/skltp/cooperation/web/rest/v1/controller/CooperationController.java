@@ -51,8 +51,14 @@ import com.google.common.base.Splitter;
  * @author Peter Merikan
  */
 @RestController
-@RequestMapping(value = { "/api/v1/cooperations", "/api/v1/cooperations.json",
-		"/api/v1/cooperations.xml" })
+@RequestMapping(value = {
+	"/api/v1/cooperations",
+	"/api/v1/cooperations.json",
+	"/api/v1/cooperations.xml",
+	"/api/v2/cooperations",
+	"/api/v2/cooperations.json",
+	"/api/v2/cooperations.xml"
+})
 public class CooperationController {
 
 	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
@@ -126,9 +132,9 @@ public class CooperationController {
 
 	private List<CooperationDTO> getAll(Long serviceConsumerId, Long logicalAddressId,
 			Long serviceContractId, Long connectionPointId, Long serviceDomainId, String include) {
-		
+
 		TimeDiffUtil tdu = new TimeDiffUtil();
-		
+
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
 			includes.addAll(SPLITTER.splitToList(include));
@@ -144,7 +150,7 @@ public class CooperationController {
 			result.add(toDTO(cp));
 		}
 		log.info("Benchmark: getAll took " + tdu.timeElapsed() + " s to process " + cooperations.size() + " records.");
-		
+
 		return result;
 	}
 
@@ -158,13 +164,13 @@ public class CooperationController {
 	 */
 	void includeOrNot(List<String> includes, Cooperation cooperation) {
 		if (!includes.contains(INCLUDE_CONNECTIONPOINT)){
-			cooperation.setConnectionPoint(null);			
+			cooperation.setConnectionPoint(null);
 		}
 		if (!includes.contains(INCLUDE_LOGICALADDRESS)){
-			cooperation.setLogicalAddress(null);			
+			cooperation.setLogicalAddress(null);
 		}
 		if (!includes.contains(INCLUDE_SERVICECONSUMER)){
-			cooperation.setServiceConsumer(null);			
+			cooperation.setServiceConsumer(null);
 		} else {
 			cooperation.getServiceConsumer().setConnectionPoint(null);
 		}

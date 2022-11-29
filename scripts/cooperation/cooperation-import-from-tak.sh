@@ -3,7 +3,9 @@
 printlog(){
 	level=$1
 	message=$2
-	printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$message"
+	while IFS=$'\n' read -r currentMessage; do
+ 	printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$currentMessage"
+	done <<< "$message"
 }
 
 
@@ -100,11 +102,12 @@ printlog "INFO" "Done: Check file list: OK" >> ${logFile}
 #=============================================================================
 # Handle creation of new DB tables (to support rolling over old data, 1 backup)
 # and import of data from TAK-exported files.
+# (No longer used, temp. tables are created by TakCooperationImport.groovy)
 #=============================================================================
-printlog "INFO"  "Begin: create new tables: `date`" >> ${logFile}
-groovy CreateNewTables.groovy \
-    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new 
-printlog "INFO"  "Done: create new tables: `date`" >> ${logFile}
+#printlog "INFO"  "Begin: create new tables: `date`" >> ${logFile}
+#groovy CreateNewTables.groovy \
+#    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new 
+#printlog "INFO"  "Done: create new tables: `date`" >> ${logFile}
 
 printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`" >> ${logFile}
 groovy TransformTakExportFormatToCooperationImportFormat.groovy \

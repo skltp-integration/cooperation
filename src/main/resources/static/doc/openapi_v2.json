@@ -3,11 +3,11 @@
   "info": {
     "title": "Etablerad samverkan i vården",
     "description": "![Informationsmodell - Cooperation](images/cooperation.png)\r\n\r\nInformation om tjänster, producenter och konsumenter baserad på tjänsteadresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida konfigurationsändringar syns inte i api:et, enbart hur det ser ut i dagsläget. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i HSA-trädet, och avser alla noder därunder. Detta speglas rakt av i api:et och HSA-trädet evalueras inte här. De tekniska id-begreppen på alla objekt genereras om en gång per dygn och garanteras således inte ha samma värde två dagar i rad. Applikationer bör skrivas så att de är oberoende av de tekniska nycklarna. Varje resurs har sin egen nummerserie för de tekniska id-begreppen. En api-nyckel kan behövas för att nå api:et.",
-    "version": "1.1.0"
+    "version": "2.0.0"
   },
   "servers": [
     {
-      "url": "/coop/api/v1"
+      "url": "/coop/api/v2"
     }
   ],
   "paths": {
@@ -546,7 +546,7 @@
         }
       }
     },
-    "/logicalAddresss": {
+    "/logicalAddresses": {
       "get": {
         "summary": "LogicalAddress - logisk adress",
         "description": "Alla logiska adresser. Identifieras versamhetsmässigt av attributet logisk adress. Olika förekomster av logiska adresser som kommer från olika instanser av tjänsteplattformar slås ihop till ett objekt  \n",
@@ -624,7 +624,7 @@
                   },
                   "xml": {
                     "wrapped": true,
-                    "name": "logicalAddresss"
+                    "name": "logicalAddresses"
                   }
                 }
               }
@@ -636,7 +636,7 @@
         }
       }
     },
-    "/logicalAddresss/{id}": {
+    "/logicalAddresses/{id}": {
       "get": {
         "summary": "LogicalAddress - logisk adress",
         "description": "En specifik logisk adress.\n",
@@ -1152,7 +1152,18 @@
       }
     }
   },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
   "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "responses": {
       "UnexpectedErrorResponse": {
         "description": "Unexpected error",

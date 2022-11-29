@@ -9,6 +9,8 @@ coopJdbcUrl=jdbc:mysql://localhost/cooperation
 coopJdbcUser=coop_user
 coopJdbcPassword=coop_pw
 
+coop_auth_user_and_pass=Caesar:qwerty
+
 tmpDir=/tmp/cooperation-import-from-tak
 
 coopImportFilesDir=${tmpDir}/import
@@ -40,7 +42,7 @@ export PATH=${PATH}:/local/java/groovy/bin
 #-----------------------------
 # Mail for send fail report
 #-----------------------------
-to_mail=problem@soprasteria.com
-from_mail=cooperationImportProblem@soprasteria.se
+to_mail=problem@inera.com,problem2@inera.com
+from_mail=cooperationImportProblem@inera.se
 alert_mail_subject="XXX miljo. Problem med Cooperation import"
 alert_mail_text="Ett fel inträffades under cooperation import"

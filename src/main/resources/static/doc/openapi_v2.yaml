@@ -2,9 +2,9 @@ openapi: 3.0.1
 info:
   title: Etablerad samverkan i vården
   description: "![Informationsmodell - Cooperation](images/cooperation.png)\r\n\r\nInformation om tjänster, producenter och konsumenter baserad på tjänsteadresseringskatalogen i både Ineras nationella tjänsteplattform och regionala tjänsteplattformar. Eventuella framtida konfigurationsändringar syns inte i api:et, enbart hur det ser ut i dagsläget. Konfiguration i en tjänsteplattform kan ibland ske på en viss nivå i HSA-trädet, och avser alla noder därunder. Detta speglas rakt av i api:et och HSA-trädet evalueras inte här. De tekniska id-begreppen på alla objekt genereras om en gång per dygn och garanteras således inte ha samma värde två dagar i rad. Applikationer bör skrivas så att de är oberoende av de tekniska nycklarna. Varje resurs har sin egen nummerserie för de tekniska id-begreppen. En api-nyckel kan behövas för att nå api:et."
-  version: 1.1.0
+  version: 2.0.0
 servers:
-  - url: /coop/api/v1
+  - url: /coop/api/v2
 paths:
   /connectionPoints:
     get:
@@ -14,7 +14,7 @@ paths:
       parameters:
         - name: platform
           in: query
-          description: 'Filtrera på plattform, tex NTJP'
+          description: Filtrera på plattform, tex NTJP
           required: false
           schema:
             type: string
@@ -73,7 +73,7 @@ paths:
                   name: connectionPoints
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/connectionPoints/{id}':
+  /connectionPoints/{id}:
     get:
       summary: Connection Point - TP instans
       description: |
@@ -151,7 +151,7 @@ paths:
                   name: serviceConsumers
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/serviceConsumers/{id}':
+  /serviceConsumers/{id}:
     get:
       summary: Service Consumer - tjänstekonsument
       description: |
@@ -221,7 +221,7 @@ paths:
           required: false
           schema:
             type: string
-            default: 'connectionPoint,logicalAddress,serviceContract,serviceConsumer'
+            default: connectionPoint,logicalAddress,serviceContract,serviceConsumer
       tags:
         - Cooperation
       responses:
@@ -243,7 +243,7 @@ paths:
                   name: cooperations
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/cooperations/{id}':
+  /cooperations/{id}:
     get:
       summary: Cooperation - samverkan
       description: |
@@ -339,7 +339,7 @@ paths:
                   name: serviceContracts
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/serviceContracts/{id}':
+  /serviceContracts/{id}:
     get:
       summary: ServiceContract - tjänstekontrakt
       description: |
@@ -362,7 +362,7 @@ paths:
           description: ServiceContract not found
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  /logicalAddresss:
+  /logicalAddresses:
     get:
       summary: LogicalAddress - logisk adress
       description: |
@@ -420,10 +420,10 @@ paths:
                   $ref: '#/components/schemas/LogicalAddress'
                 xml:
                   wrapped: true
-                  name: logicalAddresss
+                  name: logicalAddresses
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/logicalAddresss/{id}':
+  /logicalAddresses/{id}:
     get:
       summary: LogicalAddress - logisk adress
       description: |
@@ -479,7 +479,7 @@ paths:
                   name: serviceDomain
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/serviceDomains/{id}':
+  /serviceDomains/{id}:
     get:
       summary: ServiceDomain - tjänstedomän
       description: |
@@ -563,7 +563,7 @@ paths:
                   name: serviceProducers
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/serviceProducers/{id}':
+  /serviceProducers/{id}:
     get:
       summary: Service Producer - tjänsteproducent
       description: |
@@ -645,7 +645,7 @@ paths:
           required: false
           schema:
             type: string
-            default: 'connectionPoint,logicalAddress,serviceContract,serviceProducer'
+            default: connectionPoint,logicalAddress,serviceContract,serviceProducer
       tags:
         - ServiceProduction
       responses:
@@ -667,7 +667,7 @@ paths:
                   name: serviceProductions
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/serviceProductions/{id}':
+  /serviceProductions/{id}:
     get:
       summary: ServiceProduction - tjänsteproduktion
       description: |
@@ -738,7 +738,7 @@ paths:
                   name: installedContracts
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
-  '/installedContracts/{id}':
+  /installedContracts/{id}:
     get:
       summary: InstalledContract - installerade tjänstekontrakt
       description: |
@@ -761,7 +761,13 @@ paths:
           description: InstalledContract not found
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
+security:
+  - basicAuth: []
 components:
+  securitySchemes:
+    basicAuth:     # <-- arbitrary name for the security scheme
+      type: http
+      scheme: basic
   responses:
     UnexpectedErrorResponse:
       description: Unexpected error

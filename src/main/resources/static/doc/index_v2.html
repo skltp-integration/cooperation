@@ -1,0 +1,90 @@
+<!--
+
+    Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
+                    <http://cehis.se/>
+
+    This file is part of SKLTP.
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Etablerad samverkan i vården</title>
+    <link rel="stylesheet" type="text/css" href="css/swagger-ui.css">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+    <style>
+      html
+      {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+
+      *,
+      *:before,
+      *:after
+      {
+        box-sizing: inherit;
+      }
+
+      body
+      {
+        margin:0;
+        background: #fafafa;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="swagger-ui"></div>
+
+    <script src="./swagger-ui-bundle.js"> </script>
+    <script src="./swagger-ui-standalone-preset.js"> </script>
+    <script>
+    var x = window.location.href.indexOf("/doc/");
+    var url = window.location.href.substring(0,x) + "/doc/openapi_v2.json";
+    window.onload = function() {
+      // Build a system
+      const ui = SwaggerUIBundle({
+        url: url,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        docExpansion: "none",
+        tagsSorter: "alpha",
+        operationsSorter: "alpha",
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
+        onComplete: function(){
+          console.log("Swagger loaded successfully.");
+        }
+      })
+
+      window.ui = ui
+    }
+  </script>
+  </body>
+</html>

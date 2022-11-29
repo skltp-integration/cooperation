@@ -9,7 +9,7 @@
 
 ### Hämta ut källkoden
 ```
-> git clone git@github.com:skltp-incubator/cooperation.git
+> git clone git@github.com:skltp-integration/cooperation.git
 ```
 
 ### Bygg applikationen
