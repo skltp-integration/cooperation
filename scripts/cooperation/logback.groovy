@@ -12,14 +12,14 @@ import net.logstash.logback.composite.loggingevent.StackTraceJsonProvider;
 import static ch.qos.logback.classic.Level.DEBUG
 
 appender("FILE", FileAppender) {
-  file = "/var/log/ind-app/cooperation-import-from-tak.log"
+  file = "/tmp/cooperation-import-from-tak.log"
   append = true
   encoder(LoggingEventCompositeJsonEncoder) {
     LoggingEventJsonProviders aProviders = new LoggingEventJsonProviders()
 	FormattedTimestampJsonProvider timestampProvider = new LoggingEventFormattedTimestampJsonProvider ()
 	timestampProvider.timeZone = "CET"
 	aProviders.addTimestamp(timestampProvider)
-		
+
 	aProviders.addLogLevel(new LogLevelJsonProvider())
     aProviders.addMessage(new MessageJsonProvider())
 	aProviders.addStackTrace(new StackTraceJsonProvider());

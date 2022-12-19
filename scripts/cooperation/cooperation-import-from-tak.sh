@@ -10,7 +10,7 @@ printlog(){
 
 
 if [[ $EUID -eq 0 ]]; then
-   echo "This script must be run as ind-app" 
+   echo "This script must be run as ind-app"
    exit 1
 fi
 
@@ -42,7 +42,6 @@ cd `dirname $0`
 #=============================================================================
 mkdir -p ${tmpDir}
 mkdir -p ${tmpDir}/import
-logFile=/var/log/ind-app/cooperation-import-from-tak.log
 rm ${logFile}
 # clear logfile
 printlog "INFO" "Begin: ny cooperation import" >> ${logFile}
@@ -58,8 +57,8 @@ printlog "INFO" "Done: environment check" >> ${logFile}
 printlog "INFO" "Begin: SFTP-download of TAK export files" >> ${logFile}
 sftpOut=$(sftp -o IdentityFile=${sshIdentityFile} ${sftpUser}@${sftpHost} 2>&1 <<EOF
 get ${sftpRemotePath}*.json ${coopImportFilesDir}
-EOF) 
-printlog "INFO" "$sftpOut" >> ${logFile} 
+EOF)
+printlog "INFO" "$sftpOut" >> ${logFile}
 printlog "INFO" "Done: SFTP-download of TAK export files" >> ${logFile}
 
 #=============================================================================
@@ -106,12 +105,12 @@ printlog "INFO" "Done: Check file list: OK" >> ${logFile}
 #=============================================================================
 #printlog "INFO"  "Begin: create new tables: `date`" >> ${logFile}
 #groovy CreateNewTables.groovy \
-#    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new 
+#    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} -s _new
 #printlog "INFO"  "Done: create new tables: `date`" >> ${logFile}
 
 printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`" >> ${logFile}
 groovy TransformTakExportFormatToCooperationImportFormat.groovy \
-    -d ${coopImportFilesDir} 
+    -d ${coopImportFilesDir}
 printlog "INFO"  "Done: transform tak export files: `date`" >> ${logFile}
 
 printlog "INFO"  "Begin: import tak data from dir: ${coopImportFilesDir} : `date`" >> ${logFile}
@@ -121,5 +120,5 @@ printlog "INFO"  "Done: import tak data: `date`" >> ${logFile}
 
 printlog "INFO"  "Begin: activate new tak data version: `date`" >> ${logFile}
 groovy ActivateNewVersion \
-    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword} 
+    -url ${coopJdbcUrl} -u ${coopJdbcUser} -p ${coopJdbcPassword}
 printlog "INFO"  "Done: activate new tak data version: `date`" >> ${logFile}
