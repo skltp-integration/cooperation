@@ -11,7 +11,7 @@ coopJdbcPassword=${COOPERATION_DB_PASSWORD}
 
 coop_auth_user_and_pass=${COOPERATION_AUTH_USER_AND_PASS}
 
-logFile=/tmp/cooperation-import-from-tak.log
+logFile=/dev/stdout
 tmpDir=/tmp/cooperation-import-from-tak
 coopImportFilesDir=${tmpDir}/import
 

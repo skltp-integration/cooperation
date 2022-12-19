@@ -42,7 +42,12 @@ cd `dirname $0`
 #=============================================================================
 mkdir -p ${tmpDir}
 mkdir -p ${tmpDir}/import
-rm ${logFile}
+
+if [ -s "$logFile" ]
+then
+   rm ${logFile}
+fi
+
 # clear logfile
 printlog "INFO" "Begin: ny cooperation import" >> ${logFile}
 printlog "INFO" "Begin: environment check" >> ${logFile}
