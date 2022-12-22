@@ -44,6 +44,6 @@ spring:
     profiles: prod
     datasource:
         platform: mysql
-        driverClassName: com.mysql.jdbc.Driver
+        driverClassName: com.mysql.cj.jdbc.Driver
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect

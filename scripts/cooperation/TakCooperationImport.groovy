@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat
 ])
 
 @Field
-static final String DB_DRIVER = "com.mysql.jdbc.Driver"
+static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver"
 
 @Field
 static final String TABLE_SUFFIX = "_new"
