@@ -18,7 +18,8 @@ coopImportFilesDir=${tmpDir}/import
 #-----------------------------
 # Cooperation config validering
 #-----------------------------
-dump_files=(ntjp_test ntjp_qa ntjp_prod sll_qa sll_prod)
+#dump_files=(ntjp_test ntjp_qa ntjp_prod sll_qa sll_prod)
+dump_files=(`echo $COOPERATION_IMPORT_ENVIRONMENTS | tr ',' ' '`)
 connection_points_url=${COOPERATION_CONNECTION_POINTS_URL}
 
 #-----------------------------
