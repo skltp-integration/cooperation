@@ -133,8 +133,8 @@ enum Dump {
 	SLL_PROD("SLL","PROD"),
 	LD_PROD("LD","PROD"),
 	LD_QA("LD","QA"),
-	NMT_SKAULO("NMT","SKAULO")
-
+	NMT_SKAULO("NMT","SKAULO"),
+	NTJP_LAB("NTJP", "LAB")
 
 	static Dump getDump(String name){
 	name = name.toLowerCase()
@@ -147,6 +147,7 @@ enum Dump {
 		case "ld_prod": return LD_PROD;
 		case "ld_qa": return LD_QA;
 		case "nmt_skaulo": return NMT_SKAULO;
+		case "ntjp_lab": return NTJP_LAB;
 		default:  return null;
 		}
 	}
