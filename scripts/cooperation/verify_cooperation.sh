@@ -20,7 +20,7 @@ printlog(){
 # setup environment
 . cooperation-import-from-tak-env-setup.sh
 
-
+mkdir -p ${tmpDir}
 okFile=${tmpDir}/okfile
 rm -f ${okFile}
 
