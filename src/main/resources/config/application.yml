@@ -1,7 +1,8 @@
 spring.profiles.active: dev
 server:
     port: 8080
-    contextPath: /coop
+    servlet:
+      context-path: /coop
     
 settings:
   folderPath: ./config/
