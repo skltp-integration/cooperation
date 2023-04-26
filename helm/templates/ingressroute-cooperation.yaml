@@ -1,0 +1,55 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+  name: cooperation-https
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`tak.dev.ntjp.se`) && PathPrefix(`/coop`)
+      priority: 10
+      services:
+        - kind: Service
+          name: cooperation-service
+          passHostHeader: true
+          port: 8080
+          responseForwarding:
+            flushInterval: 1ms
+          scheme: http
+          sticky:
+            cookie:
+              httpOnly: true
+              name: cookie
+              sameSite: none
+              secure: true
+          strategy: RoundRobin
+          weight: 10
+  tls:
+    secretName:
+    domains:
+      - main:
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+  name: cooperation-http
+spec:
+  routes:
+  - kind: Rule
+    match: Host(`tak.dev.ntjp.se`) && PathPrefix(`/coop`)
+    middlewares:
+      - name: cooperation-redirect-https
+    services:
+      - kind: Service
+        name: cooperation-service
+        port: 8080
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: cooperation-redirect-https
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true

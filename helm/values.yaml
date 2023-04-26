@@ -1,0 +1,18 @@
+repository: test/
+
+replicaCount: 1
+
+container:
+  image:
+    tag: "MyTag" # To override the default tag, set it here.
+
+environment:
+  variables:
+    _default_config_maps:
+      - cooperation-configmap-default
+    config_maps:
+      # Nothing yet. Override to supply your own values.
+    secrets:
+      # Nothing yet.
+    map: 
+      CATALINA_OPTS: "-Dspring.profiles.active=production -Dapp.conf.dir=/etc/cooperation"

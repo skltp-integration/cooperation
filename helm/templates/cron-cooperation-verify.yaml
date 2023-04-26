@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-cooperation-verify
+spec:
+  schedule: "15 20 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: config-volume
+              configMap:
+                name: cooperation-config-files
+            - name: key-volume
+              secret:
+                secretName: ""
+          containers:
+            - name: cooperation-scripts
+              image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+              imagePullPolicy: Always
+              envFrom:
+                {{- range $.Values.environment.variables._default_config_maps }}
+                - configMapRef:
+                    name: {{ . }}
+                {{- end }}
+                {{- range $.Values.environment.variables.config_maps }}
+                - configMapRef:
+                    name: {{ . }}
+                {{- end }}
+                {{- range $.Values.environment.variables.secrets }}
+                - secretRef:
+                    name: {{ . }}
+                {{- end }}
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /etc/cooperation
+                  readOnly: true
+                - name: key-volume
+                  mountPath: /etc/ssh
+                  readOnly: true
+              command:
+                - /bin/bash
+                - '-c'
+                - cd scripts && ./verify_cooperation.sh
+          imagePullSecrets:
+            - name: regcred
+
+          restartPolicy: OnFailure
