@@ -22,8 +22,6 @@ spec:
             secretName: cooperation-keys
             defaultMode: 0600
             items:
-              - key: ssh_host_ed25519_key
-                path: ssh_host_ed25519_key
               - key: ssh_host_rsa_key
                 path: ssh_host_rsa_key
         - name: ssh-user-keys
@@ -46,10 +44,6 @@ spec:
             - name: SFTP_USERS
               value: 'cooperation-user::1001::upload'
           volumeMounts:
-            - mountPath: /etc/ssh/ssh_host_ed25519_key
-              name: ssh-host-keys
-              subPath: ssh_host_ed25519_key
-              readOnly: false
             - mountPath: /etc/ssh/ssh_host_rsa_key
               name: ssh-host-keys
               subPath: ssh_host_rsa_key

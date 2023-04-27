@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cooperation-api
+  name: cooperation
   labels:
     {{- include "cooperation.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: cooperation-api
+      app: cooperation
       {{- include "cooperation.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: cooperation-api
+        app: cooperation
         {{- include "cooperation.selectorLabels" . | nindent 8 }}
     spec:
       volumes:
@@ -23,8 +23,8 @@ spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: cooperation-api
-          image: "{{ .Values.repository }}cooperation-api:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+        - name: cooperation
+          image: "{{ .Values.repository }}cooperation:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
           ports:
             - name: http
               containerPort: 8080
