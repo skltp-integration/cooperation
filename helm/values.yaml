@@ -2,9 +2,9 @@ repository: test/
 
 replicaCount: 1
 
-#container:
-#  image:
-#    tag: "MyTag" # To override the default tag, set it here.
+container:
+  image:
+    tag: # To override the default tag, set it here.
 
 environment:
   variables:
