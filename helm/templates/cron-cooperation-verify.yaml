@@ -11,7 +11,7 @@ spec:
           volumes:
             - name: config-volume
               configMap:
-                name: cooperation-config-files
+                name: cooperation-configmap-default
             - name: key-volume
               secret:
                 secretName: cooperation-keys
