@@ -14,7 +14,7 @@ spec:
                 name: cooperation-configmap-default
             - name: key-volume
               secret:
-                secretName: ""
+                secretName: cooperation-keys
           containers:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
