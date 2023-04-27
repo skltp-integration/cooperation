@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cron-cooperation-import
 spec:
-  schedule: "0 34 13 * *"
+  schedule: "37 13 * * *"
   jobTemplate:
     spec:
       template:

@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cron-cooperation-verify
 spec:
-  schedule: "0 35 13 * *"
+  schedule: "36 13 * * *"
   jobTemplate:
     spec:
       template:
