@@ -25,9 +25,9 @@ spec:
           strategy: RoundRobin
           weight: 10
   tls:
-    secretName:
     domains:
-      - main:
+      - main: tak.dev.ntjp.se
+    secretName: tak.dev.ntjp.se-letsencrypt
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
