@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cron-cooperation-verify
 spec:
-  schedule: "15 20 * * *"
+  schedule: "13 31 * * *"
   jobTemplate:
     spec:
       template:
@@ -37,7 +37,7 @@ spec:
                   mountPath: /etc/cooperation
                   readOnly: true
                 - name: key-volume
-                  mountPath: /etc/ssh
+                  mountPath: /etc/cooperation/ssh/
                   readOnly: true
               command:
                 - /bin/bash
