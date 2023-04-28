@@ -3,7 +3,7 @@ kind: Middleware
 metadata:
   labels:
     app.kubernetes.io/instance: {{ .Chart.Name }}
-  name: ipwhitelist
+  name: ipwhitelist-cooperation
 spec:
   ipWhiteList:
     sourceRange:
@@ -15,7 +15,7 @@ kind: Middleware
 metadata:
   labels:
     app.kubernetes.io/instance: {{ .Chart.Name }}
-  name: redirect-https
+  name: redirect-https-cooperation
 spec:
   redirectScheme:
     scheme: https
