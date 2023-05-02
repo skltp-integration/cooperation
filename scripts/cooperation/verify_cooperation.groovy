@@ -84,7 +84,7 @@ def error_data = []
 dump_list.each{dump_name ->
 	Dump current_dump = Dump.getDump(dump_name)
 	if(current_dump == null) {
-		error = "Finns inte beskrivning av en dump med namn [" + dump_name + "] i ett skript! Fix verify_cooperation.groovy skriptet"
+		error = "Finns inte beskrivning av en dump med namn [" + dump_name + "] i ett skript! Fixa verify_cooperation.groovy-skriptet"
 		logger.error(error)
 		error_data << error
 		return
@@ -100,7 +100,7 @@ dump_list.each{dump_name ->
 	}
 
 	if(!isToday(connectionPoint.snapshotTime)){
-			error = "Dump [" + connectionPoint + "] ar gamal"
+			error = "Dump [" + connectionPoint + "] ar gammal"
 			logger.error(error)
 			error_data << error
 			return
@@ -134,7 +134,8 @@ enum Dump {
 	LD_PROD("LD","PROD"),
 	LD_QA("LD","QA"),
 	NMT_SKAULO("NMT","SKAULO"),
-	NTJP_LAB("NTJP", "LAB")
+	NTJP_BKS_LAB("NTJP", "LAB")
+	NTJP_BKS_DEV("NTJP", "DEV")
 
 	static Dump getDump(String name){
 	name = name.toLowerCase()
@@ -147,7 +148,8 @@ enum Dump {
 		case "ld_prod": return LD_PROD;
 		case "ld_qa": return LD_QA;
 		case "nmt_skaulo": return NMT_SKAULO;
-		case "ntjp_lab": return NTJP_LAB;
+		case "ntjp_lab": return NTJP_BKS_LAB;
+		case "ntjp_bks_dev": return NTJP_BKS_DEV;
 		default:  return null;
 		}
 	}
@@ -168,7 +170,7 @@ private static void sendProblemMail(Properties smtpProperties, String to_mail, S
 
         MimeMessage msg = new MimeMessage(session)
 
-		String errorText = "Cooperation import fail. Under verifikation inträffades problem: \n"
+		String errorText = "Cooperation import fail. Under verifikation inträffade problem: \n"
 
         msg.setText(errorText + errors);
         msg.setSubject(subject)
