@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $EUID -eq 0 ]]; then
-   echo "This script must be run as ine-app"
+   echo "This script must be run as ind-app"
    exit 1
 fi
 
