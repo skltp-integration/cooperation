@@ -10,7 +10,7 @@ spec:
       priority: 10
       services:
         - kind: Service
-          name: cooperation-service
+          name: service-cooperation
           passHostHeader: true
           port: 8080
           responseForwarding:
@@ -44,12 +44,3 @@ spec:
       - kind: Service
         name: cooperation-service
         port: 8080
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: cooperation-redirect-https
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
