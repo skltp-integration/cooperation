@@ -3,7 +3,7 @@
 // Nordic Medtest.
 //////
 
-package se.skltp.cooperation.basicauthmodule;
+package se.skltp.cooperation.basicauthmodule.model;
 
 import java.util.ArrayList;
 import java.util.List;

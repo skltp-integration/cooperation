@@ -7,6 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
+import se.skltp.cooperation.basicauthmodule.model.DTO_UserData;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUserListWrapper;
 
 import java.util.Arrays;
 
@@ -21,33 +24,40 @@ class ServiceUserManagementTest {
 
   private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-  @Test
-  void triggerFileRead() {
-    assertDoesNotThrow(mgmt::triggerFileRead);
-  }
 
   @Test
   void whenAddingAndDeletingUser_worksAsExpected() {
-    ServiceUser testUser = createQuickDummyUser1_Caesar();
+    DTO_UserData testUser = new DTO_UserData(
+		"DGA9FEK2NVYPSA7MCRHB3VEREE85KK",
+		"qwerty",
+		// For specimen password "qwerty"...:
+		// Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
+		// Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
+		"Caesar Julius",
+		"NMT",
+		"cj@a.aa",
+		"073-1234567",
+		Arrays.asList("USER", "ADMIN", "SUPER_ADMIN")
+	);
 
-    if (mgmt.hasServiceUser(testUser.username)) {
-      testUser.username = "DGA9FEK2NVYPSA7MCRHB3VEREE85KK";
-    }
+	ServiceUser userSaved = mgmt.createUserFlow(testUser);
+    assertTrue(mgmt.userExists(testUser.username));
 
-    mgmt.addServiceUser(testUser);
-    assertTrue(mgmt.hasServiceUser(testUser.username));
+    ServiceUser userStored = mgmt.findUser(testUser.username);
 
-    ServiceUser userStored = mgmt.getServiceUser(testUser.username);
-    assertEquals(userStored, testUser);
+	userStored.password = "ignore";
+	userSaved.password = "ignore";
 
-    mgmt.dropServiceUser(testUser.username);
-    assertFalse(mgmt.hasServiceUser(testUser.username));
+	assertEquals(userSaved, userStored);
+
+    mgmt.deleteUserTest(testUser.username);
+    assertFalse(mgmt.userExists(testUser.username));
   }
 
   @Test
   void whenCreatingDummmyUsers_AddAndRetrieveUsers_usersAreAsExpected() {
-    ServiceUserListWrapper dummies = mgmt.createDummyUserList();
-    assertEquals(dummies.users.size(), 1);
+    ServiceUserListWrapper dummies = mgmt.getDummyUserList();
+    assertEquals(dummies.users.size(), 3);
   }
 
   @Test
@@ -77,7 +87,7 @@ class ServiceUserManagementTest {
   public static ServiceUser createQuickDummyUser1_Caesar() {
     ServiceUser user = new ServiceUser(
         "Caesar",
-        MyUserDetailsService.generateBCryptHashedPassword("qwerty"),
+        MyUserDetailsService.generateHashedPassword("qwerty"),
         // For specimen password "qwerty"...:
         // Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
         // Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
@@ -93,7 +103,7 @@ class ServiceUserManagementTest {
   public static ServiceUser createQuickDummyUser2_Anders() {
     ServiceUser user = new ServiceUser(
         "Anders",
-        MyUserDetailsService.generateBCryptHashedPassword("abcdefg"),
+        MyUserDetailsService.generateHashedPassword("abcdefg"),
         "Anders Andersson",
         "NMT",
         "aa@a.aa",
@@ -107,7 +117,7 @@ class ServiceUserManagementTest {
   public static ServiceUser createQuickDummyUser3_Bertil() {
     ServiceUser user = new ServiceUser(
         "Bertil",
-        MyUserDetailsService.generateBCryptHashedPassword("1234567"),
+        MyUserDetailsService.generateHashedPassword("1234567"),
         "Bertil Bertilsson",
         "NMT",
         "bb@a.aa",

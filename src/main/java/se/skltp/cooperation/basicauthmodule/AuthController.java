@@ -7,134 +7,180 @@ package se.skltp.cooperation.basicauthmodule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import se.skltp.cooperation.basicauthmodule.model.*;
 
 @RestController
-@RequestMapping(Settings.authAdministrationSubPath)
+@RequestMapping("/authoring")
 public final class AuthController {
 
 	@Autowired
-	ServiceUserManagement users;
+	ServiceUserManagement userService;
 
 	@Autowired
 	Settings settings;
 
 	////
-	// TEST IMPLEMENT OF V1 AND V2
-	////
-
-	@GetMapping("/api/v1/test") // v1 is to be open access.
-	public String v1getter(){
-		return "I'm Open and Accessible!";
-	}
-
-	@GetMapping("/api/v2/test") // v2 is to be set behind Basic Authorization.
-	public String v2getter() {
-		return "I'm hidden behind Auth!";
-	}
-
-	////
-	// Pings and Hellos.
-	////
-
-	@GetMapping("/ping")
-	public String hello() {
-		if (!settings.allowEndpoint_hellosAndPings) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
-			);
-		}
-		return "Pong!";
-	}
-
-	@GetMapping("/admin/hello")
-	public String helloAdmin() {
-		if (!settings.allowEndpoint_hellosAndPings) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
-			);
-		}
-		return "Hello Admin!";
-	}
-
-	@GetMapping("/user/hello")
-	public String helloUser() {
-		if (!settings.allowEndpoint_hellosAndPings) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
-			);
-		}
-		return "Hello User!";
-	}
-
-	////
 	// Dummy and Sample Users.
 	////
 
-	@GetMapping("/admin/get_dummies_template")
+	@GetMapping("/admin/get_user_template")
 	public ServiceUserListWrapper retrieveDummyUsers() {
-		if (!settings.allowEndpoint_downloadSampleUserFile) {
+		if (!settings.allowApi_downloadSampleUserList) {
 			throw new ResponseStatusException(
 				HttpStatus.LOCKED, "Not Available."
 			);
 		}
 
-		return users.retrieveDummyUsers();
+		return userService.getDummyUserList();
 	}
 
-	@PostMapping("/admin/create_dummies_file_respond_content")
-	public String createDummyUsers() {
-
-		if (!settings.allowEndpoint_resetUserFile) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
-			);
-		}
-
-		return users.setupDummyUserFile();
-	}
 
 	////
 	// ADMINISTRATIVE
 	////
 
-	@PostMapping("/admin/trigger_read_user_file")
-	public String readUserFile() {
-
-		if (!settings.allowEndpoint_rescanUserFile) {
+	@PostMapping("/admin/generate_crypto")
+	public String getHash(@RequestBody DTO_PasswordCrypto payload) {
+		if (!settings.allowApi_generateCryptHash) {
 			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
+				HttpStatus.LOCKED, "String hashing and encryption function is locked."
 			);
 		}
 
-		users.triggerFileRead();
-
-		return "File read triggered, and done!\n" +
-			"This call will not be replied to with user file content.";
+		return "Provided string \"" + payload.rawPassword + "\" has been 'encrypted' as:\n" +
+			MyUserDetailsService.generateHashedPassword(payload.rawPassword);
 	}
 
-	@GetMapping("/admin/generate_crypto") // TODO: Enable if you want a convenient BCrypt generator.
-	public String getHash(@RequestParam String rawpassword) {
-		if (!settings.allowEndpoint_generateCryptHash) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
-			);
-		}
-
-		return "Provided string \"" + rawpassword + "\" has been 'Bcrypted' as:\n" +
-			MyUserDetailsService.generateBCryptHashedPassword(rawpassword);
-	}
-
-	// TODO: Implement if desirable.
 	@GetMapping("/admin/get_users")
-	public ServiceUserListWrapper getUsers() {
-		if (!settings.allowEndpoint_downloadUsers) {
+	public ServiceUserListWrapper getUsersCleaned() {
+		if (!settings.allowApi_getUsers) {
 			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Not Available."
+				HttpStatus.LOCKED, "Retrieval of user entries is locked."
 			);
 		}
 
-		throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Not Available.");
+		return userService.findAllUsersProcessed();
+	}
+	@GetMapping("/admin/get_users_raw")
+	public ServiceUserListWrapper getUsersRaw() {
+		if (!settings.allowApi_getUsersRaw) {
+			throw new ResponseStatusException(
+				HttpStatus.LOCKED, "Retrieval of user entries is locked."
+			);
+		}
+
+		return userService.findAllUsersRaw();
+	}
+
+	@PostMapping("/admin/write_user")
+	public ServiceUser createOrEditUser(
+		@NonNull @RequestBody DTO_UserData userData)
+	{
+		// Global API User Upload lock check.
+		if (!settings.allowApi_anyUserManagementChanges) {
+			throw new ResponseStatusException(
+				HttpStatus.LOCKED, "This endpoint has been made unavailable. User editing and creation is locked."
+			);
+		}
+
+		// Check if user pre-exists.
+		boolean exists = userService.userExists(userData.username);
+		if (exists) {
+			return editUser(userData);
+		} else {
+			return createUser(userData);
+		}
+	}
+
+	@PostMapping("/admin/set_password")
+	public ServiceUser updatePassword(
+		@RequestBody DTO_PasswordChange payload) {
+
+		// Global API User Upload lock check.
+		if (!settings.allowApi_anyUserManagementChanges) {
+			throw new ResponseStatusException(
+				HttpStatus.LOCKED, "This endpoint has been made unavailable. User editing and creation is locked."
+			);
+		}
+		if (!settings.allowApi_changePassword) {
+			throw new ResponseStatusException(
+				HttpStatus.LOCKED, "User password change via API is locked."
+			);
+		}
+
+		checkPasswordQuality(payload.newPassword); //throws if bad.
+		ServiceUser existingUser = userService.findUser(payload.username); //throws if not found.
+		if (existingUser.roles.contains("SUPER_ADMIN") && !settings.allowApi_changeSuperAdminPassword) {
+			throw new ResponseStatusException(
+				HttpStatus.FORBIDDEN, "Changing super-admin passwords over API disabled in config. Use database instead."
+			);
+		}
+
+		return userService.changePasswordFlow(existingUser, payload.newPassword);
+	}
+
+	private ServiceUser editUser(DTO_UserData incomingUserData) {
+		// At the entry of this function, it is already known that the user exists.
+
+		// Global API User Overwrite lock check.
+		if (!settings.allowApi_editExistingUsers) {
+			throw new ResponseStatusException(
+				HttpStatus.FORBIDDEN, "Editing any existing users over API disabled in config. Use database instead."
+			);
+		}
+
+		// Global API Admin Overwrite lock check.
+		ServiceUser existingUser = userService.findUser(incomingUserData.username);
+		if (existingUser.roles.contains("SUPER_ADMIN")) {
+			if(!settings.allowApi_editSuperAdmins) {
+				throw new ResponseStatusException(
+					HttpStatus.FORBIDDEN, "Editing super-admins over API disabled in config. Use database instead."
+				);
+			}
+		} else {
+			if (incomingUserData.roles.contains("SUPER_ADMIN") && !settings.allowApi_createSuperAdmins) {
+				throw new ResponseStatusException(
+					HttpStatus.FORBIDDEN, "Elevating User to super-admins over API disabled in config. Use database instead."
+				);
+			}
+		}
+
+		if (incomingUserData.password != null) {
+			throw new ResponseStatusException(
+				HttpStatus.BAD_REQUEST, "password property must be kept null when editing an existing user.\n" +
+				"Password changes are done via a separate endpoint, or in the database."
+			);
+		}
+
+		return userService.editUserFlow(incomingUserData, existingUser);
+	}
+	private ServiceUser createUser(DTO_UserData userData) {
+
+		if (!settings.allowApi_createAnyUsers) {
+			throw new ResponseStatusException(
+				HttpStatus.FORBIDDEN, "Creation of any users over API disabled in config. Use database instead."
+			);
+		}
+
+		if (userData.roles.contains("SUPER_ADMIN") && !settings.allowApi_createSuperAdmins) {
+			throw new ResponseStatusException(
+				HttpStatus.FORBIDDEN, "Creating super-admins over API disabled in config. Use database instead."
+			);
+		}
+
+		checkPasswordQuality(userData.password);
+		return userService.createUserFlow(userData);
+	}
+
+	private static void checkPasswordQuality(String newPassword) {
+		if (MyUserDetailsService.isBadPassword(newPassword)) {
+			throw new ResponseStatusException(
+				HttpStatus.BAD_REQUEST, "Provided password is malformed.\n" +
+				"Min 8 chars. Min 1 num. Min 1 UPPERCASE. Min 1 lowercase. No special chars. No whitespace."
+			);
+		}
 	}
 }

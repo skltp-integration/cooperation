@@ -48,7 +48,7 @@ import se.skltp.cooperation.web.rest.v1.listdto.LogicalAddressListDTO;
  */
 @RestController
 @RequestMapping(value = {
-	"/api/v1/logicalAddresss", // TODO: All of these v1s are misspelled.
+	"/api/v1/logicalAddresss", // All of these v1s are misspelled.
 	"/api/v1/logicalAddresss.json",
 	"/api/v1/logicalAddresss.xml",
 	"/api/v2/logicalAddresses", // Fixed addresses for v2.
