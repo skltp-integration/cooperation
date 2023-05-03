@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $EUID -eq 0 ]]; then
-   echo "This script must be run as ine-app"
+   echo "This script must be run as ind-app"
    exit 1
 fi
 
@@ -20,7 +20,7 @@ printlog(){
 # setup environment
 . cooperation-import-from-tak-env-setup.sh
 
-
+mkdir -p ${tmpDir}
 okFile=${tmpDir}/okfile
 rm -f ${okFile}
 
@@ -28,7 +28,7 @@ rm -f ${okFile}
 dump=$( IFS=$'\n'; echo "${dump_files[*]}" )
 
 groovy verify_cooperation.groovy \
-    -smtp_prop "smtp.properties" \
+    -smtp_prop ${smtp_props_file} \
     -mail ${to_mail} \
     -from_mail ${from_mail} \
     -subj "${alert_mail_subject}" \

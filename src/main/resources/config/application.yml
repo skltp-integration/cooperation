@@ -1,9 +1,9 @@
-server:
-  port: 8080
-  contextPath: /coop
+spring.profiles.active: dev
+
+# Compatibility setting to allow double slashes in url
+spring.mvc.pathmatch.matching-strategy: ant-path-matcher
 
 settings:
-  authAdministrationSubPath: /authoring
   allowApi_generateCryptHash: true
   allowApi_downloadUsers: true
   allowApi_downloadUsersRaw: false
@@ -16,6 +16,7 @@ settings:
   allowApi_createSuperAdmins: false
   allowApi_downloadSampleUserFile: true
   allowApi_hellosAndPings: true
+
 ---
 
 spring:
@@ -23,40 +24,36 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    platform: h2
     url: jdbc:h2:mem:cooperation;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
     username: sa
-    password: password
+    password:
+  sql:
+    init:
+      platform: h2
   jpa:
-    hibernate:
-      ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
     open-in-view: true
   h2:
     console.enabled: true
-    console.path: /h2-console
+
 server:
   error:
     include-message: always
+  port: 8080
+  servlet:
+    context-path: /coop
 
 ---
+
 spring:
-  profiles: amazon
+  config:
+    activate:
+      on-profile: prod
+  sql:
+    init:
+      platform: mysql
   datasource:
-    platform: h2
-    url: jdbc:h2:tcp://localhost/~/cooperation;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate.ddl-auto: update
----
-spring:
-  profiles: prod
-  datasource:
-    platform: mysql
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect

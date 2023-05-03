@@ -62,7 +62,7 @@ try {
 
 def createTables(String url, String username, String password, String suffix) {
 	//Cooperation db settings
-	def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
+	def db = Sql.newInstance(url, username, password, 'com.mysql.cj.jdbc.Driver')
 
 	logger.info("START! Create " + suffix + " tables in cooperation database")
 

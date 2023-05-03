@@ -1,13 +1,13 @@
 #!/usr/bin/env groovy
 
 /**
- * Will create two versions of the new table table  
+ * Will create two versions of the new table table
  *
  */
 
 @Grapes([
 	@GrabConfig(systemClassLoader=true),
-	@Grab(group='mysql', module='mysql-connector-java', version='5.1.36')
+	@Grab(group='mysql', module='mysql-connector-java', version='8.0.29')
 ])
 
 import groovy.sql.Sql
@@ -32,7 +32,7 @@ def username = opt.u
 def password = opt.p ? opt.p : ''
 
 //Cooperation db settings
-def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
+def db = Sql.newInstance(url, username, password, 'com.mysql.cj.jdbc.Driver')
 
 def random(){
 	return String.valueOf(Math.random()).split("0.")[1]

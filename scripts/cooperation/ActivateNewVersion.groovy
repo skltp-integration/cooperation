@@ -48,7 +48,7 @@ try {
 
 def renameTables(String url, String username, String password) {
 	//Cooperation db settings
-	def db = Sql.newInstance(url, username, password, 'com.mysql.jdbc.Driver')
+	def db = Sql.newInstance(url, username, password, 'com.mysql.cj.jdbc.Driver')
 
 	logger.info("START! Rename tables in cooperation database")
 
