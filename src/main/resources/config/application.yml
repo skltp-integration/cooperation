@@ -4,46 +4,56 @@ spring.profiles.active: dev
 spring.mvc.pathmatch.matching-strategy: ant-path-matcher
 
 settings:
-  folderPath: ./config/
-  fileName: userlist.json
-  fileReadCron: 0 0/5 * * * *
-  authAdministrationSubPath: /authoring
-  allowEndpoint_generateCryptHash: false
-  allowEndpoint_downloadUsers: false
-  allowEndpoint_rescanUserFile: true
-  allowEndpoint_resetUserFile: false
-  allowEndpoint_downloadSampleUserFile: true
-  allowEndpoint_testSerialization: false
-  allowEndpoint_hellosAndPings: true
-  
+  allowApi_generateCryptHash: true
+  allowApi_downloadUsers: true
+  allowApi_downloadUsersRaw: false
+  allowApi_anyUserManagementChanges: true
+  allowApi_changeUserPassword: true
+  allowApi_changeSuperAdminPassword: false
+  allowApi_editUsers: false
+  allowApi_editSuperAdmins: false
+  allowApi_createAnyUsers: true
+  allowApi_createSuperAdmins: false
+  allowApi_downloadSampleUserFile: true
+  allowApi_hellosAndPings: true
+
 ---
+
 spring:
-    config:
-        activate:
-            on-profile: dev
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:mem:cooperation;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      platform: h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: true
+  h2:
+    console.enabled: true
+
 server:
-    port: 8080
-    servlet:
-        context-path: /coop
-    sql:
-        init:
-            platform: h2
-    datasource:
-        url: jdbc:h2:mem:cooperation;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        driverClassName: org.h2.Driver
-        username: sa
-        password:
-    jpa:
-      database-platform: org.hibernate.dialect.H2Dialect
+  error:
+    include-message: always
+  port: 8080
+  servlet:
+    context-path: /coop
+
 ---
+
 spring:
-    config:
-        activate:
-            on-profile: prod
-    sql:
-        init:
-            platform: mysql
-    datasource:
-        driverClassName: com.mysql.cj.jdbc.Driver
-    jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
+  config:
+    activate:
+      on-profile: prod
+  sql:
+    init:
+      platform: mysql
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
