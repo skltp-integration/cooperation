@@ -64,16 +64,6 @@ public final class AuthController {
 
 		return userService.findAllUsersProcessed();
 	}
-	@GetMapping("/admin/get_users_raw")
-	public ServiceUserListWrapper getUsersRaw() {
-		if (!settings.allowApi_getUsersRaw) {
-			throw new ResponseStatusException(
-				HttpStatus.LOCKED, "Retrieval of user entries is locked."
-			);
-		}
-
-		return userService.findAllUsersRaw();
-	}
 
 	@PostMapping("/admin/write_user")
 	public ServiceUser createOrEditUser(
