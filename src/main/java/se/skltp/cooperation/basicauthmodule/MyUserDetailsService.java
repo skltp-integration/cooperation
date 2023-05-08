@@ -41,6 +41,6 @@ public final class MyUserDetailsService implements UserDetailsService {
 	public static boolean isBadPassword(String password) {
 		return
 			password == null
-				|| !password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$");
+				|| !password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$");
 	}
 }

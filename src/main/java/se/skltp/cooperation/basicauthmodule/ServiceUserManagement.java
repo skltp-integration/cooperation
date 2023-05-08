@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
-import se.skltp.cooperation.basicauthmodule.model.DTO_UserData;
+import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
 import se.skltp.cooperation.basicauthmodule.model.ServiceUserListWrapper;
 
 import javax.annotation.PostConstruct;
@@ -27,9 +27,6 @@ public final class ServiceUserManagement {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceUserManagement.class);
 
-	//@Autowired
-	//Settings settings;
-
 	@Autowired
 	UserRepository userRepository;
 
@@ -37,17 +34,17 @@ public final class ServiceUserManagement {
 
 	@PostConstruct
 	private void initialization() {
-		System.out.println("INITIALIZATION");
+		log.debug("INITIALIZATION of ServiceUserManagement instance.");
 		if (userRepository.findAll().size() == 0) {
-			System.out.println("ADD CAESAR");
-			createUserFlow(new DTO_UserData(
+			log.info("ADDING CAESAR as generic auth user. Change in DB.");
+			createUserFlow(new UserData(
 				"Caesar",
 				"Qwerty123",
 				"Caesar Julius",
 				"NMT",
 				"cj@a.aa",
 				"073-1234567",
-				Arrays.asList("USER", "ADMIN", Settings.authAdminRoleLabel)
+				Arrays.asList(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
 			));
 		}
 	}
@@ -81,21 +78,12 @@ public final class ServiceUserManagement {
 		);
 	}
 
-	public ServiceUserListWrapper findAllUsersRaw() {
-		ServiceUserListWrapper userList = new ServiceUserListWrapper();
-
-		userList.users.addAll(
-			userRepository.findAll()
-		);
-
-		return userList;
-	}
 	public ServiceUserListWrapper findAllUsersProcessed() {
 		ServiceUserListWrapper userList = new ServiceUserListWrapper();
 		for(ServiceUser user: userRepository.findAll()) {
 			userList.users.add(new ServiceUser(
 				user.username,
-				"[redacted]",
+				Settings.pwdRedactionLabel,
 				user.contactName,
 				user.contactOrganization,
 				user.contactMail,
@@ -115,22 +103,25 @@ public final class ServiceUserManagement {
 		return userRepository.existsById(username);
 	}
 
-	public ServiceUser createUserFlow(DTO_UserData newUserPayload) {
+	public ServiceUser createUserFlow(UserData newUserPayload) {
 		// At the entry of this function, it is already known that the user does not exist.
 		// Any permission settings were checked in the controller.
 
+		log.info("Attempting CREATION of USER " + newUserPayload.username + " with roles: " + newUserPayload.roles);
 
 		newUserPayload.password = MyUserDetailsService.generateHashedPassword(newUserPayload.password);
 
 		ServiceUser saved = userRepository.saveAndFlush(new ServiceUser(newUserPayload));
-		saved.password = "[redacted]";
+		saved.password = Settings.pwdRedactionLabel;
 		return saved;
 	}
 
-	public ServiceUser editUserFlow(DTO_UserData incomingUserData, ServiceUser existingUser) {
+	public ServiceUser editUserFlow(UserData incomingUserData, ServiceUser existingUser) {
 		// At the entry of this function, it is already known that the user exists.
 		//   The specific user entry was located in the controller function, and attached to this call.
 		// Any permission settings were checked in the controller.
+
+		log.info("Attempting EDIT of USER " + incomingUserData.username + ", which will have provided roles: " + incomingUserData.roles);
 
 		ServiceUser editedUser = new ServiceUser(
 			existingUser.username,
@@ -143,12 +134,14 @@ public final class ServiceUserManagement {
 		);
 
 		ServiceUser saved = userRepository.saveAndFlush(editedUser);
-		saved.password = "[redacted]";
+		saved.password = Settings.pwdRedactionLabel;
 		return saved;
 	}
 	public ServiceUser changePasswordFlow(ServiceUser existingUser, String newPassword) {
 		// At the entry of this function, password quality has been checked,
 		//    and any permission settings were checked in the controller.
+
+		log.info("Attempting PWD CHANGE on USER " + existingUser.username + " with current roles: " + existingUser.roles);
 
 		String hashedPassword = MyUserDetailsService.generateHashedPassword(newPassword);
 
@@ -163,7 +156,7 @@ public final class ServiceUserManagement {
 		);
 
 		ServiceUser saved = userRepository.saveAndFlush(pwdChangedUser);
-		saved.password = "[redacted]";
+		saved.password = Settings.pwdRedactionLabel;
 		return saved;
 	}
 
@@ -192,7 +185,7 @@ public final class ServiceUserManagement {
 		ServiceUserListWrapper userList = new ServiceUserListWrapper();
 		userList.users.add(new ServiceUser(
 			"Caesar",
-			"[redacted]",
+			Settings.pwdRedactionLabel,
 			// For specimen password "qwerty"...:
 			// Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
 			// Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
@@ -200,25 +193,25 @@ public final class ServiceUserManagement {
 			"NMT",
 			"cj@a.aa",
 			"073-1234567",
-			Arrays.asList("USER", "ADMIN", Settings.authAdminRoleLabel)
+			Arrays.asList(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
 		));
 		userList.users.add(new ServiceUser(
 			"Anders",
-			"[redacted]",
+			Settings.pwdRedactionLabel,
 			"Anders Adminsson",
 			"NMT",
 			"aa@a.aa",
 			"073-9876543",
-			Arrays.asList("USER", "ADMIN")
+			Arrays.asList(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel)
 		));
 		userList.users.add(new ServiceUser(
 			"Uffe",
-			"[redacted]",
+			Settings.pwdRedactionLabel,
 			"Uffe Usersson",
 			"NMT",
 			"uu@a.aa",
 			"073-2468013",
-			Collections.singletonList("USER")
+			Collections.singletonList(Settings.regularUserRoleLabel)
 		));
 		return userList;
 	}

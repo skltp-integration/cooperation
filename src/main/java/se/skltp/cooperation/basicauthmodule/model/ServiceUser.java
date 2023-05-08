@@ -6,6 +6,7 @@
 package se.skltp.cooperation.basicauthmodule.model;
 
 import org.springframework.lang.NonNull;
+import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -53,7 +54,7 @@ public final class ServiceUser {
 	}
 	public ServiceUser() {}
 
-	public ServiceUser(DTO_UserData dto) {
+	public ServiceUser(UserData dto) {
 		this.username = dto.username;
 		this.password = dto.password;
 		this.contactName = dto.contactName;
@@ -88,6 +89,7 @@ public final class ServiceUser {
 		return contactMail;
 	}
 
+	@NonNull
 	public String getContactPhone() {
 		return contactPhone;
 	}

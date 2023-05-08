@@ -9,18 +9,20 @@ public class Settings {
 	// API settings:
 
 	// On-Off flags for endpoints or types of endpoints.
-	@Value("${settings.allowApi_generateCryptHash}") public boolean allowApi_generateCryptHash;
-	@Value("${settings.allowApi_downloadUsers}") public boolean allowApi_getUsers;
-	@Value("${settings.allowApi_downloadUsersRaw}") public boolean allowApi_getUsersRaw;
-	@Value("${settings.allowApi_anyUserManagementChanges}") public boolean allowApi_anyUserManagementChanges;
-	@Value("${settings.allowApi_changeUserPassword}") public boolean allowApi_changePassword;
-	@Value("${settings.allowApi_changeSuperAdminPassword}") public boolean allowApi_changeSuperAdminPassword;
-	@Value("${settings.allowApi_editUsers}") public boolean allowApi_editExistingUsers;
-	@Value("${settings.allowApi_editSuperAdmins}") public boolean allowApi_editSuperAdmins;
-	@Value("${settings.allowApi_createAnyUsers}") public boolean allowApi_createAnyUsers;
-	@Value("${settings.allowApi_createSuperAdmins}") public boolean allowApi_createSuperAdmins;
-	@Value("${settings.allowApi_downloadSampleUserFile}") public boolean allowApi_downloadSampleUserList;
-	@Value("${settings.allowApi_hellosAndPings}") public boolean allowApi_hellosAndPings;
+	@Value("${settings.allowApi_generateCryptHash}") public boolean apiAllowGenerateCryptHash;
+	@Value("${settings.allowApi_downloadUsers}") public boolean apiAllowGetUsers;
+	@Value("${settings.allowApi_anyUserManagementChanges}") public boolean apiAllowAnyUserManagementChanges;
+	@Value("${settings.allowApi_changeUserPassword}") public boolean apiAllowChangePassword;
+	@Value("${settings.allowApi_changeSuperAdminPassword}") public boolean apiAllowChangeSuperAdminPassword;
+	@Value("${settings.allowApi_editUsers}") public boolean apiAllowEditExistingUsers;
+	@Value("${settings.allowApi_editSuperAdmins}") public boolean apiAllowEditSuperAdmins;
+	@Value("${settings.allowApi_createAnyUsers}") public boolean apiAllowCreateAnyUsers;
+	@Value("${settings.allowApi_createSuperAdmins}") public boolean apiAllowCreateSuperAdmins;
+	@Value("${settings.allowApi_downloadSampleUserFile}") public boolean apiAllowDownloadSampleUserList;
 
+	public static final String regularUserRoleLabel = "USER";
+	public static final String regularAdminRoleLabel = "ADMIN";
 	public static final String authAdminRoleLabel = "SUPER_ADMIN";
+	public static final String pwdRedactionLabel = "[redacted]";
+
 }

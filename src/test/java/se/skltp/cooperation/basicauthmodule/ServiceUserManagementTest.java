@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
-import se.skltp.cooperation.basicauthmodule.model.DTO_UserData;
+import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
 import se.skltp.cooperation.basicauthmodule.model.ServiceUserListWrapper;
 
 import java.util.Arrays;
@@ -27,7 +27,7 @@ class ServiceUserManagementTest {
 
   @Test
   void whenAddingAndDeletingUser_worksAsExpected() {
-    DTO_UserData testUser = new DTO_UserData(
+    UserData testUser = new UserData(
 		"DGA9FEK2NVYPSA7MCRHB3VEREE85KK",
 		"qwerty",
 		// For specimen password "qwerty"...:

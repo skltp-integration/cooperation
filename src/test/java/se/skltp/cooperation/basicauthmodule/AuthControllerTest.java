@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.server.ResponseStatusException;
 import se.skltp.cooperation.basicauthmodule.model.*;
+import se.skltp.cooperation.basicauthmodule.model.dto.PasswordChange;
+import se.skltp.cooperation.basicauthmodule.model.dto.PasswordCrypto;
+import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,9 +28,9 @@ class AuthControllerTest {
 
 	@Test
 	void whenretrieveDummyUsers() {
-		settings.allowApi_downloadSampleUserList = false;
+		settings.apiAllowDownloadSampleUserList = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.retrieveDummyUsers());
-		settings.allowApi_downloadSampleUserList = true;
+		settings.apiAllowDownloadSampleUserList = true;
 		ServiceUserListWrapper wrapper = ctrl.retrieveDummyUsers();
 		assertEquals(wrapper.users.size(),3);
 		assertEquals(wrapper.users.get(1).username,"Anders");
@@ -35,10 +38,10 @@ class AuthControllerTest {
 
 	@Test
 	void whengetHash_looksLikeAHash() {
-		DTO_PasswordCrypto payload = new DTO_PasswordCrypto("Qwert123");
-		settings.allowApi_generateCryptHash = false;
+		PasswordCrypto payload = new PasswordCrypto("Qwert123");
+		settings.apiAllowGenerateCryptHash = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.getHash(payload));
-		settings.allowApi_generateCryptHash = true;
+		settings.apiAllowGenerateCryptHash = true;
 		String response = ctrl.getHash(payload);
 		assertTrue(response.contains("$2a$10$"));
 	}
@@ -46,7 +49,7 @@ class AuthControllerTest {
 
 	@Test
 	void whenCreateEditAndChangePasswordOnUser_flowWorks() {
-		DTO_UserData userDataUser = new DTO_UserData(
+		UserData userDataUser = new UserData(
 			"Eskil",
 			"Qwerty123",
 			"Eskil Usersson",
@@ -55,7 +58,7 @@ class AuthControllerTest {
 			"073-2468013",
 			Collections.singletonList("USER")
 		);
-		DTO_UserData userDataAdmin = new DTO_UserData(
+		UserData userDataAdmin = new UserData(
 			"Federico",
 			"Qwerty123",
 			"Federico Adminsson",
@@ -67,13 +70,13 @@ class AuthControllerTest {
 
 		//// ADD User
 		// TEST globally locked user addition or editing for ADD/EDIT Users.
-		settings.allowApi_anyUserManagementChanges = false;
+		settings.apiAllowAnyUserManagementChanges = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataUser));
-		settings.allowApi_anyUserManagementChanges = true;
+		settings.apiAllowAnyUserManagementChanges = true;
 		// TEST Create User Lock.
-		settings.allowApi_createAnyUsers = false;
+		settings.apiAllowCreateAnyUsers = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataUser));
-		settings.allowApi_createAnyUsers = true;
+		settings.apiAllowCreateAnyUsers = true;
 		// adding
 		ServiceUser user1 = ctrl.createOrEditUser(userDataUser);
 
@@ -83,9 +86,9 @@ class AuthControllerTest {
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataUser));
 		userDataUser.password = null;
 		// TEST EDIT user lock.
-		settings.allowApi_editExistingUsers = false;
+		settings.apiAllowEditExistingUsers = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataUser));
-		settings.allowApi_editExistingUsers = true;
+		settings.apiAllowEditExistingUsers = true;
 		// editing
 		ServiceUser user2 = ctrl.createOrEditUser(userDataUser);
 
@@ -94,9 +97,9 @@ class AuthControllerTest {
 
 		//// CREATE new admin.
 		// TEST Create Admin Lock.
-		settings.allowApi_createSuperAdmins = false;
+		settings.apiAllowCreateSuperAdmins = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataAdmin));
-		settings.allowApi_createSuperAdmins = true;
+		settings.apiAllowCreateSuperAdmins = true;
 		// creation.
 		ctrl.createOrEditUser(userDataAdmin);
 
@@ -104,17 +107,17 @@ class AuthControllerTest {
 		userDataAdmin.contactPhone = "076-9876543";
 		userDataAdmin.password = null;
 		// TEST Edit Admin Lock.
-		settings.allowApi_editSuperAdmins = false;
+		settings.apiAllowEditSuperAdmins = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataAdmin));
-		settings.allowApi_editSuperAdmins = true;
+		settings.apiAllowEditSuperAdmins = true;
 		// editing.
 		ctrl.createOrEditUser(userDataAdmin);
 
 		//// TESTING get-users on currently added users.
 		// TEST USER GET LOCK.
-		settings.allowApi_getUsers = false;
+		settings.apiAllowGetUsers = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.getUsersCleaned());
-		settings.allowApi_getUsers = true;
+		settings.apiAllowGetUsers = true;
 
 		ServiceUserListWrapper usersCleaned = ctrl.getUsersCleaned();
 		assertEquals(3, usersCleaned.users.size());
@@ -123,31 +126,31 @@ class AuthControllerTest {
 
 		//// TESTING PASSWORD CHANGES
 		// Dummy datas for pwd change test.
-		DTO_PasswordChange pwdChangeUserBadPwd = new DTO_PasswordChange(
+		PasswordChange pwdChangeUserBadPwd = new PasswordChange(
 			"Eskil",
 			"qwerty"
 		);
-		DTO_PasswordChange pwdChangeUserGoodPwd = new DTO_PasswordChange(
+		PasswordChange pwdChangeUserGoodPwd = new PasswordChange(
 			"Eskil",
 			"Azerty321"
 		);
-		DTO_PasswordChange pwdChangeAdmin = new DTO_PasswordChange(
+		PasswordChange pwdChangeAdmin = new PasswordChange(
 			"Caesar",
 			"Azerty321"
 		);
 
 		// TEST globally locked user addition or editing for EDIT User Password.
-		settings.allowApi_anyUserManagementChanges = false;
+		settings.apiAllowAnyUserManagementChanges = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.updatePassword(pwdChangeUserGoodPwd));
-		settings.allowApi_anyUserManagementChanges = true;
+		settings.apiAllowAnyUserManagementChanges = true;
 		// TEST All pwd change lock.
-		settings.allowApi_changePassword = false;
+		settings.apiAllowChangePassword = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.updatePassword(pwdChangeUserGoodPwd));
-		settings.allowApi_changePassword = true;
+		settings.apiAllowChangePassword = true;
 		// TEST ADMIN pwd change lock.
-		settings.allowApi_changeSuperAdminPassword = false;
+		settings.apiAllowChangeSuperAdminPassword = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.updatePassword(pwdChangeAdmin));
-		settings.allowApi_changeSuperAdminPassword = true;
+		settings.apiAllowChangeSuperAdminPassword = true;
 		// TEST BAD User pwd.
 		assertThrows(ResponseStatusException.class, () -> ctrl.updatePassword(pwdChangeUserBadPwd));
 		// Change User pwd
