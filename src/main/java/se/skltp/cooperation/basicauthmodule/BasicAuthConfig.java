@@ -51,11 +51,11 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 
 			// For the two versions of the primary API.
-			.antMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority("USER", "ADMIN", Settings.authAdminRoleLabel)
 			.antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
 
 			// For the two test endpoints used to test Spring Boot Security configuration.
-			.antMatchers(HttpMethod.GET, "/authoring/api/v2/**").hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
+			.antMatchers(HttpMethod.GET, "/authoring/api/v2/**").hasAnyAuthority("USER", "ADMIN", Settings.authAdminRoleLabel)
 			.antMatchers("/authoring/api/v1/**").permitAll()
 
 			// The swagger Docs are open outward.
@@ -65,12 +65,12 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/authoring/ping").permitAll()
 
 			// Roles assumed to inherit hierarchically.
-			.antMatchers(HttpMethod.GET, "/authoring/user/**").hasAnyAuthority("ADMIN", "SUPER_ADMIN")
-			.antMatchers(HttpMethod.GET, "/authoring/admin/**").hasAnyAuthority("SUPER_ADMIN")
-			.antMatchers(HttpMethod.POST, "/authoring/admin/**").hasAnyAuthority("SUPER_ADMIN")
+			.antMatchers(HttpMethod.GET, "/authoring/user/**").hasAnyAuthority("ADMIN", Settings.authAdminRoleLabel)
+			.antMatchers(HttpMethod.GET, "/authoring/admin/**").hasAnyAuthority(Settings.authAdminRoleLabel)
+			.antMatchers(HttpMethod.POST, "/authoring/admin/**").hasAnyAuthority(Settings.authAdminRoleLabel)
 
 			// Default level for all other endpoints is assumed restricted.
-			.antMatchers(HttpMethod.GET, "/**").hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
+			.antMatchers(HttpMethod.GET, "/**").hasAnyAuthority("USER", "ADMIN", Settings.authAdminRoleLabel)
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
 			.anyRequest().authenticated()

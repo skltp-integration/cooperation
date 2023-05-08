@@ -103,7 +103,7 @@ public final class AuthController {
 
 		checkPasswordQuality(payload.newPassword); //throws if bad.
 		ServiceUser existingUser = userService.findUser(payload.username); //throws if not found.
-		if (existingUser.roles.contains("SUPER_ADMIN") && !settings.allowApi_changeSuperAdminPassword) {
+		if (existingUser.roles.contains(Settings.authAdminRoleLabel) && !settings.allowApi_changeSuperAdminPassword) {
 			throw new ResponseStatusException(
 				HttpStatus.FORBIDDEN, "Changing super-admin passwords over API disabled in config. Use database instead."
 			);
@@ -124,14 +124,14 @@ public final class AuthController {
 
 		// Global API Admin Overwrite lock check.
 		ServiceUser existingUser = userService.findUser(incomingUserData.username);
-		if (existingUser.roles.contains("SUPER_ADMIN")) {
+		if (existingUser.roles.contains(Settings.authAdminRoleLabel)) {
 			if(!settings.allowApi_editSuperAdmins) {
 				throw new ResponseStatusException(
 					HttpStatus.FORBIDDEN, "Editing super-admins over API disabled in config. Use database instead."
 				);
 			}
 		} else {
-			if (incomingUserData.roles.contains("SUPER_ADMIN") && !settings.allowApi_createSuperAdmins) {
+			if (incomingUserData.roles.contains(Settings.authAdminRoleLabel) && !settings.allowApi_createSuperAdmins) {
 				throw new ResponseStatusException(
 					HttpStatus.FORBIDDEN, "Elevating User to super-admins over API disabled in config. Use database instead."
 				);
@@ -155,7 +155,7 @@ public final class AuthController {
 			);
 		}
 
-		if (userData.roles.contains("SUPER_ADMIN") && !settings.allowApi_createSuperAdmins) {
+		if (userData.roles.contains(Settings.authAdminRoleLabel) && !settings.allowApi_createSuperAdmins) {
 			throw new ResponseStatusException(
 				HttpStatus.FORBIDDEN, "Creating super-admins over API disabled in config. Use database instead."
 			);

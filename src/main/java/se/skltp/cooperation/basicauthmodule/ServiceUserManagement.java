@@ -47,7 +47,7 @@ public final class ServiceUserManagement {
 				"NMT",
 				"cj@a.aa",
 				"073-1234567",
-				Arrays.asList("USER", "ADMIN", "SUPER_ADMIN")
+				Arrays.asList("USER", "ADMIN", Settings.authAdminRoleLabel)
 			));
 		}
 	}
@@ -200,7 +200,7 @@ public final class ServiceUserManagement {
 			"NMT",
 			"cj@a.aa",
 			"073-1234567",
-			Arrays.asList("USER", "ADMIN", "SUPER_ADMIN")
+			Arrays.asList("USER", "ADMIN", Settings.authAdminRoleLabel)
 		));
 		userList.users.add(new ServiceUser(
 			"Anders",

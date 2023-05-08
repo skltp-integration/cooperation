@@ -21,4 +21,6 @@ public class Settings {
 	@Value("${settings.allowApi_createSuperAdmins}") public boolean allowApi_createSuperAdmins;
 	@Value("${settings.allowApi_downloadSampleUserFile}") public boolean allowApi_downloadSampleUserList;
 	@Value("${settings.allowApi_hellosAndPings}") public boolean allowApi_hellosAndPings;
+
+	public static final String authAdminRoleLabel = "SUPER_ADMIN";
 }
