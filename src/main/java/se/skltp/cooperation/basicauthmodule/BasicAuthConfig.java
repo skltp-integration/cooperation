@@ -51,11 +51,11 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 
 			// For the two versions of the primary API.
-			.antMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
+			.antMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 			.antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
 
 			// For the two test endpoints used to test Spring Boot Security configuration.
-			.antMatchers(HttpMethod.GET, "/authoring/api/v2/**").hasAnyAuthority(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
+			.antMatchers(HttpMethod.GET, "/authoring/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 			.antMatchers("/authoring/api/v1/**").permitAll()
 
 			// The swagger Docs are open outward.
@@ -65,12 +65,12 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/authoring/ping").permitAll()
 
 			// Roles assumed to inherit hierarchically.
-			.antMatchers(HttpMethod.GET, "/authoring/user/**").hasAnyAuthority(Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
-			.antMatchers(HttpMethod.GET, "/authoring/admin/**").hasAnyAuthority(Settings.authAdminRoleLabel)
-			.antMatchers(HttpMethod.POST, "/authoring/admin/**").hasAnyAuthority(Settings.authAdminRoleLabel)
+			.antMatchers(HttpMethod.GET, "/authoring/user/**").hasAnyAuthority(Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
+			.antMatchers(HttpMethod.GET, "/authoring/admin/**").hasAnyAuthority(Settings.AUTH_ADMIN_ROLE)
+			.antMatchers(HttpMethod.POST, "/authoring/admin/**").hasAnyAuthority(Settings.AUTH_ADMIN_ROLE)
 
 			// Default level for all other endpoints is assumed restricted.
-			.antMatchers(HttpMethod.GET, "/**").hasAnyAuthority(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
+			.antMatchers(HttpMethod.GET, "/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
 			.anyRequest().authenticated()

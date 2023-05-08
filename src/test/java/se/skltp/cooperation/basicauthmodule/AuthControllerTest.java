@@ -32,8 +32,8 @@ class AuthControllerTest {
 		assertThrows(ResponseStatusException.class, () -> ctrl.retrieveDummyUsers());
 		settings.apiAllowDownloadSampleUserList = true;
 		ServiceUserListWrapper wrapper = ctrl.retrieveDummyUsers();
-		assertEquals(wrapper.users.size(),3);
-		assertEquals(wrapper.users.get(1).username,"Anders");
+		assertEquals(wrapper.getUsers().size(),3);
+		assertEquals(wrapper.getUsers().get(1).username,"Anders");
 	}
 
 	@Test
@@ -56,7 +56,7 @@ class AuthControllerTest {
 			"NMT",
 			"uu@a.aa",
 			"073-2468013",
-			Collections.singletonList("USER")
+			Collections.singletonList(Settings.REG_USER_ROLE)
 		);
 		UserData userDataAdmin = new UserData(
 			"Federico",
@@ -65,7 +65,7 @@ class AuthControllerTest {
 			"NMT",
 			"uu@a.aa",
 			"073-2468013",
-			Arrays.asList("USER", "ADMIN", Settings.authAdminRoleLabel)
+			Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 		);
 
 		//// ADD User
@@ -120,8 +120,8 @@ class AuthControllerTest {
 		settings.apiAllowGetUsers = true;
 
 		ServiceUserListWrapper usersCleaned = ctrl.getUsersCleaned();
-		assertEquals(3, usersCleaned.users.size());
-		assertEquals(usersCleaned.users.get(1).username, user1.username);
+		assertEquals(3, usersCleaned.getUsers().size());
+		assertEquals(usersCleaned.getUsers().get(1).username, user1.username);
 
 
 		//// TESTING PASSWORD CHANGES

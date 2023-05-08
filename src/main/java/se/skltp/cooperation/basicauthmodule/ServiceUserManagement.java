@@ -44,7 +44,7 @@ public final class ServiceUserManagement {
 				"NMT",
 				"cj@a.aa",
 				"073-1234567",
-				Arrays.asList(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
+				Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 			));
 		}
 	}
@@ -81,9 +81,9 @@ public final class ServiceUserManagement {
 	public ServiceUserListWrapper findAllUsersProcessed() {
 		ServiceUserListWrapper userList = new ServiceUserListWrapper();
 		for(ServiceUser user: userRepository.findAll()) {
-			userList.users.add(new ServiceUser(
+			userList.getUsers().add(new ServiceUser(
 				user.username,
-				Settings.pwdRedactionLabel,
+				Settings.REDACTED_LABEL,
 				user.contactName,
 				user.contactOrganization,
 				user.contactMail,
@@ -112,7 +112,7 @@ public final class ServiceUserManagement {
 		newUserPayload.password = MyUserDetailsService.generateHashedPassword(newUserPayload.password);
 
 		ServiceUser saved = userRepository.saveAndFlush(new ServiceUser(newUserPayload));
-		saved.password = Settings.pwdRedactionLabel;
+		saved.password = Settings.REDACTED_LABEL;
 		return saved;
 	}
 
@@ -134,7 +134,7 @@ public final class ServiceUserManagement {
 		);
 
 		ServiceUser saved = userRepository.saveAndFlush(editedUser);
-		saved.password = Settings.pwdRedactionLabel;
+		saved.password = Settings.REDACTED_LABEL;
 		return saved;
 	}
 	public ServiceUser changePasswordFlow(ServiceUser existingUser, String newPassword) {
@@ -156,7 +156,7 @@ public final class ServiceUserManagement {
 		);
 
 		ServiceUser saved = userRepository.saveAndFlush(pwdChangedUser);
-		saved.password = Settings.pwdRedactionLabel;
+		saved.password = Settings.REDACTED_LABEL;
 		return saved;
 	}
 
@@ -183,9 +183,9 @@ public final class ServiceUserManagement {
 	 */
 	public ServiceUserListWrapper getDummyUserList() {
 		ServiceUserListWrapper userList = new ServiceUserListWrapper();
-		userList.users.add(new ServiceUser(
+		userList.getUsers().add(new ServiceUser(
 			"Caesar",
-			Settings.pwdRedactionLabel,
+			Settings.REDACTED_LABEL,
 			// For specimen password "qwerty"...:
 			// Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
 			// Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
@@ -193,25 +193,25 @@ public final class ServiceUserManagement {
 			"NMT",
 			"cj@a.aa",
 			"073-1234567",
-			Arrays.asList(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel, Settings.authAdminRoleLabel)
+			Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 		));
-		userList.users.add(new ServiceUser(
+		userList.getUsers().add(new ServiceUser(
 			"Anders",
-			Settings.pwdRedactionLabel,
+			Settings.REDACTED_LABEL,
 			"Anders Adminsson",
 			"NMT",
 			"aa@a.aa",
 			"073-9876543",
-			Arrays.asList(Settings.regularUserRoleLabel, Settings.regularAdminRoleLabel)
+			Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE)
 		));
-		userList.users.add(new ServiceUser(
+		userList.getUsers().add(new ServiceUser(
 			"Uffe",
-			Settings.pwdRedactionLabel,
+			Settings.REDACTED_LABEL,
 			"Uffe Usersson",
 			"NMT",
 			"uu@a.aa",
 			"073-2468013",
-			Collections.singletonList(Settings.regularUserRoleLabel)
+			Collections.singletonList(Settings.REG_USER_ROLE)
 		));
 		return userList;
 	}

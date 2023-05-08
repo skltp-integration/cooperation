@@ -24,7 +24,6 @@ class ServiceUserManagementTest {
 
   private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-
   @Test
   void whenAddingAndDeletingUser_worksAsExpected() {
     UserData testUser = new UserData(
@@ -37,7 +36,7 @@ class ServiceUserManagementTest {
 		"NMT",
 		"cj@a.aa",
 		"073-1234567",
-		Arrays.asList("USER", "ADMIN", Settings.authAdminRoleLabel)
+		Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 	);
 
 	ServiceUser userSaved = mgmt.createUserFlow(testUser);
@@ -45,8 +44,8 @@ class ServiceUserManagementTest {
 
     ServiceUser userStored = mgmt.findUser(testUser.username);
 
-	userStored.password = "ignore";
-	userSaved.password = "ignore";
+	userStored.password = Settings.REDACTED_LABEL;
+	userSaved.password = Settings.REDACTED_LABEL;
 
 	assertEquals(userSaved, userStored);
 
@@ -57,7 +56,7 @@ class ServiceUserManagementTest {
   @Test
   void whenCreatingDummmyUsers_AddAndRetrieveUsers_usersAreAsExpected() {
     ServiceUserListWrapper dummies = mgmt.getDummyUserList();
-    assertEquals(dummies.users.size(), 3);
+    assertEquals(dummies.getUsers().size(), 3);
   }
 
   @Test
@@ -69,25 +68,10 @@ class ServiceUserManagementTest {
     assertEquals(user, userDeserialized);
   }
 
-  /**
-   * Will assemble a wrapper of dummy users.\n
-   * Will not be stored in memory.\n
-   * Will not overwrite user file.
-   *
-   * @return A payload of dummy users.
-   */
-  public static ServiceUserListWrapper createDummyUserList() {
-    ServiceUserListWrapper userList = new ServiceUserListWrapper();
-    userList.users.add(createQuickDummyUser1_Caesar());
-    userList.users.add(createQuickDummyUser2_Anders());
-    userList.users.add(createQuickDummyUser3_Bertil());
-    return userList;
-  }
-
   public static ServiceUser createQuickDummyUser1_Caesar() {
     ServiceUser user = new ServiceUser(
         "Caesar",
-        MyUserDetailsService.generateHashedPassword("qwerty"),
+        MyUserDetailsService.generateHashedPassword("Qwert123"),
         // For specimen password "qwerty"...:
         // Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
         // Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
@@ -95,34 +79,7 @@ class ServiceUserManagementTest {
         "NMT",
         "cc@a.aa",
         "073-1234567",
-        Arrays.asList("USER", "ADMIN")
-    );
-    return user;
-  }
-
-  public static ServiceUser createQuickDummyUser2_Anders() {
-    ServiceUser user = new ServiceUser(
-        "Anders",
-        MyUserDetailsService.generateHashedPassword("abcdefg"),
-        "Anders Andersson",
-        "NMT",
-        "aa@a.aa",
-        "073-1234567",
-        Arrays.asList("USER")
-    );
-    return user;
-  }
-
-  // Do NOT use these Dummy users for actual service usage, for obvious security reasons.
-  public static ServiceUser createQuickDummyUser3_Bertil() {
-    ServiceUser user = new ServiceUser(
-        "Bertil",
-        MyUserDetailsService.generateHashedPassword("1234567"),
-        "Bertil Bertilsson",
-        "NMT",
-        "bb@a.aa",
-        "073-1234567",
-        Arrays.asList("ADMIN")
+        Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE)
     );
     return user;
   }

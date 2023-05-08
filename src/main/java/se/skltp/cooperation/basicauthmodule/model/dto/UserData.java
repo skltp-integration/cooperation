@@ -27,7 +27,7 @@ public final class UserData {
 					@NonNull String contactName,
 					@NonNull String contactOrganization,
 					@NonNull String contactMail,
-					String contactPhone,
+					@NonNull String contactPhone,
 					@NonNull List<String> roles) {
 		this.username = username;
 		this.password = password;
@@ -38,12 +38,4 @@ public final class UserData {
 		this.roles = roles;
 	}
 	public UserData() {}
-
-	/**
-	 * Uses the password checker in MyUserDetailsService to check basic requirements.
-	 * @return true if the password is too crummy.
-	 */
-	public boolean hasBadPassword() {
-		return MyUserDetailsService.isBadPassword(this.password);
-	}
 }

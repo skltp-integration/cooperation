@@ -20,9 +20,9 @@ public class Settings {
 	@Value("${settings.allowApi_createSuperAdmins}") public boolean apiAllowCreateSuperAdmins;
 	@Value("${settings.allowApi_downloadSampleUserFile}") public boolean apiAllowDownloadSampleUserList;
 
-	public static final String regularUserRoleLabel = "USER";
-	public static final String regularAdminRoleLabel = "ADMIN";
-	public static final String authAdminRoleLabel = "SUPER_ADMIN";
-	public static final String pwdRedactionLabel = "[redacted]";
+	public static final String REG_USER_ROLE = "USER";
+	public static final String REG_ADMIN_ROLE = "ADMIN";
+	public static final String AUTH_ADMIN_ROLE = "SUPER_ADMIN";
+	public static final String REDACTED_LABEL = "[redacted]";
 
 }

@@ -9,4 +9,5 @@ public class PasswordChange {
 		this.username = username;
 		this.newPassword = newPassword;
 	}
+
 }

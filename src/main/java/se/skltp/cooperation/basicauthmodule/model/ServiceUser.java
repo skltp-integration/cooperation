@@ -28,7 +28,7 @@ public final class ServiceUser {
 	public String contactOrganization;
 	@NonNull
 	public String contactMail;
-
+	@NonNull
 	public String contactPhone = null;
 
 	@NonNull
