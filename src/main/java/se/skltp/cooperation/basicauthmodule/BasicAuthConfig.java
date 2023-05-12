@@ -47,16 +47,15 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		http.csrf().disable()
+		http.csrf().disable();
+		http.headers().frameOptions().sameOrigin();
+
+		http
 			.authorizeRequests()
 
 			// For the two versions of the primary API.
 			.antMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 			.antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
-
-			// For the two test endpoints used to test Spring Boot Security configuration.
-			.antMatchers(HttpMethod.GET, "/authoring/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
-			.antMatchers("/authoring/api/v1/**").permitAll()
 
 			// The swagger Docs are open outward.
 			.antMatchers(HttpMethod.GET, "/doc/**").permitAll()
@@ -65,25 +64,16 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/authoring/ping").permitAll()
 
 			// Roles assumed to inherit hierarchically.
-			.antMatchers(HttpMethod.GET, "/authoring/user/**").hasAnyAuthority(Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 			.antMatchers(HttpMethod.GET, "/authoring/admin/**").hasAnyAuthority(Settings.AUTH_ADMIN_ROLE)
 			.antMatchers(HttpMethod.POST, "/authoring/admin/**").hasAnyAuthority(Settings.AUTH_ADMIN_ROLE)
 
-			// Default level for all other endpoints is assumed restricted.
+			// Default level for all other endpoints is assumed restricted, as fallback.
 			.antMatchers(HttpMethod.GET, "/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
-			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Options always open tho'.
 
-			.anyRequest().authenticated()
-			.and()
-			.httpBasic()
+			.anyRequest().fullyAuthenticated()
+			.and().httpBasic()
 		;
-
-		http
-			.headers().frameOptions().sameOrigin();
-		http
-			.csrf().disable();
-		http
-			.headers().frameOptions().disable();
 	}
 
 	@Override

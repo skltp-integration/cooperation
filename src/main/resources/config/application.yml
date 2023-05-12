@@ -4,18 +4,16 @@ spring.profiles.active: dev
 spring.mvc.pathmatch.matching-strategy: ant-path-matcher
 
 settings:
-  allowApi_generateCryptHash: true
+  allowApi_generateCryptHash: false
   allowApi_downloadUsers: true
-  allowApi_downloadUsersRaw: false
   allowApi_anyUserManagementChanges: true
   allowApi_changeUserPassword: true
   allowApi_changeSuperAdminPassword: false
-  allowApi_editUsers: false
+  allowApi_editAnyUsers: true
   allowApi_editSuperAdmins: false
   allowApi_createAnyUsers: true
   allowApi_createSuperAdmins: false
   allowApi_downloadSampleUserFile: true
-  allowApi_hellosAndPings: true
 
 ---
 

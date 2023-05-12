@@ -14,7 +14,7 @@ public class Settings {
 	@Value("${settings.allowApi_anyUserManagementChanges}") public boolean apiAllowAnyUserManagementChanges;
 	@Value("${settings.allowApi_changeUserPassword}") public boolean apiAllowChangePassword;
 	@Value("${settings.allowApi_changeSuperAdminPassword}") public boolean apiAllowChangeSuperAdminPassword;
-	@Value("${settings.allowApi_editUsers}") public boolean apiAllowEditExistingUsers;
+	@Value("${settings.allowApi_editAnyUsers}") public boolean apiAllowEditExistingUsers;
 	@Value("${settings.allowApi_editSuperAdmins}") public boolean apiAllowEditSuperAdmins;
 	@Value("${settings.allowApi_createAnyUsers}") public boolean apiAllowCreateAnyUsers;
 	@Value("${settings.allowApi_createSuperAdmins}") public boolean apiAllowCreateSuperAdmins;
