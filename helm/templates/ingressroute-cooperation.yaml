@@ -6,7 +6,7 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`tak.dev.ntjp.se`) && PathPrefix(`/coop`)
+      match: Host(`{{ .Values.ingressroute.hosturl }}`) && PathPrefix(`/coop`)
       priority: 10
       services:
         - kind: Service
@@ -37,7 +37,7 @@ metadata:
 spec:
   routes:
   - kind: Rule
-    match: Host(`tak.dev.ntjp.se`) && PathPrefix(`/coop`)
+    match: Host(`{{ .Values.ingressroute.hosturl }}`) && PathPrefix(`/coop`)
     middlewares:
       - name: cooperation-redirect-https
     services:
