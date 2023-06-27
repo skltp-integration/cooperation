@@ -7,6 +7,7 @@ package se.skltp.cooperation.basicauthmodule;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -46,39 +47,32 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		http.csrf().disable()
+		http.csrf().disable();
+		http.headers().frameOptions().sameOrigin();
+
+		http
 			.authorizeRequests()
 
 			// For the two versions of the primary API.
-			.antMatchers("/api/v2/**").hasAnyAuthority("ADMIN", "USER")
-			.antMatchers("/api/v1/**").permitAll()
-
-			// For the two test endpoints used to test Spring Boot Security configuration.
-			.antMatchers("/authoring/api/v2/**").hasAnyAuthority("ADMIN", "USER")
-			.antMatchers("/authoring/api/v1/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
+			.antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
 
 			// The swagger Docs are open outward.
-			.antMatchers("/doc/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/doc/**").permitAll()
 
 			// Ping always responds openly.
-			.antMatchers("/authoring/ping").permitAll()
+			.antMatchers(HttpMethod.GET, "/authoring/ping").permitAll()
 
 			// Roles assumed to inherit hierarchically.
-			.antMatchers(Settings.authAdministrationSubPath + "/user/**").hasAnyAuthority("ADMIN", "USER")
-			.antMatchers(Settings.authAdministrationSubPath + "/admin/**").hasAuthority("ADMIN")
+			.antMatchers(HttpMethod.GET, "/authoring/admin/**").hasAnyAuthority(Settings.AUTH_ADMIN_ROLE)
+			.antMatchers(HttpMethod.POST, "/authoring/admin/**").hasAnyAuthority(Settings.AUTH_ADMIN_ROLE)
 
-			/*
-			// Examples of how to configure user/admin-differentiated URLs.
-			.antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER") // Roles assumed to inherit hierarchically.
-			.antMatchers("/admin/**").hasAuthority("ADMIN")
-			 */
+			// Default level for all other endpoints is assumed restricted, as fallback.
+			.antMatchers(HttpMethod.GET, "/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
+			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Options always open tho'.
 
-			// Default level for all other endpoints is assumed restricted.
-			.antMatchers("/**").hasAnyAuthority("ADMIN", "USER")
-
-			.anyRequest().authenticated()
-			.and()
-			.httpBasic()
+			.anyRequest().fullyAuthenticated()
+			.and().httpBasic()
 		;
 	}
 

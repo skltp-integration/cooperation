@@ -7,6 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
+import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUserListWrapper;
 
 import java.util.Arrays;
 
@@ -22,32 +25,38 @@ class ServiceUserManagementTest {
   private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
   @Test
-  void triggerFileRead() {
-    assertDoesNotThrow(mgmt::triggerFileRead);
-  }
-
-  @Test
   void whenAddingAndDeletingUser_worksAsExpected() {
-    ServiceUser testUser = createQuickDummyUser1_Caesar();
+    UserData testUser = new UserData(
+		"DGA9FEK2NVYPSA7MCRHB3VEREE85KK",
+		"qwerty",
+		// For specimen password "qwerty"...:
+		// Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
+		// Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
+		"Caesar Julius",
+		"NMT",
+		"cj@a.aa",
+		"073-1234567",
+		Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
+	);
 
-    if (mgmt.hasServiceUser(testUser.username)) {
-      testUser.username = "DGA9FEK2NVYPSA7MCRHB3VEREE85KK";
-    }
+	ServiceUser userSaved = mgmt.createUserFlow(testUser);
+    assertTrue(mgmt.userExists(testUser.username));
 
-    mgmt.addServiceUser(testUser);
-    assertTrue(mgmt.hasServiceUser(testUser.username));
+    ServiceUser userStored = mgmt.findUser(testUser.username);
 
-    ServiceUser userStored = mgmt.getServiceUser(testUser.username);
-    assertEquals(userStored, testUser);
+	userStored.password = Settings.REDACTED_LABEL;
+	userSaved.password = Settings.REDACTED_LABEL;
 
-    mgmt.dropServiceUser(testUser.username);
-    assertFalse(mgmt.hasServiceUser(testUser.username));
+	assertEquals(userSaved, userStored);
+
+    mgmt.deleteUserTest(testUser.username);
+    assertFalse(mgmt.userExists(testUser.username));
   }
 
   @Test
   void whenCreatingDummmyUsers_AddAndRetrieveUsers_usersAreAsExpected() {
-    ServiceUserListWrapper dummies = mgmt.createDummyUserList();
-    assertEquals(dummies.users.size(), 1);
+    ServiceUserListWrapper dummies = mgmt.getDummyUserList();
+    assertEquals(dummies.getUsers().size(), 3);
   }
 
   @Test
@@ -59,25 +68,10 @@ class ServiceUserManagementTest {
     assertEquals(user, userDeserialized);
   }
 
-  /**
-   * Will assemble a wrapper of dummy users.\n
-   * Will not be stored in memory.\n
-   * Will not overwrite user file.
-   *
-   * @return A payload of dummy users.
-   */
-  public static ServiceUserListWrapper createDummyUserList() {
-    ServiceUserListWrapper userList = new ServiceUserListWrapper();
-    userList.users.add(createQuickDummyUser1_Caesar());
-    userList.users.add(createQuickDummyUser2_Anders());
-    userList.users.add(createQuickDummyUser3_Bertil());
-    return userList;
-  }
-
   public static ServiceUser createQuickDummyUser1_Caesar() {
     ServiceUser user = new ServiceUser(
         "Caesar",
-        MyUserDetailsService.generateBCryptHashedPassword("qwerty"),
+        MyUserDetailsService.generateHashedPassword("Qwert123"),
         // For specimen password "qwerty"...:
         // Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
         // Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
@@ -85,34 +79,7 @@ class ServiceUserManagementTest {
         "NMT",
         "cc@a.aa",
         "073-1234567",
-        Arrays.asList("USER", "ADMIN")
-    );
-    return user;
-  }
-
-  public static ServiceUser createQuickDummyUser2_Anders() {
-    ServiceUser user = new ServiceUser(
-        "Anders",
-        MyUserDetailsService.generateBCryptHashedPassword("abcdefg"),
-        "Anders Andersson",
-        "NMT",
-        "aa@a.aa",
-        "073-1234567",
-        Arrays.asList("USER")
-    );
-    return user;
-  }
-
-  // Do NOT use these Dummy users for actual service usage, for obvious security reasons.
-  public static ServiceUser createQuickDummyUser3_Bertil() {
-    ServiceUser user = new ServiceUser(
-        "Bertil",
-        MyUserDetailsService.generateBCryptHashedPassword("1234567"),
-        "Bertil Bertilsson",
-        "NMT",
-        "bb@a.aa",
-        "073-1234567",
-        Arrays.asList("ADMIN")
+        Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE)
     );
     return user;
   }

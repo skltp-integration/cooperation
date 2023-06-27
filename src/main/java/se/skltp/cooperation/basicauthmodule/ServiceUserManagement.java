@@ -11,17 +11,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
+import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUserListWrapper;
+
 import javax.annotation.PostConstruct;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Optional;
 
 @Service
 public final class ServiceUserManagement {
@@ -29,113 +28,144 @@ public final class ServiceUserManagement {
 	private final Logger log = LoggerFactory.getLogger(ServiceUserManagement.class);
 
 	@Autowired
-	Settings settings;
+	UserRepository userRepository;
 
-	private final HashMap<String, ServiceUser> allKnownUsers;
 	private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-
-	/**
-	 * Constructor. Sets up space for holding users in memory.
-	 */
-	private ServiceUserManagement() {
-		this.allKnownUsers = new HashMap<>();
-	}
 
 	@PostConstruct
 	private void initialization() {
-		this.readUserFile();
-	}
-
-	////
-	// USER FILE HANDLING
-	////
-
-	/**
-	 * Triggers a read of the user file.
-	 * Can be triggered manually, but will also run periodically once per hour (cron-able expression).
-	 * Currently: "(0 0/5 * * * *) = Every 5 minutes, every hour, every day."
-	 */
-	@Scheduled(cron = "${settings.fileReadCron:0 0/5 * * * *}")
-	public void triggerFileRead() {
-		readUserFile();
-	}
-
-	/**
-	 * Does the practical reading of the user file, and adds any users found into this class' user list.
-	 */
-	private void readUserFile() {
-		try {
-			Files.createDirectories(Paths.get(settings.folderPath));
-
-			Path path = Paths.get(settings.getFilePath());
-			if (!Files.exists(path)) {
-				setupDummyUserFile();
-			}
-
-			//log.debug("Refreshing user list.");
-
-			String fileContentJSON = new String(Files.readAllBytes(Paths.get(settings.getFilePath())));
-			ServiceUserListWrapper usersFromFile = gson.fromJson(fileContentJSON, ServiceUserListWrapper.class);
-
-			this.allKnownUsers.clear();
-			for (ServiceUser user : usersFromFile.users) {
-				this.addServiceUser(user);
-			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		log.debug("INITIALIZATION of ServiceUserManagement instance.");
+		if (userRepository.findAll().size() == 0) {
+			log.info("ADDING CAESAR as generic auth user. Change in DB.");
+			createUserFlow(new UserData(
+				"Caesar",
+				"Qwerty123",
+				"Caesar Julius",
+				"NMT",
+				"cj@a.aa",
+				"073-1234567",
+				Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
+			));
 		}
 	}
+
+	////
+	// *** DATABASE BASED SOLUTIONS ***
+	////
 
 	///
 	// GET- & SETTERS
 	///
 
-
-	/**
-	 * Checks if User is present by name.
-	 * @param username
-	 * @return
-	 */
-	public boolean hasServiceUser(String username) {
-		return allKnownUsers.containsKey(username);
-	}
-
 	/**
 	 * Retrieves the information held for one user by username.
 	 *
-	 * @param username The id and username of the user.
+	 * @param username The username (id) of the user.
 	 * @return The data entry of the user, if found in the in-memory user list.\n
 	 * @throws ResponseStatusException Will raise a 404 if the username is not found.
 	 */
-	public ServiceUser getServiceUser(String username) {
-		if (allKnownUsers.containsKey(username)) {
-			return allKnownUsers.get(username);
-		} else {
-			throw new ResponseStatusException(
-				HttpStatus.NOT_FOUND, "user not found."
-			);
+	public ServiceUser findUser(String username) {
+		if (userRepository.existsById(username)) {
+			Optional<ServiceUser> userOpt = userRepository.findById(username);
+			if (userOpt.isPresent()) {
+				return userOpt.get();
+			}
 		}
+
+		// Fall-through exception.
+		throw new ResponseStatusException(
+			HttpStatus.NOT_FOUND, "user not found."
+		);
+	}
+
+	public ServiceUserListWrapper findAllUsersProcessed() {
+		ServiceUserListWrapper userList = new ServiceUserListWrapper();
+		for(ServiceUser user: userRepository.findAll()) {
+			userList.getUsers().add(new ServiceUser(
+				user.username,
+				Settings.REDACTED_LABEL,
+				user.contactName,
+				user.contactOrganization,
+				user.contactMail,
+				user.contactPhone,
+				user.roles
+			));
+		}
+		return userList;
 	}
 
 	/**
-	 * Records one user entry into the in-memory user list.
+	 * Checks if User is present by name.
+	 * @param username The username (id) of the user.
+	 * @return true if user exists in the db, false otherwise.
 	 */
-	public void addServiceUser(ServiceUser user) {
-		if (!this.allKnownUsers.containsKey(user.username)) {
-			this.allKnownUsers.put(user.username, user);
-		} else {
-			throw new ResponseStatusException(HttpStatus.CONFLICT, "Entity ID already exists.");
-		}
+	public boolean userExists(String username) {
+		return userRepository.existsById(username);
 	}
 
-	public void dropServiceUser(String username) {
-		if (this.allKnownUsers.containsKey(username)) {
-			this.allKnownUsers.remove(username);
-		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity ID not found for deletion.");
+	public ServiceUser createUserFlow(UserData newUserPayload) {
+		// At the entry of this function, it is already known that the user does not exist.
+		// Any permission settings were checked in the controller.
+
+		log.info("Attempting CREATION of USER " + newUserPayload.username + " with roles: " + newUserPayload.roles);
+
+		newUserPayload.password = MyUserDetailsService.generateHashedPassword(newUserPayload.password);
+
+		ServiceUser saved = userRepository.saveAndFlush(new ServiceUser(newUserPayload));
+		saved.password = Settings.REDACTED_LABEL;
+		return saved;
+	}
+
+	public ServiceUser editUserFlow(UserData incomingUserData, ServiceUser existingUser) {
+		// At the entry of this function, it is already known that the user exists.
+		//   The specific user entry was located in the controller function, and attached to this call.
+		// Any permission settings were checked in the controller.
+
+		log.info("Attempting EDIT of USER " + incomingUserData.username + ", which will have provided roles: " + incomingUserData.roles);
+
+		ServiceUser editedUser = new ServiceUser(
+			existingUser.username,
+			existingUser.getPassword(),
+			incomingUserData.contactName,
+			incomingUserData.contactOrganization,
+			incomingUserData.contactMail,
+			incomingUserData.contactPhone,
+			incomingUserData.roles
+		);
+
+		ServiceUser saved = userRepository.saveAndFlush(editedUser);
+		saved.password = Settings.REDACTED_LABEL;
+		return saved;
+	}
+	public ServiceUser changePasswordFlow(ServiceUser existingUser, String newPassword) {
+		// At the entry of this function, password quality has been checked,
+		//    and any permission settings were checked in the controller.
+
+		log.info("Attempting PWD CHANGE on USER " + existingUser.username + " with current roles: " + existingUser.roles);
+
+		String hashedPassword = MyUserDetailsService.generateHashedPassword(newPassword);
+
+		ServiceUser pwdChangedUser = new ServiceUser(
+			existingUser.username,
+			hashedPassword,
+			existingUser.contactName,
+			existingUser.contactOrganization,
+			existingUser.contactMail,
+			existingUser.contactPhone,
+			existingUser.roles
+		);
+
+		ServiceUser saved = userRepository.saveAndFlush(pwdChangedUser);
+		saved.password = Settings.REDACTED_LABEL;
+		return saved;
+	}
+
+	void deleteUserTest(String username) {
+		if (!userRepository.existsById(username)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found for deletion.");
 		}
+
+		userRepository.deleteById(username);
 	}
 
 
@@ -144,89 +174,45 @@ public final class ServiceUserManagement {
 	////
 
 	/**
-	 * Will generate a user file containing a handful of sample users.\n
-	 * WARNING: Will overwrite user file.
-	 *
-	 * @return Responds with the content written to file.
-	 */
-	public String setupDummyUserFile() {
-
-		String content = retrieveDummyUsersAsJSON();
-
-		try {
-			Files.createDirectories(Paths.get(settings.folderPath));
-
-			Path path = Paths.get(settings.getFilePath());
-			if (!Files.exists(path)) {
-				Files.createFile(path);
-			}
-			FileWriter file = new FileWriter(settings.getFilePath());
-			file.write(content);
-			file.flush();
-			file.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		triggerFileRead(); // Re-scan the newly generated file into user list.
-
-		return content;
-	}
-
-	/**
-	 * Will create a wrapper with a list of dummy users.\n
-	 * Will not be stored in memory.\n
-	 * Will not overwrite user file.
-	 *
-	 * @return A payload of dummy users.
-	 */
-	public ServiceUserListWrapper retrieveDummyUsers() {
-		return createDummyUserList();
-	}
-
-	/**
-	 * Will create a wrapper with a list of dummy users, and then serialize it.\n
-	 * Will not be stored in memory.\n
-	 * Will not overwrite user file.
-	 *
-	 * @return A serialized string of the payload of dummy users.
-	 */
-	private String retrieveDummyUsersAsJSON() {
-		ServiceUserListWrapper userList = createDummyUserList();
-		String serialized = gson.toJson(userList);
-		return serialized;
-	}
-
-	/**
 	 * Will assemble a wrapper of dummy users.\n
 	 * Will not be stored in memory.\n
 	 * Will not overwrite user file.
+	 * Do NOT use these Dummy users for actual service usage, for obvious security reasons.
 	 *
 	 * @return A payload of dummy users.
 	 */
-	public ServiceUserListWrapper createDummyUserList() {
+	public ServiceUserListWrapper getDummyUserList() {
 		ServiceUserListWrapper userList = new ServiceUserListWrapper();
-		userList.users.add(getQuickDummyUser1());
-		// userList.users.add(getQuickDummyUser2());
-		// userList.users.add(getQuickDummyUser3());
-		return userList;
-	}
-
-	// Do NOT use these Dummy users for actual service usage, for obvious security reasons.
-	private ServiceUser getQuickDummyUser1() {
-		ServiceUser user = new ServiceUser(
+		userList.getUsers().add(new ServiceUser(
 			"Caesar",
-			MyUserDetailsService.generateBCryptHashedPassword("qwerty"),
+			Settings.REDACTED_LABEL,
 			// For specimen password "qwerty"...:
 			// Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
 			// Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
 			"Caesar Julius",
 			"NMT",
-			"cc@a.aa",
+			"cj@a.aa",
 			"073-1234567",
-			Arrays.asList("USER", "ADMIN")
-		);
-		return user;
+			Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
+		));
+		userList.getUsers().add(new ServiceUser(
+			"Anders",
+			Settings.REDACTED_LABEL,
+			"Anders Adminsson",
+			"NMT",
+			"aa@a.aa",
+			"073-9876543",
+			Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE)
+		));
+		userList.getUsers().add(new ServiceUser(
+			"Uffe",
+			Settings.REDACTED_LABEL,
+			"Uffe Usersson",
+			"NMT",
+			"uu@a.aa",
+			"073-2468013",
+			Collections.singletonList(Settings.REG_USER_ROLE)
+		));
+		return userList;
 	}
 }

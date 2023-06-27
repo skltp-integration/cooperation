@@ -62,10 +62,10 @@ import com.google.common.base.Splitter;
 public class CooperationController {
 
 	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
-	public static String INCLUDE_SERVICECONSUMER = "serviceConsumer";
-	public static String INCLUDE_SERVICECONTRACT = "serviceContract";
-	public static String INCLUDE_CONNECTIONPOINT = "connectionPoint";
-	public static String INCLUDE_LOGICALADDRESS = "logicalAddress";
+	static final String INCLUDE_SERVICECONSUMER = "serviceConsumer";
+	private static final String INCLUDE_SERVICECONTRACT = "serviceContract";
+	private static final String INCLUDE_CONNECTIONPOINT = "connectionPoint";
+	static final String INCLUDE_LOGICALADDRESS = "logicalAddress";
 
 	private final Logger log = LoggerFactory.getLogger(CooperationController.class);
 	private final CooperationService cooperationService;

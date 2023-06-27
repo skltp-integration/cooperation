@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public final class MyUserDetailsService implements UserDetailsService {
 
 	@Override
 	public User loadUserByUsername(String username) {
-		ServiceUser user = userManagement.getServiceUser(username);
+		ServiceUser user = userManagement.findUser(username);
 
 		ArrayList<SimpleGrantedAuthority> grants = new ArrayList<>();
 		for (String role : user.roles
@@ -29,11 +30,17 @@ public final class MyUserDetailsService implements UserDetailsService {
 			grants.add(grant);
 		}
 
-		return new User(user.username, user.bCryptHash, grants);
+		return new User(user.username, user.password, grants);
 	}
 
-	public static String generateBCryptHashedPassword(String rawPassword) {
+	public static String generateHashedPassword(String rawPassword) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 		return passwordEncoder.encode(rawPassword);
+	}
+
+	public static boolean isBadPassword(String password) {
+		return
+			password == null
+				|| !password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$");
 	}
 }

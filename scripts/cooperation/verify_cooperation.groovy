@@ -58,9 +58,6 @@ Properties appProperties = downloadProperties(smtp_prop_file)
 
 logger.info("Preparing Request and Auth.")
 
-// Old solution, direct call.
-//   String connectionPointsJson = connection_points_url.toURL().text
-
 // Encode Auth string.
 def authString = new String(Base64.getEncoder().encode(auth_userandpass.getBytes()))
 
@@ -75,16 +72,13 @@ if( conn.responseCode != 200 ) {
 
 def connectionPoints = new JsonSlurper().parseText(conn.content.text)
 
-// Old JSON Slurper
-//   def connectionPoints = new JsonSlurper().parseText(connectionPointsJson)
-
 logger.info("Verify cooperation import")
 
 def error_data = []
 dump_list.each{dump_name ->
 	Dump current_dump = Dump.getDump(dump_name)
 	if(current_dump == null) {
-		error = "Finns inte beskrivning av en dump med namn [" + dump_name + "] i ett skript! Fix verify_cooperation.groovy skriptet"
+		error = "Finns inte beskrivning av en dump med namn [" + dump_name + "] i ett skript! Fixa verify_cooperation.groovy-skriptet"
 		logger.error(error)
 		error_data << error
 		return
@@ -100,7 +94,7 @@ dump_list.each{dump_name ->
 	}
 
 	if(!isToday(connectionPoint.snapshotTime)){
-			error = "Dump [" + connectionPoint + "] ar gamal"
+			error = "Dump [" + connectionPoint + "] ar gammal"
 			logger.error(error)
 			error_data << error
 			return
@@ -120,8 +114,8 @@ okFile.write("OK")
 
 
 boolean isToday(String dump_date_string){
-	dump_date_day = Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", dump_date_string).clearTime()
-	def today = new Date().clearTime()
+	def dump_date_day = dump_date_string.substring(0, 9)
+	def today = new Date().format("YYYY-MM-dd")
 	return today.equals(dump_date_day)
 }
 
@@ -134,7 +128,8 @@ enum Dump {
 	LD_PROD("LD","PROD"),
 	LD_QA("LD","QA"),
 	NMT_SKAULO("NMT","SKAULO"),
-	NTJP_LAB("NTJP", "LAB")
+	NTJP_BKS_LAB("NTJP", "LAB"),
+	NTJP_BKS_DEV("NTJP", "DEV")
 
 	static Dump getDump(String name){
 	name = name.toLowerCase()
@@ -147,7 +142,8 @@ enum Dump {
 		case "ld_prod": return LD_PROD;
 		case "ld_qa": return LD_QA;
 		case "nmt_skaulo": return NMT_SKAULO;
-		case "ntjp_lab": return NTJP_LAB;
+		case "ntjp_lab": return NTJP_BKS_LAB;
+		case "ntjp_bks_dev": return NTJP_BKS_DEV;
 		default:  return null;
 		}
 	}
@@ -168,7 +164,7 @@ private static void sendProblemMail(Properties smtpProperties, String to_mail, S
 
         MimeMessage msg = new MimeMessage(session)
 
-		String errorText = "Cooperation import fail. Under verifikation inträffades problem: \n"
+		String errorText = "Cooperation import fail. Under verifikation inträffade problem: \n"
 
         msg.setText(errorText + errors);
         msg.setSubject(subject)
