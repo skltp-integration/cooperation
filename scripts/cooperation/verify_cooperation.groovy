@@ -58,9 +58,6 @@ Properties appProperties = downloadProperties(smtp_prop_file)
 
 logger.info("Preparing Request and Auth.")
 
-// Old solution, direct call.
-//   String connectionPointsJson = connection_points_url.toURL().text
-
 // Encode Auth string.
 def authString = new String(Base64.getEncoder().encode(auth_userandpass.getBytes()))
 
@@ -74,9 +71,6 @@ if( conn.responseCode != 200 ) {
 }
 
 def connectionPoints = new JsonSlurper().parseText(conn.content.text)
-
-// Old JSON Slurper
-//   def connectionPoints = new JsonSlurper().parseText(connectionPointsJson)
 
 logger.info("Verify cooperation import")
 
@@ -120,8 +114,8 @@ okFile.write("OK")
 
 
 boolean isToday(String dump_date_string){
-	dump_date_day = Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", dump_date_string).clearTime()
-	def today = new Date().clearTime()
+	def dump_date_day = dump_date_string.substring(0, 9)
+	def today = new Date().format("YYYY-MM-dd")
 	return today.equals(dump_date_day)
 }
 
@@ -134,7 +128,7 @@ enum Dump {
 	LD_PROD("LD","PROD"),
 	LD_QA("LD","QA"),
 	NMT_SKAULO("NMT","SKAULO"),
-	NTJP_BKS_LAB("NTJP", "LAB")
+	NTJP_BKS_LAB("NTJP", "LAB"),
 	NTJP_BKS_DEV("NTJP", "DEV")
 
 	static Dump getDump(String name){
