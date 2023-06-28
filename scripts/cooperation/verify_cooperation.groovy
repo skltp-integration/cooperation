@@ -114,7 +114,7 @@ okFile.write("OK")
 
 
 boolean isToday(String dump_date_string){
-	def dump_date_day = dump_date_string.substring(0, 9)
+	def dump_date_day = dump_date_string.substring(0, 10)
 	def today = new Date().format("YYYY-MM-dd")
 	return today.equals(dump_date_day)
 }
