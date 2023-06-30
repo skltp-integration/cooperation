@@ -37,8 +37,8 @@ spec:
                   mountPath: /etc/cooperation
                   readOnly: true
                 - name: key-volume
-                  mountPath: /etc/cooperation/ssh/
-                  readOnly: true
+                  mountPath: /home/groovy/.ssh
+                  readOnly: false
               command:
                 - /bin/bash
                 - '-c'
@@ -46,4 +46,4 @@ spec:
           imagePullSecrets:
             - name: regcred
 
-          restartPolicy: OnFailure
+          restartPolicy: Never

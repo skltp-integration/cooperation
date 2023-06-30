@@ -12,9 +12,6 @@ spec:
             - name: config-volume
               configMap:
                 name: cooperation-configmap-default
-            - name: key-volume
-              secret:
-                secretName: cooperation-keys
           containers:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
@@ -36,9 +33,6 @@ spec:
                 - name: config-volume
                   mountPath: /etc/cooperation
                   readOnly: true
-                - name: key-volume
-                  mountPath: /etc/cooperation/ssh/
-                  readOnly: true
               command:
                 - /bin/bash
                 - '-c'
@@ -46,4 +40,4 @@ spec:
           imagePullSecrets:
             - name: regcred
 
-          restartPolicy: OnFailure
+          restartPolicy: Never
