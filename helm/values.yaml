@@ -9,6 +9,12 @@ container:
   image:
     tag: # To override the default tag, set it here.
 
+importCronJob:
+  schedule: "0 18 * * *"
+
+verifyCronJob:
+  schedule: "0 21 * * *"
+
 environment:
   variables:
     _default_config_maps:

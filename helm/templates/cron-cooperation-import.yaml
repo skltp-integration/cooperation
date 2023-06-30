@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cron-cooperation-import
 spec:
-  schedule: "37 13 * * *"
+  schedule: "{{ .Values.importCronJob.schedule }}"
   jobTemplate:
     spec:
       template:
