@@ -1,0 +1,27 @@
+repository: test/
+
+replicaCount: 1
+
+ingressroute:
+  hostUrl: base.env.url # This should be overridden and set to your environment's base URL.
+
+container:
+  image:
+    tag: # To override the default tag, set it here.
+
+importCronJob:
+  schedule: "0 18 * * *"
+
+verifyCronJob:
+  schedule: "0 21 * * *"
+
+environment:
+  variables:
+    _default_config_maps:
+      - cooperation-configmap-default
+    config_maps:
+      # Nothing yet. Override to supply your own values.
+    secrets:
+      # Nothing yet.
+    map: 
+      CATALINA_OPTS: "-Dspring.profiles.active=production -Dapp.conf.dir=/etc/cooperation"

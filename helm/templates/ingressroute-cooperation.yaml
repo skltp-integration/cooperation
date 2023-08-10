@@ -1,0 +1,46 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+  name: cooperation-https
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.ingressroute.hostUrl }}`) && PathPrefix(`/coop`)
+      priority: 10
+      services:
+        - kind: Service
+          name: service-cooperation
+          passHostHeader: true
+          port: 8080
+          responseForwarding:
+            flushInterval: 1ms
+          scheme: http
+          sticky:
+            cookie:
+              httpOnly: true
+              name: cookie
+              sameSite: none
+              secure: true
+          strategy: RoundRobin
+          weight: 10
+  tls:
+    domains:
+      - main: {{ .Values.ingressroute.hostUrl }}
+    secretName: {{ .Values.ingressroute.hostUrl }}-letsencrypt
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+  name: cooperation-http
+spec:
+  routes:
+  - kind: Rule
+    match: Host(`{{ .Values.ingressroute.hostUrl }}`) && PathPrefix(`/coop`)
+    middlewares:
+      - name: cooperation-redirect-https
+    services:
+      - kind: Service
+        name: cooperation-service
+        port: 8080

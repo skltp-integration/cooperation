@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cooperation
+  labels:
+    {{- include "cooperation.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cooperation
+      {{- include "cooperation.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: cooperation
+        {{- include "cooperation.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: cooperation-configmap-default
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: cooperation
+          image: "{{ .Values.repository }}cooperation:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+            failureThreshold: 3
+            httpGet:
+              path: /coop/doc/index.html
+              port: http
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+            failureThreshold: 3
+            httpGet:
+              path: /coop/doc/index.html
+              port: http
+          {{- with .Values.environment.variables }}
+          {{- if .map }}
+          env:
+            {{- range $k, $v := .map }}
+            - name: {{ $k }}
+              value: {{ $v }}
+            {{- end }}
+          {{- end }}
+          {{- end }}
+          envFrom:
+            {{- range .Values.environment.variables._default_config_maps }}
+            - configMapRef:
+                name: {{ . }}
+            {{- end }}
+            {{- range .Values.environment.variables.config_maps }}
+            - configMapRef:
+                name: {{ . }}
+            {{- end }}
+            {{- range .Values.environment.variables.secrets }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/cooperation
+              readOnly: true

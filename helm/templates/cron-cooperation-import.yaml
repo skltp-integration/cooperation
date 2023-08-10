@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-cooperation-import
+spec:
+  schedule: "{{ .Values.importCronJob.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: config-volume
+              configMap:
+                name: cooperation-configmap-default
+            - name: key-volume
+              secret:
+                secretName: cooperation-keys
+          containers:
+            - name: cooperation-scripts
+              image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+              imagePullPolicy: Always
+              envFrom:
+                {{- range $.Values.environment.variables._default_config_maps }}
+                - configMapRef:
+                    name: {{ . }}
+                {{- end }}
+                {{- range $.Values.environment.variables.config_maps }}
+                - configMapRef:
+                    name: {{ . }}
+                {{- end }}
+                {{- range $.Values.environment.variables.secrets }}
+                - secretRef:
+                    name: {{ . }}
+                {{- end }}
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /etc/cooperation
+                  readOnly: true
+                - name: key-volume
+                  mountPath: /home/groovy/.ssh
+                  readOnly: false
+              command:
+                - /bin/bash
+                - '-c'
+                - cd scripts && ./cooperation-import-from-tak.sh
+          imagePullSecrets:
+            - name: regcred
+
+          restartPolicy: Never
