@@ -25,27 +25,31 @@ spec:
       containers:
         - name: cooperation
           image: "{{ .Values.repository }}cooperation:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.container.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
           livenessProbe:
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 3
-            failureThreshold: 3
+            failureThreshold: 15
             httpGet:
-              path: /coop/doc/index.html
-              port: http
+              path: actuator/health/liveness
+              port: 8089
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
           readinessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: actuator/health/readiness
+              port: 8089
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 3
-            failureThreshold: 3
-            httpGet:
-              path: /coop/doc/index.html
-              port: http
+            timeoutSeconds: 5
           {{- with .Values.environment.variables }}
           {{- if .map }}
           env:
