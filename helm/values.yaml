@@ -8,6 +8,7 @@ ingressroute:
 container:
   image:
     tag: # To override the default tag, set it here.
+    pullPolicy: Always
 
 importCronJob:
   schedule: "0 18 * * *"
