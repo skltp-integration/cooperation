@@ -60,6 +60,9 @@ public class BasicAuthConfig extends WebSecurityConfigurerAdapter {
 			// The swagger Docs are open outward.
 			.antMatchers(HttpMethod.GET, "/doc/**").permitAll()
 
+			// Actuator endpoints does not require authentication (should only be reachable internally)
+			.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+
 			// Ping always responds openly.
 			.antMatchers(HttpMethod.GET, "/authoring/ping").permitAll()
 
