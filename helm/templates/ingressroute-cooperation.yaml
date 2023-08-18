@@ -6,7 +6,7 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`{{ .Values.ingressroute.hostUrl }}`) && PathPrefix(`/coop`)
+      match: Host(`{{ .Values.ingressroute.hostUrl }}`) && PathPrefix(`/coop/api`, `/coop/doc`)
       priority: 10
       services:
         - kind: Service
@@ -37,7 +37,7 @@ metadata:
 spec:
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.ingressroute.hostUrl }}`) && PathPrefix(`/coop`)
+    match: Host(`{{ .Values.ingressroute.hostUrl }}`) && PathPrefix(`/coop/api`, `/coop/doc`)
     middlewares:
       - name: cooperation-redirect-https
     services:
