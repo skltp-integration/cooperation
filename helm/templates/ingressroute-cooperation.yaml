@@ -42,5 +42,5 @@ spec:
       - name: cooperation-redirect-https
     services:
       - kind: Service
-        name: cooperation-service
+        name: service-cooperation
         port: 8080
