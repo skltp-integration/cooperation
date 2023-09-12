@@ -51,6 +51,12 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 5
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
           {{- with .Values.environment.variables }}
           {{- if .map }}
           env:
