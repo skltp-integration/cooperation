@@ -7,6 +7,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            elasticGrokFilter: {{ .Values.importCronJob.elasticGrokFilter }}
         spec:
           volumes:
             - name: config-volume

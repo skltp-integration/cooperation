@@ -1,6 +1,8 @@
 repository: test/
 
-replicaCount: 1
+deployment:
+  replicaCount: 1
+  elasticGrokFilter: coop
 
 ingressroute:
   hostName: base.env.url # This should be overridden and set to your environment's base URL.
@@ -12,9 +14,11 @@ container:
 
 importCronJob:
   schedule: "0 18 * * *"
+  elasticGrokFilter: cron
 
 verifyCronJob:
   schedule: "0 21 * * *"
+  elasticGrokFilter: cron
 
 environment:
   variables:

@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "cooperation.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.deployment.replicaCount }}
   selector:
     matchLabels:
       app: cooperation
@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: cooperation
+        elasticGrokFilter: {{ .Values.deployment.elasticGrokFilter }}
         {{- include "cooperation.selectorLabels" . | nindent 8 }}
     spec:
       volumes:
