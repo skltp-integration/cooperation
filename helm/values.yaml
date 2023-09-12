@@ -14,11 +14,11 @@ container:
 
 importCronJob:
   schedule: "0 18 * * *"
-  elasticGrokFilter: cron
+  elasticGrokFilter: cronjob
 
 verifyCronJob:
   schedule: "0 21 * * *"
-  elasticGrokFilter: cron
+  elasticGrokFilter: cronjob
 
 environment:
   variables:
