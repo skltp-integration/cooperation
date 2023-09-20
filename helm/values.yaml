@@ -5,7 +5,8 @@ deployment:
   elasticGrokFilter: coop
 
 ingressroute:
-  hostName: base.env.url # This should be overridden and set to your environment's base URL.
+  bksHostName: env.base.url # This should be overridden and set to a reasonable URL defined in your environment.
+  apiHostName: env.base.url # This should be overridden and set to a reasonable URL defined in your environment.
 
 container:
   image:
