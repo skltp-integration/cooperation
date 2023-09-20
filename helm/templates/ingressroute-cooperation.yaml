@@ -6,7 +6,9 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop/api`, `/coop/doc`, `/takinfo/`)
+      match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop/api`, `/coop/doc`, `/takinfo`)
+      middlewares:
+        - name: cooperation-takinfo-redirect
       priority: 10
       services:
         - kind: Service
@@ -37,7 +39,7 @@ metadata:
 spec:
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop/api`, `/coop/doc`, `/takinfo/`)
+    match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop/api`, `/coop/doc`, `/takinfo`)
     middlewares:
       - name: cooperation-redirect-https
     services:
