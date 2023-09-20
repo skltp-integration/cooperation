@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  labels:
+    app.kubernetes.io/instance: {{ .Chart.Name }}
+  name: cooperation-tak-redirectwithslash
+spec:
+  redirectRegex:
+    regex: '^https?://([^/]*)/takinfo/([^/]*)$'
+    replacement: 'https://${1}/coop/${2}/'
