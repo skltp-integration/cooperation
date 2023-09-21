@@ -5,6 +5,6 @@ metadata:
     app.kubernetes.io/instance: {{ .Chart.Name }}
   name: cooperation-takinfo-redirect
 spec:
-  redirectRegex:
-    regex: '^https://([^/]*)/takinfo/(.*)'
-    replacement: 'https://${1}/coop/${2}/'
+  replacePathRegex:
+    regex: ^/takinfo/(.*)
+    replacement: '/coop/${1}'
