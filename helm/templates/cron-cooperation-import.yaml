@@ -4,6 +4,9 @@ metadata:
   name: cron-cooperation-import
 spec:
   schedule: "{{ .Values.importCronJob.schedule }}"
+  timeZone: "{{ .Values.importCronJob.timeZone }}"
+  concurrencyPolicy: Forbid
+  
   jobTemplate:
     spec:
       template:
@@ -48,5 +51,5 @@ spec:
                 - cd scripts && ./cooperation-import-from-tak.sh
           imagePullSecrets:
             - name: regcred
-
+          backoffLimit: 0
           restartPolicy: Never
