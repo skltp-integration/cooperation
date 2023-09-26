@@ -5,9 +5,7 @@ metadata:
 spec:
   schedule: "{{ .Values.importCronJob.schedule }}"
   timeZone: "{{ .Values.importCronJob.timeZone }}"
-  # No parallell executions and max 1 retry
   concurrencyPolicy: Forbid
-  backoffLimit: 1
   
   jobTemplate:
     spec:
@@ -53,5 +51,5 @@ spec:
                 - cd scripts && ./cooperation-import-from-tak.sh
           imagePullSecrets:
             - name: regcred
-
+          backoffLimit: 0
           restartPolicy: Never
