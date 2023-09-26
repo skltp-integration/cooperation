@@ -4,6 +4,7 @@ metadata:
   name: cron-cooperation-verify
 spec:
   schedule: "{{ .Values.verifyCronJob.schedule }}"
+  timeZone: "{{ .Values.verifyCronJob.timeZone }}"
   jobTemplate:
     spec:
       template:

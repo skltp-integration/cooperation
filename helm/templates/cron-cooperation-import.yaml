@@ -4,6 +4,7 @@ metadata:
   name: cron-cooperation-import
 spec:
   schedule: "{{ .Values.importCronJob.schedule }}"
+  timeZone: "{{ .Values.importCronJob.timeZone }}"
   jobTemplate:
     spec:
       template:
