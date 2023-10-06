@@ -9,11 +9,11 @@ spec:
   
   jobTemplate:
     spec:
+      backoffLimit: 0
       template:
         metadata:
           labels:
             elasticGrokFilter: {{ .Values.importCronJob.elasticGrokFilter }}
-        backoffLimit: 0
         spec:
           volumes:
             - name: config-volume
