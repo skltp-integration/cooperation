@@ -9,6 +9,7 @@ spec:
   
   jobTemplate:
     spec:
+      backoffLimit: 0
       template:
         metadata:
           labels:
@@ -44,12 +45,10 @@ spec:
                   readOnly: true
                 - name: key-volume
                   mountPath: /home/groovy/.ssh
-                  readOnly: false
               command:
                 - /bin/bash
                 - '-c'
                 - cd scripts && ./cooperation-import-from-tak.sh
           imagePullSecrets:
             - name: regcred
-          backoffLimit: 0
           restartPolicy: Never
