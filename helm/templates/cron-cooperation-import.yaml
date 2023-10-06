@@ -13,6 +13,7 @@ spec:
         metadata:
           labels:
             elasticGrokFilter: {{ .Values.importCronJob.elasticGrokFilter }}
+        backoffLimit: 0
         spec:
           volumes:
             - name: config-volume
@@ -44,12 +45,10 @@ spec:
                   readOnly: true
                 - name: key-volume
                   mountPath: /home/groovy/.ssh
-                  readOnly: false
               command:
                 - /bin/bash
                 - '-c'
                 - cd scripts && ./cooperation-import-from-tak.sh
           imagePullSecrets:
             - name: regcred
-          backoffLimit: 0
           restartPolicy: Never
