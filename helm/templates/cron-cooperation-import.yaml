@@ -27,8 +27,10 @@ spec:
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
               imagePullPolicy: Always
               env:
+                {{ if .Values.importCronJob.nodePattern }}
                 - name: NODE_PATTERN
                   value: {{ .Values.importCronJob.nodePattern }}
+                {{- end }}
                 - name: NODE_NAME
                   valueFrom:
                     fieldRef:
