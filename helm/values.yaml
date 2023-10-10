@@ -16,11 +16,13 @@ container:
 importCronJob:
   schedule: "30 1 * * *"
   timeZone: "Europe/Stockholm"
+  nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
 
 verifyCronJob:
   schedule: "50 5 * * *"
   timeZone: "Europe/Stockholm"
+  nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
 
 environment:
