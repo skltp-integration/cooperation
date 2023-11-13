@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+	<include resource="co/elastic/logging/logback/boot/ecs-console-appender.xml"/>
+	<logger name="se.skltp.cooperation" level="${logback.loglevel}"/>
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+
+	<root level="INFO">
+		<appender-ref ref="ECS_JSON_CONSOLE"/>
+	</root>
+
+</configuration>

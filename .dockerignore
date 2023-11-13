@@ -1,0 +1,5 @@
+*
+!Dockerfile
+!logback4ecs.xml
+!src
+!pom.xml
