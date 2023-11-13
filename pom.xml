@@ -5,7 +5,7 @@
 	<groupId>se.skltp.cooperation</groupId>
 	<artifactId>cooperation</artifactId>
 	<version>1.6.2-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>${packaging.type}</packaging>
 
 	<name>cooperation</name>
 	<description>Established Cooperation</description>
@@ -30,6 +30,8 @@
 		<jacoco.plugin.version>0.8.5</jacoco.plugin.version>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<java.version>11</java.version>
+		<ecs-logging-java.version>1.5.0</ecs-logging-java.version>
+		<packaging.type>war</packaging.type>
 	</properties>
 
 	<dependencyManagement>
@@ -347,6 +349,30 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>dockerizedJar</id>
+			<properties>
+				<packaging.type>jar</packaging.type>
+			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<excludes>
+							<exclude>logback.xml</exclude>
+						</excludes>
+						<filtering>false</filtering>
+					</resource>
+				</resources>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>co.elastic.logging</groupId>
+					<artifactId>logback-ecs-encoder</artifactId>
+					<version>${ecs-logging-java.version}</version>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 </project>
