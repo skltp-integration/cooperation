@@ -5,4 +5,4 @@ metadata:
 data:
   SERVER_TOMCAT_BASEDIR: {{ .Values.tomcat.basedir }}
   APP_CONF_DIR: {{ .Values.tomcat.basedir }}
-  SPRING_PROFIES_ACTIVE: production
+  SPRING_PROFILES_ACTIVE: production
