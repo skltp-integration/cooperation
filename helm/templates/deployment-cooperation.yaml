@@ -20,7 +20,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: cooperation-configmap-default
+            name: cooperation-configfiles
       imagePullSecrets:
         - name: regcred
       containers:
@@ -81,5 +81,5 @@ spec:
             {{- end }}
           volumeMounts:
             - name: config-volume
-              mountPath: /etc/cooperation
+              mountPath: {{ .Values.tomcat.basedir }}
               readOnly: true

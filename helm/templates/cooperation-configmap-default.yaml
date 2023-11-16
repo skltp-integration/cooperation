@@ -3,15 +3,4 @@ kind: ConfigMap
 metadata:
   name: cooperation-configmap-default
 data:
-  cooperation-config-override.properties: |
-    spring.datasource.url=${COOPERATION_DB_URL}
-    spring.datasource.username=${COOPERATION_DB_USER}
-    spring.datasource.password=${COOPERATION_DB_PASSWORD}
-    se.skltp.cooperation.accesscontrol=false
-    se.skltp.cooperation.api_key=bsfr
-    spring.datasource.testOnBorrow=true
-    spring.datasource.validationQuery=SELECT 1
-  smtp.properties: |
-    mail.smtp.login=ntjpapp@inera.se
-    mail.smtp.host=mailout.sth.basefarm.net
-    mail.smtp.port=-1
+  SERVER_TOMCAT_BASEDIR: {{ .Values.tomcat.basedir }}
