@@ -6,3 +6,4 @@ data:
   SERVER_TOMCAT_BASEDIR: {{ .Values.tomcat.basedir }}
   APP_CONF_DIR: {{ .Values.tomcat.basedir }}
   SPRING_PROFILES_ACTIVE: production
+  SERVER_SERVLET_CONTEXT_PATH: /coop
