@@ -6,7 +6,9 @@ USER groovy
 
 COPY --chown=groovy:groovy cooperation/*.groovy scripts/
 COPY --chown=groovy:groovy cooperation/*.sh scripts/
-COPY --chown=groovy:groovy logback-docker.groovy scripts/logback.groovy
 
 RUN chmod +x scripts/*.sh \
  && groovy scripts/grabit.groovy
+
+COPY logback-ecs.groovy scripts/logback.groovy
+
