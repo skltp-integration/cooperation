@@ -18,7 +18,7 @@ spec:
           volumes:
             - name: config-volume
               configMap:
-                name: cooperation-configmap-default
+                name: {{ .Values.importCronJob.configfilesMap }}
             - name: key-volume
               secret:
                 secretName: cooperation-keys
