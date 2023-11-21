@@ -4,7 +4,7 @@
 
 	<groupId>se.skltp.cooperation</groupId>
 	<artifactId>cooperation-scripts</artifactId>
-	<version>1.5.1-SNAPSHOT</version>
+	<version>1.6.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>cooperation-scripts</name>
