@@ -5,8 +5,9 @@
 
 @Grapes([
 	@GrabConfig(systemClassLoader = true),
-	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
-	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version = '6.4')
+	@Grab(group = 'ch.qos.logback',       module = 'logback-classic',          version = '1.2.3'),
+	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version = '6.4'),
+	@Grab(group = 'co.elastic.logging',   module = 'logback-ecs-encoder',      version = '1.5.0'),
 ])
 
 import groovy.json.*
