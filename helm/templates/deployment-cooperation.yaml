@@ -53,10 +53,10 @@ spec:
             timeoutSeconds: 5
           resources:
             limits:
-              memory: 512Mi
+              memory: {{ .Values.deployment.memory }}
             requests:
               cpu: 100m
-              memory: 512Mi
+              memory: {{ .Values.deployment.memory }}
           {{- with .Values.environment.variables }}
           {{- if .map }}
           env:
