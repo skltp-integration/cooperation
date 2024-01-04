@@ -1,0 +1,10 @@
+{{- $defaultIpWhiteList := dict "sourceRange" (list "0.0.0.0/0")  -}} {{- /* allow all */ -}}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  labels:
+    app.kubernetes.io/instance: cooperation
+  name: cooperation-ipwhitelist
+spec:
+  ipWhiteList: {{ .Values.ipWhiteList | default $defaultIpWhiteList | toYaml | nindent 8 }}
