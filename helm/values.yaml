@@ -40,4 +40,4 @@ environment:
     secrets:
       # Nothing yet.
     map: 
-      CATALINA_OPTS: "-Dspring.profiles.active=production -Dapp.conf.dir=/etc/cooperation"
+      CATALINA_OPTS: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=production -Dapp.conf.dir=/etc/cooperation"
