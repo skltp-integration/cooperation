@@ -8,7 +8,7 @@ RUN --mount=type=bind,source=pom.xml,target=pom.xml \
     mvn clean install -PecsLogging -DskipTests=true
 
 
-FROM tomcat:9-jre11-temurin AS cooperation
+FROM tomcat:9-jdk11-temurin AS cooperation
 ENV LOGGING_CONFIG=/usr/local/tomcat/conf/logback.xml
 ADD https://repo1.maven.org/maven2/co/elastic/logging/jul-ecs-formatter/1.5.0/jul-ecs-formatter-1.5.0.jar /usr/local/tomcat/lib
 ADD logback4ecs.xml ${LOGGING_CONFIG}
