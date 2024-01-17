@@ -8,6 +8,7 @@ spec:
     - kind: Rule
       match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop`, `/takinfo`)
       middlewares:
+        - name: cooperation-ipwhitelist
         - name: cooperation-takinfo-redirect
       priority: 10
       services:
@@ -41,6 +42,7 @@ spec:
   - kind: Rule
     match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop`, `/takinfo`)
     middlewares:
+      - name: cooperation-ipwhitelist
       - name: cooperation-redirect-https
       - name: cooperation-takinfo-redirect
     services:
