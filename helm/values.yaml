@@ -3,7 +3,12 @@ repository: test/
 deployment:
   replicaCount: 1
   elasticGrokFilter: coop
-  memory: 512Mi
+  resources: #{} # The no-op curly-braces can optionally replace below sub-resources.
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 512Mi
 
 ingressroute:
   bksHostName: env.base.url # This should be overridden and set to a reasonable URL defined in your environment.
