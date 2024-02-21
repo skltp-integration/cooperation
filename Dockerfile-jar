@@ -12,6 +12,6 @@ FROM eclipse-temurin:11 AS cooperation
 ENV LOGGING_CONFIG=/opt/app/logback.xml
 ADD logback4ecs.xml ${LOGGING_CONFIG}
 COPY --from=maven /opt/build/target/*.jar /opt/app/app.jar
-RUN useradd ind-app -MU -u 556559423
+RUN useradd ind-app -MUl -u 556559423
 USER ind-app
 CMD ["java", "-jar", "/opt/app/app.jar"]
