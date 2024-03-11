@@ -11,10 +11,10 @@ RUN --mount=type=bind,source=pom.xml,target=pom.xml \
 # This has been tested insofar that it can launch and start.
 # It is not yet tested or assertained if this change has secondary effects, such as parameters or properties made unavailable.
 
-FROM eclipse-temurin:11 AS cooperation
+FROM eclipse-temurin:11-jre-alpine AS cooperation
 ENV LOGGING_CONFIG=/opt/app/logback.xml
 ADD logback4ecs.xml ${LOGGING_CONFIG}
 COPY --from=maven /opt/build/target/*.jar /opt/app/app.jar
-RUN useradd ind-app -MUl -u 556559423
+RUN adduser ind-app -DH -u1000
 USER ind-app
 CMD ["java", "-jar", "/opt/app/app.jar"]

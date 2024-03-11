@@ -1,4 +1,4 @@
-FROM maven:3-eclipse-temurin-11 AS maven
+FROM maven:3-eclipse-temurin-11-alpine AS maven
 
 WORKDIR /opt/build
 
