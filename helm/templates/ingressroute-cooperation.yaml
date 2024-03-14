@@ -31,21 +31,3 @@ spec:
     domains:
       - main: {{ .Values.ingressroute.bksHostName }}
     secretName: {{ .Values.ingressroute.bksHostName }}-letsencrypt
-#---
-#apiVersion: traefik.containo.us/v1alpha1
-#kind: IngressRoute
-#metadata:
-#  annotations:
-#  name: cooperation-http
-#spec:
-#  routes:
-#  - kind: Rule
-#    match: Host(`{{ .Values.ingressroute.bksHostName }}`, `{{ .Values.ingressroute.apiHostName }}`) && PathPrefix(`/coop`, `/takinfo`)
-#    middlewares:
-#      - name: cooperation-ipwhitelist
-##      - name: cooperation-redirect-https
-#      - name: cooperation-takinfo-redirect
-#    services:
-#      - kind: Service
-#        name: service-cooperation
-#        port: 8080
