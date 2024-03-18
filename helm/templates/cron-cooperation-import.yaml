@@ -26,6 +26,9 @@ spec:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
               imagePullPolicy: Always
+              resources:
+                requests:
+                  memory: 3Gi
               env:
                 {{ if .Values.importCronJob.nodePattern }}
                 - name: NODE_PATTERN
