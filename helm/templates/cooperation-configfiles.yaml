@@ -13,5 +13,5 @@ data:
     spring.datasource.validationQuery=SELECT 1
   smtp.properties: |
     mail.smtp.login=ntjpapp@inera.se
-    mail.smtp.host=mailout.sth.basefarm.net
+    mail.smtp.host=ind-pc-rh8-mail-lb.ind1.sth.basefarm.net
     mail.smtp.port=-1
