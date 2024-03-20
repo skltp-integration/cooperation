@@ -4,9 +4,8 @@
 
 	<groupId>se.skltp.cooperation</groupId>
 	<artifactId>cooperation-scripts</artifactId>
-	<version>1.6.4-SNAPSHOT</version>
+	<version>1.6.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>cooperation-scripts</name>
-
 </project>
