@@ -1,22 +1,20 @@
-FROM maven:3-eclipse-temurin-11-alpine AS maven
+FROM maven:3-eclipse-temurin-11 AS maven
 
 WORKDIR /opt/build
 
 RUN --mount=type=bind,source=pom.xml,target=pom.xml \
     --mount=type=bind,source=src,target=src \
     --mount=type=cache,target=/root/.m2\
-    mvn clean install -PecsLogging -DskipTests=true
+    mvn clean install -PdockerizedJar,ecsLogging -DskipTests=true
 
+# This file is a Work-in-Progrss looking to start creating JARs instead of WARs for the Coop App.
+# This has been tested insofar that it can launch and start.
+# It is not yet tested or assertained if this change has secondary effects, such as parameters or properties made unavailable.
 
-FROM tomcat:9-jdk11-temurin AS cooperation
-ENV LOGGING_CONFIG=/usr/local/tomcat/conf/logback.xml
-ADD https://repo1.maven.org/maven2/co/elastic/logging/jul-ecs-formatter/1.5.0/jul-ecs-formatter-1.5.0.jar /usr/local/tomcat/lib
+FROM eclipse-temurin:11-jre-alpine AS cooperation
+ENV LOGGING_CONFIG=/opt/app/logback.xml
 ADD logback4ecs.xml ${LOGGING_CONFIG}
-COPY --from=maven /opt/build/target/*.war /usr/local/tomcat/webapps/coop.war
-RUN useradd ind-app -MUl -u 1000 && chown ind-app -R /usr/local/tomcat/webapps
-COPY <<EOF /usr/local/tomcat/conf/logging.properties
-java.util.logging.ConsoleHandler.level = FINE
-java.util.logging.ConsoleHandler.formatter = co.elastic.logging.jul.EcsFormatter
-EOF
-
+COPY --from=maven /opt/build/target/*.jar /opt/app/app.jar
+RUN adduser ind-app -DH -u1000
 USER ind-app
+CMD ["java", "-jar", "/opt/app/app.jar"]
