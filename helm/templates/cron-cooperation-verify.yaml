@@ -19,7 +19,7 @@ spec:
           containers:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
-              imagePullPolicy: Always
+              imagePullPolicy: {{ .Values.container.image.pullPolicy }}
               env:
                 {{ if .Values.verifyCronJob.nodePattern }}
                 - name: NODE_PATTERN
