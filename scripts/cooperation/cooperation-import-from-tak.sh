@@ -4,7 +4,7 @@ printlog(){
 	level=$1
 	message=$2
 	while IFS=$'\n' read -r currentMessage; do
- 	printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$currentMessage"
+ 	printf "{\"@timestamp\":\"$(date --utc '+%Y-%m-%dT%T.%3NZ')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$currentMessage"
 	done <<< "$message"
 }
 

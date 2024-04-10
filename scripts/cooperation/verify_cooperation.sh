@@ -11,7 +11,7 @@ cd `dirname $0`
 printlog(){
 	level=$1
 	message=$2
-	printf "{\"@timestamp\":\"$(date '+%Y-%m-%dT%T.%3N')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$message"
+	printf "{\"@timestamp\":\"$(date --utc '+%Y-%m-%dT%T.%3NZ')\",\"level\":\"%s\",\"message\":\"%s\"}\n" "$level" "$message"
 }
 
 #=============================================================================
