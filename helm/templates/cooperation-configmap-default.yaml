@@ -7,3 +7,4 @@ data:
   APP_CONF_DIR: {{ .Values.tomcat.basedir }}
   SPRING_PROFILES_ACTIVE: production
   SERVER_SERVLET_CONTEXT_PATH: /coop
+  COOPERATION_MAIL_PORT: '-1'

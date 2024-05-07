@@ -28,7 +28,9 @@ rm -f ${okFile}
 dump=$( IFS=$'\n'; echo "${dump_files[*]}" )
 
 groovy verify_cooperation.groovy \
-    -smtp_prop ${smtp_props_file} \
+    -smtp_login ${smtp_login} \
+    -smtp_host ${smtp_host} \
+    -smtp_port ${smtp_port} \
     -mail ${to_mail} \
     -from_mail ${from_mail} \
     -subj "${alert_mail_subject}" \

@@ -37,7 +37,9 @@ cli.with
 		from_mail longOpt: 'from_mail', 'Alert mail sender', args: 1, required: true
 		subj longOpt: 'subjekt', 'Mail subjekt', args: 1, required: true
 		coop longOpt: 'coop', 'Cooperation url', args: 1, required: true
-		smtp_prop longOpt: 'smtp_prop', 'File with smtp server properties', args: 1, required: true
+        smtp_login longOpt: 'smtp_login', 'smtp server login username', args: 1, required: true
+        smtp_host longOpt: 'smtp_host', 'smtp server host', args: 1, required: true
+        smtp_port longOpt: 'smtp_port', 'smtp server port', args: 1, required: true
 		ok_file longOpt: 'ok_file', 'Signal fil för visa att verifikation lyckades', args: 1, required: true
 		userandpass longOpt: 'user_and_pass', 'Username and Password separated by a colon : character', args: 1, required: true
 	}
@@ -52,10 +54,16 @@ def subjekt = opt.subj ? opt.subj : ''
 def dump_list = opt.dumps.split("\n")
 def connection_points_url = opt.coop
 def smtp_prop_file = opt.smtp_prop
+def smtp_login = opt.smtp_login
+def smtp_host = opt.smtp_host
+def smtp_port = opt.smtp_port
 def ok_file = opt.ok_file
 String auth_userandpass = opt.userandpass
 
-Properties appProperties = downloadProperties(smtp_prop_file)
+Properties appProperties = new Properties()
+appProperties.setProperty("mail.smtp.login", smtp_login)
+appProperties.setProperty("mail.smtp.host", smtp_host)
+appProperties.setProperty("mail.smtp.port", smtp_port)
 
 logger.info("Preparing Request and Auth.")
 
@@ -183,14 +191,3 @@ private static void sendProblemMail(Properties smtpProperties, String to_mail, S
         logger.error((ExceptionUtils.getStackTrace(ex)))
     }
 }
-
-
-private static Properties downloadProperties(String propertiesFileName) {
-    File propertiesFile = new File(propertiesFileName)
-    Properties properties = new Properties()
-    propertiesFile.withInputStream {
-        properties.load(it)
-    }
-    properties
-}
-

@@ -43,7 +43,9 @@ export PATH=${PATH}:/local/java/groovy/bin
 #-----------------------------
 # Mail for send fail report
 #-----------------------------
-smtp_props_file=${COOPERATION_MAIL_PROPS_FILE}
+smtp_login=${COOPERATION_MAIL_LOGIN}
+smtp_host=${COOPERATION_MAIL_SERVER}
+smtp_port=${COOPERATION_MAIL_PORT}
 to_mail=${COOPERATION_MAIL_TO}
 from_mail=${COOPERATION_MAIL_FROM}
 alert_mail_subject=${COOPERATION_MAIL_SUBJECT}

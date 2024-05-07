@@ -11,7 +11,3 @@ data:
     se.skltp.cooperation.api_key=bsfr
     spring.datasource.testOnBorrow=true
     spring.datasource.validationQuery=SELECT 1
-  smtp.properties: |
-    mail.smtp.login=${COOPERATION_MAIL_LOGIN}
-    mail.smtp.host=${COOPERATION_MAIL_SERVER}
-    mail.smtp.port=-1
