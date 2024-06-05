@@ -43,7 +43,7 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
-import se.skltp.cooperation.web.rest.TestUtil;
+import se.skltp.cooperation.api.TestUtil;
 
 /**
  * @author Jan Västernäs
@@ -77,7 +77,7 @@ public class ConnectionPointServiceImplIntegrationTest {
 		serviceContract1 = util.createServiceContract("name", "namespace", 0, 0);
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer1);
-		serviceProducer1 = util.createServiceProducer("description", "hsaId", connectionPoint1); 
+		serviceProducer1 = util.createServiceProducer("description", "hsaId", connectionPoint1);
 		serviceProduction1 = util.createServiceProduction("rivtaProfile", "physicalAdress",
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);
 	}

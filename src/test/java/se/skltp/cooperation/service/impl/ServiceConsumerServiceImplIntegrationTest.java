@@ -43,7 +43,7 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
-import se.skltp.cooperation.web.rest.TestUtil;
+import se.skltp.cooperation.api.TestUtil;
 
 /**
  * @author Jan Västernäs
