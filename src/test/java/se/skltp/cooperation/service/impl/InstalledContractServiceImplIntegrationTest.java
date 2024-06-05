@@ -45,7 +45,7 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.service.InstalledContractCriteria;
 import se.skltp.cooperation.service.InstalledContractService;
-import se.skltp.cooperation.web.rest.TestUtil;
+import se.skltp.cooperation.api.TestUtil;
 
 /**
  * @author Jan Västernäs

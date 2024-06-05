@@ -43,7 +43,7 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.service.ServiceProducerCriteria;
 import se.skltp.cooperation.service.ServiceProducerService;
-import se.skltp.cooperation.web.rest.TestUtil;
+import se.skltp.cooperation.api.TestUtil;
 
 /**
  * @author Jan Västernäs
@@ -82,7 +82,7 @@ public class ServiceProducerServiceImplIntegrationTest {
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
 		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
 		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2",connectionPoint2);
-		
+
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);

@@ -43,7 +43,7 @@ import se.skltp.cooperation.domain.ServiceProduction;
 import se.skltp.cooperation.repository.ServiceProductionRepository;
 import se.skltp.cooperation.service.ServiceProductionCriteria;
 import se.skltp.cooperation.service.ServiceProductionService;
-import se.skltp.cooperation.web.rest.TestUtil;
+import se.skltp.cooperation.api.TestUtil;
 
 /**
  * @author Jan Västernäs
@@ -86,7 +86,7 @@ public class ServiceProductionServiceImplIntegrationTest {
 
 		serviceDomain1 = util.createServiceDomain("domain1", "namespace1");
 		serviceDomain2 = util.createServiceDomain("domain2", "namespace2");
-		
+
 		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0,serviceDomain1);
 		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain2);
 
