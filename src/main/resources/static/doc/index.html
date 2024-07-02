@@ -52,39 +52,10 @@
   </head>
 
   <body>
-
-    <div id="swagger-ui"></div>
-
-    <script src="./swagger-ui-bundle.js"> </script>
-    <script src="./swagger-ui-standalone-preset.js"> </script>
-    <script>
-    var x = window.location.href.indexOf("/doc/");
-    var url = window.location.href.substring(0,x) + "/doc/openapi.json";
-    window.onload = function() {
-      // Build a system
-      const ui = SwaggerUIBundle({
-        url: url,
-        dom_id: '#swagger-ui',
-        deepLinking: true,
-        docExpansion: "none",
-        tagsSorter: "alpha",
-        operationsSorter: "alpha",
-        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset
-        ],
-        plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
-        ],
-        layout: "StandaloneLayout",
-        onComplete: function(){
-          console.log("Swagger loaded successfully.");
-        }
-      })
-
-      window.ui = ui
-    }
-  </script>
+  <h1>TAK-API (Cooperation) API Version 1 has been Closed.</h1>
+  <p>
+    Version 1 of TAK-API has been closed.<br>
+    Please refer to version 2 OpenAPI Specification instead. <a href="/coop/doc/index_v2.html">Link</a>
+  </p>
   </body>
 </html>
