@@ -1,28 +1,9 @@
-/**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
- *
- * This file is part of SKLTP.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
 package se.skltp.cooperation.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +25,9 @@ import com.querydsl.jpa.JPAExpressions;
 @Service
 @Transactional(readOnly = true)
 public class ServiceConsumerServiceImpl implements ServiceConsumerService {
+
+	@Value("${APP_USE_EXPERIMENTAL_FILTER:false}")
+	private boolean useExperimentalFilter;
 
 	private final ServiceConsumerRepository serviceConsumerRepository;
 
@@ -72,30 +56,40 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 		return serviceConsumerRepository.findById(id).orElse(null);
 	}
 
+	// CANDIDATE FOR ERRONEOUS FILTERING.
 	Predicate buildPredicate(ServiceConsumerCriteria criteria) {
 		BooleanBuilder builder = new BooleanBuilder();
+
 		if (criteria.getConnectionPointId() != null) {
 			builder.and(QServiceConsumer.serviceConsumer.connectionPoint.id
-					.eq(criteria.getConnectionPointId()));
+				.eq(criteria.getConnectionPointId()));
 		}
 		if (criteria.getLogicalAddressId() != null) {
 			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id
-					.eq(criteria.getLogicalAddressId()));
+				.eq(criteria.getLogicalAddressId()));
 		}
 		if (criteria.getServiceContractId() != null) {
 			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().serviceContract.id
-					.eq(criteria.getServiceContractId()));
+				.eq(criteria.getServiceContractId()));
 		}
-		if (criteria.getServiceProducerId() != null) {
-			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id.in(
-					JPAExpressions
-					.select(QLogicalAddress.logicalAddress1.id)
-					.from(QLogicalAddress.logicalAddress1)
-					.where(QLogicalAddress.logicalAddress1.serviceProductions.any().serviceProducer.id
-							.eq(criteria.getServiceProducerId()))
-					));
 
+		if (criteria.getServiceProducerId() != null) {
+
+			if (this.useExperimentalFilter) {
+
+				;
+
+			} else {
+				builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id.in(
+					JPAExpressions
+						.select(QLogicalAddress.logicalAddress1.id)
+						.from(QLogicalAddress.logicalAddress1)
+						.where(QLogicalAddress.logicalAddress1.serviceProductions.any().serviceProducer.id
+							.eq(criteria.getServiceProducerId()))
+				));
+			}
 		}
+
 		return builder.getValue();
 	}
 }
