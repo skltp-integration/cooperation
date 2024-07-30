@@ -1,4 +1,4 @@
-FROM groovy:3.0.13-jdk11
+FROM groovy:3.0.13-jdk8
 
 USER root
 RUN apt update && apt install -y mailutils openssh-client
