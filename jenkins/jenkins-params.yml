@@ -2,3 +2,5 @@ sonar-projectkey: 'ntjp-cooperation'                    # The project key for th
 sonar-java-binaries: 'target/classes/**/*'              # What binaries to scan.
 archive-artifacts: '**/target/*.war'                                      # The artifacts to archive.
 release-profile: 'rivta'                                                  # Release profile to load when building a release.
+jdk-path: openjdk-17
+maven-docker-image: maven:3.9.6-eclipse-temurin-17

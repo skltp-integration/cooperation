@@ -27,9 +27,9 @@
 		<dozer.version>5.5.1</dozer.version>
 		<commons-collection.version>3.2.2</commons-collection.version>
 		<logback-encoder.version>6.6</logback-encoder.version>
-		<jacoco.plugin.version>0.8.5</jacoco.plugin.version>
+		<jacoco.plugin.version>0.8.12</jacoco.plugin.version>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<ecs-logging-java.version>1.5.0</ecs-logging-java.version>
 		<packaging.type>war</packaging.type>
 	</properties>
