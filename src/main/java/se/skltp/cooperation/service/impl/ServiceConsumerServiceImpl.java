@@ -2,6 +2,8 @@ package se.skltp.cooperation.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,8 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 	private boolean useExperimentalFilter;
 
 	private final ServiceConsumerRepository serviceConsumerRepository;
+
+	private final Logger log = LoggerFactory.getLogger(ServiceConsumerServiceImpl.class);
 
 	@Autowired
 	public ServiceConsumerServiceImpl(ServiceConsumerRepository serviceConsumerRepository) {
@@ -69,17 +73,34 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 				.eq(criteria.getLogicalAddressId()));
 		}
 		if (criteria.getServiceContractId() != null) {
-			builder.and(QServiceConsumer.serviceConsumer.cooperations.any().serviceContract.id
-				.eq(criteria.getServiceContractId()));
+			builder.and(
+				QServiceConsumer
+					.serviceConsumer
+					.cooperations.any()
+					.serviceContract.id.eq(
+						criteria.getServiceContractId()
+					)
+			);
 		}
 
 		if (criteria.getServiceProducerId() != null) {
 
 			if (this.useExperimentalFilter) {
+				log.info("Using Alternate Filtering Logic for Service Producer filtering.");
 
-				;
+				builder.and(
+					QServiceConsumer
+						.serviceConsumer
+						.cooperations.any()
+						.logicalAddress
+						.serviceProductions.any()
+						.serviceProducer.id.eq(
+							criteria.getServiceProducerId()
+						)
+				);
 
 			} else {
+				log.info("Using Standard Filtering Logic for Service Producer filtering.");
 				builder.and(QServiceConsumer.serviceConsumer.cooperations.any().logicalAddress.id.in(
 					JPAExpressions
 						.select(QLogicalAddress.logicalAddress1.id)
