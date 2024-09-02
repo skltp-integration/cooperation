@@ -4,7 +4,7 @@
 
 	<groupId>se.skltp.cooperation</groupId>
 	<artifactId>cooperation</artifactId>
-	<version>1.7.0-SNAPSHOT</version>
+	<version>1.7.1-SNAPSHOT</version>
 	<packaging>${packaging.type}</packaging>
 
 	<name>cooperation</name>
