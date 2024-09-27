@@ -20,14 +20,23 @@
  */
 package se.skltp.cooperation.repository;
 
+import com.querydsl.core.types.Predicate;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import se.skltp.cooperation.domain.ServiceProduction;
 
+import java.util.List;
+
 /**
  * Spring Data JPA repository for the ServiceProduction entity.
+ * An EntityGraph is used to improve performance by reducing database calls for typical API usage.
  */
 public interface ServiceProductionRepository extends JpaRepository<ServiceProduction, Long>,QuerydslPredicateExecutor<ServiceProduction> {
+	@EntityGraph(value = "ServiceProduction.eager", type = EntityGraph.EntityGraphType.FETCH)
+	List<ServiceProduction> findAll();
 
+	@EntityGraph(value = "ServiceProduction.eager", type = EntityGraph.EntityGraphType.FETCH)
+	Iterable<ServiceProduction> findAll(Predicate predicate);
 }
