@@ -3,7 +3,7 @@ import groovy.sql.Sql
 import org.slf4j.Logger
 
 public class JsonImporter {
-    
+
     private static final String SEPARATOR_LINE = "============================================================"
 
     private final Sql db
@@ -97,7 +97,7 @@ public class JsonImporter {
         logWithSeparator("Inserting table data from $filename")
         Object input = null
         try {
-            JsonSlurper slurper = new JsonSlurper()
+            JsonSlurper slurper = new JsonSlurper(type: JsonParserType.CHARACTER_SOURCE)
             input = slurper.parse(sourceFile)
         } catch (Exception exception) {
 		    logger.error("Failed to read $filename", exception)
