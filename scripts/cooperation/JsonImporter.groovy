@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import groovy.json.JsonParserType
 import groovy.sql.Sql
 import org.slf4j.Logger
 
