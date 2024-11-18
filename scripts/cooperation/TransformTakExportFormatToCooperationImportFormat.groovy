@@ -11,6 +11,7 @@
 ])
 
 import groovy.json.*
+import groovy.cli.commons.CliBuilder
 import groovy.io.FileType
 import groovy.transform.Field
 import groovy.util.ConfigSlurper
