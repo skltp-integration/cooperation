@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 @Grapes([
-	@Grab(group = 'co.elastic.logging', module = 'logback-ecs-encoder', version = '1.5.0'),
+	@Grab(group = 'co.elastic.logging', module = 'logback-ecs-encoder', version = '1.6.0'),
 ])
 
 import co.elastic.logging.logback.EcsEncoder;

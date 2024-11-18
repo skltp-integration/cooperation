@@ -25,7 +25,10 @@
 	@Grab(group='com.h2database', module='h2', version='1.4.187'),
 	@Grab(group='org.hsqldb', module='hsqldb', version='2.3.3'),
 	@Grab(group='mysql', module='mysql-connector-java', version='8.0.29'),
-	@Grab(group='co.elastic.logging', module='logback-ecs-encoder', version='1.5.0'),
+	@Grab(group = 'com.sun.mail', module = 'javax.mail', version = '1.6.1'),
+	@Grab(group = 'commons-lang', module='commons-lang', version='2.6'),
+	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='8.0'),
+	@Grab(group = 'co.elastic.logging',   module = 'logback-ecs-encoder', version = '1.6.0'),
 	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.12'),
 ])
 
