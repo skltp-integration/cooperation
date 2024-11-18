@@ -1,0 +1,13 @@
+<configuration debug="false">
+	<appender name="ECS" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="co.elastic.logging.logback.EcsEncoder">
+		</encoder>
+	</appender>
+
+	<logger name="org.hibernate" level="ERROR" />
+	<logger name="org.hibernate.cache" level="ERROR" />
+
+	<root level="DEBUG">
+		<appender-ref ref="ECS" />
+	</root>
+</configuration>
