@@ -11,6 +11,7 @@
 ])
 
 import groovy.sql.Sql
+import groovy.cli.commons.CliBuilder
 
 def cli = new CliBuilder(
 	usage: 'CreateNewTables [options]',

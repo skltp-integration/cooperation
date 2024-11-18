@@ -15,6 +15,7 @@
 
 import groovy.transform.Field
 import groovy.sql.Sql
+import groovy.cli.commons.CliBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

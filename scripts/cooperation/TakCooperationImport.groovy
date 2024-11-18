@@ -1,12 +1,11 @@
 #!/usr/bin/env groovy
-import groovy.io.FileType
 import groovy.json.*
 import groovy.sql.Sql
+import groovy.cli.commons.CliBuilder
 import groovy.transform.Field
 import groovy.util.ConfigSlurper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.text.SimpleDateFormat
 
 @Grapes([
 	@GrabConfig(systemClassLoader = true),
