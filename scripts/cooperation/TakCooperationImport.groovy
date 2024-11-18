@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory
 @Grapes([
 	@GrabConfig(systemClassLoader = true),
 	@Grab(group = 'mysql', module = 'mysql-connector-java', version = '8.0.29'),
-	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.2.3'),
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.12'),
 	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version = '6.4'),
 	@Grab(group = 'co.elastic.logging',   module = 'logback-ecs-encoder',      version = '1.5.0'),
 ])

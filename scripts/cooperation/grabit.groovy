@@ -26,6 +26,7 @@
 	@Grab(group='org.hsqldb', module='hsqldb', version='2.3.3'),
 	@Grab(group='mysql', module='mysql-connector-java', version='8.0.29'),
 	@Grab(group='co.elastic.logging', module='logback-ecs-encoder', version='1.5.0'),
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.12'),
 ])
 
 import groovy.sql.Sql
