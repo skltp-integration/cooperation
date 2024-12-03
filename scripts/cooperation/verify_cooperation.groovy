@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory
 import groovy.transform.Field
 
 @Field
-static Logger logger = LoggerFactory.getLogger("scriptLogger")
+Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 def cli = new CliBuilder(
 	usage: 'Verify cooperation import [options]',
@@ -175,7 +175,7 @@ enum Dump {
 }
 
 
-private static void sendProblemMail(Properties smtpProperties, String to_mail, String from_mail, String subject, ArrayList errors) {
+private void sendProblemMail(Properties smtpProperties, String to_mail, String from_mail, String subject, ArrayList errors) {
     try {
         Session session = Session.getInstance(smtpProperties)
 

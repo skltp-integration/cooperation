@@ -20,7 +20,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Field
-static Logger logger = LoggerFactory.getLogger("scriptLogger")
+Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 
 def cli = new CliBuilder(

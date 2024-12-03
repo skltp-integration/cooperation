@@ -16,14 +16,14 @@ import org.slf4j.LoggerFactory
 ])
 
 @Field
-static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver"
+final String DB_DRIVER = "com.mysql.cj.jdbc.Driver"
 
 @Field
-static final String TABLE_SUFFIX = "_new"
+final String TABLE_SUFFIX = "_new"
 
 // Logger object (log to stdout can be enabled in logback.groovy for easier debugging)
 @Field
-static final Logger logger = LoggerFactory.getLogger("scriptLogger")
+final Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 def cli = new CliBuilder(
 	usage: 'TakCooperationImport [options]',

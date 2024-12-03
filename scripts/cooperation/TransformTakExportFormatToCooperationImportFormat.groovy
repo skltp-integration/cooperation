@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory
 import java.text.SimpleDateFormat
 
 @Field
-static Logger logger = LoggerFactory.getLogger("scriptLogger")
+Logger logger = LoggerFactory.getLogger("scriptLogger")
 
 
 def cli = new CliBuilder(
