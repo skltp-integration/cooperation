@@ -66,7 +66,7 @@ fi
 printlog "INFO" "Done: Check file list: OK"
 
 md5sum ${coopImportFilesDir}/*.json > ${coopImportFilesDir}/checksums.md5
-diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5
+diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5 || true
 
 if [ $? -e 0 ]; then
     printlog "INFO" "No change since last successful import"
@@ -81,21 +81,21 @@ cat ${currentDir}/checksums.md5
 # Transform
 #=============================================================================
 
-#printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`"
-#groovy TransformTakExportFormatToCooperationImportFormat.groovy \
-#    -d ${coopImportFilesDir}
-#printlog "INFO"  "Done: transform tak export files: `date`"
+printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`"
+groovy TransformTakExportFormatToCooperationImportFormat.groovy \
+    -d ${coopImportFilesDir}
+printlog "INFO"  "Done: transform tak export files: `date`"
 
 #=============================================================================
 # Import and activate
 #=============================================================================
 
-#printlog "INFO"  "Begin: import tak data from dir: ${coopImportFilesDir} : `date`"
-#groovy TakCooperationImport.groovy \
-#    -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD} -d ${coopImportFilesDir}
-#printlog "INFO"  "Done: import tak data: `date`"
+printlog "INFO"  "Begin: import tak data from dir: ${coopImportFilesDir} : `date`"
+groovy TakCooperationImport.groovy \
+    -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD} -d ${coopImportFilesDir}
+printlog "INFO"  "Done: import tak data: `date`"
 
-#printlog "INFO"  "Begin: activate new tak data version: `date`"
-#groovy ActivateNewVersion \
-#    -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD}
-#printlog "INFO"  "Done: activate new tak data version: `date`"
+printlog "INFO"  "Begin: activate new tak data version: `date`"
+groovy ActivateNewVersion \
+    -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD}
+printlog "INFO"  "Done: activate new tak data version: `date`"
