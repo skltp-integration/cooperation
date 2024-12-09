@@ -16,7 +16,7 @@ ingressroute:
 
 container:
   image:
-    tag: feature-ntp-3284
+    tag: # To override the default tag, set it here.
     pullPolicy: Always
 
 tomcat:
