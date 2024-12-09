@@ -25,6 +25,11 @@ coopImportFilesDir=${tmpDir}/import
 mkdir -p ${tmpDir}
 mkdir -p ${tmpDir}/import
 
+currentDir="${COOPERATION_ARCHIVE_DIR}/current"
+successDir="${COOPERATION_ARCHIVE_DIR}/success"
+failDir="${COOPERATION_ARCHIVE_DIR}/fail"
+rm -rf ${currentDir}
+
 dump_files=(`echo $COOPERATION_IMPORT_ENVIRONMENTS | tr ',' ' '`)
 
 printlog "INFO" "Begin: ny cooperation import"
@@ -60,14 +65,18 @@ mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Not existing d
 fi
 printlog "INFO" "Done: Check file list: OK"
 
+ls -la ${coopImportFilesDir}
+md5sum ${coopImportFilesDir}/*.json > ${currentDir}/checksums.md5
+diff ${currentDir}/checksums.md5 ${successDir}/checksums.md5
+
 #=============================================================================
 # Transform
 #=============================================================================
 
-printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`"
-groovy TransformTakExportFormatToCooperationImportFormat.groovy \
-    -d ${coopImportFilesDir}
-printlog "INFO"  "Done: transform tak export files: `date`"
+#printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`"
+#groovy TransformTakExportFormatToCooperationImportFormat.groovy \
+#    -d ${coopImportFilesDir}
+#printlog "INFO"  "Done: transform tak export files: `date`"
 
 #=============================================================================
 # Import and activate

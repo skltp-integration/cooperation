@@ -16,12 +16,12 @@ spec:
             elasticGrokFilter: {{ .Values.importCronJob.elasticGrokFilter }}
         spec:
           volumes:
-            - name: config-volume
-              configMap:
-                name: {{ .Values.importCronJob.configfilesMap }}
             - name: key-volume
               secret:
                 secretName: cooperation-keys
+            - name: archive-volume
+              persistentVolumeClaim:
+                claimName: pvc-cooperation-archive
           containers:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
@@ -52,11 +52,11 @@ spec:
                     name: {{ . }}
                 {{- end }}
               volumeMounts:
-                - name: config-volume
-                  mountPath: /etc/cooperation
                   readOnly: true
                 - name: key-volume
                   mountPath: /home/groovy/.ssh
+                - name: archive-volume
+                  mountPath: {{ .Values.importCronJob.archiveDir }}
               command:
                 - /bin/bash
                 - '-c'
