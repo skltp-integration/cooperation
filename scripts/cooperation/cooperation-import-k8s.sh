@@ -69,7 +69,7 @@ md5sum ${coopImportFilesDir}/*.json > ${coopImportFilesDir}/checksums.md5
 
 DIFF=$(diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5 2>&1)
 
-if [ $DIFF -e "" ]; then
+if [ "$DIFF" == "" ]; then
     printlog "INFO" "No change since last successful import"
     exit 0
 fi
