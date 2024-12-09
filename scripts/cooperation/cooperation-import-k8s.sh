@@ -65,9 +65,17 @@ mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Not existing d
 fi
 printlog "INFO" "Done: Check file list: OK"
 
-ls -la ${coopImportFilesDir}
-md5sum ${coopImportFilesDir}/*.json > ${currentDir}/checksums.md5
-diff ${currentDir}/checksums.md5 ${successDir}/checksums.md5
+md5sum ${coopImportFilesDir}/*.json > ${coopImportFilesDir}/checksums.md5
+diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5
+
+if [ $? -e 0 ]; then
+    printlog "INFO" "No change since last successful import"
+    exit 0
+fi
+
+cp -r ${coopImportFilesDir} ${currentDir}
+ls -la ${currentDir}
+cat ${currentDir}/checksums.md5
 
 #=============================================================================
 # Transform
