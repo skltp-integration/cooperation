@@ -52,7 +52,6 @@ spec:
                     name: {{ . }}
                 {{- end }}
               volumeMounts:
-                  readOnly: true
                 - name: key-volume
                   mountPath: /home/groovy/.ssh
                 - name: archive-volume
