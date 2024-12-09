@@ -67,7 +67,7 @@ printlog "INFO" "Done: Check file list: OK"
 
 md5sum ${coopImportFilesDir}/*.json > ${coopImportFilesDir}/checksums.md5
 
-DIFF=$(diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5 2>&1)
+DIFF=$(diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5 2>&1 || true)
 
 if [ "$DIFF" == "" ]; then
     printlog "INFO" "No change since last successful import"
@@ -75,8 +75,6 @@ if [ "$DIFF" == "" ]; then
 fi
 
 cp -r ${coopImportFilesDir} ${currentDir}
-ls -la ${currentDir}
-cat ${currentDir}/checksums.md5
 
 #=============================================================================
 # Transform
