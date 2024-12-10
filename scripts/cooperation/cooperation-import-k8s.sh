@@ -98,3 +98,5 @@ printlog "INFO"  "Begin: activate new tak data version: `date`"
 groovy ActivateNewVersion \
     -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD}
 printlog "INFO"  "Done: activate new tak data version: `date`"
+
+cp -r ${currentDir} ${successDir}
