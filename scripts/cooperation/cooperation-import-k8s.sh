@@ -57,7 +57,7 @@ do
   if [ ! -f $path ]; then
     no_existing_dumps+=("$dump_file")
   else
-    md5sum $path >> checksums.md5
+    md5sum $path >> ${coopImportFilesDir}/checksums.md5
   fi
 done
 
