@@ -78,10 +78,11 @@ if [ "$changes" == "" ]; then
     printlog "INFO" "No change since last successful import, aborting."
     exit 0
 fi
+printlog "INFO" "Changes: $changes"
 
 cp -r ${coopImportFilesDir} ${currentDir}
 
-printlog "INFO" "Done: Checking for changes: Changes detected, proceeding."
+printlog "INFO" "Done: Checking for changes"
 
 #=============================================================================
 # Transform
