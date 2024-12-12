@@ -98,7 +98,7 @@ for dump_file in "${dump_files[@]}"
 do
   fileName="takdump_${dump_file}.json"
   groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
-  if [ $? -e 0 ]; then
+  if [ $? -eq 0 ]; then
     transformed_dumps+=("$dump_file")
   else
     printlog "ERROR" "Failed to transform ${fileName}"
@@ -106,7 +106,7 @@ do
       printlog "WARN" "Using older version of ${fileName}"
       cp ${successDir}/${fileName} ${coopImportFilesDir}
       groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
-      if [ $? -e 0 ]; then
+      if [ $? -eq 0 ]; then
         transformed_dumps+=("$dump_file")
       else
         printlog "ERROR" "Failed to transform older version of ${fileName}"
