@@ -193,7 +193,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
 		} else {
 			nr++
 			i.remove()
-			logger.info("Removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
+			logger.debug("Removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
 		}
 	}
 	logger.info("Removed " + nr + " anropsbehörigheter")
@@ -226,7 +226,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
 		} else {
 			nr++
 			i.remove()
-			logger.info("Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
+			logger.debug("Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
 		}
 	}
 	logger.info("Removed " + nr + " vägval")
@@ -246,7 +246,7 @@ def transformJsonOnlyDateFiltrering(Map outJsonRoot) {
 		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
 			nr++
 			i.remove()
-			logger.info("removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
+			logger.debug("removed anropsbehörighet " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
 		}
 	}
 	logger.info("Removed " + nr + " anropsbehörigheter")
@@ -259,7 +259,7 @@ def transformJsonOnlyDateFiltrering(Map outJsonRoot) {
 		Date dTom = dateFormat.parse(it.tomTidpunkt)
 		if (nowMs < dFrom.getTime() || nowMs > dTom.getTime()) {
 			nr++
-			logger.info("Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
+			logger.debug("Removed vägval " + it.id + " valid between " + it.fromTidpunkt + " and " + it.tomTidpunkt)
 			i.remove()
 		}
 	}
