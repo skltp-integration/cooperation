@@ -66,7 +66,12 @@ def transformation(dataDirectory) {
 			logger.info("Environment ${envs}")
 			directory.eachFileMatch(FileType.FILES, ~".*${envs}\\.json") { it ->
 				logger.info("Begin: transform file: " + it.name)
-				transformFile(it)
+				try {
+					transformFile(it)
+				}
+				catch (Exception e) {
+					logger.error("Exception: transformFile: " + it.name, e)
+				}
 				logger.info("End: transform file: " + it.name)
 			}
 	}
@@ -75,31 +80,27 @@ def transformation(dataDirectory) {
 
 
 def transformFile(File infile) {
-	try {
-		def jsonSlurper = new JsonSlurper();
-		def inJsonRoot = jsonSlurper.parseText(infile.text)
-		def outJsonRoot = jsonSlurper.parseText(infile.text)
+	def jsonSlurper = new JsonSlurper();
+	def inJsonRoot = jsonSlurper.parseText(infile.text)
+	def outJsonRoot = jsonSlurper.parseText(infile.text)
 
-		// rename original file, trust later steps to only filter out files with ".json" suffix
-		def originalInFilename = infile.getPath()
-		if (!infile.renameTo(originalInFilename + ".original.before.transform")) {
-			throw new IOException("Could not rename file: " + originalInFilename)
-		}
-		/* only files from new format may need transformation
-           the difference is that some files use id rather than hsaId
-           and in som case tjanstekomponent instead of tjanstekonsument
-           in relationships.
-           We need to make more formal versions.
-        */
-		if (inJsonRoot.utforare && inJsonRoot.utforare.equalsIgnoreCase("TakExport script")) {
-			transformJson(inJsonRoot, outJsonRoot)
-		} else {
-			transformJsonOnlyDateFiltrering(outJsonRoot);
-		}
-		new File(originalInFilename).write(JsonOutput.prettyPrint(JsonOutput.toJson(outJsonRoot)))
-	} catch (Exception e) {
-		logger.error("Exception: transformFile: " + infile.name, e)
+	// rename original file, trust later steps to only filter out files with ".json" suffix
+	def originalInFilename = infile.getPath()
+	if (!infile.renameTo(originalInFilename + ".original.before.transform")) {
+		throw new IOException("Could not rename file: " + originalInFilename)
 	}
+	/* only files from new format may need transformation
+	   the difference is that some files use id rather than hsaId
+	   and in som case tjanstekomponent instead of tjanstekonsument
+	   in relationships.
+	   We need to make more formal versions.
+	*/
+	if (inJsonRoot.utforare && inJsonRoot.utforare.equalsIgnoreCase("TakExport script")) {
+		transformJson(inJsonRoot, outJsonRoot)
+	} else {
+		transformJsonOnlyDateFiltrering(outJsonRoot);
+	}
+	new File(originalInFilename).write(JsonOutput.prettyPrint(JsonOutput.toJson(outJsonRoot)))
 }
 
 /**

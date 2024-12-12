@@ -63,7 +63,7 @@ done
 
 if (( ${#no_existing_dumps[@]} )); then
 printlog "ERROR" "Error: Not existing dumps: ${no_existing_dumps[@]}"
-mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Not existing dumps: ${no_existing_dumps[@]}"
+#mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Not existing dumps: ${no_existing_dumps[@]}"
 fi
 
 printlog "INFO" "Done: Check file list: OK"
@@ -96,7 +96,7 @@ for dump_file in "${dump_files[@]}"
 do
   fileName="takdump_${dump_file}.json"
   groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
-  if [ $? ]; then
+  if [ $? -ne 0 ]; then
     printlog "ERROR" "Failed to transform ${fileName}"
     failed_transforms+=("$dump_file")
   fi
@@ -104,7 +104,7 @@ done
 
 if (( ${#failed_transforms[@]} )); then
 printlog "ERROR" "Error: Failed to transform dumps: ${failed_transforms[@]}"
-mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Failed to transform dumps: ${failed_transforms[@]}"
+#mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Failed to transform dumps: ${failed_transforms[@]}"
 fi
 
 # TODO: Retry using old files
