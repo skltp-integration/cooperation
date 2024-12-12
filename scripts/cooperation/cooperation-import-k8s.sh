@@ -109,6 +109,8 @@ do
       if [ $? -e 0 ]; then
         transformed_dumps+=("$dump_file")
       else
+        printlog "ERROR" "Failed to transform older version of ${fileName}"
+      fi
     fi
   fi
 done
