@@ -74,9 +74,11 @@ printlog "INFO" "Done: Check file list: OK"
 printlog "INFO" "Begin: Checking for changes"
 
 changes=$(diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5 2>&1 || true)
-if [ "$changes" == "" ]; then
-    printlog "INFO" "No change since last successful import, aborting."
-    exit 0
+if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
+  printlog "INFO" "Force import active, will proceed even without changes."
+elif [ "$changes" == "" ]; then
+  printlog "INFO" "No change since last successful import, aborting."
+  exit 0
 fi
 printlog "INFO" "Changes: $changes"
 
