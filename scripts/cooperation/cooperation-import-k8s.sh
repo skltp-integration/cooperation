@@ -89,8 +89,26 @@ printlog "INFO" "Done: Checking for changes"
 #=============================================================================
 
 printlog "INFO"  "Begin: transform tak export files in dir: ${coopImportFilesDir} : `date`"
-groovy TransformTakExportFormatToCooperationImportFormat.groovy \
-    -d ${coopImportFilesDir}
+
+failed_transforms=()
+
+for dump_file in "${dump_files[@]}"
+do
+  fileName="takdump_${dump_file}.json"
+  groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
+  if [ $? ]; then
+    printlog "ERROR" "Failed to transform ${fileName}"
+    failed_transforms+=("$dump_file")
+  fi
+done
+
+if (( ${#failed_transforms[@]} )); then
+printlog "ERROR" "Error: Failed to transform dumps: ${failed_transforms[@]}"
+mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Failed to transform dumps: ${failed_transforms[@]}"
+fi
+
+# TODO: Retry using old files
+
 printlog "INFO"  "Done: transform tak export files: `date`"
 
 #=============================================================================
@@ -108,3 +126,5 @@ groovy ActivateNewVersion \
 printlog "INFO"  "Done: activate new tak data version: `date`"
 
 cp -r ${currentDir} ${successDir}
+ls -la ${currentDir}
+ls -la ${successDir}

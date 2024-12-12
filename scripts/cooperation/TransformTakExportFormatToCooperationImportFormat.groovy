@@ -30,6 +30,7 @@ def cli = new CliBuilder(
 cli.with {
 	h longOpt: 'help', 'Usage Information', required: false
 	d longOpt: 'directory', 'Directory that holds data dump files', args: 1, required: true
+	f longOpt: 'file', 'Filename, used to transform a single file', args: 1, required: false
 }
 
 try {
@@ -39,8 +40,15 @@ try {
 
 	def dataDirectory = opt.d ? opt.d.replaceFirst("^~", System.getProperty("user.home")) : '.'
 
-	transformation(dataDirectory)
-
+	if (opt.f) {
+		File file = new File(dataDirectory, opt.f)
+		logger.info("Begin: transform file: " + file.name)
+		transformFile(it)
+		logger.info("End: transform file: " + file.name)
+	}
+	else {
+		transformation(dataDirectory)
+	}
 } catch (Exception e) {
 	logger.error("Exception in TransformTakExportFormatToCooperationImportFormat.groovy", e)
 	throw e
