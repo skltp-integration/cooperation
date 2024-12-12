@@ -125,6 +125,5 @@ groovy ActivateNewVersion \
     -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD}
 printlog "INFO"  "Done: activate new tak data version: `date`"
 
+rm -rf ${successDir}
 cp -r ${currentDir} ${successDir}
-ls -la ${currentDir}
-ls -la ${successDir}
