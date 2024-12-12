@@ -43,7 +43,7 @@ try {
 	if (opt.f) {
 		File file = new File(dataDirectory, opt.f)
 		logger.info("Begin: transform file: " + file.name)
-		transformFile(it)
+		transformFile(file)
 		logger.info("End: transform file: " + file.name)
 	}
 	else {
