@@ -32,7 +32,7 @@ cli.with
 def opt = cli.parse(args)
 if (!opt) return
 if (opt.h) cli.usage()
-def dumps = opt.e.split(",")
+def dumps = opt.d.split(",")
 def connection_points_url = opt.url
 def out_file = opt.out
 String auth_userandpass = opt.auth
