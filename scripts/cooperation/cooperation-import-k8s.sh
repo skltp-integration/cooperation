@@ -35,6 +35,24 @@ dump_files=(`echo $COOPERATION_IMPORT_ENVIRONMENTS | tr ',' ' '`)
 printlog "INFO" "Begin: ny cooperation import"
 
 #=============================================================================
+# Verify before import
+#=============================================================================
+printlog "INFO" "Begin: Verify before"
+
+outfile=${coopImportFilesDir}/out.txt
+rm -rf ${outfile}
+
+groovy VerifyCooperation.groovy \
+    -d "${$COOPERATION_IMPORT_ENVIRONMENTS}" \
+    -url "${connection_points_url}" \
+    -out "${outfile}" \
+    -auth "${COOPERATION_AUTH_USER_AND_PASS}"
+
+printlog "INFO" $(cat ${outfile})
+
+printlog "INFO" "Done: Verify before"
+
+#=============================================================================
 # Fetching TAK-data files from SFTP-server
 #=============================================================================
 printlog "INFO" "Begin: SFTP-download of TAK export files"
