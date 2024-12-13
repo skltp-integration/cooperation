@@ -35,6 +35,7 @@ cli.with
 		u longOpt: 'user', 'User ID', args: 1, required: true
 		p longOpt: 'password', 'Password', args: 1, required: false
 		d longOpt: 'directory', 'Directory that holds data dump files', args: 1, required: false
+		e longOpt: 'environments', 'Comma-separated list of environments eg. ntjp_qa,ntjp_prod', args: 1, required: false
 	}
 
 try {
@@ -47,7 +48,10 @@ try {
 	def password = opt.p ? opt.p : ''
 	def dataDirectory = opt.d ? opt.d.replaceFirst("^~", System.getProperty("user.home")) : '.'
 
-	importData(url, username, password, dataDirectory);
+	ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groovy").toURI().toURL());
+	List<String> environments = opt.e ? opt.e.tokenize(',') : config.environments
+
+	importData(url, username, password, dataDirectory, environments);
 
 } catch (Exception e) {
 	logger.error("Exception in TakCooperationImport.groovy", e)
@@ -61,15 +65,14 @@ try {
  * @param username Database username
  * @param password Database password
  * @param dataDirectory Path to the (local) folder containing the takdump*.json files that should be imported
+ * @param List<String> of environments (format "platform_env")
  */
-def importData(url, username, password, dataDirectory) {
+def importData(url, username, password, dataDirectory, environments) {
 	def db = Sql.newInstance(url, username, password, DB_DRIVER)
 
-	// Read configuration
-	final ConfigObject config = new ConfigSlurper().parse(new File("CoopConfig.groovy").toURI().toURL());
 	logger.info("Begin: import files in dir: " + dataDirectory)
 
-	def importer = new JsonImporter(db, logger, config.environments, dataDirectory, TABLE_SUFFIX)
+	def importer = new JsonImporter(db, logger, environments, dataDirectory, TABLE_SUFFIX)
 	importer.importFromFiles()
 
 	db.close();

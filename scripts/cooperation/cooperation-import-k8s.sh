@@ -115,7 +115,8 @@ do
   fi
 done
 
-printlog "INFO" "Successful transformations: ${transformed_dumps[@]}"
+import_dumps=$(IFS=','; echo "${transformed_dumps[*]}")
+printlog "INFO" "Successful transformations: ${import_dumps}"
 
 printlog "INFO"  "Done: transform tak export files: `date`"
 
@@ -125,7 +126,8 @@ printlog "INFO"  "Done: transform tak export files: `date`"
 
 printlog "INFO"  "Begin: import tak data from dir: ${coopImportFilesDir} : `date`"
 groovy TakCooperationImport.groovy \
-    -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD} -d ${coopImportFilesDir}
+    -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD} \
+    -d ${coopImportFilesDir} -e ${import_dumps}
 printlog "INFO"  "Done: import tak data: `date`"
 
 printlog "INFO"  "Begin: activate new tak data version: `date`"
