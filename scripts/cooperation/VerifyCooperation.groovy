@@ -112,7 +112,7 @@ class Dump {
 	static Dump getDump(String name){
 		try {
 			def (platform, environment) = name.tokenize('_')
-			return Dump(platform.toUpperCase(), environment.toUpperCase())
+			return new Dump(platform.toUpperCase(), environment.toUpperCase())
 		}
 		catch (Exception e) {
 			return null
