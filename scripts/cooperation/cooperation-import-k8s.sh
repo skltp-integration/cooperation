@@ -26,8 +26,7 @@ mkdir -p ${tmpDir}
 mkdir -p ${tmpDir}/import
 
 currentDir="${COOPERATION_ARCHIVE_DIR}/current"
-successDir="${COOPERATION_ARCHIVE_DIR}/success"
-failDir="${COOPERATION_ARCHIVE_DIR}/fail"
+latestDir="${COOPERATION_ARCHIVE_DIR}/success"
 rm -rf ${currentDir}
 
 dump_files=(`echo $COOPERATION_IMPORT_ENVIRONMENTS | tr ',' ' '`)
@@ -48,7 +47,15 @@ groovy VerifyCooperation.groovy \
     -out "${outfile}" \
     -auth "${COOPERATION_AUTH_USER_AND_PASS}" || true
 
+exitCode=$?
 printlog "INFO" $(cat ${outfile})
+
+if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
+  printlog "INFO" "Force import active, will proceed even if up-to-date."
+elif [ $exitCode -eq 0 ]; then
+  printlog "INFO" "Cooperation is up-to-date, aborting."
+  exit 0
+fi
 
 printlog "INFO" "Done: Verify before"
 
@@ -91,11 +98,11 @@ printlog "INFO" "Done: Check file list: OK"
 #=============================================================================
 printlog "INFO" "Begin: Checking for changes"
 
-changes=$(diff ${coopImportFilesDir}/checksums.md5 ${successDir}/checksums.md5 2>&1 || true)
+changes=$(diff ${coopImportFilesDir}/checksums.md5 ${latestDir}/checksums.md5 2>&1 || true)
 if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
   printlog "INFO" "Force import active, will proceed even without changes."
 elif [ "$changes" == "" ]; then
-  printlog "INFO" "No change since last successful import, aborting."
+  printlog "INFO" "No change since last import, aborting."
   exit 0
 fi
 printlog "INFO" "Changes: $changes"
@@ -120,9 +127,9 @@ do
     transformed_dumps+=("$dump_file")
   else
     printlog "ERROR" "Failed to transform ${fileName}"
-    if [ -f "${successDir}/${fileName}" ]; then
+    if [ -f "${latestDir}/${fileName}" ]; then
       printlog "WARN" "Using older version of ${fileName}"
-      cp ${successDir}/${fileName} ${coopImportFilesDir}
+      cp ${latestDir}/${fileName} ${coopImportFilesDir}
       groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
       if [ $? -eq 0 ]; then
         transformed_dumps+=("$dump_file")
@@ -153,5 +160,5 @@ groovy ActivateNewVersion \
     -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD}
 printlog "INFO"  "Done: activate new tak data version: `date`"
 
-rm -rf ${successDir}
-cp -r ${currentDir} ${successDir}
+rm -rf ${latestDir}
+cp -r ${currentDir} ${latestDir}
