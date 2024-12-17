@@ -46,7 +46,7 @@ groovy VerifyCooperation.groovy \
     -d "${COOPERATION_IMPORT_ENVIRONMENTS}" \
     -url "${COOPERATION_CONNECTION_POINTS_URL}" \
     -out "${outfile}" \
-    -auth "${COOPERATION_AUTH_USER_AND_PASS}"
+    -auth "${COOPERATION_AUTH_USER_AND_PASS}" || true
 
 printlog "INFO" $(cat ${outfile})
 
