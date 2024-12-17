@@ -26,7 +26,7 @@ mkdir -p ${tmpDir}
 mkdir -p ${tmpDir}/import
 
 currentDir="${COOPERATION_ARCHIVE_DIR}/current"
-latestDir="${COOPERATION_ARCHIVE_DIR}/success"
+latestDir="${COOPERATION_ARCHIVE_DIR}/latest"
 rm -rf ${currentDir}
 
 dump_files=(`echo $COOPERATION_IMPORT_ENVIRONMENTS | tr ',' ' '`)
