@@ -7,7 +7,7 @@
 	<logger name="org.hibernate" level="ERROR" />
 	<logger name="org.hibernate.cache" level="ERROR" />
 
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="ECS" />
 	</root>
 </configuration>

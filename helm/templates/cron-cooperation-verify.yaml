@@ -51,7 +51,7 @@ spec:
                 - '-c'
                 - |
                   if [[ -z $NODE_PATTERN || $NODE_NAME =~ $NODE_PATTERN ]]; then
-                    cd scripts && ./verify_cooperation.sh
+                    cd scripts && ./verify-cooperation-k8s.sh
                   else
                     echo "Skipping: node $NODE_NAME does not match execution node pattern"
                   fi
