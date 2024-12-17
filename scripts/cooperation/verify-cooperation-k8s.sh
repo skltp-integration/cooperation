@@ -4,7 +4,7 @@
 # Init.
 #=============================================================================
 
-tmpDir=/tmp/cooperation-import-from-tak
+tmpDir=/tmp/verify-cooperation
 outfile=${tmpDir}/out.txt
 mkdir -p ${tmpDir}
 rm -rf ${outfile}
