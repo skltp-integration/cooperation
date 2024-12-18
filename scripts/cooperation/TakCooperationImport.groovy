@@ -21,7 +21,6 @@ final String DB_DRIVER = "com.mysql.cj.jdbc.Driver"
 @Field
 final String TABLE_SUFFIX = "_new"
 
-// Logger object (log to stdout can be enabled in logback.groovy for easier debugging)
 @Field
 final Logger logger = LoggerFactory.getLogger("scriptLogger")
 

@@ -44,7 +44,7 @@ def opt = cli.parse(args)
 if (!opt) return
 if (opt.h) cli.usage()
 
-def to = opt.mail
+def to = opt.to
 def from = opt.from
 def subject = opt.subj
 def login = opt.login
