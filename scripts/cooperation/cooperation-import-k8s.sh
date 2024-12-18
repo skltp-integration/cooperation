@@ -41,13 +41,13 @@ printlog "INFO" "Begin: Verify before"
 outfile=${coopImportFilesDir}/out.txt
 rm -rf ${outfile}
 
+exitCode=0
 groovy VerifyCooperation.groovy \
     -d "${COOPERATION_IMPORT_ENVIRONMENTS}" \
     -url "${COOPERATION_CONNECTION_POINTS_URL}" \
     -out "${outfile}" \
-    -auth "${COOPERATION_AUTH_USER_AND_PASS}" || true
+    -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
 
-exitCode=$?
 printlog "INFO" $(cat ${outfile})
 
 if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
