@@ -8,7 +8,7 @@ package se.skltp.cooperation.basicauthmodule.model;
 import org.springframework.lang.NonNull;
 import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;

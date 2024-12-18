@@ -23,7 +23,7 @@ package se.skltp.cooperation.service;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -162,7 +162,7 @@ public class DatabaseLoader {
 
 	private void loadTAKData(ConnectionPoint connectionPoint) {
 
-		
+
 		producer1 = new ServiceProducer();
 		producer1.setDescription("Producent: ProcessNotification:Producer1");
 		producer1.setHsaId("SE162321000032-PRODUCER1");
@@ -192,7 +192,7 @@ public class DatabaseLoader {
 		serviceConsumer3.setHsaId("SE2321000040T-CONSUMER3");
 		serviceConsumer3.setConnectionPoint(connectionPoint);
 		serviceConsumerRepository.save(serviceConsumer3);
-		
+
 		InstalledContract installedContract = new InstalledContract();
 		installedContract.setConnectionPoint(connectionPoint);
 		installedContract.setServiceContract(ei_contract);

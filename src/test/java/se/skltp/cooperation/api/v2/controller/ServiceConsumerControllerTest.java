@@ -45,7 +45,7 @@ import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.api.exception.ResourceNotFoundException;
 import se.skltp.cooperation.api.v2.dto.ServiceConsumerDTO;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 

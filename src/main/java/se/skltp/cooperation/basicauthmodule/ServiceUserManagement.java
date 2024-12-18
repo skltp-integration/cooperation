@@ -17,7 +17,7 @@ import se.skltp.cooperation.basicauthmodule.model.ServiceUser;
 import se.skltp.cooperation.basicauthmodule.model.dto.UserData;
 import se.skltp.cooperation.basicauthmodule.model.ServiceUserListWrapper;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
