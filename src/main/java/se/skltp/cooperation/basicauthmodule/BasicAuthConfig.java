@@ -83,6 +83,8 @@ public class BasicAuthConfig {
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.httpFirewall(constructFairlyOpenFirewall());
+		return (web) -> web
+			.httpFirewall(constructFairlyOpenFirewall())
+			.ignoring().requestMatchers("/h2-console/**");
 	}
 }
