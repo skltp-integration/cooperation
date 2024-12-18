@@ -22,18 +22,18 @@ package se.skltp.cooperation.api.v2.controller;
 
 import org.apache.catalina.security.SecurityConfig;
 import org.dozer.DozerBeanMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -66,16 +66,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = SecurityConfig.class)
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @WebAppConfiguration
 public class ServiceConsumerControllerTest {
 
 	@InjectMocks
 	ServiceConsumerController uut;
-	@MockBean
+	@MockitoBean
 	private ServiceConsumerService serviceConsumerServiceMock;
-	@MockBean
+	@MockitoBean
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
 
@@ -90,11 +90,11 @@ public class ServiceConsumerControllerTest {
 
 	@PostConstruct
 	public void setup() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(uut).build();
 	}
 
-	@Before
+	@BeforeEach
 	public void setUpTestData() throws Exception {
 
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {

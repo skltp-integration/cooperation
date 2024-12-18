@@ -20,8 +20,7 @@
  */
 package se.skltp.cooperation.service.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -32,13 +31,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
@@ -53,7 +52,7 @@ import com.querydsl.core.types.Predicate;
  *
  * @author Peter Merikan
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class ServiceConsumerServiceImplTest {
@@ -65,13 +64,13 @@ public class ServiceConsumerServiceImplTest {
 	private ServiceConsumer sc2;
 
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		uut = new ServiceConsumerServiceImpl(serviceConsumerRepositoryMock);
 	}
 
-	@Before
+	@BeforeEach
 	public void setUpTestData() throws Exception {
 		sc1 = new ServiceConsumer();
 		sc1.setId(1L);

@@ -22,7 +22,7 @@ package se.skltp.cooperation.api.v2.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -43,16 +43,16 @@ import org.dozer.DozerBeanMapper;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -74,7 +74,7 @@ import se.skltp.cooperation.api.v2.dto.ConnectionPointDTO;
 
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = SecurityConfig.class)
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @WebAppConfiguration
 public class ConnectionPointControllerTest {
@@ -86,10 +86,10 @@ public class ConnectionPointControllerTest {
 	ConnectionPointDTO dto1;
 	ConnectionPointDTO dto2;
 
-	@MockBean
+	@MockitoBean
 	private ConnectionPointService connectionPointServiceMock;
 
-	@MockBean
+	@MockitoBean
 	private DozerBeanMapper mapperMock;
 
 	@Autowired
@@ -98,7 +98,7 @@ public class ConnectionPointControllerTest {
     @Autowired
     private WebApplicationContext context;
 
-	@Before
+	@BeforeEach
 	public void setUpTestData() throws Exception {
 
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(context).addFilter(((request, response, chain) -> {

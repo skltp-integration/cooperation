@@ -35,14 +35,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 
 import org.dozer.DozerBeanMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -60,7 +60,7 @@ import se.skltp.cooperation.api.v2.dto.InstalledContractDTO;
  * @author Jan Vasternas
  * @see InstalledContractController
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class InstalledContractControllerTest {
@@ -70,16 +70,16 @@ public class InstalledContractControllerTest {
 	InstalledContract ic2;
 	InstalledContractDTO dto1;
 	InstalledContractDTO dto2;
-	@MockBean
+	@MockitoBean
 	private InstalledContractService installedContractServiceMock;
-	@MockBean
+	@MockitoBean
 	private DozerBeanMapper mapperMock;
 	private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext wac;
 
-	@Before
+	@BeforeEach
 	public void setUpTestData() throws Exception {
 
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
