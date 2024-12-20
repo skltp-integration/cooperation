@@ -42,6 +42,9 @@ spring:
   h2:
     console.enabled: true
 
+logging:
+  config: classpath:log4j2-dev.xml
+
 server:
   error:
     include-message: always

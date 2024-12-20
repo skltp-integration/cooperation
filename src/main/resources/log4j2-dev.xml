@@ -1,0 +1,40 @@
+<Configuration status="WARN" monitorInterval="30">
+  <Appenders>
+    <Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %-5p [%t] %-30c - %X{corr.id} %m%n"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+		<Logger name="se.skltp.cooperation" level="DEBUG"/>
+
+		<Logger name="jakarta.xml.bind" level="WARN"/>
+		<Logger name="com.codahale.metrics" level="WARN"/>
+		<Logger name="com.ryantenney" level="WARN"/>
+		<Logger name="com.sun.xml.internal.bind" level="WARN"/>
+		<Logger name="com.zaxxer" level="WARN"/>
+		<Logger name="io.undertow" level="WARN"/>
+		<Logger name="net.sf.ehcache" level="WARN"/>
+		<Logger name="org.apache" level="WARN"/>
+		<Logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+		<Logger name="org.bson" level="WARN"/>
+		<Logger name="org.hibernate.validator" level="WARN"/>
+		<Logger name="org.hibernate" level="WARN"/>
+		<Logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
+		<Logger name="org.springframework" level="WARN"/>
+		<Logger name="org.springframework.web" level="WARN"/>
+		<Logger name="org.springframework.security" level="WARN"/>
+		<Logger name="org.springframework.cache" level="WARN"/>
+		<Logger name="org.thymeleaf" level="WARN"/>
+		<Logger name="org.xnio" level="WARN"/>
+		<Logger name="com.mangofactory.swagger" level="WARN"/>
+		<Logger name="com.wordnik.swagger" level="WARN"/>
+		<Logger name="liquibase" level="WARN"/>
+		<Logger name="sun.rmi.transport" level="WARN"/>
+		<Logger name="org.dozer" level="WARN"/>
+
+    <Root level="INFO">
+      <AppenderRef ref="CONSOLE"/>
+    </Root>
+  </Loggers>
+</Configuration>

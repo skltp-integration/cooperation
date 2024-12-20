@@ -1,22 +1,14 @@
-FROM maven:3-eclipse-temurin-17-alpine AS maven
+FROM eclipse-temurin:17-jre-alpine
 
-WORKDIR /opt/build
+ENV BASE_DIR=/opt/cooperation/ \
+    APP_USER=cooperation \
+    JAVA_OPTS="-XX:MaxRAMPercentage=75 -Dspring.profiles.active=production -Dapp.conf.dir=/etc/cooperation"
 
-RUN --mount=type=bind,source=pom.xml,target=pom.xml \
-    --mount=type=bind,source=src,target=src \
-    --mount=type=cache,target=/root/.m2 \
-    mvn clean install -PecsLogging -DskipTests=true
+ADD target/cooperation-*jar ${BASE_DIR}/app.jar
 
+RUN adduser -HD -u 1000 -h ${BASE_DIR} ${APP_USER}
 
-FROM tomcat:9-jre17-temurin AS cooperation
-ENV LOGGING_CONFIG=/usr/local/tomcat/conf/logback.xml
-ADD https://repo1.maven.org/maven2/co/elastic/logging/jul-ecs-formatter/1.5.0/jul-ecs-formatter-1.5.0.jar /usr/local/tomcat/lib
-ADD logback4ecs.xml ${LOGGING_CONFIG}
-COPY --from=maven /opt/build/target/*.war /usr/local/tomcat/webapps/coop.war
-RUN usermod -u 1005 ubuntu && useradd ind-app -MUl -u 1000 && chown ind-app -R /usr/local/tomcat/webapps && cat /etc/passwd
-COPY <<EOF /usr/local/tomcat/conf/logging.properties
-java.util.logging.ConsoleHandler.level = FINE
-java.util.logging.ConsoleHandler.formatter = co.elastic.logging.jul.EcsFormatter
-EOF
+WORKDIR ${BASE_DIR}
+USER ${APP_USER}
 
-USER ind-app
+CMD java ${JAVA_OPTS} -jar app.jar

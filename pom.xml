@@ -5,7 +5,7 @@
 	<groupId>se.skltp.cooperation</groupId>
 	<artifactId>cooperation</artifactId>
 	<version>1.8.0-SNAPSHOT</version>
-	<packaging>${packaging.type}</packaging>
+	<!--<packaging>${packaging.type}</packaging>-->
 
 	<name>cooperation</name>
 	<description>Established Cooperation</description>
@@ -26,14 +26,14 @@
 		<openfeign-querydsl.version>5.6.1</openfeign-querydsl.version>
 		<dozer.version>5.5.1</dozer.version>
 		<commons-collection.version>3.2.2</commons-collection.version>
-		<logback-encoder.version>6.6</logback-encoder.version>
+		<ecs-logging-java.version>1.6.0</ecs-logging-java.version>
 		<jacoco.plugin.version>0.8.12</jacoco.plugin.version>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<java.version>17</java.version>
 		<ecs-logging-java.version>1.5.0</ecs-logging-java.version>
 		<jakarta.xml.version>4.0.2</jakarta.xml.version>
 		<gson.version>2.11.0</gson.version>
-		<packaging.type>war</packaging.type>
+		<!--<packaging.type>war</packaging.type>-->
 	</properties>
 
 	<dependencyManagement>
@@ -68,6 +68,17 @@
     </scm>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -139,9 +150,13 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>net.logstash.logback</groupId>
-		    <artifactId>logstash-logback-encoder</artifactId>
-		    <version>${logback-encoder.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>co.elastic.logging</groupId>
+			<artifactId>log4j2-ecs-layout</artifactId>
+			<version>${ecs-logging-java.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
@@ -334,12 +349,12 @@
 				</plugins>
 			</build>
 		</profile>
-		<profile>
+		<!--<profile>
 			<id>dockerizedJar</id>
 			<properties>
 				<packaging.type>jar</packaging.type>
 			</properties>
-		</profile>
+		</profile>-->
 		<profile>
 			<id>ecsLogging</id>
 			<build>
