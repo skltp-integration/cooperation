@@ -1,5 +1,10 @@
 spring.profiles.active: dev
 
+server:
+  port: 8080
+  servlet:
+    context-path: /coop
+
 # Compatibility setting to allow double slashes in url
 spring.mvc.pathmatch.matching-strategy: ant-path-matcher
 
@@ -45,12 +50,7 @@ spring:
 logging:
   config: classpath:log4j2-dev.xml
 
-server:
-  error:
-    include-message: always
-  port: 8080
-  servlet:
-    context-path: /coop
+server.error.include-message: always
 
 ---
 
