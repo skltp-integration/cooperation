@@ -68,5 +68,5 @@ spec:
             {{- end }}
           volumeMounts:
             - name: config-volume
-              mountPath: {{ .Values.tomcat.basedir }}
+              mountPath: /etc/cooperation
               readOnly: true
