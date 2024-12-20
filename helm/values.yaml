@@ -19,9 +19,6 @@ container:
     tag: # To override the default tag, set it here.
     pullPolicy: Always
 
-tomcat:
-  basedir: /etc/cooperation
-
 importCronJob:
   schedule: "30 1 * * *"
   timeZone: "Europe/Stockholm"
@@ -45,8 +42,8 @@ environment:
       # Nothing yet. Override to supply your own values.
     secrets:
       # Nothing yet.
-    map: 
-      CATALINA_OPTS: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=production -Dapp.conf.dir=/etc/cooperation"
+    map:
+      # Nothing yet.
 
 probes:
   startupProbe:
