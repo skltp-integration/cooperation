@@ -42,7 +42,6 @@ spring:
     init:
       platform: h2
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     open-in-view: true
   h2:
     console.enabled: true
@@ -65,3 +64,4 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: true
