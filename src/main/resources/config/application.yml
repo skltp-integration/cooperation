@@ -2,6 +2,8 @@ spring.profiles.active: dev
 
 server:
   port: 8080
+  error:
+    include-message: always
   servlet:
     context-path: /coop
 
@@ -48,8 +50,6 @@ spring:
 
 logging:
   config: classpath:log4j2-dev.xml
-
-server.error.include-message: always
 
 ---
 
