@@ -16,7 +16,7 @@ ingressroute:
 
 container:
   image:
-    tag: feature-spring-boot-3 # To override the default tag, set it here.
+    tag: # To override the default tag, set it here.
     pullPolicy: Always
 
 importCronJob:
