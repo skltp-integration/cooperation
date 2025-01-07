@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
@@ -58,9 +59,15 @@ public class BasicAuthConfig {
 				.requestMatchers(HttpMethod.GET, "/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 				.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Options always open tho'.
 
-				.anyRequest().fullyAuthenticated()
-			).httpBasic(Customizer.withDefaults());
+				.anyRequest().fullyAuthenticated())
+			.httpBasic(Customizer.withDefaults())
+			.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint()));
 		return http.build();
+	}
+
+	@Bean
+	public AuthenticationEntryPoint authenticationEntryPoint() {
+		return new MyAuthEntryPoint();
 	}
 
 	// Set the used firewall to the most lax possible safety settings.
