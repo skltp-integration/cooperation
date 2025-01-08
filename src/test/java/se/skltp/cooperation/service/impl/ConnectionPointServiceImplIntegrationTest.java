@@ -20,17 +20,17 @@
  */
 package se.skltp.cooperation.service.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
@@ -48,7 +48,7 @@ import se.skltp.cooperation.api.TestUtil;
 /**
  * @author Jan Västernäs
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class ConnectionPointServiceImplIntegrationTest {
@@ -68,7 +68,7 @@ public class ConnectionPointServiceImplIntegrationTest {
 	ServiceProduction serviceProduction1;
 	ServiceProducer serviceProducer1;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
@@ -82,7 +82,7 @@ public class ConnectionPointServiceImplIntegrationTest {
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 		util.deleteAll();
 	}

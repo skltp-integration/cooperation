@@ -20,18 +20,17 @@
  */
 package se.skltp.cooperation.service.impl;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.ConnectionPoint;
-import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 
@@ -40,8 +39,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,7 +48,7 @@ import static org.mockito.Mockito.when;
 /**
  * @author Peter Merikan
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class ConnectionPointServiceImplTest {
@@ -58,9 +57,9 @@ public class ConnectionPointServiceImplTest {
 	@Mock
 	private ConnectionPointRepository connectionPointRepositoryMock;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		uut = new ConnectionPointServiceImpl(connectionPointRepositoryMock);
 	}
 

@@ -20,15 +20,11 @@
  */
 package se.skltp.cooperation;
 
-import org.h2.server.web.WebServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
@@ -76,13 +72,4 @@ public class Application extends SpringBootServletInitializer {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         return objectMapper;
     }
-
-	@Bean
-	@Profile("dev")
-	public ServletRegistrationBean h2servletRegistration() {
-
-		ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
-		registration.addUrlMappings("/console/*");
-		return registration;
-	}
 }

@@ -45,6 +45,7 @@ import se.skltp.cooperation.api.v2.dto.ServiceDomainDTO;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/serviceDomains",
+	"/api/v2/serviceDomains/",
 	"/api/v2/serviceDomains.json",
 	"/api/v2/serviceDomains.xml"
 })

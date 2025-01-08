@@ -20,14 +20,7 @@
  */
 package se.skltp.cooperation.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -66,7 +59,7 @@ public class ServiceContract implements Serializable {
 
 	@OneToMany(mappedBy = "serviceContract")
 	private Set<InstalledContract> installedContracts = new HashSet<>();
-	
+
 	@ManyToOne
 	private ServiceDomain serviceDomain;
 

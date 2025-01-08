@@ -45,6 +45,7 @@ import se.skltp.cooperation.api.v2.listdto.ConnectionPointListDTO;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/connectionPoints",
+	"/api/v2/connectionPoints/",
 	"/api/v2/connectionPoints.json",
 	"/api/v2/connectionPoints.xml"
 })

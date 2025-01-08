@@ -32,7 +32,7 @@ public interface InstalledContractService {
 	/**
 	 * Find all ServiceContracts
 	 *
-	 * @return List A list of {@link ServiceContract} objects.
+	 * @return List A list of {@link InstalledContract} objects.
 	 */
 	List<InstalledContract> findAll(InstalledContractCriteria criteria);
 
@@ -40,7 +40,7 @@ public interface InstalledContractService {
 	 * Find a ServiceContract by id
 	 *
 	 * @param id
-	 * @return ServiceContract
+	 * @return InstalledContract
 	 */
 	InstalledContract find(Long id);
 }

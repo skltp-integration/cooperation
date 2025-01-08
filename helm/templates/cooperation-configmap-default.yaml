@@ -3,10 +3,8 @@ kind: ConfigMap
 metadata:
   name: cooperation-configmap-default
 data:
-  SERVER_TOMCAT_BASEDIR: {{ .Values.tomcat.basedir }}
-  APP_CONF_DIR: {{ .Values.tomcat.basedir }}
-  SPRING_PROFILES_ACTIVE: production
-  SERVER_SERVLET_CONTEXT_PATH: /coop
+  JAVA_OPTS: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=prod -Dapp.conf.dir=/etc/cooperation"
+  
   COOPERATION_MAIL_PORT: '-1'
   COOPERATION_ARCHIVE_DIR: {{ .Values.importCronJob.archiveDir }}
   COOPERATION_FORCE_IMPORT: 'false'
