@@ -45,6 +45,7 @@ import se.skltp.cooperation.service.ServiceContractService;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/serviceContracts",
+	"/api/v2/serviceContracts/",
 	"/api/v2/serviceContracts.json",
 	"/api/v2/serviceContracts.xml"
 })

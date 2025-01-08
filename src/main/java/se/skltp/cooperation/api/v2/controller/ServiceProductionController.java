@@ -48,6 +48,7 @@ import com.google.common.base.Splitter;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/serviceProductions",
+	"/api/v2/serviceProductions/",
 	"/api/v2/serviceProductions.json",
 	"/api/v2/serviceProductions.xml"
 })

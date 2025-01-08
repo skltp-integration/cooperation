@@ -45,6 +45,7 @@ import se.skltp.cooperation.service.ServiceConsumerService;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/serviceConsumers",
+	"/api/v2/serviceConsumers/",
 	"/api/v2/serviceConsumers.json",
 	"/api/v2/serviceConsumers.xml" // <-- Fixed spelling for v2.
 })

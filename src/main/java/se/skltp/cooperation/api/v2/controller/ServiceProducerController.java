@@ -45,6 +45,7 @@ import se.skltp.cooperation.api.v2.listdto.ServiceProducerListDTO;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/serviceProducers",
+	"/api/v2/serviceProducers/",
 	"/api/v2/serviceProducers.json",
 	"/api/v2/serviceProducers.xml"
 })

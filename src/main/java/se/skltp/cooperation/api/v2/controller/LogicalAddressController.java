@@ -45,6 +45,7 @@ import se.skltp.cooperation.api.v2.listdto.LogicalAddressListDTO;
 @RestController
 @RequestMapping(value = {
 	"/api/v2/logicalAddresses", // Fixed addresses for v2.
+	"/api/v2/logicalAddresses/",
 	"/api/v2/logicalAddresses.json",
 	"/api/v2/logicalAddresses.xml"
 })
