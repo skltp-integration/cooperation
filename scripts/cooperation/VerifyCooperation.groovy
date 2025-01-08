@@ -104,9 +104,17 @@ static boolean isToday(String dump_date_string){
 }
 
 class Dump {
+	String platform
+	String environment
+
 	Dump(platform, environment) {
 		this.platform = platform
 		this.environment = environment
+	}
+
+	@Override
+	String toString() {
+		return String.format("%s_%s", platform, environment)
 	}
 
 	static Dump getDump(String name){
@@ -118,7 +126,4 @@ class Dump {
 			return null
 		}
 	}
-
-	String platform
-	String environment
 }
