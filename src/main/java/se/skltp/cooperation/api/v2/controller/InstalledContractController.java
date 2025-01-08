@@ -23,7 +23,7 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +54,11 @@ public class InstalledContractController {
 	private final Logger log = LoggerFactory.getLogger(InstalledContractController.class);
 
 	private final InstalledContractService installedContractService;
-	private final DozerBeanMapper mapper;
+	private final ModelMapper mapper;
 
 	@Autowired
 	public InstalledContractController(InstalledContractService installedContractService,
-			DozerBeanMapper mapper) {
+			ModelMapper mapper) {
 		this.installedContractService = installedContractService;
 		this.mapper = mapper;
 	}

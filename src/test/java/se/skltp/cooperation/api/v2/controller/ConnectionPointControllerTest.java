@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.catalina.security.SecurityConfig;
-import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -90,7 +90,7 @@ public class ConnectionPointControllerTest {
 	private ConnectionPointService connectionPointServiceMock;
 
 	@MockitoBean
-	private DozerBeanMapper mapperMock;
+	private ModelMapper mapperMock;
 
 	@Autowired
 	private MockMvc mockMvc;

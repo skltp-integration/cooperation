@@ -23,7 +23,7 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +63,10 @@ public class CooperationController {
 
 	private final Logger log = LoggerFactory.getLogger(CooperationController.class);
 	private final CooperationService cooperationService;
-	private final DozerBeanMapper mapper;
+	private final ModelMapper mapper;
 
 	@Autowired
-	public CooperationController(CooperationService cooperationService, DozerBeanMapper mapper) {
+	public CooperationController(CooperationService cooperationService, ModelMapper mapper) {
 		this.cooperationService = cooperationService;
 		this.mapper = mapper;
 	}
