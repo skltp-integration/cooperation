@@ -37,7 +37,7 @@ public class BasicAuthConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.authorizeHttpRequests((authz) -> authz
+			.authorizeHttpRequests(authz -> authz
 				// For the two versions of the primary API.
 				.requestMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 				.requestMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
@@ -80,7 +80,7 @@ public class BasicAuthConfig {
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web
+		return web -> web
 			.httpFirewall(constructFairlyOpenFirewall())
 			.ignoring().requestMatchers("/h2-console/**");
 	}
