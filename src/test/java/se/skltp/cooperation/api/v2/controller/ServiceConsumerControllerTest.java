@@ -21,7 +21,7 @@
 package se.skltp.cooperation.api.v2.controller;
 
 import org.apache.catalina.security.SecurityConfig;
-import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -76,7 +76,7 @@ public class ServiceConsumerControllerTest {
 	@MockitoBean
 	private ServiceConsumerService serviceConsumerServiceMock;
 	@MockitoBean
-	private DozerBeanMapper mapperMock;
+	private ModelMapper mapperMock;
 	private MockMvc mockMvc;
 
 	private ServiceConsumer c1;

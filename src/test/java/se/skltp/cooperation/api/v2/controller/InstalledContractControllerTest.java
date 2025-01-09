@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 
-import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -73,7 +73,7 @@ public class InstalledContractControllerTest {
 	@MockitoBean
 	private InstalledContractService installedContractServiceMock;
 	@MockitoBean
-	private DozerBeanMapper mapperMock;
+	private ModelMapper mapperMock;
 	private MockMvc mockMvc;
 
     @Autowired

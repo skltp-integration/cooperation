@@ -23,7 +23,7 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +54,11 @@ public class ConnectionPointController {
 	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
 
 	private final ConnectionPointService connectionPointService;
-	private final DozerBeanMapper mapper;
+	private final ModelMapper mapper;
 
 	@Autowired
 	public ConnectionPointController(ConnectionPointService connectionPointService,
-			DozerBeanMapper mapper) {
+			ModelMapper mapper) {
 		this.connectionPointService = connectionPointService;
 		this.mapper = mapper;
 	}

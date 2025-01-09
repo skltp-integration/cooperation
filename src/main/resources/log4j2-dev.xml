@@ -31,7 +31,7 @@
 		<Logger name="com.wordnik.swagger" level="WARN"/>
 		<Logger name="liquibase" level="WARN"/>
 		<Logger name="sun.rmi.transport" level="WARN"/>
-		<Logger name="org.dozer" level="WARN"/>
+		<Logger name="org.modelmapper" level="WARN"/>
 
     <Root level="INFO">
       <AppenderRef ref="CONSOLE"/>
