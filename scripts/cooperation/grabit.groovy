@@ -29,7 +29,7 @@
 	@Grab(group = 'commons-lang', module='commons-lang', version='2.6'),
 	@Grab(group = 'net.logstash.logback', module = 'logstash-logback-encoder', version='8.0'),
 	@Grab(group = 'co.elastic.logging',   module = 'logback-ecs-encoder', version = '1.6.0'),
-	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.12'),
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.16'),
 ])
 
 import groovy.sql.Sql
