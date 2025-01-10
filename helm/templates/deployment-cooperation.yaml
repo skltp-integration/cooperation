@@ -62,7 +62,3 @@ spec:
             - secretRef:
                 name: {{ . }}
             {{- end }}
-          volumeMounts:
-            - name: config-volume
-              mountPath: /etc/cooperation
-              readOnly: true
