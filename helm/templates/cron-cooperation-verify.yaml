@@ -12,10 +12,6 @@ spec:
           labels:
             elasticGrokFilter: {{ .Values.verifyCronJob.elasticGrokFilter }}
         spec:
-          volumes:
-            - name: config-volume
-              configMap:
-                name: {{ .Values.verifyCronJob.configfilesMap }}
           containers:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"

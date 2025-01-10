@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: cooperation-configmap-default
 data:
-  JAVA_OPTS: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=prod -Dapp.conf.dir=/etc/cooperation"
+  JAVA_OPTS: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=prod"
   
   COOPERATION_MAIL_PORT: '-1'
   COOPERATION_ARCHIVE_DIR: {{ .Values.importCronJob.archiveDir }}

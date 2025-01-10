@@ -61,7 +61,11 @@ spring:
     init:
       platform: mysql
   datasource:
+    url: ${COOPERATION_DB_URL}
+    username: ${COOPERATION_DB_USER}
+    password: ${COOPERATION_DB_PASSWORD}
     driverClassName: com.mysql.cj.jdbc.Driver
+    testOnBorrow: true
+    validationQuery: SELECT 1
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: true

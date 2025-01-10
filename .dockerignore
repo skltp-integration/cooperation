@@ -1,4 +1,3 @@
 *
 !Dockerfile
-!logback4ecs.xml
 !target/*.jar

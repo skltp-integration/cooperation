@@ -24,7 +24,6 @@ importCronJob:
   timeZone: "Europe/Stockholm"
   nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
-  configfilesMap: cooperation-configfiles
   archiveDir: /opt/cooperation-archive
 
 verifyCronJob:
@@ -32,7 +31,6 @@ verifyCronJob:
   timeZone: "Europe/Stockholm"
   nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
-  configfilesMap: cooperation-configfiles
 
 environment:
   variables:
