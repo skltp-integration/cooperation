@@ -29,6 +29,11 @@ currentDir="${COOPERATION_ARCHIVE_DIR}/current"
 latestDir="${COOPERATION_ARCHIVE_DIR}/latest"
 rm -rf ${currentDir}
 
+outfileBefore=${coopImportFilesDir}/before.txt
+outfileAfter=${coopImportFilesDir}/after.txt
+rm -rf ${outfileBefore}
+rm -rf ${outfileAfter}
+
 dump_files=(`echo $COOPERATION_IMPORT_ENVIRONMENTS | tr ',' ' '`)
 
 printlog "INFO" "Begin: ny cooperation import"
@@ -38,17 +43,14 @@ printlog "INFO" "Begin: ny cooperation import"
 #=============================================================================
 printlog "INFO" "Begin: Verify before"
 
-outfile=${coopImportFilesDir}/out.txt
-rm -rf ${outfile}
-
 exitCode=0
 groovy VerifyCooperation.groovy \
     -d "${COOPERATION_IMPORT_ENVIRONMENTS}" \
     -url "${COOPERATION_CONNECTION_POINTS_URL}" \
-    -out "${outfile}" \
+    -out "${outfileBefore}" \
     -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
 
-printlog "INFO" $(cat ${outfile})
+printlog "INFO" $(cat ${outfileBefore})
 
 if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
   printlog "INFO" "Force import active, will proceed even if up-to-date."
@@ -102,7 +104,7 @@ changes=$(diff ${coopImportFilesDir}/checksums.md5 ${latestDir}/checksums.md5 2>
 if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
   printlog "INFO" "Force import active, will proceed even without changes."
 elif [ "$changes" == "" ]; then
-  printlog "INFO" "No change since last import, aborting."
+  printlog "INFO" "No change since last successful import, aborting."
   exit 0
 fi
 printlog "INFO" "Changes: $changes"
@@ -160,5 +162,24 @@ groovy ActivateNewVersion \
     -url ${COOPERATION_DB_URL} -u ${COOPERATION_DB_USER} -p ${COOPERATION_DB_PASSWORD}
 printlog "INFO"  "Done: activate new tak data version: `date`"
 
-rm -rf ${latestDir}
-cp -r ${currentDir} ${latestDir}
+#=============================================================================
+# Verify after import
+#=============================================================================
+printlog "INFO" "Begin: Verify after"
+
+exitCode=0
+groovy VerifyCooperation.groovy \
+    -d "${COOPERATION_IMPORT_ENVIRONMENTS}" \
+    -url "${COOPERATION_CONNECTION_POINTS_URL}" \
+    -out "${outfileAfter}" \
+    -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
+
+if [ $exitCode -eq 0 ]; then
+  printlog "INFO" $(cat ${outfileAfter})
+  rm -rf ${latestDir}
+  cp -r ${currentDir} ${latestDir}
+else
+  printlog "ERROR" $(cat ${outfileAfter})
+fi
+
+printlog "INFO" "Done: Verify after"
