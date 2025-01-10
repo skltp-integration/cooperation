@@ -91,10 +91,10 @@ new File(out_file).withWriter { writer ->
 }
 
 if(!error_data.isEmpty()){
-	logger.error("Cooperation import fail. ")
+	logger.error("Verify Cooperation fail.")
 	System.exit(1)
 }else{
-	logger.info("Cooperation import lyckades.")
+	logger.info("Verify Cooperation ok.")
 }
 
 static boolean isToday(String dump_date_string){

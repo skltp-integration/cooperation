@@ -50,14 +50,14 @@ groovy VerifyCooperation.groovy \
     -out "${outfileBefore}" \
     -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
 
-printlog "INFO" $(cat ${outfileBefore})
-
 if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
   printlog "INFO" "Force import active, will proceed even if up-to-date."
 elif [ $exitCode -eq 0 ]; then
   printlog "INFO" "Cooperation is up-to-date, aborting."
   exit 0
 fi
+
+printlog "INFO" $(cat ${outfileBefore})
 
 printlog "INFO" "Done: Verify before"
 
@@ -175,7 +175,6 @@ groovy VerifyCooperation.groovy \
     -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
 
 if [ $exitCode -eq 0 ]; then
-  printlog "INFO" $(cat ${outfileAfter})
   rm -rf ${latestDir}
   cp -r ${currentDir} ${latestDir}
 else
