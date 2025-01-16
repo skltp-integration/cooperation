@@ -99,7 +99,7 @@ if(!error_data.isEmpty()){
 
 static boolean isToday(String dump_date_string){
 	def dump_date_day = dump_date_string.substring(0, 10)
-	def today = new Date().format("YYYY-MM-dd")
+	def today = new Date().format("yyyy-MM-dd")
 	return today.equals(dump_date_day)
 }
 
