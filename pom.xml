@@ -10,7 +10,7 @@
   </parent>
   <groupId>se.skltp.cooperation</groupId>
   <artifactId>cooperation</artifactId>
-  <version>1.8.0</version>
+  <version>1.8.1</version>
   <name>cooperation</name>
   <description>Established Cooperation</description>
   <scm>
@@ -33,8 +33,8 @@
   <properties>
     <commons-collection.version>3.2.2</commons-collection.version>
     <jacoco.plugin.version>0.8.12</jacoco.plugin.version>
-    <java.version>17</java.version>
     <jakarta.xml.version>4.0.2</jakarta.xml.version>
+    <java.version>17</java.version>
     <modelmapper.version>3.2.2</modelmapper.version>
     <build.timestamp>${maven.build.timestamp}</build.timestamp>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
