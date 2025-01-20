@@ -81,8 +81,8 @@ def transformation(dataDirectory) {
 
 def transformFile(File infile) {
 	def jsonSlurper = new JsonSlurper().setType(JsonParserType.CHARACTER_SOURCE)
-	def inJsonRoot = jsonSlurper.parseText(infile)
-	def outJsonRoot = jsonSlurper.parseText(infile)
+	def inJsonRoot = jsonSlurper.parse(infile)
+	def outJsonRoot = jsonSlurper.parse(infile)
 
 	// rename original file, trust later steps to only filter out files with ".json" suffix
 	def originalInFilename = infile.getPath()
