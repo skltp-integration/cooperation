@@ -92,7 +92,7 @@ public class JsonImporter {
         String filename = platformEnvironmentToFileName(platformEnvironment)
         File sourceFile = new File(sourceDir, filename)
         if (!sourceFile.exists()) {
-            logger.info("Source $filename not found - skipping")
+            logger.error("Source $filename not found - skipping")
             return
         }
         logWithSeparator("Inserting table data from $filename")
