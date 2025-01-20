@@ -83,35 +83,14 @@ do
   path="${coopImportFilesDir}/takdump_${dump_file}.json"
   if [ ! -f $path ]; then
     no_existing_dumps+=("$dump_file")
-  else
-    md5sum $path >> ${coopImportFilesDir}/checksums.md5
   fi
 done
 
 if (( ${#no_existing_dumps[@]} )); then
-printlog "ERROR" "Error: Not existing dumps: ${no_existing_dumps[@]}"
-#mail -s "${COOPERATION_MAIL_SUBJECT}" ${COOPERATION_MAIL_TO} <<< "Not existing dumps: ${no_existing_dumps[@]}"
+  printlog "ERROR" "Error: Not existing dumps: ${no_existing_dumps[@]}"
 fi
 
 printlog "INFO" "Done: Check file list: OK"
-
-#=============================================================================
-# Check for changes
-#=============================================================================
-printlog "INFO" "Begin: Checking for changes"
-
-changes=$(diff ${coopImportFilesDir}/checksums.md5 ${latestDir}/checksums.md5 2>&1 || true)
-if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
-  printlog "INFO" "Force import active, will proceed even without changes."
-elif [ "$changes" == "" ]; then
-  printlog "INFO" "No change since last successful import, aborting."
-  exit 0
-fi
-printlog "INFO" "Changes: $changes"
-
-cp -r ${coopImportFilesDir} ${currentDir}
-
-printlog "INFO" "Done: Checking for changes"
 
 #=============================================================================
 # Transform
