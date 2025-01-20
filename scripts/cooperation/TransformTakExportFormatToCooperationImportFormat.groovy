@@ -81,8 +81,8 @@ def transformation(dataDirectory) {
 
 def transformFile(File infile) {
 	def jsonSlurper = new JsonSlurper().setType(JsonParserType.CHARACTER_SOURCE)
-	def inJsonRoot = jsonSlurper.parseText(infile.text)
-	def outJsonRoot = jsonSlurper.parseText(infile.text)
+	def inJsonRoot = jsonSlurper.parseText(infile)
+	def outJsonRoot = jsonSlurper.parseText(infile)
 
 	// rename original file, trust later steps to only filter out files with ".json" suffix
 	def originalInFilename = infile.getPath()
@@ -100,6 +100,7 @@ def transformFile(File infile) {
 	} else {
 		transformJsonOnlyDateFiltrering(outJsonRoot);
 	}
+	logger.debug("Writing transformed file " + originalInFilename)
 	new File(originalInFilename).write(JsonOutput.prettyPrint(JsonOutput.toJson(outJsonRoot)))
 }
 
@@ -109,7 +110,7 @@ def transformFile(File infile) {
  * transformation to outJsonRoot.
  */
 def transformJson(Map inJsonRoot, Map outJsonRoot) {
-
+	logger.debug("Starting TransformJson")
 	/*
      * tjanstekomponent: split into: tjanstekonsument, tjansteproducent
      */
@@ -234,6 +235,7 @@ def transformJson(Map inJsonRoot, Map outJsonRoot) {
 
 
 def transformJsonOnlyDateFiltrering(Map outJsonRoot) {
+	logger.debug("Starting TransformJson-OnlyDateFiltrering")
 	long nr = 0
 	long nowMs = System.currentTimeMillis()
 	// Example date: 2014-08-12T22:00:00+0000
