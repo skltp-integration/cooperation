@@ -80,7 +80,7 @@ def transformation(dataDirectory) {
 
 
 def transformFile(File infile) {
-	def jsonSlurper = new JsonSlurper();
+	def jsonSlurper = new JsonSlurper().setType(JsonParserType.CHARACTER_SOURCE)
 	def inJsonRoot = jsonSlurper.parseText(infile.text)
 	def outJsonRoot = jsonSlurper.parseText(infile.text)
 
