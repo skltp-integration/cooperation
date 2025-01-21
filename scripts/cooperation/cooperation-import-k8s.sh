@@ -67,6 +67,9 @@ sftpOut=$(sftp -o IdentityFile=${COOPERATION_SFTP_KEYFILE} ${COOPERATION_SFTP_US
 get ${COOPERATION_SFTP_PATH}*.json ${coopImportFilesDir}
 EOF)
 printlog "INFO" "$sftpOut"
+
+cp -r ${coopImportFilesDir} ${currentDir}
+
 printlog "INFO" "Done: SFTP-download of TAK export files"
 
 #=============================================================================
