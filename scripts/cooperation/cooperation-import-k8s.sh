@@ -57,8 +57,6 @@ elif [ $exitCode -eq 0 ]; then
   exit 0
 fi
 
-printlog "INFO" $(cat ${outfileBefore})
-
 printlog "INFO" "Done: Verify before"
 
 #=============================================================================
@@ -156,8 +154,6 @@ groovy VerifyCooperation.groovy \
 if [ $exitCode -eq 0 ]; then
   rm -rf ${latestDir}
   cp -r ${currentDir} ${latestDir}
-else
-  printlog "ERROR" $(cat ${outfileAfter})
 fi
 
 printlog "INFO" "Done: Verify after"
