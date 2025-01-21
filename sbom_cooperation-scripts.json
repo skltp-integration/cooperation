@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:8e875a5c-3b9f-4543-abf9-85c56af93a8c",
+  "serialNumber": "urn:uuid:a80a9bc3-9a94-406e-8366-3dfb2c73abb3",
   "version": 1,
   "metadata": {
-    "timestamp": "2025-01-16T15:19:52+00:00",
+    "timestamp": "2025-01-21T08:26:55+00:00",
     "tools": {
       "components": [
         {
@@ -17,14 +17,22 @@
       ]
     },
     "component": {
-      "bom-ref": "pkg:oci/cooperation-scripts@sha256%3A9171cb075380f9fa8d2cc0c22d0c008263442b83913a25ae2f32322c09f1a6bb?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "bom-ref": "pkg:oci/cooperation-scripts@sha256%3Affe5b1fccc50e8b834f6f6b6d3004c2f6c2368720c158b06a6db5625192646f8?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "type": "container",
-      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.2",
-      "purl": "pkg:oci/cooperation-scripts@sha256%3A9171cb075380f9fa8d2cc0c22d0c008263442b83913a25ae2f32322c09f1a6bb?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.3",
+      "purl": "pkg:oci/cooperation-scripts@sha256%3Affe5b1fccc50e8b834f6f6b6d3004c2f6c2368720c158b06a6db5625192646f8?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "properties": [
         {
           "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:05d38cd53aea79151f9da242a7d7c9e11554a830c1ac98a9e5a9028228955f62"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
           "value": "sha256:0ce6a07c48406d32b991149438c98cd322d31f171771c3e8e05160db5cac4a69"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -40,11 +48,11 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:3c014cae82cb7c5b8578bf9dbe6d44667337a81ca40f3b2d47735131f23ce769"
+          "value": "sha256:3c701b7941f0862722f23b29d4dd1ee1f11b7c928e450e814c8f00f6bda6e34a"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:3c701b7941f0862722f23b29d4dd1ee1f11b7c928e450e814c8f00f6bda6e34a"
+          "value": "sha256:40b0f5ecb6569fab60970a4913a1cfcd508c5217983a66e930da15debf2e4981"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -52,19 +60,15 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:7187dce6872d243c825b41b7996041203c9794bad54ffef931154574603a6a68"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
           "value": "sha256:7fbdf47ba4eed991d847fe82a202e0e966e16fe96f9156a561772bb40f9eb539"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:919e9cc0f1a68b6d0d3a704fbce16f03ac12866aee041d3a9fedcbb07ed5e635"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:919e9cc0f1a68b6d0d3a704fbce16f03ac12866aee041d3a9fedcbb07ed5e635"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -76,15 +80,11 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:ffceefd2e9b4c80e916a35aac78822d04d4e2d58f70dfc247d63c5905524957e"
+          "value": "sha256:c37b925acc09ddc980a8a0706f6156c36bfce9171dfbcff2f96948b0e015ef12"
         },
         {
           "name": "aquasecurity:trivy:ImageID",
-          "value": "sha256:a5f7e6cb803c424b46d1f4ac9bd137c1965fefd5659d9d55f6b7a063066e64d3"
+          "value": "sha256:f304f3f5f4ec01fd2594463ef8c3d3c0bfa2dfe7aebae53d95b31743e60e758b"
         },
         {
           "name": "aquasecurity:trivy:Labels:org.opencontainers.image.ref.name",
@@ -96,7 +96,7 @@
         },
         {
           "name": "aquasecurity:trivy:RepoDigest",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:9171cb075380f9fa8d2cc0c22d0c008263442b83913a25ae2f32322c09f1a6bb"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:ffe5b1fccc50e8b834f6f6b6d3004c2f6c2368720c158b06a6db5625192646f8"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -104,7 +104,7 @@
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.2"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.3"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -123,7 +123,51 @@
   },
   "components": [
     {
-      "bom-ref": "1da6c671-8115-42c8-9ff2-2b198686acd3",
+      "bom-ref": "a23925da-c39f-49e1-ad7f-4d1a6ce390d7",
+      "type": "operating-system",
+      "name": "ubuntu",
+      "version": "22.04",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "ubuntu"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b24ef71b-d71a-48b8-9d31-71b006acf80e",
+      "type": "library",
+      "group": "org.slf4j",
+      "name": "slf4j-api",
+      "version": "2.0.16",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "0172931663a09a1fa515567af5fbef00897d3c04"
+        }
+      ],
+      "purl": "pkg:maven/org.slf4j/slf4j-api@2.0.16",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "home/groovy/.groovy/grapes/org.slf4j/slf4j-api/jars/slf4j-api-2.0.16.jar"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "cc82588e-d29f-4741-928a-e5c0cfef84dc",
       "type": "library",
       "group": "org.slf4j",
       "name": "slf4j-api",
@@ -147,50 +191,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
-        }
-      ]
-    },
-    {
-      "bom-ref": "2e4be22a-8fa0-43e3-ba1b-64935462d586",
-      "type": "library",
-      "group": "org.slf4j",
-      "name": "slf4j-api",
-      "version": "2.0.16",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "0172931663a09a1fa515567af5fbef00897d3c04"
-        }
-      ],
-      "purl": "pkg:maven/org.slf4j/slf4j-api@2.0.16",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "home/groovy/.groovy/grapes/org.slf4j/slf4j-api/jars/slf4j-api-2.0.16.jar"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "jar"
-        }
-      ]
-    },
-    {
-      "bom-ref": "7d5e0a53-f86e-453c-8676-e4bf4e9fe005",
-      "type": "operating-system",
-      "name": "ubuntu",
-      "version": "22.04",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "ubuntu"
         }
       ]
     },
@@ -769,7 +769,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -2591,7 +2591,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -2634,7 +2634,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -3466,7 +3466,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -3778,7 +3778,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4122,7 +4122,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4309,7 +4309,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4491,7 +4491,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4527,7 +4527,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4921,7 +4921,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5100,7 +5100,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5193,7 +5193,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5590,7 +5590,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5824,7 +5824,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5911,7 +5911,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6077,7 +6077,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6170,7 +6170,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6607,7 +6607,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7119,7 +7119,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7275,7 +7275,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7300,13 +7300,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.10-minimal",
-      "version": "3.10.12-1~22.04.7",
+      "version": "3.10.12-1~22.04.8",
       "licenses": [
         {
           "license": {
@@ -7364,15 +7364,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.10-minimal@3.10.12-1~22.04.7"
+          "value": "libpython3.10-minimal@3.10.12-1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -7384,7 +7384,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1~22.04.7"
+          "value": "1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -7393,22 +7393,22 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.10-stdlib",
-      "version": "3.10.12-1~22.04.7",
-      "purl": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "version": "3.10.12-1~22.04.8",
+      "purl": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.10-stdlib@3.10.12-1~22.04.7"
+          "value": "libpython3.10-stdlib@3.10.12-1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -7420,7 +7420,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1~22.04.7"
+          "value": "1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -7429,22 +7429,22 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.10",
-      "version": "3.10.12-1~22.04.7",
-      "purl": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "version": "3.10.12-1~22.04.8",
+      "purl": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.10@3.10.12-1~22.04.7"
+          "value": "libpython3.10@3.10.12-1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -7456,7 +7456,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1~22.04.7"
+          "value": "1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -9061,7 +9061,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9101,7 +9101,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9141,7 +9141,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9181,7 +9181,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9217,7 +9217,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9257,7 +9257,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9297,7 +9297,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9667,7 +9667,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9739,7 +9739,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9829,7 +9829,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9986,7 +9986,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10131,7 +10131,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10200,7 +10200,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10663,7 +10663,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10771,7 +10771,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10796,13 +10796,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "bom-ref": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "python3.10-minimal",
-      "version": "3.10.12-1~22.04.7",
+      "version": "3.10.12-1~22.04.8",
       "licenses": [
         {
           "license": {
@@ -10860,15 +10860,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "python3.10-minimal@3.10.12-1~22.04.7"
+          "value": "python3.10-minimal@3.10.12-1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -10880,7 +10880,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1~22.04.7"
+          "value": "1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -10889,13 +10889,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "bom-ref": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "python3.10",
-      "version": "3.10.12-1~22.04.7",
+      "version": "3.10.12-1~22.04.8",
       "licenses": [
         {
           "license": {
@@ -10953,15 +10953,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "python3.10@3.10.12-1~22.04.7"
+          "value": "python3.10@3.10.12-1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -10973,7 +10973,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1~22.04.7"
+          "value": "1~22.04.8"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -10993,7 +10993,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11186,7 +11186,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11671,7 +11671,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ca2f67facda690e49432616bd59c768cd94f6907f147dad1cef0d5d82f1367b9"
+          "value": "sha256:91fef824c5c8d445ca72b373c8c1498fc361215f8676cc63e27dc61df9a8cce7"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11766,7 +11766,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11794,7 +11794,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11822,7 +11822,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11850,7 +11850,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11906,7 +11906,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11962,7 +11962,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12018,7 +12018,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12158,7 +12158,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12186,7 +12186,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12214,7 +12214,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12326,7 +12326,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12382,7 +12382,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12466,7 +12466,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12494,7 +12494,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13698,7 +13698,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8c55b73a0a6272d888eeb2dd8ec86d67f83a379e383e74b66fd89af8650ae8f7"
+          "value": "sha256:1063b3d374c62ac52b3f9821ecfba5b94400768fb77b8f8ff14faee10d0ab438"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13989,15 +13989,7 @@
   ],
   "dependencies": [
     {
-      "ref": "1da6c671-8115-42c8-9ff2-2b198686acd3",
-      "dependsOn": []
-    },
-    {
-      "ref": "2e4be22a-8fa0-43e3-ba1b-64935462d586",
-      "dependsOn": []
-    },
-    {
-      "ref": "7d5e0a53-f86e-453c-8676-e4bf4e9fe005",
+      "ref": "a23925da-c39f-49e1-ad7f-4d1a6ce390d7",
       "dependsOn": [
         "pkg:deb/ubuntu/adduser@3.118ubuntu5?arch=all&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/apt@2.4.13?arch=amd64&distro=ubuntu-22.04",
@@ -14116,9 +14108,9 @@
         "pkg:deb/ubuntu/libprocps8@3.3.17-6ubuntu2.1?arch=amd64&distro=ubuntu-22.04&epoch=2",
         "pkg:deb/ubuntu/libpsl5@0.21.0-1.2build2?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libpython3-stdlib@3.10.6-1~22.04.1?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libreadline8@8.1.2-1?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/librtmp1@2.4%2B20151223.gitfa8646d.1-2build4?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libsasl2-2@2.1.27%2Bdfsg2-3ubuntu1.2?arch=amd64&distro=ubuntu-22.04",
@@ -14174,8 +14166,8 @@
         "pkg:deb/ubuntu/postfix@3.6.4-1ubuntu1.3?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/procps@3.3.17-6ubuntu2.1?arch=amd64&distro=ubuntu-22.04&epoch=2",
         "pkg:deb/ubuntu/python3-minimal@3.10.6-1~22.04.1?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/python3@3.10.6-1~22.04.1?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/readline-common@8.1.2-1?arch=all&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/sed@4.8-1ubuntu2?arch=amd64&distro=ubuntu-22.04",
@@ -14193,6 +14185,14 @@
         "pkg:deb/ubuntu/xauth@1.1-1build2?arch=amd64&distro=ubuntu-22.04&epoch=1",
         "pkg:deb/ubuntu/zlib1g@1.2.11.dfsg-2ubuntu9.2?arch=amd64&distro=ubuntu-22.04&epoch=1"
       ]
+    },
+    {
+      "ref": "b24ef71b-d71a-48b8-9d31-71b006acf80e",
+      "dependsOn": []
+    },
+    {
+      "ref": "cc82588e-d29f-4741-928a-e5c0cfef84dc",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/ubuntu/adduser@3.118ubuntu5?arch=all&distro=ubuntu-22.04",
@@ -14917,7 +14917,7 @@
         "pkg:deb/ubuntu/libmysqlclient21@8.0.40-0ubuntu0.22.04.1?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libpam0g@1.4.0-11ubuntu2.4?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libpq5@14.15-0ubuntu0.22.04.1?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/mailutils-common@3.14-1?arch=all&distro=ubuntu-22.04&epoch=1"
       ]
     },
@@ -15081,18 +15081,18 @@
     {
       "ref": "pkg:deb/ubuntu/libpython3-stdlib@3.10.6-1~22.04.1?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
-        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04"
+        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "ref": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.18?arch=amd64&distro=ubuntu-22.04"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "ref": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5build1?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.8?arch=amd64&distro=ubuntu-22.04",
@@ -15103,7 +15103,7 @@
         "pkg:deb/ubuntu/libmpdec3@2.5.1-2build2?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libncursesw6@6.3-2ubuntu0.1?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libnsl2@1.3.0-2build2?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libreadline8@8.1.2-1?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libsqlite3-0@3.37.2-2ubuntu0.3?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libtinfo6@6.3-2ubuntu0.1?arch=amd64&distro=ubuntu-22.04",
@@ -15113,11 +15113,11 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "ref": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/libexpat1@2.4.7-1ubuntu0.4?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/zlib1g@1.2.11.dfsg-2ubuntu9.2?arch=amd64&distro=ubuntu-22.04&epoch=1"
       ]
     },
@@ -15513,26 +15513,26 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "ref": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libexpat1@2.4.7-1ubuntu0.4?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/zlib1g@1.2.11.dfsg-2ubuntu9.2?arch=amd64&distro=ubuntu-22.04&epoch=1"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+      "ref": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
-        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/media-types@7.0.0?arch=all&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04"
+        "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04"
       ]
     },
     {
       "ref": "pkg:deb/ubuntu/python3@3.10.6-1~22.04.1?arch=amd64&distro=ubuntu-22.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libpython3-stdlib@3.10.6-1~22.04.1?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04"
+        "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04"
       ]
     },
     {
@@ -15952,11 +15952,11 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:oci/cooperation-scripts@sha256%3A9171cb075380f9fa8d2cc0c22d0c008263442b83913a25ae2f32322c09f1a6bb?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "ref": "pkg:oci/cooperation-scripts@sha256%3Affe5b1fccc50e8b834f6f6b6d3004c2f6c2368720c158b06a6db5625192646f8?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "dependsOn": [
-        "1da6c671-8115-42c8-9ff2-2b198686acd3",
-        "2e4be22a-8fa0-43e3-ba1b-64935462d586",
-        "7d5e0a53-f86e-453c-8676-e4bf4e9fe005",
+        "a23925da-c39f-49e1-ad7f-4d1a6ce390d7",
+        "b24ef71b-d71a-48b8-9d31-71b006acf80e",
+        "cc82588e-d29f-4741-928a-e5c0cfef84dc",
         "pkg:maven/ch.qos.logback/logback-classic@1.5.16",
         "pkg:maven/ch.qos.logback/logback-core@1.5.16",
         "pkg:maven/co.elastic.logging/ecs-logging-core@1.6.0",
@@ -18909,6 +18909,12 @@
         },
         {
           "source": {
+            "name": "azure"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "nvd"
           },
           "score": 5.9,
@@ -19246,6 +19252,18 @@
       "ratings": [
         {
           "source": {
+            "name": "azure"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "cbl-mariner"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 5.9,
@@ -19446,46 +19464,46 @@
       "updated": "2025-01-06T18:15:17+00:00",
       "affects": [
         {
-          "ref": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+          "ref": "pkg:deb/ubuntu/libpython3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
           "versions": [
             {
-              "version": "3.10.12-1~22.04.7",
+              "version": "3.10.12-1~22.04.8",
               "status": "affected"
             }
           ]
         },
         {
-          "ref": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+          "ref": "pkg:deb/ubuntu/libpython3.10-stdlib@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
           "versions": [
             {
-              "version": "3.10.12-1~22.04.7",
+              "version": "3.10.12-1~22.04.8",
               "status": "affected"
             }
           ]
         },
         {
-          "ref": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+          "ref": "pkg:deb/ubuntu/libpython3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
           "versions": [
             {
-              "version": "3.10.12-1~22.04.7",
+              "version": "3.10.12-1~22.04.8",
               "status": "affected"
             }
           ]
         },
         {
-          "ref": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+          "ref": "pkg:deb/ubuntu/python3.10-minimal@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
           "versions": [
             {
-              "version": "3.10.12-1~22.04.7",
+              "version": "3.10.12-1~22.04.8",
               "status": "affected"
             }
           ]
         },
         {
-          "ref": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.7?arch=amd64&distro=ubuntu-22.04",
+          "ref": "pkg:deb/ubuntu/python3.10@3.10.12-1~22.04.8?arch=amd64&distro=ubuntu-22.04",
           "versions": [
             {
-              "version": "3.10.12-1~22.04.7",
+              "version": "3.10.12-1~22.04.8",
               "status": "affected"
             }
           ]
@@ -20469,6 +20487,12 @@
         },
         {
           "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 7.5,
@@ -20665,6 +20689,15 @@
       "ratings": [
         {
           "source": {
+            "name": "nvd"
+          },
+          "score": 6.2,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 5.5,
@@ -20704,7 +20737,7 @@
         }
       ],
       "published": "2025-01-10T15:15:16+00:00",
-      "updated": "2025-01-13T21:15:15+00:00",
+      "updated": "2025-01-16T21:12:15+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/libfreetype6@2.11.1%2Bdfsg-1ubuntu0.2?arch=amd64&distro=ubuntu-22.04",
