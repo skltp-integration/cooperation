@@ -101,7 +101,7 @@ def transformFile(File infile) {
 		transformJsonOnlyDateFiltrering(outJsonRoot);
 	}
 	logger.debug("Writing transformed file " + originalInFilename)
-	new File(originalInFilename).write(JsonOutput.prettyPrint(JsonOutput.toJson(outJsonRoot)))
+	new File(originalInFilename).write(JsonOutput.toJson(outJsonRoot))
 }
 
 /**
