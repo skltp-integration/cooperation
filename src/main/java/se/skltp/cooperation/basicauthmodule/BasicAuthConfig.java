@@ -12,6 +12,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,6 +38,15 @@ public class BasicAuthConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
+
+			// !!! REGARDING CSRF PROTECTION !!!
+			// We choose to disable CSRF protection here below.
+			//   Our motivation is that CSRF attack protection is mostly relevant when a browser is involved,
+			//   where an attacker page can exploit a user's pre-existing session cookie or some other stored token.
+			// For stateless APIs, that communicate backend-backend; or where requests are never made from a browser,
+			//   but only a API tools like Postman or Insomnia; CSRF protection is less relevant.
+			.csrf(AbstractHttpConfigurer::disable)
+
 			.authorizeHttpRequests(authz -> authz
 				// For the two versions of the primary API.
 				.requestMatchers(HttpMethod.GET, "/api/v2/**").hasAnyAuthority(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
