@@ -2,22 +2,22 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:60aace54-4a4d-4d9e-b78c-9b7dd1dca73d",
+  "serialNumber": "urn:uuid:7a01c27e-2cec-41d6-887b-f233587379ea",
   "version": 1,
   "metadata": {
-    "timestamp": "2025-01-21T08:23:27+00:00",
+    "timestamp": "2025-03-12T10:00:58+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.57.0"
+          "version": "0.58.2"
         }
       ]
     },
     "component": {
-      "bom-ref": "ac2b828a-c012-4c4e-bdc8-32b712b4e63a",
+      "bom-ref": "12fe298d-62c7-430e-9e2a-0ad49fe789f5",
       "type": "application",
       "name": ".",
       "properties": [
@@ -30,7 +30,7 @@
   },
   "components": [
     {
-      "bom-ref": "734254a4-e704-47d7-b534-ba99effe4196",
+      "bom-ref": "629a4b79-7ac0-4c10-b671-22fda85a40ec",
       "type": "application",
       "name": "pom.xml",
       "properties": [
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "bom-ref": "af3e721f-4ef3-44c8-929d-75d3332359ef",
+      "bom-ref": "b7b37556-a189-4e83-93c7-672fcdb0ca18",
       "type": "application",
       "name": "scripts/pom.xml",
       "properties": [
@@ -642,6 +642,31 @@
         {
           "name": "aquasecurity:trivy:PkgID",
           "value": "com.mysql:mysql-connector-j:9.1.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pom"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2",
+      "type": "library",
+      "group": "com.sun.istack",
+      "name": "istack-commons-runtime",
+      "version": "4.1.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "com.sun.istack:istack-commons-runtime:4.1.2"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -1365,15 +1390,48 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/org.glassfish.jaxb/jaxb-core",
+      "bom-ref": "pkg:maven/org.eclipse.angus/angus-activation@2.0.2",
       "type": "library",
-      "group": "org.glassfish.jaxb",
-      "name": "jaxb-core",
-      "purl": "pkg:maven/org.glassfish.jaxb/jaxb-core",
+      "group": "org.eclipse.angus",
+      "name": "angus-activation",
+      "version": "2.0.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:maven/org.eclipse.angus/angus-activation@2.0.2",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "org.glassfish.jaxb:jaxb-core"
+          "value": "org.eclipse.angus:angus-activation:2.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pom"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.5",
+      "type": "library",
+      "group": "org.glassfish.jaxb",
+      "name": "jaxb-core",
+      "version": "4.0.5",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.5",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "org.glassfish.jaxb:jaxb-core:4.0.5"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -1399,6 +1457,31 @@
         {
           "name": "aquasecurity:trivy:PkgID",
           "value": "org.glassfish.jaxb:jaxb-runtime:4.0.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pom"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.glassfish.jaxb/txw2@4.0.5",
+      "type": "library",
+      "group": "org.glassfish.jaxb",
+      "name": "txw2",
+      "version": "4.0.5",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:maven/org.glassfish.jaxb/txw2@4.0.5",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "org.glassfish.jaxb:txw2:4.0.5"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -2455,11 +2538,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.3",
+      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.4",
       "type": "library",
       "group": "se.skltp.cooperation",
       "name": "cooperation",
-      "version": "1.8.3",
+      "version": "1.8.4",
       "licenses": [
         {
           "license": {
@@ -2467,11 +2550,11 @@
           }
         }
       ],
-      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.8.3",
+      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.8.4",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "se.skltp.cooperation:cooperation:1.8.3"
+          "value": "se.skltp.cooperation:cooperation:1.8.4"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -2482,20 +2565,20 @@
   ],
   "dependencies": [
     {
-      "ref": "734254a4-e704-47d7-b534-ba99effe4196",
+      "ref": "12fe298d-62c7-430e-9e2a-0ad49fe789f5",
       "dependsOn": [
-        "pkg:maven/se.skltp.cooperation/cooperation@1.8.3"
+        "629a4b79-7ac0-4c10-b671-22fda85a40ec",
+        "b7b37556-a189-4e83-93c7-672fcdb0ca18"
       ]
     },
     {
-      "ref": "ac2b828a-c012-4c4e-bdc8-32b712b4e63a",
+      "ref": "629a4b79-7ac0-4c10-b671-22fda85a40ec",
       "dependsOn": [
-        "734254a4-e704-47d7-b534-ba99effe4196",
-        "af3e721f-4ef3-44c8-929d-75d3332359ef"
+        "pkg:maven/se.skltp.cooperation/cooperation@1.8.4"
       ]
     },
     {
-      "ref": "af3e721f-4ef3-44c8-929d-75d3332359ef",
+      "ref": "b7b37556-a189-4e83-93c7-672fcdb0ca18",
       "dependsOn": [
         "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT"
       ]
@@ -2625,6 +2708,10 @@
     },
     {
       "ref": "pkg:maven/com.mysql/mysql-connector-j@9.1.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2",
       "dependsOn": []
     },
     {
@@ -2772,11 +2859,29 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/org.glassfish.jaxb/jaxb-core",
-      "dependsOn": []
+      "ref": "pkg:maven/org.eclipse.angus/angus-activation@2.0.2",
+      "dependsOn": [
+        "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.3"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.5",
+      "dependsOn": [
+        "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2",
+        "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.3",
+        "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.2",
+        "pkg:maven/org.eclipse.angus/angus-activation@2.0.2",
+        "pkg:maven/org.glassfish.jaxb/txw2@4.0.5"
+      ]
     },
     {
       "ref": "pkg:maven/org.glassfish.jaxb/jaxb-runtime@4.0.5",
+      "dependsOn": [
+        "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.5"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.glassfish.jaxb/txw2@4.0.5",
       "dependsOn": []
     },
     {
@@ -3101,7 +3206,11 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.3",
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.4",
       "dependsOn": [
         "pkg:maven/co.elastic.logging/log4j2-ecs-layout@1.5.0",
         "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.18.2",
@@ -3112,7 +3221,6 @@
         "pkg:maven/io.github.openfeign.querydsl/querydsl-jpa@5.6.1",
         "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.2",
         "pkg:maven/joda-time/joda-time@2.5",
-        "pkg:maven/org.glassfish.jaxb/jaxb-core",
         "pkg:maven/org.modelmapper/modelmapper@3.2.2",
         "pkg:maven/org.springframework.boot/spring-boot-starter-actuator@3.4.1",
         "pkg:maven/org.springframework.boot/spring-boot-starter-data-jpa@3.4.1",
