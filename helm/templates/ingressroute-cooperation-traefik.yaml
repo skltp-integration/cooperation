@@ -2,11 +2,11 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   annotations:
-  name: cooperation-https
+  name: cooperation-https-traefik
 spec:
   routes:
     - kind: Rule
-      match: Host(`{{ .Values.ingressroute.apiHostName }}`) && (PathPrefix(`/coop`) || PathPrefix(`/takinfo`))
+      match: Host(`{{ .Values.ingressroute.bksHostName }}`) && (PathPrefix(`/coop`) || PathPrefix(`/takinfo`))
       middlewares:
         - name: cooperation-ipwhitelist
         - name: cooperation-takinfo-redirect
@@ -27,3 +27,7 @@ spec:
               secure: true
           strategy: RoundRobin
           weight: 10
+  tls:
+    domains:
+      - main: {{ .Values.ingressroute.bksHostName }}
+    secretName: {{ .Values.ingressroute.bksHostName }}-letsencrypt
