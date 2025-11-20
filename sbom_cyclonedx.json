@@ -2,22 +2,25 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:7a01c27e-2cec-41d6-887b-f233587379ea",
+  "serialNumber": "urn:uuid:a701ede1-6258-48a4-8000-a04ed955009c",
   "version": 1,
   "metadata": {
-    "timestamp": "2025-03-12T10:00:58+00:00",
+    "timestamp": "2025-11-20T14:40:46+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.58.2"
+          "version": "0.67.2"
         }
       ]
     },
     "component": {
-      "bom-ref": "12fe298d-62c7-430e-9e2a-0ad49fe789f5",
+      "bom-ref": "4d3e1b0a-58b6-4615-be5e-aa0fd6c858cb",
       "type": "application",
       "name": ".",
       "properties": [
@@ -30,9 +33,9 @@
   },
   "components": [
     {
-      "bom-ref": "629a4b79-7ac0-4c10-b671-22fda85a40ec",
+      "bom-ref": "88881f40-6768-4e94-8a82-2d24bcec8c87",
       "type": "application",
-      "name": "pom.xml",
+      "name": "scripts/pom.xml",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -45,9 +48,9 @@
       ]
     },
     {
-      "bom-ref": "b7b37556-a189-4e83-93c7-672fcdb0ca18",
+      "bom-ref": "fa34e593-26e3-438c-84f7-5a38fb66e23e",
       "type": "application",
-      "name": "scripts/pom.xml",
+      "name": "pom.xml",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -68,12 +71,12 @@
       "licenses": [
         {
           "license": {
-            "name": "EPL-1.0"
+            "id": "EPL-1.0"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-only"
+            "id": "LGPL-2.1-only"
           }
         }
       ],
@@ -98,12 +101,12 @@
       "licenses": [
         {
           "license": {
-            "name": "EPL-1.0"
+            "id": "EPL-1.0"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-only"
+            "id": "LGPL-2.1-only"
           }
         }
       ],
@@ -128,7 +131,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -153,7 +156,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -178,7 +181,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -203,7 +206,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -228,7 +231,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -253,7 +256,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -278,7 +281,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -303,7 +306,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -328,7 +331,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -353,7 +356,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -378,7 +381,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -403,7 +406,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -428,7 +431,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -453,7 +456,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -478,7 +481,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -503,7 +506,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -528,7 +531,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -553,7 +556,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -578,12 +581,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "EPL-1.0"
+            "id": "EPL-1.0"
           }
         }
       ],
@@ -608,7 +611,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -633,7 +636,7 @@
       "licenses": [
         {
           "license": {
-            "name": "The GNU General Public License, v2 with Universal FOSS Exception, v1.0"
+            "name": "GPL-2.0-only WITH Universal-FOSS-Exception--v1.0"
           }
         }
       ],
@@ -658,7 +661,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -683,7 +686,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -708,7 +711,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -733,7 +736,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -758,7 +761,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -783,7 +786,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -808,7 +811,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -833,7 +836,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -858,7 +861,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -883,7 +886,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -908,12 +911,12 @@
       "licenses": [
         {
           "license": {
-            "name": "EPL-2.0"
+            "id": "EPL-2.0"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-with-classpath-exception"
+            "name": "GPL-2.0-only WITH classpath-exception"
           }
         }
       ],
@@ -938,7 +941,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -963,12 +966,12 @@
       "licenses": [
         {
           "license": {
-            "name": "EPL-2.0"
+            "id": "EPL-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -993,12 +996,12 @@
       "licenses": [
         {
           "license": {
-            "name": "EPL-2.0"
+            "id": "EPL-2.0"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-with-classpath-exception"
+            "name": "GPL-2.0-only WITH classpath-exception"
           }
         }
       ],
@@ -1023,7 +1026,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -1048,7 +1051,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1073,7 +1076,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1098,7 +1101,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -1123,7 +1126,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1148,7 +1151,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1173,7 +1176,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1198,7 +1201,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1223,7 +1226,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1248,7 +1251,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1273,7 +1276,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1298,7 +1301,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1323,7 +1326,7 @@
       "licenses": [
         {
           "license": {
-            "name": "EPL-2.0"
+            "id": "EPL-2.0"
           }
         }
       ],
@@ -1348,7 +1351,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1373,7 +1376,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-2-Clause"
+            "id": "BSD-2-Clause"
           }
         }
       ],
@@ -1398,7 +1401,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -1423,7 +1426,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -1448,7 +1451,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -1473,7 +1476,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -1498,12 +1501,12 @@
       "licenses": [
         {
           "license": {
-            "name": "CC0-1.0"
+            "id": "CC0-1.0"
           }
         },
         {
           "license": {
-            "name": "BSD-2-Clause"
+            "id": "BSD-2-Clause"
           }
         }
       ],
@@ -1528,7 +1531,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1553,7 +1556,7 @@
       "licenses": [
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -1578,7 +1581,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1603,7 +1606,7 @@
       "licenses": [
         {
           "license": {
-            "name": "CC0-1.0"
+            "id": "CC0-1.0"
           }
         }
       ],
@@ -1628,7 +1631,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1653,7 +1656,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1678,7 +1681,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1703,7 +1706,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1728,7 +1731,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1753,7 +1756,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1778,7 +1781,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1803,7 +1806,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1828,7 +1831,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1853,7 +1856,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1878,7 +1881,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1903,7 +1906,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1928,7 +1931,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1953,7 +1956,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1978,7 +1981,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2003,7 +2006,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2028,7 +2031,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2053,7 +2056,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2078,7 +2081,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2103,7 +2106,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2128,7 +2131,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2153,7 +2156,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2178,7 +2181,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2203,7 +2206,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2228,7 +2231,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2253,7 +2256,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2278,7 +2281,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2303,7 +2306,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2328,7 +2331,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2353,7 +2356,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2378,7 +2381,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2403,7 +2406,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2428,7 +2431,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2453,7 +2456,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2478,7 +2481,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2503,7 +2506,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2538,23 +2541,23 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.4",
+      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.5",
       "type": "library",
       "group": "se.skltp.cooperation",
       "name": "cooperation",
-      "version": "1.8.4",
+      "version": "1.8.5",
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
-      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.8.4",
+      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.8.5",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "se.skltp.cooperation:cooperation:1.8.4"
+          "value": "se.skltp.cooperation:cooperation:1.8.5"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -2565,22 +2568,22 @@
   ],
   "dependencies": [
     {
-      "ref": "12fe298d-62c7-430e-9e2a-0ad49fe789f5",
+      "ref": "4d3e1b0a-58b6-4615-be5e-aa0fd6c858cb",
       "dependsOn": [
-        "629a4b79-7ac0-4c10-b671-22fda85a40ec",
-        "b7b37556-a189-4e83-93c7-672fcdb0ca18"
+        "88881f40-6768-4e94-8a82-2d24bcec8c87",
+        "fa34e593-26e3-438c-84f7-5a38fb66e23e"
       ]
     },
     {
-      "ref": "629a4b79-7ac0-4c10-b671-22fda85a40ec",
-      "dependsOn": [
-        "pkg:maven/se.skltp.cooperation/cooperation@1.8.4"
-      ]
-    },
-    {
-      "ref": "b7b37556-a189-4e83-93c7-672fcdb0ca18",
+      "ref": "88881f40-6768-4e94-8a82-2d24bcec8c87",
       "dependsOn": [
         "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT"
+      ]
+    },
+    {
+      "ref": "fa34e593-26e3-438c-84f7-5a38fb66e23e",
+      "dependsOn": [
+        "pkg:maven/se.skltp.cooperation/cooperation@1.8.5"
       ]
     },
     {
@@ -3210,7 +3213,7 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.4",
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.5",
       "dependsOn": [
         "pkg:maven/co.elastic.logging/log4j2-ecs-layout@1.5.0",
         "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.18.2",
@@ -3362,6 +3365,2444 @@
           "versions": [
             {
               "version": "1.5.12",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-11226",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 6.4,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:L"
+        }
+      ],
+      "cwes": [
+        20
+      ],
+      "description": "ACE vulnerability in conditional configuration file processing  by QOS.CH logback-core up to and including version 1.5.18 in Java applications, allows an attacker to execute arbitrary code by compromising an existing logback configuration file or by injecting an environment variable before program execution.\n\n\n\nA successful attack requires the presence of Janino library and Spring Framework to be present on the user's class path. In addition, the attacker must  have write access to a \nconfiguration file. Alternatively, the attacker could inject a malicious \nenvironment variable pointing to a malicious configuration file. In both \ncases, the attack requires existing privilege.",
+      "recommendation": "Upgrade ch.qos.logback:logback-core to version 1.5.19, 1.3.16",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-11226"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-11226"
+        },
+        {
+          "url": "https://github.com/qos-ch/logback"
+        },
+        {
+          "url": "https://github.com/qos-ch/logback/commit/61f6a2544f36b3016e0efd434ee21f19269f1df7"
+        },
+        {
+          "url": "https://github.com/qos-ch/logback/issues/974"
+        },
+        {
+          "url": "https://github.com/qos-ch/logback/releases/tag/v_1.5.19"
+        },
+        {
+          "url": "https://logback.qos.ch/news.html#1.3.16"
+        },
+        {
+          "url": "https://logback.qos.ch/news.html#1.5.19"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11226"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-11226"
+        }
+      ],
+      "published": "2025-10-01T08:15:31+00:00",
+      "updated": "2025-10-31T15:15:41+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/ch.qos.logback/logback-core@1.5.12",
+          "versions": [
+            {
+              "version": "1.5.12",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-22223",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "cwes": [
+        290
+      ],
+      "description": "Spring Security 6.4.0 - 6.4.3 may not correctly locate method security annotations on parameterized types or methods. This may cause an authorization bypass. \n\nYou are not affected if you are not using @EnableMethodSecurity, or\nyou do not have method security annotations on parameterized types or methods, or all method security annotations are attached to target methods",
+      "recommendation": "Upgrade org.springframework.security:spring-security-core to version 6.4.4",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-22223"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-22223"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/commit/dc2e1af2dab8ef81cd4edd25b56a2babeaab8cf9"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-22223"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-22223"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-22223"
+        }
+      ],
+      "published": "2025-03-24T18:15:22+00:00",
+      "updated": "2025-03-27T16:45:46+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework.security/spring-security-core@6.4.2",
+          "versions": [
+            {
+              "version": "6.4.2",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-22228",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.4,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.4,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+        }
+      ],
+      "cwes": [
+        287
+      ],
+      "description": "BCryptPasswordEncoder.matches(CharSequence,String) will incorrectly return true for passwords larger than 72 characters as long as the first 72 characters are the same.",
+      "recommendation": "Upgrade org.springframework.security:spring-security-crypto to version 6.3.8, 6.4.4, 6.2.10, 6.1.14, 6.0.16, 5.8.18, 5.7.16",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-22228"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-22228"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/commit/46f0dc6dfc8402cd556c598fdf2d31f9d46cdbf3"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-22228"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250425-0009"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250425-0009/"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-22228"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-22228"
+        }
+      ],
+      "published": "2025-03-20T06:15:23+00:00",
+      "updated": "2025-04-25T23:15:16+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework.security/spring-security-crypto@6.4.2",
+          "versions": [
+            {
+              "version": "6.4.2",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-22233",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 3.1,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "cwes": [
+        20
+      ],
+      "description": "CVE-2024-38820 ensured Locale-independent, lowercase conversion for both the configured disallowedFields patterns and for request parameter names. However, there are still cases where it is possible to bypass the disallowedFields checks.\n\nAffected Spring Products and Versions\n\nSpring Framework:\n  *  6.2.0 - 6.2.6\n\n  *  6.1.0 - 6.1.19\n\n  *  6.0.0 - 6.0.27\n\n  *  5.3.0 - 5.3.42\n  *  Older, unsupported versions are also affected\n\n\n\nMitigation\n\nUsers of affected versions should upgrade to the corresponding fixed version.\n\nAffected version(s)Fix Version Availability 6.2.x\n 6.2.7\nOSS6.1.x\n 6.1.20\nOSS6.0.x\n 6.0.28\n Commercial https://enterprise.spring.io/ 5.3.x\n 5.3.43\n Commercial https://enterprise.spring.io/ \nNo further mitigation steps are necessary.\n\n\nGenerally, we recommend using a dedicated model object with properties only for data binding, or using constructor binding since constructor arguments explicitly declare what to bind together with turning off setter binding through the declarativeBinding flag. See the Model Design section in the reference documentation.\n\nFor setting binding, prefer the use of allowedFields (an explicit list) over disallowedFields.\n\nCredit\n\nThis issue was responsibly reported by the TERASOLUNA Framework Development Team from NTT DATA Group Corporation.",
+      "recommendation": "Upgrade org.springframework:spring-context to version 6.2.7, 6.1.20",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-22233"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/commit/edfcc6ffb188e4614ec9b212e3208b666981851c"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/commit/ee62701f5634e904e42e218baad142cea2bcd332"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/issues/34801"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N&version=3.1"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-22233"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-22233"
+        }
+      ],
+      "published": "2025-05-16T20:15:22+00:00",
+      "updated": "2025-05-19T13:35:20+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework/spring-context@6.2.1",
+          "versions": [
+            {
+              "version": "6.2.1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-22235",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.3,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.3,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+        }
+      ],
+      "cwes": [
+        20
+      ],
+      "description": "EndpointRequest.to() creates a matcher for null/** if the actuator endpoint, for which the EndpointRequest has been created, is disabled or not exposed.\n\nYour application may be affected by this if all the following conditions are met:\n\n  *  You use Spring Security\n  *  EndpointRequest.to() has been used in a Spring Security chain configuration\n  *  The endpoint which EndpointRequest references is disabled or not exposed via web\n  *  Your application handles requests to /null and this path needs protection\n\n\nYou are not affected if any of the following is true:\n\n  *  You don't use Spring Security\n  *  You don't use EndpointRequest.to()\n  *  The endpoint which EndpointRequest.to() refers to is enabled and is exposed\n  *  Your application does not handle requests to /null or this path does not need protection",
+      "recommendation": "Upgrade org.springframework.boot:spring-boot to version 3.3.11, 3.4.5",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-22235"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-22235"
+        },
+        {
+          "url": "https://github.com/advisories/GHSA-rc42-6c7j-7h5r"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-boot"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-22235"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250516-0010"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250516-0010/"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-22235"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-22235"
+        }
+      ],
+      "published": "2025-04-28T08:15:15+00:00",
+      "updated": "2025-05-16T23:15:19+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework.boot/spring-boot@3.4.1",
+          "versions": [
+            {
+              "version": "3.4.1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-24813",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H"
+        },
+        {
+          "source": {
+            "name": "nvd"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "critical"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 8.6,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "high"
+        }
+      ],
+      "cwes": [
+        44,
+        502,
+        706
+      ],
+      "description": "Path Equivalence: 'file.Name' (Internal Dot) leading to Remote Code Execution and/or Information disclosure and/or malicious content added to uploaded files via write enabled Default Servlet in Apache Tomcat.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.2, from 10.1.0-M1 through 10.1.34, from 9.0.0.M1 through 9.0.98.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nIf all of the following were true, a malicious user was able to view       security sensitive files and/or inject content into those files:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- a target URL for security sensitive uploads that was a sub-directory of a target URL for public uploads\n- attacker knowledge of the names of security sensitive files being uploaded\n- the security sensitive files also being uploaded via partial PUT\n\nIf all of the following were true, a malicious user was able to       perform remote code execution:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- application was using Tomcat's file based session persistence with the default storage location\n- application included a library that may be leveraged in a deserialization attack\n\nUsers are recommended to upgrade to version 11.0.3, 10.1.35 or 9.0.99, which fixes the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.3, 10.1.35, 9.0.99",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-24813"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/03/10/5"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:7497"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-24813"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2326972"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2332815"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2351129"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2332817"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2351129"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-50379"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-24813"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2025-7497.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:3683"
+        },
+        {
+          "url": "https://github.com/absholi7ly/POC-CVE-2025-24813/blob/main/README.md"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/0a668e0c27f2b7ca0cc7c6eea32253b9b5ecb29c"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/eb61aade8f8daccaecabf07d428b877975622f72"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/f6c01d6577cf9a1e06792be47e623d36acc3b5dc"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-24813.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-7497.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/j5fkjv2k477os90nczf2v9l61fb0kkgq"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/04/msg00003.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-24813"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250321-0001"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250321-0001/"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7525-1"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7525-2"
+        },
+        {
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-24813"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-24813"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/cve-2025-24813-detect-apache-tomcat-rce"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/cve-2025-24813-mitigate-apache-tomcat-rce"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/cve-2025-24813-tomcat-detect-vulnerability"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/cve-2025-24813-tomcat-mitigation-vulnerability"
+        }
+      ],
+      "published": "2025-03-10T17:15:35+00:00",
+      "updated": "2025-10-23T14:49:29+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-31650",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "nvd"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        459
+      ],
+      "description": "Improper Input Validation vulnerability in Apache Tomcat. Incorrect error handling for some invalid HTTP priority headers resulted in incomplete clean-up of the failed request which created a memory leak. A large number of such requests could trigger an OutOfMemoryException resulting in a denial of service.\n\nThis issue affects Apache Tomcat: from 9.0.76 through 9.0.102, from 10.1.10 through 10.1.39, from 11.0.0-M2 through 11.0.5.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.90 though 8.5.100.\n\n\nUsers are recommended to upgrade to version 9.0.104, 10.1.40 or 11.0.6 which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 9.0.104, 10.1.40, 11.0.6",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-31650"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/04/28/2"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:11332"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-31650"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2333521"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2362783"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2333521"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2362783"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56337"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-31650"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2025-11332.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:11333"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/1eef1dc459c45f1e421d8bd25ef340fc1cc34edc"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/40ae788c2e64d018b4e58cd4210bb96434d0100d"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/75554da2fc5574862510ae6f0d7b3d78937f1d40"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/8cc3b8fb3f2d8d4d6a757e014f19d1fafa948a60"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/b7674782679e1514a0d154166b1d04d38aaac4a9"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/b98e74f517b36929f4208506e5adad22cb767baa"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/cba1a0fe1289ee7f5dd46c61c38d1e1ac5437bff"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/ded0285b96b4d3f5560dfc8856ad5ec4a9b50ba9"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/f619e6a05029538886d5a9d987925d573b5bb8c2"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-31650.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-11335.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/j6zzk0y3yym9pzfzkq5vcyxzz0yzh826"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-31650"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7705-1"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-31650"
+        }
+      ],
+      "published": "2025-04-28T20:15:20+00:00",
+      "updated": "2025-11-03T20:18:25+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-31651",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "low"
+        },
+        {
+          "source": {
+            "name": "nvd"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "critical"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        116
+      ],
+      "description": "Improper Neutralization of Escape, Meta, or Control Sequences vulnerability in Apache Tomcat. For a subset of unlikely rewrite rule configurations, it was possible \nfor a specially crafted request to bypass some rewrite rules. If those \nrewrite rules effectively enforced security constraints, those \nconstraints could be bypassed.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.5, from 10.1.0-M1 through 10.1.39, from 9.0.0.M1 through 9.0.102.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nUsers are recommended to upgrade to version [FIXED_VERSION], which fixes the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 9.0.104, 10.1.40, 11.0.6",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-31651"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/04/28/3"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-31651"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/066bf6b6a15a4e7e0941d4acf096841165b97098"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/175dc75fc428930034a6c93fb52f830d955d8e64"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/ee3ab548e92345eca0cbd1f01649eb36c6f29454"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/fbecc915a10c5a3d634c5e2c6ced4ff479ce9953"
+        },
+        {
+          "url": "https://lists.apache.org/list.html?announce@tomcat.apache.org"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-31651"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7705-1"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-31651"
+        }
+      ],
+      "published": "2025-04-28T20:15:20+00:00",
+      "updated": "2025-11-03T20:18:25+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-41232",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 9.1,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.4,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+        }
+      ],
+      "cwes": [
+        693
+      ],
+      "description": "Spring Security Aspects may not correctly locate method security annotations on private methods. This can cause an authorization bypass.\n\nYour application may be affected by this if the following are true:\n\n  *  You are using @EnableMethodSecurity(mode=ASPECTJ) and spring-security-aspects, and\n  *  You have Spring Security method annotations on a private method\nIn that case, the target method may be able to be invoked without proper authorization.\n\nYou are not affected if:\n\n  *  You are not using @EnableMethodSecurity(mode=ASPECTJ) or spring-security-aspects, or\n  *  You have no Spring Security-annotated private methods",
+      "recommendation": "Upgrade org.springframework.security:spring-security-core to version 6.4.6",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-41232"
+        },
+        {
+          "url": "http://spring.io/security/cve-2025-41232"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-41232"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/commit/bf2aaa1b1830e534ba651d422545ac08a115151b"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/commit/c972de5369a1261ab674a3f5e3a80e8ce3e8cdfb"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/releases/tag/6.4.6"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41232"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-41232"
+        }
+      ],
+      "published": "2025-05-21T12:16:21+00:00",
+      "updated": "2025-05-21T20:24:58+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework.security/spring-security-core@6.4.2",
+          "versions": [
+            {
+              "version": "6.4.2",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-41234",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N"
+        }
+      ],
+      "cwes": [
+        113
+      ],
+      "description": "Description\n\nIn Spring Framework, versions 6.0.x as of 6.0.5, versions 6.1.x and 6.2.x, an application is vulnerable to a reflected file download (RFD) attack when it sets a “Content-Disposition” header with a non-ASCII charset, where the filename attribute is derived from user-supplied input.\n\nSpecifically, an application is vulnerable when all the following are true:\n\n  *  The header is prepared with org.springframework.http.ContentDisposition.\n  *  The filename is set via ContentDisposition.Builder#filename(String, Charset).\n  *  The value for the filename is derived from user-supplied input.\n  *  The application does not sanitize the user-supplied input.\n  *  The downloaded content of the response is injected with malicious commands by the attacker (see RFD paper reference for details).\n\n\nAn application is not vulnerable if any of the following is true:\n\n  *  The application does not set a “Content-Disposition” response header.\n  *  The header is not prepared with org.springframework.http.ContentDisposition.\n  *  The filename is set via one of:  *  ContentDisposition.Builder#filename(String), or\n  *  ContentDisposition.Builder#filename(String, ASCII)\n\n\n\n  *  The filename is not derived from user-supplied input.\n  *  The filename is derived from user-supplied input but sanitized by the application.\n  *  The attacker cannot inject malicious content in the downloaded content of the response.\n\n\nAffected Spring Products and VersionsSpring Framework:\n\n  *  6.2.0 - 6.2.7\n  *  6.1.0 - 6.1.20\n  *  6.0.5 - 6.0.28\n  *  Older, unsupported versions are not affected\n\n\nMitigationUsers of affected versions should upgrade to the corresponding fixed version.\n\nAffected version(s)Fix versionAvailability6.2.x6.2.8OSS6.1.x6.1.21OSS6.0.x6.0.29 Commercial https://enterprise.spring.io/ No further mitigation steps are necessary.\n\n\nCWE-113 in `Content-Disposition` handling in VMware Spring Framework versions 6.0.5 to 6.2.7 allows remote attackers to launch Reflected File Download (RFD) attacks via unsanitized user input in `ContentDisposition.Builder#filename(String, Charset)` with non-ASCII charsets.",
+      "recommendation": "Upgrade org.springframework:spring-web to version 6.2.8, 6.1.21",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-41234"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-41234"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/commit/f0e7b42704e6b33958f242d91bd690d6ef7ada9c"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/commit/fd68ea6fcbf94fc1d38bfefd3692fe094652ab3d"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/issues/35034"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N&version=3.1"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41234"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-41234"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-41234"
+        }
+      ],
+      "published": "2025-06-12T22:15:21+00:00",
+      "updated": "2025-06-16T12:32:18+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework/spring-web@6.2.1",
+          "versions": [
+            {
+              "version": "6.2.1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-41242",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 5.9,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.9,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "description": "Spring Framework MVC applications can be vulnerable to a “Path Traversal Vulnerability” when deployed on a non-compliant Servlet container.\n\nAn application can be vulnerable when all the following are true:\n\n  *  the application is deployed as a WAR or with an embedded Servlet container\n  *  the Servlet container  does not reject suspicious sequences https://jakarta.ee/specifications/servlet/6.1/jakarta-servlet-spec-6.1.html#uri-path-canonicalization \n  *  the application  serves static resources https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/static-resources.html#page-title  with Spring resource handling\n\n\nWe have verified that applications deployed on Apache Tomcat or Eclipse Jetty are not vulnerable, as long as default security features are not disabled in the configuration. Because we cannot check exploits against all Servlet containers and configuration variants, we strongly recommend upgrading your application.",
+      "recommendation": "Upgrade org.springframework:spring-webmvc to version 6.2.10",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-41242"
+        },
+        {
+          "url": "http://spring.io/security/cve-2025-41242"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-41242"
+        },
+        {
+          "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/static-resources.html#page-title"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "url": "https://jakarta.ee/specifications/servlet/6.1/jakarta-servlet-spec-6.1.html#uri-path-canonicalization"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41242"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-41242"
+        }
+      ],
+      "published": "2025-08-18T09:15:28+00:00",
+      "updated": "2025-08-18T20:16:28+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework/spring-webmvc@6.2.1",
+          "versions": [
+            {
+              "version": "6.2.1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-41248",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "cwes": [
+        289
+      ],
+      "description": "The Spring Security annotation detection mechanism may not correctly resolve annotations on methods within type hierarchies with a parameterized super type with unbounded generics. This can be an issue when using @PreAuthorize and other method security annotations, resulting in an authorization bypass.\n\nYour application may be affected by this if you are using Spring Security's @EnableMethodSecurity feature.\n\nYou are not affected by this if you are not using @EnableMethodSecurity or if you do not use security annotations on methods in generic superclasses or generic interfaces.\n\nThis CVE is published in conjunction with  CVE-2025-41249 https://spring.io/security/cve-2025-41249 .",
+      "recommendation": "Upgrade org.springframework.security:spring-security-core to version 6.4.10, 6.5.4",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-41248"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-41248"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/commit/d0f93fa6d8338149943ae640c53db07de827867f"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/commit/e5694ac7b5e4394b920c6cab48b7bfbd871f84bd"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/issues/17898"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/issues/17899"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/releases/tag/6.4.10"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-security/releases/tag/6.5.4"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41248"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-41248"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-41248"
+        }
+      ],
+      "published": "2025-09-16T11:15:30+00:00",
+      "updated": "2025-09-16T20:15:35+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework.security/spring-security-core@6.4.2",
+          "versions": [
+            {
+              "version": "6.4.2",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-41249",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "cwes": [
+        285
+      ],
+      "description": "The Spring Framework annotation detection mechanism may not correctly resolve annotations on methods within type hierarchies with a parameterized super type with unbounded generics. This can be an issue if such annotations are used for authorization decisions.\n\nYour application may be affected by this if you are using Spring Security's @EnableMethodSecurity feature.\n\nYou are not affected by this if you are not using @EnableMethodSecurity or if you do not use security annotations on methods in generic superclasses or generic interfaces.\n\nThis CVE is published in conjunction with  CVE-2025-41248 https://spring.io/security/cve-2025-41248 .",
+      "recommendation": "Upgrade org.springframework:spring-core to version 6.2.11",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-41249"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-41249"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/commit/6d710d482a6785b069e35022e81758953afc21ff"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/issues/35342"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.11"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41249"
+        },
+        {
+          "url": "https://spring.io/security/cve-2025-41249"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-41249"
+        }
+      ],
+      "published": "2025-09-16T11:15:30+00:00",
+      "updated": "2025-09-16T20:15:35+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.springframework/spring-core@6.2.1",
+          "versions": [
+            {
+              "version": "6.2.1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-46701",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.3,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "low"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        178
+      ],
+      "description": "Improper Handling of Case Sensitivity vulnerability in Apache Tomcat's GCI servlet allows security constraint bypass of security constraints that apply to the pathInfo component of a URI mapped to the CGI servlet.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.6, from 10.1.0-M1 through 10.1.40, from 9.0.0.M1 through 9.0.104.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nUsers are recommended to upgrade to version 11.0.7, 10.1.41 or 9.0.105, which fixes the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 9.0.105, 10.1.41, 11.0.7",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-46701"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/05/29/4"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-46701"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/0f01966eb60015d975525019e12a087f05ebf01a"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/0f01966eb60015d975525019e12a087f05ebf01a"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/238d2aa54b99f91d1111467e2237d2244c64e558"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/238d2aa54b99f91d1111467e2237d2244c64e558"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/2c6800111e7d8d8d5403c07978ea9bff3db5a5a5"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/2c6800111e7d8d8d5403c07978ea9bff3db5a5a5"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/8cb95ff03221067c511b3fa66d4f745bc4b0a605"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/8cb95ff03221067c511b3fa66d4f745bc4b0a605"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/8df00018a252baa9497615d6420fb6c10466fa74"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/8df00018a252baa9497615d6420fb6c10466fa74"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/fab7247d2f0e3a29d5daef565f829f383e10e5e2"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/fab7247d2f0e3a29d5daef565f829f383e10e5e2"
+        },
+        {
+          "url": "https://lists.apache.org/thread/xhqqk9w5q45srcdqhogdk04lhdscv30j"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-46701"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.41"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html#Fixed_in_Apache_Tomcat_11.0.7"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html#Fixed_in_Apache_Tomcat_9.0.105"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7705-1"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-46701"
+        }
+      ],
+      "published": "2025-05-29T19:15:27+00:00",
+      "updated": "2025-11-03T20:19:05+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-48988",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        770
+      ],
+      "description": "Allocation of Resources Without Limits or Throttling vulnerability in Apache Tomcat.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.7, from 10.1.0-M1 through 10.1.41, from 9.0.0.M1 through 9.0.105.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nUsers are recommended to upgrade to version 11.0.8, 10.1.42 or 9.0.106, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.8, 10.1.42, 9.0.106",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-48988"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/06/16/1"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:14178"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-48988"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379386"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379386"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48976"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48988"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48989"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-49125"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52434"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52520"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53506"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2025-14178.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:14177"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/2b0ab14fb55d4edc896e5f1817f2ab76f714ae5e"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/2b0ab14fb55d4edc896e5f1817f2ab76f714ae5e"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/cdde8e655bc1c5c60a07efd216251d77c52fd7f6"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/cdde8e655bc1c5c60a07efd216251d77c52fd7f6"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/ee8042ffce4cb9324dfd79efda5984f37bbb6910"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/ee8042ffce4cb9324dfd79efda5984f37bbb6910"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-48988.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-14181.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/nzkqsok8t42qofgqfmck536mtyzygp18"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-48988"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-48988"
+        }
+      ],
+      "published": "2025-06-16T15:15:24+00:00",
+      "updated": "2025-11-03T20:19:07+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-48989",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        404
+      ],
+      "description": "Improper Resource Shutdown or Release vulnerability in Apache Tomcat made Tomcat vulnerable to the made you reset attack.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.9, from 10.1.0-M1 through 10.1.43 and from 9.0.0.M1 through 9.0.107. Older, EOL versions may also be affected.\n\nUsers are recommended to upgrade to one of versions 11.0.10, 10.1.44 or 9.0.108 which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.10, 10.1.44, 9.0.108",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-48989"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/08/13/2"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:14178"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-48989"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379386"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379386"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48976"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48988"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48989"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-49125"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52434"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52520"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53506"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2025-14178.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:14177"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/73c04a10395774bda71a0b37802cf983662ce255"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/73c04a10395774bda71a0b37802cf983662ce255"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/f362c8eb3b8ec5b7f312f7f5610731c0fb299a06"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/f362c8eb3b8ec5b7f312f7f5610731c0fb299a06"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/f36b8a4eea4ce8a0bc035079e1d259d29f5eb7bf"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/f36b8a4eea4ce8a0bc035079e1d259d29f5eb7bf"
+        },
+        {
+          "url": "https://kb.cert.org/vuls/id/767506"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-48989.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-14181.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/9ydfg0xr0tchmglcprhxgwhj0hfwxlyf"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-48989"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-48989"
+        },
+        {
+          "url": "https://www.kb.cert.org/vuls/id/767506"
+        }
+      ],
+      "published": "2025-08-13T13:15:34+00:00",
+      "updated": "2025-11-04T22:16:17+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-49124",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 8.4,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        }
+      ],
+      "cwes": [
+        426
+      ],
+      "description": "Untrusted Search Path vulnerability in Apache Tomcat installer for Windows. During installation, the Tomcat installer for Windows used icacls.exe without specifying a full path.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.7, from 10.1.0 through 10.1.41, from 9.0.23 through 9.0.105.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 through 8.5.100 and 7.0.95 through 7.0.109. Other EOL versions may also be affected.\n\n\nUsers are recommended to upgrade to version 11.0.8, 10.1.42 or 9.0.106, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.8, 10.1.42, 9.0.106",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-49124"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/06/16/3"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/28726cc2e63bed68771f5eb0f65a78dc7080571823"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/c56456cda8151c9504dfb7985700824559d769a7"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/e0e07812224d327a321babb554f5a5758d30cc49"
+        },
+        {
+          "url": "https://lists.apache.org/thread/lnow7tt2j6hb9kcpkggx32ht6o90vqzv"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-49124"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.42"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html#Fixed_in_Apache_Tomcat_11.0.8"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html#Fixed_in_Apache_Tomcat_9.0.106"
+        }
+      ],
+      "published": "2025-06-16T15:15:24+00:00",
+      "updated": "2025-10-29T12:15:36+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-49125",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 3.7,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        288
+      ],
+      "description": "Authentication Bypass Using an Alternate Path or Channel vulnerability in Apache Tomcat.  When using PreResources or PostResources mounted other than at the root of the web application, it was possible to access those resources via an unexpected path. That path was likely not to be protected by the same security constraints as the expected path, allowing those security constraints to be bypassed.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.7, from 10.1.0-M1 through 10.1.41, from 9.0.0.M1 through 9.0.105.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 through 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nUsers are recommended to upgrade to version 11.0.8, 10.1.42 or 9.0.106, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.8, 10.1.42, 9.0.106",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-49125"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/06/16/2"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:14178"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-49125"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379386"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379386"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48976"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48988"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48989"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-49125"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52434"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52520"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53506"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2025-14178.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:14177"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/7617b9c247bc77ed0444dd69adcd8aa48777886c"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/7617b9c247bc77ed0444dd69adcd8aa48777886c"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/9418e3ff9f1f4c006b4661311ae9376c52d162b9"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/9418e3ff9f1f4c006b4661311ae9376c52d162b9"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/d94bd36fb7eb32e790dae0339bc249069649a637"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/d94bd36fb7eb32e790dae0339bc249069649a637"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-49125.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-14181.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/m66cytbfrty9k7dc4cg6tl1czhsnbywk"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-49125"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-49125"
+        }
+      ],
+      "published": "2025-06-16T15:15:24+00:00",
+      "updated": "2025-11-03T20:19:08+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-55752",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "cwes": [
+        23
+      ],
+      "description": "Relative Path Traversal vulnerability in Apache Tomcat.\n\nThe fix for bug 60013 introduced a regression where the       rewritten URL was normalized before it was decoded. This introduced the       possibility that, for rewrite rules that rewrite query parameters to the       URL, an attacker could manipulate the request URI to bypass security       constraints including the protection for /WEB-INF/ and /META-INF/. If PUT requests were also enabled then malicious files could be uploaded leading to remote code execution. PUT requests are normally limited to trusted users and it is considered unlikely that PUT requests would be enabled in conjunction with a rewrite that manipulated the URI.\n\n\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.10, from 10.1.0-M1 through 10.1.44, from 9.0.0.M11 through 9.0.108.\n\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.6 though 8.5.100. Other, older, EOL versions may also be affected.\nUsers are recommended to upgrade to version 11.0.11 or later, 10.1.45 or later or 9.0.109 or later, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.11, 10.1.45, 9.0.109",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-55752"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/10/27/4"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-55752"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/130d36d8492ef9e4eb22952c17c92423cb35fd06"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/b5042622b8b78340ae65403c55dcb9c7416924df"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/fec06c610ed7466b401e29cc567a58aee5ed826a"
+        },
+        {
+          "url": "https://lists.apache.org/thread/n05kjcwyj1s45ovs8ll1qrrojhfb1tog"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55752"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.45"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html#Fixed_in_Apache_Tomcat_11.0.11"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html#Fixed_in_Apache_Tomcat_9.0.109"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-55752"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/cve-2025-55752-detect-apache-tomcat-vulnerability"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/cve-2025-55752-mitigate-apache-tomcat-vulnerability"
+        }
+      ],
+      "published": "2025-10-27T18:15:42+00:00",
+      "updated": "2025-11-14T17:44:41+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-55754",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 9.7,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 9.7,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "cwes": [
+        150
+      ],
+      "description": "Improper Neutralization of Escape, Meta, or Control Sequences vulnerability in Apache Tomcat.\n\nTomcat did not escape ANSI escape sequences in log messages. If Tomcat was running in a console on a Windows operating system, and the console supported ANSI escape sequences, it was possible for an attacker to use a specially crafted URL to inject ANSI escape sequences to manipulate the console and the clipboard and attempt to trick an administrator into running an attacker controlled command. While no attack vector was found, it may have been possible to mount this attack on other operating systems.\n\n\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.10, from 10.1.0-M1 through 10.1.44, from 9.0.40 through 9.0.108.\n\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.60 though 8.5.100. Other, older, EOL versions may also be affected.\nUsers are recommended to upgrade to version 11.0.11 or later, 10.1.45 or later or 9.0.109 or later, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.11, 10.1.45, 9.0.109",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-55754"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/10/27/5"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-55754"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/138d7f5cfaae683078948303333c080e6faa75d2"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/5a3db092982c0c58d4855304167ee757fe5e79bb"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/a03cabf3a36a42d27d8d997ed31f034f50ba6cd5"
+        },
+        {
+          "url": "https://lists.apache.org/thread/j7w54hqbkfcn0xb9xy0wnx8w5nymcbqd"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55754"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.45"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html#Fixed_in_Apache_Tomcat_11.0.11"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html#Fixed_in_Apache_Tomcat_9.0.109"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-55754"
+        }
+      ],
+      "published": "2025-10-27T18:15:42+00:00",
+      "updated": "2025-11-14T17:37:41+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-61795",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "severity": "low"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "cwes": [
+        404
+      ],
+      "description": "Improper Resource Shutdown or Release vulnerability in Apache Tomcat.\n\nIf an error occurred (including exceeding limits) during the processing of a multipart upload, temporary copies of the uploaded parts written to disc were not cleaned up immediately but left for the garbage collection process to delete. Depending on JVM settings, application memory usage and application load, it was possible that space for the temporary copies of uploaded parts would be filled faster than GC cleared it, leading to a DoS.\n\n\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.11, from 10.1.0-M1 through 10.1.46, from 9.0.0.M1 through 9.0.109.\n\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions may also be affected.\nUsers are recommended to upgrade to version 11.0.12 or later, 10.1.47 or later or 9.0.110 or later which fixes the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.12, 10.1.47, 9.0.110",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-61795"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/10/27/6"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-61795"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/1cdf5f730ede75a0759492f179ac21ca4ff68e06"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/af6e9181620304c0d818121c29c074e1330610d0"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/afa422bd7ca1eef0f507259c682fd876494d9c3b"
+        },
+        {
+          "url": "https://lists.apache.org/thread/wm9mx8brmx9g4zpywm06ryrtvd3160pp"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-61795"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.47"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html#Fixed_in_Apache_Tomcat_11.0.12"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html#Fixed_in_Apache_Tomcat_9.0.110"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-61795"
+        }
+      ],
+      "published": "2025-10-27T18:15:44+00:00",
+      "updated": "2025-11-14T16:53:33+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
               "status": "affected"
             }
           ]
