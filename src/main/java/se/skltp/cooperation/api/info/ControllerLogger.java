@@ -17,7 +17,7 @@ import java.util.Map;
 @Component
 public class ControllerLogger implements ApplicationListener<ApplicationReadyEvent> {
 
-	private final Logger log = LoggerFactory.getLogger(ControllerLogger.class);
+	Logger log = LoggerFactory.getLogger(ControllerLogger.class);
 	private final ServletContext servletContext;
 
 	public ControllerLogger(ServletContext servletContext) {

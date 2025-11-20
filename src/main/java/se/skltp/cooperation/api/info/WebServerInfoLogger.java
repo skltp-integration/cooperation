@@ -14,7 +14,7 @@ import java.util.Enumeration;
 @Component
 public class WebServerInfoLogger implements ApplicationListener<WebServerInitializedEvent> {
 
-	private final Logger log = LoggerFactory.getLogger(WebServerInfoLogger.class);
+	Logger log = LoggerFactory.getLogger(WebServerInfoLogger.class);
 
 	private final String bindAddress;
 
