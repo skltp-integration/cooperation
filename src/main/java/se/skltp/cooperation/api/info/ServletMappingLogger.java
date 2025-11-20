@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServletMappingLogger implements ApplicationListener<ApplicationReadyEvent> {
 
-	private final Logger log = LoggerFactory.getLogger(ServletMappingLogger.class);
+	Logger log = LoggerFactory.getLogger(ServletMappingLogger.class);
 
 	private final ServletContext servletContext;
 
