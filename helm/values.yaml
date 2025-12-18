@@ -46,8 +46,8 @@ environment:
 probes:
   startupProbe:
     httpGet:
-      path: coop/actuator/health/readiness
-      port: http
+      path: /actuator/health/readiness
+      port: actuators
     initialDelaySeconds: 20
     periodSeconds: 5  # 20s initial + 10 failures * 5s period + 4s timeout = 20-74 seconds startup before failure and restart.
     timeoutSeconds: 4
@@ -55,8 +55,8 @@ probes:
     failureThreshold: 10
   livenessProbe:
     httpGet:
-      path: coop/actuator/health/liveness
-      port: http
+      path: /actuator/health/liveness
+      port: actuators
     initialDelaySeconds: 10
     periodSeconds: 10
     timeoutSeconds: 5
@@ -66,8 +66,8 @@ probes:
     successThreshold: 1
   readinessProbe:
     httpGet:
-      path: coop/actuator/health/readiness
-      port: http
+      path: /actuator/health/readiness
+      port: actuators
     # lower initial delay than liveness, but same period, allows traffic to be governed before liveness is tested.
     initialDelaySeconds: 9
     periodSeconds: 10
