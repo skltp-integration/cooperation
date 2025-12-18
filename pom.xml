@@ -10,7 +10,7 @@
   </parent>
   <groupId>se.skltp.cooperation</groupId>
   <artifactId>cooperation</artifactId>
-  <version>1.8.5</version>
+  <version>1.8.6</version>
   <name>cooperation</name>
   <description>Established Cooperation</description>
   <scm>

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:218acb75-dfc0-4647-81cd-2644023f04d8",
+  "serialNumber": "urn:uuid:abc7b084-1d1b-4093-87da-9e50cfa24be0",
   "version": 1,
   "metadata": {
-    "timestamp": "2025-11-20T14:41:38+00:00",
+    "timestamp": "2025-12-18T12:26:21+00:00",
     "tools": {
       "components": [
         {
@@ -20,18 +20,14 @@
       ]
     },
     "component": {
-      "bom-ref": "pkg:oci/cooperation-scripts@sha256%3Aca37dc5b9c3009edd10c803c164fdca180df4cfc0f6b234d402e042cb26361d4?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "bom-ref": "pkg:oci/cooperation-scripts@sha256%3Ac3469615c25118ea7586f787980b625000863440bf1e8d49874b3c7dab89ebb3?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "type": "container",
-      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.5",
-      "purl": "pkg:oci/cooperation-scripts@sha256%3Aca37dc5b9c3009edd10c803c164fdca180df4cfc0f6b234d402e042cb26361d4?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.6",
+      "purl": "pkg:oci/cooperation-scripts@sha256%3Ac3469615c25118ea7586f787980b625000863440bf1e8d49874b3c7dab89ebb3?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "properties": [
         {
           "name": "aquasecurity:trivy:DiffID",
           "value": "sha256:03a73aa888f9dd2c2910f7b982cf4f9559302ae20aafc48171566a224f046a1d"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -43,19 +39,23 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
           "value": "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:bd115b6bb11423b303878440e2e5d872129643090fccaddbc3a3daec69286b0a"
+          "value": "sha256:68ebeec8cf384d6cfca1365e7bc13e2f32e0ac7b3553798291c3f4ae14e96385"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:bf153f077d238ac8252e33698ca2e89e4cfe39613320fbea391eec8cfa3fc1f5"
+          "value": "sha256:72ec8e253144831fc14f88c5bb8593462a33e1827d4f49ce18274ad9891b6612"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:7fef2100192e4c67267c607723fba6cabb51806aa2ddb7fff581d93510e90e84"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:bd115b6bb11423b303878440e2e5d872129643090fccaddbc3a3daec69286b0a"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -75,7 +75,7 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:e5e66c2184e128e59f77cc3d98986e7505b95a2bbdf72877c0366028cc9479d7"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -83,11 +83,11 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:ecf58bb893194b9a85f095c18d496aeaf70e8f7df700e44d5d6201b9584a82c5"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:ImageID",
-          "value": "sha256:4977ed7ca5b746ef85c8d1928cc9bcc18373e045b91b23068e0bd46b586c11c5"
+          "value": "sha256:67f09ff49ba7eac6575fd81f1ccfd483433e9c17d3106057f276d713c54ff917"
         },
         {
           "name": "aquasecurity:trivy:Labels:org.opencontainers.image.ref.name",
@@ -99,7 +99,7 @@
         },
         {
           "name": "aquasecurity:trivy:RepoDigest",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:ca37dc5b9c3009edd10c803c164fdca180df4cfc0f6b234d402e042cb26361d4"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:c3469615c25118ea7586f787980b625000863440bf1e8d49874b3c7dab89ebb3"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -107,11 +107,7 @@
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.5"
-        },
-        {
-          "name": "aquasecurity:trivy:RepoTag",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.9.0-SNAPSHOT"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.6"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -127,14 +123,14 @@
         },
         {
           "name": "aquasecurity:trivy:Size",
-          "value": "689841664"
+          "value": "690792448"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "128844c3-dab2-49f2-bc09-e6092b12312c",
+      "bom-ref": "16abceca-80e1-418c-9834-32f6cc1b20b2",
       "type": "operating-system",
       "name": "ubuntu",
       "version": "24.04",
@@ -150,7 +146,35 @@
       ]
     },
     {
-      "bom-ref": "c1b9815a-1ce4-4bab-94a5-cf983cbe5127",
+      "bom-ref": "1a56cac5-20e6-4239-a1a5-74de9e6b2b27",
+      "type": "library",
+      "group": "org.apache.groovy",
+      "name": "groovy",
+      "version": "4.0.27",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "7df83ee90d3a0e11917ed3256ece0d415b117fb4"
+        }
+      ],
+      "purl": "pkg:maven/org.apache.groovy/groovy@4.0.27",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "opt/groovy/grooid/groovy-4.0.27-grooid.jar"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:03a73aa888f9dd2c2910f7b982cf4f9559302ae20aafc48171566a224f046a1d"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "70d6b2eb-53e1-485e-aa7f-5a54d4ae2720",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy-test",
@@ -178,7 +202,7 @@
       ]
     },
     {
-      "bom-ref": "cd3fd44d-738b-42dd-b123-7d88752d8c07",
+      "bom-ref": "e3233d20-c16d-4923-b079-f6491f0316a0",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy-test",
@@ -206,7 +230,7 @@
       ]
     },
     {
-      "bom-ref": "e4040566-9a7e-4b80-b623-3fd4a1b90b0d",
+      "bom-ref": "ff13a597-ed62-479f-acbe-db09c79840d4",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy",
@@ -222,34 +246,6 @@
         {
           "name": "aquasecurity:trivy:FilePath",
           "value": "opt/groovy/lib/groovy-4.0.27.jar"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:03a73aa888f9dd2c2910f7b982cf4f9559302ae20aafc48171566a224f046a1d"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "jar"
-        }
-      ]
-    },
-    {
-      "bom-ref": "fe9fab78-c783-4c01-a5a8-d77f5913277b",
-      "type": "library",
-      "group": "org.apache.groovy",
-      "name": "groovy",
-      "version": "4.0.27",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "7df83ee90d3a0e11917ed3256ece0d415b117fb4"
-        }
-      ],
-      "purl": "pkg:maven/org.apache.groovy/groovy@4.0.27",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "opt/groovy/grooid/groovy-4.0.27-grooid.jar"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -946,7 +942,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -2843,7 +2839,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -2986,7 +2982,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -3926,7 +3922,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4243,7 +4239,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4738,7 +4734,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4995,7 +4991,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5187,7 +5183,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5223,7 +5219,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5617,7 +5613,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5726,7 +5722,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5822,7 +5818,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5953,7 +5949,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6046,7 +6042,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6618,7 +6614,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6852,7 +6848,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7077,13 +7073,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.2?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libmysqlclient21",
-      "version": "8.0.44-0ubuntu0.24.04.1",
+      "version": "8.0.44-0ubuntu0.24.04.2",
       "licenses": [
         {
           "license": {
@@ -7141,15 +7137,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.2?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libmysqlclient21@8.0.44-0ubuntu0.24.04.1"
+          "value": "libmysqlclient21@8.0.44-0ubuntu0.24.04.2"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -7161,7 +7157,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "0ubuntu0.24.04.1"
+          "value": "0ubuntu0.24.04.2"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -7181,7 +7177,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7519,7 +7515,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7572,7 +7568,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -8188,13 +8184,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpq5@16.10-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpq5",
-      "version": "16.10-0ubuntu0.24.04.1",
+      "version": "16.11-0ubuntu0.24.04.1",
       "licenses": [
         {
           "license": {
@@ -8252,15 +8248,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/libpq5@16.10-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpq5@16.10-0ubuntu0.24.04.1"
+          "value": "libpq5@16.11-0ubuntu0.24.04.1"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8276,7 +8272,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
-          "value": "16.10"
+          "value": "16.11"
         }
       ]
     },
@@ -8417,7 +8413,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -8442,13 +8438,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.12-minimal",
-      "version": "3.12.3-1ubuntu0.8",
+      "version": "3.12.3-1ubuntu0.9",
       "licenses": [
         {
           "license": {
@@ -8506,15 +8502,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.12-minimal@3.12.3-1ubuntu0.8"
+          "value": "libpython3.12-minimal@3.12.3-1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8526,7 +8522,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.8"
+          "value": "1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -8535,22 +8531,22 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.12-stdlib",
-      "version": "3.12.3-1ubuntu0.8",
-      "purl": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "version": "3.12.3-1ubuntu0.9",
+      "purl": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.12-stdlib@3.12.3-1ubuntu0.8"
+          "value": "libpython3.12-stdlib@3.12.3-1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8562,7 +8558,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.8"
+          "value": "1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -8571,22 +8567,22 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.12t64",
-      "version": "3.12.3-1ubuntu0.8",
-      "purl": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "version": "3.12.3-1ubuntu0.9",
+      "purl": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.12t64@3.12.3-1ubuntu0.8"
+          "value": "libpython3.12t64@3.12.3-1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8598,7 +8594,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.8"
+          "value": "1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -9940,7 +9936,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10018,7 +10014,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10343,7 +10339,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10383,7 +10379,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10423,7 +10419,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10463,7 +10459,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10499,7 +10495,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10539,7 +10535,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10579,7 +10575,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10970,7 +10966,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11042,7 +11038,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11142,7 +11138,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11299,7 +11295,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11444,7 +11440,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11513,7 +11509,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12006,7 +12002,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12114,7 +12110,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12139,13 +12135,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "python3.12-minimal",
-      "version": "3.12.3-1ubuntu0.8",
+      "version": "3.12.3-1ubuntu0.9",
       "licenses": [
         {
           "license": {
@@ -12203,15 +12199,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "python3.12-minimal@3.12.3-1ubuntu0.8"
+          "value": "python3.12-minimal@3.12.3-1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12223,7 +12219,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.8"
+          "value": "1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -12232,13 +12228,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "python3.12",
-      "version": "3.12.3-1ubuntu0.8",
+      "version": "3.12.3-1ubuntu0.9",
       "licenses": [
         {
           "license": {
@@ -12296,15 +12292,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "python3.12@3.12.3-1ubuntu0.8"
+          "value": "python3.12@3.12.3-1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12316,7 +12312,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.8"
+          "value": "1ubuntu0.9"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -12336,7 +12332,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12599,7 +12595,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -13105,7 +13101,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:076b43530125e83f7006225be0a27e2541d20ed2c6d9a67f9eaeef98e09aeff8"
+          "value": "sha256:f56610bd77e0adbf8fda70d6c1fd1abe30ed98ae0fd9b2e523e858ac080eac5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -13200,7 +13196,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13228,7 +13224,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13256,7 +13252,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13284,7 +13280,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13340,7 +13336,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13396,7 +13392,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13452,7 +13448,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13592,7 +13588,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13620,7 +13616,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13648,7 +13644,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13760,7 +13756,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13816,7 +13812,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13900,7 +13896,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13928,7 +13924,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -15020,7 +15016,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -15244,7 +15240,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:52faf448685a17dd986e0e38bb229d720bef59510dd189d5e0c17cf64c62ec46"
+          "value": "sha256:db3425d6849b9e6e085415007ecbc0287b8f48c7dadac9fc2f9f8c931444c317"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -15367,7 +15363,7 @@
   ],
   "dependencies": [
     {
-      "ref": "128844c3-dab2-49f2-bc09-e6092b12312c",
+      "ref": "16abceca-80e1-418c-9834-32f6cc1b20b2",
       "dependsOn": [
         "pkg:deb/ubuntu/apt@2.8.3?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/bash@5.2.21-2ubuntu4?arch=amd64&distro=ubuntu-24.04",
@@ -15419,19 +15415,19 @@
       ]
     },
     {
-      "ref": "c1b9815a-1ce4-4bab-94a5-cf983cbe5127",
+      "ref": "1a56cac5-20e6-4239-a1a5-74de9e6b2b27",
       "dependsOn": []
     },
     {
-      "ref": "cd3fd44d-738b-42dd-b123-7d88752d8c07",
+      "ref": "70d6b2eb-53e1-485e-aa7f-5a54d4ae2720",
       "dependsOn": []
     },
     {
-      "ref": "e4040566-9a7e-4b80-b623-3fd4a1b90b0d",
+      "ref": "e3233d20-c16d-4923-b079-f6491f0316a0",
       "dependsOn": []
     },
     {
-      "ref": "fe9fab78-c783-4c01-a5a8-d77f5913277b",
+      "ref": "ff13a597-ed62-479f-acbe-db09c79840d4",
       "dependsOn": []
     },
     {
@@ -16175,10 +16171,10 @@
         "pkg:deb/ubuntu/libgsasl18@2.2.1-1willsync1build2?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libldap2@2.6.7%2Bdfsg-1~exp1ubuntu8.2?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libltdl7@2.4.7-7build1?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.2?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libpam0g@1.5.3-5ubuntu5.5?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpq5@16.10-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/mailutils-common@3.17-1.1build3?arch=all&distro=ubuntu-24.04&epoch=1"
       ]
     },
@@ -16197,7 +16193,7 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libmysqlclient21@8.0.44-0ubuntu0.24.04.2?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.6?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libgcc-s1@14.2.0-4ubuntu2~24.04?arch=amd64&distro=ubuntu-24.04",
@@ -16304,7 +16300,7 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpq5@16.10-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.6?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libgssapi-krb5-2@1.20.1-6ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
@@ -16330,18 +16326,18 @@
     {
       "ref": "pkg:deb/ubuntu/libpython3-stdlib@3.12.3-0ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
-        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04"
+        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.6?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libssl3t64@3.0.13-0ubuntu3.6?arch=amd64&distro=ubuntu-24.04"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5.1build0.1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.6?arch=amd64&distro=ubuntu-24.04",
@@ -16350,7 +16346,7 @@
         "pkg:deb/ubuntu/libffi8@3.4.6-1build1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/liblzma5@5.6.1%2Breally5.4.5-1ubuntu0.2?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libncursesw6@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libreadline8t64@8.2-4build1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libsqlite3-0@3.45.1-1ubuntu2.5?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libtinfo6@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
@@ -16360,11 +16356,11 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.6?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libexpat1@2.6.1-2ubuntu0.3?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/zlib1g@1.3.dfsg-3.1ubuntu2.1?arch=amd64&distro=ubuntu-24.04&epoch=1"
       ]
     },
@@ -16764,19 +16760,19 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libexpat1@2.6.1-2ubuntu0.3?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/zlib1g@1.3.dfsg-3.1ubuntu2.1?arch=amd64&distro=ubuntu-24.04&epoch=1"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
-        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/media-types@10.1.0?arch=all&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/tzdata@2025b-0ubuntu0.24.04.1?arch=all&distro=ubuntu-24.04"
       ]
     },
@@ -16784,7 +16780,7 @@
       "ref": "pkg:deb/ubuntu/python3@3.12.3-0ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libpython3-stdlib@3.12.3-0ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.8?arch=amd64&distro=ubuntu-24.04"
+        "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.9?arch=amd64&distro=ubuntu-24.04"
       ]
     },
     {
@@ -17183,13 +17179,13 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:oci/cooperation-scripts@sha256%3Aca37dc5b9c3009edd10c803c164fdca180df4cfc0f6b234d402e042cb26361d4?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "ref": "pkg:oci/cooperation-scripts@sha256%3Ac3469615c25118ea7586f787980b625000863440bf1e8d49874b3c7dab89ebb3?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "dependsOn": [
-        "128844c3-dab2-49f2-bc09-e6092b12312c",
-        "c1b9815a-1ce4-4bab-94a5-cf983cbe5127",
-        "cd3fd44d-738b-42dd-b123-7d88752d8c07",
-        "e4040566-9a7e-4b80-b623-3fd4a1b90b0d",
-        "fe9fab78-c783-4c01-a5a8-d77f5913277b",
+        "16abceca-80e1-418c-9834-32f6cc1b20b2",
+        "1a56cac5-20e6-4239-a1a5-74de9e6b2b27",
+        "70d6b2eb-53e1-485e-aa7f-5a54d4ae2720",
+        "e3233d20-c16d-4923-b079-f6491f0316a0",
+        "ff13a597-ed62-479f-acbe-db09c79840d4",
         "pkg:maven/ch.qos.logback/logback-classic@1.5.16",
         "pkg:maven/ch.qos.logback/logback-core@1.5.16",
         "pkg:maven/co.elastic.logging/ecs-logging-core@1.6.0",
@@ -18696,6 +18692,12 @@
         },
         {
           "source": {
+            "name": "rocky"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "ubuntu"
           },
           "severity": "low"
@@ -18731,10 +18733,16 @@
           "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2268268"
         },
         {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-2236"
+        },
+        {
           "url": "https://dev.gnupg.org/T7136"
         },
         {
           "url": "https://errata.almalinux.org/9/ALSA-2024-9404.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2024:9404"
         },
         {
           "url": "https://github.com/tomato42/marvin-toolkit/tree/master/example/libgcrypt"
@@ -18881,12 +18889,24 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "low"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 3.6,
           "severity": "low",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "low"
         },
         {
           "source": {
@@ -18913,7 +18933,16 @@
           "url": "https://bugzilla.redhat.com/2334165"
         },
         {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2334165"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433"
+        },
+        {
           "url": "https://errata.almalinux.org/9/ALSA-2025-20559.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:20559"
         },
         {
           "url": "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241"
@@ -18923,6 +18952,12 @@
         },
         {
           "url": "https://github.com/shadow-maint/shadow/releases/tag/4.4"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2024-56433.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-20559-0.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-56433"
@@ -19350,7 +19385,7 @@
       ]
     },
     {
-      "id": "CVE-2025-1147",
+      "id": "CVE-2025-11412",
       "source": {
         "name": "ubuntu",
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
@@ -19358,12 +19393,30 @@
       "ratings": [
         {
           "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "azure"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "cbl-mariner"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "nvd"
           },
-          "score": 5.3,
+          "score": 5.5,
           "severity": "medium",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:H"
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
         },
         {
           "source": {
@@ -19375,10 +19428,10 @@
           "source": {
             "name": "redhat"
           },
-          "score": 3.1,
+          "score": 3.3,
           "severity": "low",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L"
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L"
         },
         {
           "source": {
@@ -19389,46 +19442,50 @@
       ],
       "cwes": [
         119,
-        120
+        125
       ],
-      "description": "A vulnerability has been found in GNU Binutils 2.43 and classified as problematic. Affected by this vulnerability is the function __sanitizer::internal_strlen of the file binutils/nm.c of the component nm. The manipulation of the argument const leads to buffer overflow. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used.",
+      "description": "A vulnerability has been found in GNU Binutils 2.45. This impacts the function bfd_elf_gc_record_vtentry of the file bfd/elflink.c of the component Linker. The manipulation leads to out-of-bounds read. Local access is required to approach this attack. The exploit has been disclosed to the public and may be used. The identifier of the patch is 047435dd988a3975d40c6626a8f739a0b2e154bc. To fix this issue, it is recommended to deploy a patch.",
+      "recommendation": "Upgrade binutils to version 2.42-4ubuntu2.8; Upgrade binutils-common to version 2.42-4ubuntu2.8; Upgrade binutils-x86-64-linux-gnu to version 2.42-4ubuntu2.8; Upgrade libbinutils to version 2.42-4ubuntu2.8; Upgrade libctf-nobfd0 to version 2.42-4ubuntu2.8; Upgrade libctf0 to version 2.42-4ubuntu2.8; Upgrade libgprofng0 to version 2.42-4ubuntu2.8; Upgrade libsframe1 to version 2.42-4ubuntu2.8",
       "advisories": [
         {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-1147"
+          "url": "https://avd.aquasec.com/nvd/cve-2025-11412"
         },
         {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-1147"
+          "url": "https://access.redhat.com/security/cve/CVE-2025-11412"
         },
         {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-1147"
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11412"
         },
         {
-          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=15881"
+          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16378"
         },
         {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=32556"
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33452"
         },
         {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=7be4186c22f89a87fff048c28910f5d26a0f61ce"
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33452#c8"
         },
         {
-          "url": "https://vuldb.com/?ctiid.295051"
+          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=047435dd988a3975d40c6626a8f739a0b2e154bc"
         },
         {
-          "url": "https://vuldb.com/?id.295051"
+          "url": "https://ubuntu.com/security/notices/USN-7919-1"
         },
         {
-          "url": "https://vuldb.com/?submit.485254"
+          "url": "https://vuldb.com/?ctiid.327348"
         },
         {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-1147"
+          "url": "https://vuldb.com/?id.327348"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-11412"
         },
         {
           "url": "https://www.gnu.org/"
         }
       ],
-      "published": "2025-02-10T14:15:29+00:00",
-      "updated": "2025-03-04T15:51:17+00:00",
+      "published": "2025-10-07T22:15:34+00:00",
+      "updated": "2025-10-14T15:09:07+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
@@ -19505,7 +19562,7 @@
       ]
     },
     {
-      "id": "CVE-2025-1148",
+      "id": "CVE-2025-11413",
       "source": {
         "name": "ubuntu",
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
@@ -19515,19 +19572,19 @@
           "source": {
             "name": "nvd"
           },
-          "score": 3.1,
-          "severity": "low",
+          "score": 5.5,
+          "severity": "medium",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L"
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
         },
         {
           "source": {
             "name": "redhat"
           },
-          "score": 3.1,
+          "score": 4.4,
           "severity": "low",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L"
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L"
         },
         {
           "source": {
@@ -19537,50 +19594,390 @@
         }
       ],
       "cwes": [
-        401,
-        404
+        119,
+        125
       ],
-      "description": "A vulnerability was found in GNU Binutils 2.43 and classified as problematic. Affected by this issue is the function link_order_scan of the file ld/ldelfgen.c of the component ld. The manipulation leads to memory leak. The attack may be launched remotely. The complexity of an attack is rather high. The exploitation is known to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\"",
+      "description": "A vulnerability was found in GNU Binutils 2.45. Affected is the function elf_link_add_object_symbols of the file bfd/elflink.c of the component Linker. The manipulation results in out-of-bounds read. The attack needs to be approached locally. The exploit has been made public and could be used. Upgrading to version 2.46 is able to address this issue. The patch is identified as 72efdf166aa0ed72ecc69fc2349af6591a7a19c0. Upgrading the affected component is advised.",
+      "recommendation": "Upgrade binutils to version 2.42-4ubuntu2.8; Upgrade binutils-common to version 2.42-4ubuntu2.8; Upgrade binutils-x86-64-linux-gnu to version 2.42-4ubuntu2.8; Upgrade libbinutils to version 2.42-4ubuntu2.8; Upgrade libctf-nobfd0 to version 2.42-4ubuntu2.8; Upgrade libctf0 to version 2.42-4ubuntu2.8; Upgrade libgprofng0 to version 2.42-4ubuntu2.8; Upgrade libsframe1 to version 2.42-4ubuntu2.8",
       "advisories": [
         {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-1148"
+          "url": "https://avd.aquasec.com/nvd/cve-2025-11413"
         },
         {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-1148"
+          "url": "https://access.redhat.com/security/cve/CVE-2025-11413"
         },
         {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-1148"
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11413"
         },
         {
-          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=15887"
+          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16362"
         },
         {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=32576"
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33452"
         },
         {
-          "url": "https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=d4115c2c8d447e297ae353892de89192c1996211"
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33456"
         },
         {
-          "url": "https://sourceware.org/pipermail/binutils/2025-March/139979.html"
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33456#c10"
         },
         {
-          "url": "https://vuldb.com/?ctiid.295052"
+          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=72efdf166aa0ed72ecc69fc2349af6591a7a19c0"
         },
         {
-          "url": "https://vuldb.com/?id.295052"
+          "url": "https://ubuntu.com/security/notices/USN-7919-1"
         },
         {
-          "url": "https://vuldb.com/?submit.485747"
+          "url": "https://vuldb.com/?ctiid.327349"
         },
         {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-1148"
+          "url": "https://vuldb.com/?id.327349"
+        },
+        {
+          "url": "https://vuldb.com/?submit.665587"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-11413"
         },
         {
           "url": "https://www.gnu.org/"
         }
       ],
-      "published": "2025-02-10T14:15:29+00:00",
-      "updated": "2025-03-04T17:12:35+00:00",
+      "published": "2025-10-07T22:15:34+00:00",
+      "updated": "2025-10-14T15:24:49+00:00",
+      "affects": [
+        {
+          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-11414",
+      "source": {
+        "name": "ubuntu",
+        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "azure"
+          },
+          "severity": "low"
+        },
+        {
+          "source": {
+            "name": "cbl-mariner"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "nvd"
+          },
+          "score": 5.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 3.3,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        119,
+        125
+      ],
+      "description": "A vulnerability was determined in GNU Binutils 2.45. Affected by this vulnerability is the function get_link_hash_entry of the file bfd/elflink.c of the component Linker. This manipulation causes out-of-bounds read. The attack can only be executed locally. The exploit has been publicly disclosed and may be utilized. Upgrading to version 2.46 addresses this issue. Patch name: aeaaa9af6359c8e394ce9cf24911fec4f4d23703. It is advisable to upgrade the affected component.",
+      "recommendation": "Upgrade binutils to version 2.42-4ubuntu2.8; Upgrade binutils-common to version 2.42-4ubuntu2.8; Upgrade binutils-x86-64-linux-gnu to version 2.42-4ubuntu2.8; Upgrade libbinutils to version 2.42-4ubuntu2.8; Upgrade libctf-nobfd0 to version 2.42-4ubuntu2.8; Upgrade libctf0 to version 2.42-4ubuntu2.8; Upgrade libgprofng0 to version 2.42-4ubuntu2.8; Upgrade libsframe1 to version 2.42-4ubuntu2.8",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-11414"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-11414"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11414"
+        },
+        {
+          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16361"
+        },
+        {
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33450"
+        },
+        {
+          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=aeaaa9af6359c8e394ce9cf24911fec4f4d23703"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7919-1"
+        },
+        {
+          "url": "https://vuldb.com/?ctiid.327350"
+        },
+        {
+          "url": "https://vuldb.com/?id.327350"
+        },
+        {
+          "url": "https://vuldb.com/?submit.665591"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-11414"
+        },
+        {
+          "url": "https://www.gnu.org/"
+        }
+      ],
+      "published": "2025-10-07T23:15:33+00:00",
+      "updated": "2025-10-14T15:25:00+00:00",
+      "affects": [
+        {
+          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.42-4ubuntu2.6",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-11494",
+      "source": {
+        "name": "ubuntu",
+        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "nvd"
+          },
+          "score": 5.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 3.3,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        119,
+        125
+      ],
+      "description": "A vulnerability was found in GNU Binutils 2.45. Impacted is the function _bfd_x86_elf_late_size_sections of the file bfd/elfxx-x86.c of the component Linker. The manipulation results in out-of-bounds read. The attack needs to be approached locally. The exploit has been made public and could be used. The patch is identified as b6ac5a8a5b82f0ae6a4642c8d7149b325f4cc60a. A patch should be applied to remediate this issue.",
+      "recommendation": "Upgrade binutils to version 2.42-4ubuntu2.8; Upgrade binutils-common to version 2.42-4ubuntu2.8; Upgrade binutils-x86-64-linux-gnu to version 2.42-4ubuntu2.8; Upgrade libbinutils to version 2.42-4ubuntu2.8; Upgrade libctf-nobfd0 to version 2.42-4ubuntu2.8; Upgrade libctf0 to version 2.42-4ubuntu2.8; Upgrade libgprofng0 to version 2.42-4ubuntu2.8; Upgrade libsframe1 to version 2.42-4ubuntu2.8",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-11494"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-11494"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11494"
+        },
+        {
+          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16389"
+        },
+        {
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33499"
+        },
+        {
+          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33499#c2"
+        },
+        {
+          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=b6ac5a8a5b82f0ae6a4642c8d7149b325f4cc60a"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7919-1"
+        },
+        {
+          "url": "https://vuldb.com/?ctiid.327619"
+        },
+        {
+          "url": "https://vuldb.com/?id.327619"
+        },
+        {
+          "url": "https://vuldb.com/?submit.668281"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-11494"
+        },
+        {
+          "url": "https://www.gnu.org/"
+        }
+      ],
+      "published": "2025-10-08T20:15:34+00:00",
+      "updated": "2025-10-14T15:27:45+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
@@ -19723,7 +20120,7 @@
         }
       ],
       "published": "2025-02-10T18:15:34+00:00",
-      "updated": "2025-03-03T16:52:20+00:00",
+      "updated": "2025-03-03T17:32:01+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
@@ -19990,6 +20387,7 @@
         253
       ],
       "description": "A security flaw has been discovered in GNU Binutils 2.45. Impacted is the function tg_tag_type of the file prdbg.c. Performing manipulation results in unchecked return value. The attack needs to be approached locally. The exploit has been released to the public and may be exploited.",
+      "recommendation": "Upgrade binutils to version 2.42-4ubuntu2.7; Upgrade binutils-common to version 2.42-4ubuntu2.7; Upgrade binutils-x86-64-linux-gnu to version 2.42-4ubuntu2.7; Upgrade libbinutils to version 2.42-4ubuntu2.7; Upgrade libctf-nobfd0 to version 2.42-4ubuntu2.7; Upgrade libctf0 to version 2.42-4ubuntu2.7; Upgrade libgprofng0 to version 2.42-4ubuntu2.7; Upgrade libsframe1 to version 2.42-4ubuntu2.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-11839"
@@ -20005,6 +20403,9 @@
         },
         {
           "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33448"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7899-1"
         },
         {
           "url": "https://vuldb.com/?ctiid.328774"
@@ -20142,6 +20543,7 @@
         125
       ],
       "description": "A weakness has been identified in GNU Binutils 2.45. The affected element is the function vfinfo of the file ldmisc.c. Executing manipulation can lead to out-of-bounds read. The attack can only be executed locally. The exploit has been made available to the public and could be exploited. This patch is called 16357. It is best practice to apply a patch to resolve this issue.",
+      "recommendation": "Upgrade binutils to version 2.42-4ubuntu2.7; Upgrade binutils-common to version 2.42-4ubuntu2.7; Upgrade binutils-x86-64-linux-gnu to version 2.42-4ubuntu2.7; Upgrade libbinutils to version 2.42-4ubuntu2.7; Upgrade libctf-nobfd0 to version 2.42-4ubuntu2.7; Upgrade libctf0 to version 2.42-4ubuntu2.7; Upgrade libgprofng0 to version 2.42-4ubuntu2.7; Upgrade libsframe1 to version 2.42-4ubuntu2.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-11840"
@@ -20162,6 +20564,9 @@
           "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33455"
         },
         {
+          "url": "https://ubuntu.com/security/notices/USN-7899-1"
+        },
+        {
           "url": "https://vuldb.com/?ctiid.328775"
         },
         {
@@ -20179,161 +20584,6 @@
       ],
       "published": "2025-10-16T16:15:37+00:00",
       "updated": "2025-10-23T19:41:21+00:00",
-      "affects": [
-        {
-          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "CVE-2025-3198",
-      "source": {
-        "name": "ubuntu",
-        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
-      },
-      "ratings": [
-        {
-          "source": {
-            "name": "nvd"
-          },
-          "score": 5.5,
-          "severity": "medium",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
-        },
-        {
-          "source": {
-            "name": "photon"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "redhat"
-          },
-          "score": 3.3,
-          "severity": "low",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"
-        },
-        {
-          "source": {
-            "name": "ubuntu"
-          },
-          "severity": "medium"
-        }
-      ],
-      "cwes": [
-        401,
-        404
-      ],
-      "description": "A vulnerability has been found in GNU Binutils 2.43/2.44 and classified as problematic. Affected by this vulnerability is the function display_info of the file binutils/bucomm.c of the component objdump. The manipulation leads to memory leak. An attack has to be approached locally. The exploit has been disclosed to the public and may be used. The patch is named ba6ad3a18cb26b79e0e3b84c39f707535bbc344d. It is recommended to apply a patch to fix this issue.",
-      "advisories": [
-        {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-3198"
-        },
-        {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-3198"
-        },
-        {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-3198"
-        },
-        {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=32716"
-        },
-        {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=32716#c0"
-        },
-        {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=ba6ad3a18cb26b79e0e3b84c39f707535bbc344d"
-        },
-        {
-          "url": "https://vuldb.com/?ctiid.303151"
-        },
-        {
-          "url": "https://vuldb.com/?id.303151"
-        },
-        {
-          "url": "https://vuldb.com/?submit.545773"
-        },
-        {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-3198"
-        },
-        {
-          "url": "https://www.gnu.org/"
-        }
-      ],
-      "published": "2025-04-04T02:15:18+00:00",
-      "updated": "2025-05-15T19:46:30+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
@@ -20686,10 +20936,10 @@
           "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-5222"
         },
         {
-          "url": "https://errata.almalinux.org/10/ALSA-2025-11888.html"
+          "url": "https://errata.almalinux.org/9/ALSA-2025-12083.html"
         },
         {
-          "url": "https://errata.rockylinux.org/RLSA-2025:11888"
+          "url": "https://errata.rockylinux.org/RLSA-2025:12083"
         },
         {
           "url": "https://linux.oracle.com/cve/CVE-2025-5222.html"
@@ -20722,339 +20972,7 @@
       ]
     },
     {
-      "id": "CVE-2025-5244",
-      "source": {
-        "name": "ubuntu",
-        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
-      },
-      "ratings": [
-        {
-          "source": {
-            "name": "azure"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "cbl-mariner"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "nvd"
-          },
-          "score": 7.8,
-          "severity": "high",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
-        },
-        {
-          "source": {
-            "name": "photon"
-          },
-          "severity": "high"
-        },
-        {
-          "source": {
-            "name": "redhat"
-          },
-          "score": 4,
-          "severity": "medium",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
-        },
-        {
-          "source": {
-            "name": "ubuntu"
-          },
-          "severity": "medium"
-        }
-      ],
-      "cwes": [
-        119
-      ],
-      "description": "A vulnerability was found in GNU Binutils up to 2.44. It has been rated as critical. Affected by this issue is the function elf_gc_sweep of the file bfd/elflink.c of the component ld. The manipulation leads to memory corruption. An attack has to be approached locally. The exploit has been disclosed to the public and may be used. Upgrading to version 2.45 is able to address this issue. It is recommended to upgrade the affected component.",
-      "advisories": [
-        {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-5244"
-        },
-        {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-5244"
-        },
-        {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-5244"
-        },
-        {
-          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16010"
-        },
-        {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=32858"
-        },
-        {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=d1458933830456e54223d9fc61f0d9b3a19256f5"
-        },
-        {
-          "url": "https://vuldb.com/?ctiid.310346"
-        },
-        {
-          "url": "https://vuldb.com/?id.310346"
-        },
-        {
-          "url": "https://vuldb.com/?submit.584634"
-        },
-        {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-5244"
-        },
-        {
-          "url": "https://www.gnu.org/"
-        }
-      ],
-      "published": "2025-05-27T13:15:21+00:00",
-      "updated": "2025-10-03T14:46:39+00:00",
-      "affects": [
-        {
-          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "CVE-2025-5245",
-      "source": {
-        "name": "ubuntu",
-        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
-      },
-      "ratings": [
-        {
-          "source": {
-            "name": "azure"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "cbl-mariner"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "nvd"
-          },
-          "score": 7.8,
-          "severity": "high",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
-        },
-        {
-          "source": {
-            "name": "photon"
-          },
-          "severity": "high"
-        },
-        {
-          "source": {
-            "name": "redhat"
-          },
-          "score": 4,
-          "severity": "medium",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
-        },
-        {
-          "source": {
-            "name": "ubuntu"
-          },
-          "severity": "medium"
-        }
-      ],
-      "cwes": [
-        119
-      ],
-      "description": "A vulnerability classified as critical has been found in GNU Binutils up to 2.44. This affects the function debug_type_samep of the file /binutils/debug.c of the component objdump. The manipulation leads to memory corruption. Local access is required to approach this attack. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue.",
-      "advisories": [
-        {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-5245"
-        },
-        {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-5245"
-        },
-        {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-5245"
-        },
-        {
-          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16004"
-        },
-        {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=32829"
-        },
-        {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=6c3458a8b7ee7d39f070c7b2350851cb2110c65a"
-        },
-        {
-          "url": "https://vuldb.com/?ctiid.310347"
-        },
-        {
-          "url": "https://vuldb.com/?id.310347"
-        },
-        {
-          "url": "https://vuldb.com/?submit.584635"
-        },
-        {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-5245"
-        },
-        {
-          "url": "https://www.gnu.org/"
-        }
-      ],
-      "published": "2025-05-27T15:15:36+00:00",
-      "updated": "2025-10-03T14:45:57+00:00",
-      "affects": [
-        {
-          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "CVE-2025-7545",
+      "id": "CVE-2025-64505",
       "source": {
         "name": "ubuntu",
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
@@ -21080,27 +20998,18 @@
         },
         {
           "source": {
-            "name": "nvd"
-          },
-          "score": 7.8,
-          "severity": "high",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
-        },
-        {
-          "source": {
             "name": "photon"
           },
-          "severity": "high"
+          "severity": "medium"
         },
         {
           "source": {
             "name": "redhat"
           },
-          "score": 5.3,
+          "score": 4.4,
           "severity": "medium",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:L"
         },
         {
           "source": {
@@ -21110,122 +21019,50 @@
         }
       ],
       "cwes": [
-        119,
-        122
+        125
       ],
-      "description": "A vulnerability classified as problematic was found in GNU Binutils 2.45. Affected by this vulnerability is the function copy_section of the file binutils/objcopy.c. The manipulation leads to heap-based buffer overflow. Attacking locally is a requirement. The exploit has been disclosed to the public and may be used. The patch is named 08c3cbe5926e4d355b5cb70bbec2b1eeb40c2944. It is recommended to apply a patch to fix this issue.",
+      "description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to version 1.6.51, a heap buffer over-read vulnerability exists in libpng's png_do_quantize function when processing PNG files with malformed palette indices. The vulnerability occurs when palette_lookup array bounds are not validated against externally-supplied image data, allowing an attacker to craft a PNG file with out-of-range palette indices that trigger out-of-bounds memory access. This issue has been patched in version 1.6.51.",
+      "recommendation": "Upgrade libpng16-16t64 to version 1.6.43-5ubuntu0.1",
       "advisories": [
         {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-7545"
+          "url": "https://avd.aquasec.com/nvd/cve-2025-64505"
         },
         {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-7545"
+          "url": "https://access.redhat.com/security/cve/CVE-2025-64505"
         },
         {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-7545"
+          "url": "https://github.com/pnggroup/libpng/commit/6a528eb5fd0dd7f6de1c39d30de0e41473431c37"
         },
         {
-          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16117"
+          "url": "https://github.com/pnggroup/libpng/commit/6a528eb5fd0dd7f6de1c39d30de0e41473431c37"
         },
         {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33049"
+          "url": "https://github.com/pnggroup/libpng/pull/748"
         },
         {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33049#c1"
+          "url": "https://github.com/pnggroup/libpng/security/advisories/GHSA-4952-h5wq-4m42"
         },
         {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=08c3cbe5926e4d355b5cb70bbec2b1eeb40c2944"
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-64505"
         },
         {
-          "url": "https://ubuntu.com/security/notices/USN-7718-1"
+          "url": "https://ubuntu.com/security/notices/USN-7924-1"
         },
         {
-          "url": "https://vuldb.com/?ctiid.316243"
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-64505"
         },
         {
-          "url": "https://vuldb.com/?id.316243"
-        },
-        {
-          "url": "https://vuldb.com/?submit.614355"
-        },
-        {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-7545"
-        },
-        {
-          "url": "https://www.gnu.org/"
+          "url": "https://www.openwall.com/lists/oss-security/2025/11/22/1"
         }
       ],
-      "published": "2025-07-13T22:15:23+00:00",
-      "updated": "2025-07-30T15:59:48+00:00",
+      "published": "2025-11-25T00:15:47+00:00",
+      "updated": "2025-11-26T18:28:32+00:00",
       "affects": [
         {
-          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "ref": "pkg:deb/ubuntu/libpng16-16t64@1.6.43-5build1?arch=amd64&distro=ubuntu-24.04",
           "versions": [
             {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
+              "version": "1.6.43-5build1",
               "status": "affected"
             }
           ]
@@ -21233,7 +21070,7 @@
       ]
     },
     {
-      "id": "CVE-2025-7546",
+      "id": "CVE-2025-64506",
       "source": {
         "name": "ubuntu",
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
@@ -21259,12 +21096,101 @@
         },
         {
           "source": {
-            "name": "nvd"
+            "name": "photon"
           },
-          "score": 7.8,
-          "severity": "high",
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 6.1,
+          "severity": "medium",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        125
+      ],
+      "description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. From version 1.6.0 to before 1.6.51, a heap buffer over-read vulnerability exists in libpng's png_write_image_8bit function when processing 8-bit images through the simplified write API with convert_to_8bit enabled. The vulnerability affects 8-bit grayscale+alpha, RGB/RGBA, and images with incomplete row data. A conditional guard incorrectly allows 8-bit input to enter code expecting 16-bit input, causing reads up to 2 bytes beyond allocated buffer boundaries. This issue has been patched in version 1.6.51.",
+      "recommendation": "Upgrade libpng16-16t64 to version 1.6.43-5ubuntu0.1",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-64506"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-64506"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/commit/2bd84c019c300b78e811743fbcddb67c9d9bf821"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/commit/2bd84c019c300b78e811743fbcddb67c9d9bf821"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/pull/749"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/security/advisories/GHSA-qpr4-xm66-hww6"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-64506"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7924-1"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-64506"
+        },
+        {
+          "url": "https://www.openwall.com/lists/oss-security/2025/11/22/1"
+        }
+      ],
+      "published": "2025-11-25T00:15:47+00:00",
+      "updated": "2025-11-26T18:34:38+00:00",
+      "affects": [
+        {
+          "ref": "pkg:deb/ubuntu/libpng16-16t64@1.6.43-5build1?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "1.6.43-5build1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-64720",
+      "source": {
+        "name": "ubuntu",
+        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "azure"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "cbl-mariner"
+          },
+          "severity": "high"
         },
         {
           "source": {
@@ -21276,10 +21202,10 @@
           "source": {
             "name": "redhat"
           },
-          "score": 5.3,
-          "severity": "medium",
+          "score": 7.1,
+          "severity": "high",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:H"
         },
         {
           "source": {
@@ -21289,119 +21215,161 @@
         }
       ],
       "cwes": [
-        119,
+        125
+      ],
+      "description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. From version 1.6.0 to before 1.6.51, an out-of-bounds read vulnerability exists in png_image_read_composite when processing palette images with PNG_FLAG_OPTIMIZE_ALPHA enabled. The palette compositing code in png_init_read_transformations incorrectly applies background compositing during premultiplication, violating the invariant component ≤ alpha × 257 required by the simplified PNG API. This issue has been patched in version 1.6.51.",
+      "recommendation": "Upgrade libpng16-16t64 to version 1.6.43-5ubuntu0.1",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-64720"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-64720"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/commit/08da33b4c88cfcd36e5a706558a8d7e0e4773643"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/commit/08da33b4c88cfcd36e5a706558a8d7e0e4773643"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/issues/686"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/pull/751"
+        },
+        {
+          "url": "https://github.com/pnggroup/libpng/security/advisories/GHSA-hfc7-ph9c-wcww"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-64720"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-7924-1"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-64720"
+        },
+        {
+          "url": "https://www.openwall.com/lists/oss-security/2025/11/22/1"
+        }
+      ],
+      "published": "2025-11-25T00:15:47+00:00",
+      "updated": "2025-11-26T18:35:18+00:00",
+      "affects": [
+        {
+          "ref": "pkg:deb/ubuntu/libpng16-16t64@1.6.43-5build1?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "1.6.43-5build1",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-65018",
+      "source": {
+        "name": "ubuntu",
+        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "azure"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "cbl-mariner"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.1,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        122,
         787
       ],
-      "description": "A vulnerability, which was classified as problematic, has been found in GNU Binutils 2.45. Affected by this issue is the function bfd_elf_set_group_contents of the file bfd/elf.c. The manipulation leads to out-of-bounds write. It is possible to launch the attack on the local host. The exploit has been disclosed to the public and may be used. The name of the patch is 41461010eb7c79fee7a9d5f6209accdaac66cc6b. It is recommended to apply a patch to fix this issue.",
+      "description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. From version 1.6.0 to before 1.6.51, there is a heap buffer overflow vulnerability in the libpng simplified API function png_image_finish_read when processing 16-bit interlaced PNGs with 8-bit output format. Attacker-crafted interlaced PNG files cause heap writes beyond allocated buffer bounds. This issue has been patched in version 1.6.51.",
+      "recommendation": "Upgrade libpng16-16t64 to version 1.6.43-5ubuntu0.1",
       "advisories": [
         {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-7546"
+          "url": "https://avd.aquasec.com/nvd/cve-2025-65018"
         },
         {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-7546"
+          "url": "https://access.redhat.com/security/cve/CVE-2025-65018"
         },
         {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-7546"
+          "url": "https://github.com/pnggroup/libpng/commit/16b5e3823918840aae65c0a6da57c78a5a496a4d"
         },
         {
-          "url": "https://sourceware.org/bugzilla/attachment.cgi?id=16118"
+          "url": "https://github.com/pnggroup/libpng/commit/16b5e3823918840aae65c0a6da57c78a5a496a4d"
         },
         {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33050"
+          "url": "https://github.com/pnggroup/libpng/commit/218612ddd6b17944e21eda56caf8b4bf7779d1ea"
         },
         {
-          "url": "https://sourceware.org/bugzilla/show_bug.cgi?id=33050#c2"
+          "url": "https://github.com/pnggroup/libpng/commit/218612ddd6b17944e21eda56caf8b4bf7779d1ea"
         },
         {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=41461010eb7c79fee7a9d5f6209accdaac66cc6b"
+          "url": "https://github.com/pnggroup/libpng/issues/755"
         },
         {
-          "url": "https://vuldb.com/?ctiid.316244"
+          "url": "https://github.com/pnggroup/libpng/pull/757"
         },
         {
-          "url": "https://vuldb.com/?id.316244"
+          "url": "https://github.com/pnggroup/libpng/security/advisories/GHSA-7wv6-48j4-hj3g"
         },
         {
-          "url": "https://vuldb.com/?submit.614375"
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-65018"
         },
         {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-7546"
+          "url": "https://ubuntu.com/security/notices/USN-7924-1"
         },
         {
-          "url": "https://www.gnu.org/"
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-65018"
+        },
+        {
+          "url": "https://www.openwall.com/lists/oss-security/2025/11/22/1"
         }
       ],
-      "published": "2025-07-13T22:15:24+00:00",
-      "updated": "2025-07-30T15:59:59+00:00",
+      "published": "2025-11-25T00:15:47+00:00",
+      "updated": "2025-11-26T18:34:53+00:00",
       "affects": [
         {
-          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "ref": "pkg:deb/ubuntu/libpng16-16t64@1.6.43-5build1?arch=amd64&distro=ubuntu-24.04",
           "versions": [
             {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
+              "version": "1.6.43-5build1",
               "status": "affected"
             }
           ]
@@ -21409,7 +21377,7 @@
       ]
     },
     {
-      "id": "CVE-2025-8225",
+      "id": "CVE-2025-66382",
       "source": {
         "name": "ubuntu",
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
@@ -21417,30 +21385,12 @@
       "ratings": [
         {
           "source": {
-            "name": "azure"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "cbl-mariner"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "photon"
-          },
-          "severity": "low"
-        },
-        {
-          "source": {
             "name": "redhat"
           },
-          "score": 3.3,
-          "severity": "medium",
+          "score": 2.9,
+          "severity": "low",
           "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"
+          "vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
         },
         {
           "source": {
@@ -21450,113 +21400,37 @@
         }
       ],
       "cwes": [
-        401,
-        404
+        407
       ],
-      "description": "A vulnerability was found in GNU Binutils 2.44 and classified as problematic. This issue affects the function process_debug_info of the file binutils/dwarf.c of the component DWARF Section Handler. The manipulation leads to memory leak. Attacking locally is a requirement. The identifier of the patch is e51fdff7d2e538c0e5accdd65649ac68e6e0ddd4. It is recommended to apply a patch to fix this issue.",
+      "description": "In libexpat through 2.7.3, a crafted file with an approximate size of 2 MiB can lead to dozens of seconds of processing time.",
       "advisories": [
         {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-8225"
+          "url": "https://avd.aquasec.com/nvd/cve-2025-66382"
         },
         {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-8225"
+          "url": "http://www.openwall.com/lists/oss-security/2025/12/02/1"
         },
         {
-          "url": "https://gitlab.com/gnutools/binutils-gdb/-/commit/e51fdff7d2e538c0e5accdd65649ac68e6e0ddd4"
+          "url": "https://access.redhat.com/security/cve/CVE-2025-66382"
         },
         {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-8225"
+          "url": "https://github.com/libexpat/libexpat/issues/1076"
         },
         {
-          "url": "https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=e51fdff7d2e538c0e5accdd65649ac68e6e0ddd4"
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-66382"
         },
         {
-          "url": "https://vuldb.com/?ctiid.317813"
-        },
-        {
-          "url": "https://vuldb.com/?id.317813"
-        },
-        {
-          "url": "https://vuldb.com/?submit.621883"
-        },
-        {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-8225"
-        },
-        {
-          "url": "https://www.gnu.org/"
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-66382"
         }
       ],
-      "published": "2025-07-27T08:15:25+00:00",
-      "updated": "2025-08-01T17:08:13+00:00",
+      "published": "2025-11-28T07:15:57+00:00",
+      "updated": "2025-12-02T03:16:20+00:00",
       "affects": [
         {
-          "ref": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "ref": "pkg:deb/ubuntu/libexpat1@2.6.1-2ubuntu0.3?arch=amd64&distro=ubuntu-24.04",
           "versions": [
             {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "2.42-4ubuntu2.6",
+              "version": "2.6.1-2ubuntu0.3",
               "status": "affected"
             }
           ]
@@ -21667,6 +21541,9 @@
           "url": "https://access.redhat.com/errata/RHSA-2025:18219"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2025:21885"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2025-8941"
         },
         {
@@ -21691,7 +21568,7 @@
           "url": "https://errata.almalinux.org/9/ALSA-2025-15099.html"
         },
         {
-          "url": "https://errata.rockylinux.org/RLSA-2025:14557"
+          "url": "https://errata.rockylinux.org/RLSA-2025:15099"
         },
         {
           "url": "https://linux.oracle.com/cve/CVE-2025-8941.html"
@@ -21707,7 +21584,7 @@
         }
       ],
       "published": "2025-08-13T15:15:41+00:00",
-      "updated": "2025-11-06T22:15:44+00:00",
+      "updated": "2025-11-20T21:16:08+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/libpam-modules-bin@1.5.3-5ubuntu5.5?arch=amd64&distro=ubuntu-24.04",
