@@ -6,6 +6,9 @@ data:
   JAVA_OPTS: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=prod"
   
   COOPERATION_MAIL_PORT: '-1'
-  COOPERATION_ARCHIVE_DIR: {{ .Values.importCronJob.archiveDir }}
+  COOPERATION_ARCHIVE_DIR: "{{ .Values.importCronJob.archiveDir }}"
   COOPERATION_FORCE_IMPORT: 'false'
   COOPERATION_SCRIPTS_LOG_LEVEL: 'INFO'
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: 'health,prometheus'
+  MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: 'read_only'
+  MANAGEMENT_SERVER_PORT: '8089'
