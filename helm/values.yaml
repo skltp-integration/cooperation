@@ -25,6 +25,9 @@ importCronJob:
   nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
   archiveDir: /opt/cooperation-archive
+  resources:
+    requests:
+      memory: 3Gi
 
 verifyCronJob:
   schedule: "50 5 * * *"
