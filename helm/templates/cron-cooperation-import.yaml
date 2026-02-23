@@ -27,8 +27,7 @@ spec:
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.container.image.pullPolicy }}
               resources:
-                requests:
-                  memory: 3Gi
+                {{- toYaml .Values.importCronJob.resources | nindent 16 }}
               env:
                 {{ if .Values.importCronJob.nodePattern }}
                 - name: NODE_PATTERN
