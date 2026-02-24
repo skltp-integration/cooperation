@@ -3,6 +3,7 @@ repository: test/
 deployment:
   replicaCount: 1
   elasticGrokFilter: coop
+  javaOpts: "-XX:MaxRAMPercentage=75 -Dspring.profiles.active=prod"
   resources: #{} # The no-op curly-braces can optionally replace below sub-resources.
     limits:
       memory: 512Mi
@@ -25,15 +26,16 @@ importCronJob:
   nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
   archiveDir: /opt/cooperation-archive
-  resources:
-    requests:
-      memory: 3Gi
+  javaOpts: "-XX:MaxRAMPercentage=75"
+  resources: {}
 
 verifyCronJob:
   schedule: "50 5 * * *"
   timeZone: "Europe/Stockholm"
   nodePattern: # Override to restrict execution to certain nodes
   elasticGrokFilter: cronjob
+  javaOpts: "-XX:MaxRAMPercentage=75"
+  resources: {}
 
 environment:
   variables:
