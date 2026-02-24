@@ -66,3 +66,5 @@ spec:
             - secretRef:
                 name: {{ . }}
             {{- end }}
+            - configMapRef:
+                name: cooperation-jvm-configmap

@@ -50,6 +50,8 @@ spec:
                 - secretRef:
                     name: {{ . }}
                 {{- end }}
+                - configMapRef:
+                    name: cooperation-import-jvm-configmap
               volumeMounts:
                 - name: key-volume
                   mountPath: /home/groovy/.ssh

@@ -16,6 +16,8 @@ spec:
             - name: cooperation-scripts
               image: "{{ .Values.repository }}cooperation-scripts:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.container.image.pullPolicy }}
+              resources:
+                {{- toYaml .Values.verifyCronJob.resources | nindent 16 }}
               env:
                 {{ if .Values.verifyCronJob.nodePattern }}
                 - name: NODE_PATTERN
@@ -38,6 +40,8 @@ spec:
                 - secretRef:
                     name: {{ . }}
                 {{- end }}
+                - configMapRef:
+                    name: cooperation-verify-jvm-configmap
               command:
                 - /bin/bash
                 - '-c'
