@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cooperation-import-jvm-configmap
+data:
+  JAVA_OPTS: "{{ .Values.importCronJob.javaOpts }}"
+

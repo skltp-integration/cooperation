@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cooperation-verify-jvm-configmap
+data:
+  JAVA_OPTS: "{{ .Values.verifyCronJob.javaOpts }}"
+
