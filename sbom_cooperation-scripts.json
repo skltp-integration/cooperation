@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:28f50f00-096c-4922-8a6c-3d3744031d02",
+  "serialNumber": "urn:uuid:0bdc0e42-b9af-42f5-9e21-6cfa1d91e24d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-24T10:50:42+00:00",
+    "timestamp": "2026-03-11T13:48:00+00:00",
     "tools": {
       "components": [
         {
@@ -20,10 +20,10 @@
       ]
     },
     "component": {
-      "bom-ref": "pkg:oci/cooperation-scripts@sha256%3A185a3eebd37711d7126ebedcdd3324df00d052809f0c9d9907ba6abdf7d72f50?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "bom-ref": "pkg:oci/cooperation-scripts@sha256%3Af9e61ec37ad58482e31653274585318f42af76678184c19bbaa8c45095e258ef?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "type": "container",
-      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.7",
-      "purl": "pkg:oci/cooperation-scripts@sha256%3A185a3eebd37711d7126ebedcdd3324df00d052809f0c9d9907ba6abdf7d72f50?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.8",
+      "purl": "pkg:oci/cooperation-scripts@sha256%3Af9e61ec37ad58482e31653274585318f42af76678184c19bbaa8c45095e258ef?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "properties": [
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -47,10 +47,6 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:5133f6f3f5f6ddc0a7c85e6a7c8c3a1dcd94583596099d1a683066e3e9c69ebf"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
           "value": "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
         },
         {
@@ -59,15 +55,19 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:878c4df2fd409d7338e0bc24cb94e977409b801bed102f16fe53b8a58bcbb1f6"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:e149ef4e2ef3cc4fb90e412a4cb7b22e620c236fb1cfdf90449146d73162d670"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:d29b7e01976c9c3cf7ece9376075f8cc36d40e3ebbc9481c50246f82e0a00c6e"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -83,11 +83,11 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:ffb27e290f5d89538b4ff9e671cdeecbe5955823f64bd516d57600f985178019"
+          "value": "sha256:fa7e21974354d8eb7aa9d3c4e784791416c2a49372dddbeb1ab60d5b31548a72"
         },
         {
           "name": "aquasecurity:trivy:ImageID",
-          "value": "sha256:c433b861e1fd2138a17d72627bab8c4c6d76932aacaf8c524c5225f17119e074"
+          "value": "sha256:23913a34e42666fc70f8cb65f16cc8a32b2dec65a694d824b0a60a0257871f90"
         },
         {
           "name": "aquasecurity:trivy:Labels:org.opencontainers.image.ref.name",
@@ -99,11 +99,11 @@
         },
         {
           "name": "aquasecurity:trivy:Reference",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.7"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.8"
         },
         {
           "name": "aquasecurity:trivy:RepoDigest",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:185a3eebd37711d7126ebedcdd3324df00d052809f0c9d9907ba6abdf7d72f50"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:f9e61ec37ad58482e31653274585318f42af76678184c19bbaa8c45095e258ef"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -111,7 +111,11 @@
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.7"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.8.8"
+        },
+        {
+          "name": "aquasecurity:trivy:RepoTag",
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.9.0-SNAPSHOT"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -127,14 +131,14 @@
         },
         {
           "name": "aquasecurity:trivy:Size",
-          "value": "693733376"
+          "value": "694255104"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "09aa986d-a42b-4cfd-94d2-09853aee847c",
+      "bom-ref": "14954741-ad44-4af1-9ef5-95b09063f286",
       "type": "operating-system",
       "name": "ubuntu",
       "version": "24.04",
@@ -150,7 +154,35 @@
       ]
     },
     {
-      "bom-ref": "562aa425-788e-4453-841e-d20125dbee1c",
+      "bom-ref": "30de90ac-0b4e-445e-bc15-993c6dfcf7f5",
+      "type": "library",
+      "group": "org.apache.groovy",
+      "name": "groovy-test",
+      "version": "4.0.30",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "15d6dd508f2fd3ce157b64c89cc641f0d5711abf"
+        }
+      ],
+      "purl": "pkg:maven/org.apache.groovy/groovy-test@4.0.30",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "opt/groovy/lib/groovy-test-4.0.30.jar"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:221baacbcefd52b10bc06efd693fee8e00232326f92e3a9bcd4d5b9a0915dde0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7640bbdb-d033-4cb9-ba7c-061519fe85e9",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy",
@@ -178,35 +210,7 @@
       ]
     },
     {
-      "bom-ref": "6b394b3e-0d31-417b-930c-875e2cf6c9c7",
-      "type": "library",
-      "group": "org.apache.groovy",
-      "name": "groovy-test",
-      "version": "4.0.30",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "3bec2106dffc8c889b63cf170236126cef6a5ca4"
-        }
-      ],
-      "purl": "pkg:maven/org.apache.groovy/groovy-test@4.0.30",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "opt/groovy/grooid/groovy-test-4.0.30-grooid.jar"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:221baacbcefd52b10bc06efd693fee8e00232326f92e3a9bcd4d5b9a0915dde0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "jar"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c3f60908-779d-450a-8724-c6be0b73f053",
+      "bom-ref": "9c56ce6d-fc46-43eb-85d8-44151db3cd57",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy",
@@ -234,7 +238,7 @@
       ]
     },
     {
-      "bom-ref": "cca65d4b-69cf-4257-b90c-24a3efa933ba",
+      "bom-ref": "be4c9e12-b1e8-4532-b2f9-a74af7b58324",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy-test",
@@ -242,14 +246,14 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "15d6dd508f2fd3ce157b64c89cc641f0d5711abf"
+          "content": "3bec2106dffc8c889b63cf170236126cef6a5ca4"
         }
       ],
       "purl": "pkg:maven/org.apache.groovy/groovy-test@4.0.30",
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "opt/groovy/lib/groovy-test-4.0.30.jar"
+          "value": "opt/groovy/grooid/groovy-test-4.0.30-grooid.jar"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -946,7 +950,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -2843,7 +2847,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -2986,7 +2990,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -3926,7 +3930,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4243,7 +4247,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4738,7 +4742,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4995,7 +4999,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5187,7 +5191,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5223,7 +5227,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5617,7 +5621,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5726,7 +5730,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5822,7 +5826,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5953,7 +5957,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6046,7 +6050,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6618,7 +6622,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6852,7 +6856,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7145,7 +7149,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7181,7 +7185,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7519,7 +7523,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -7572,7 +7576,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -8188,13 +8192,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpq5@16.13-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpq5",
-      "version": "16.11-0ubuntu0.24.04.1",
+      "version": "16.13-0ubuntu0.24.04.1",
       "licenses": [
         {
           "license": {
@@ -8252,15 +8256,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/libpq5@16.13-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpq5@16.11-0ubuntu0.24.04.1"
+          "value": "libpq5@16.13-0ubuntu0.24.04.1"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8276,7 +8280,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
-          "value": "16.11"
+          "value": "16.13"
         }
       ]
     },
@@ -8417,7 +8421,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -8442,13 +8446,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.12-minimal",
-      "version": "3.12.3-1ubuntu0.11",
+      "version": "3.12.3-1ubuntu0.12",
       "licenses": [
         {
           "license": {
@@ -8506,15 +8510,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.12-minimal@3.12.3-1ubuntu0.11"
+          "value": "libpython3.12-minimal@3.12.3-1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8526,7 +8530,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.11"
+          "value": "1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -8535,22 +8539,22 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.12-stdlib",
-      "version": "3.12.3-1ubuntu0.11",
-      "purl": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "version": "3.12.3-1ubuntu0.12",
+      "purl": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.12-stdlib@3.12.3-1ubuntu0.11"
+          "value": "libpython3.12-stdlib@3.12.3-1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8562,7 +8566,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.11"
+          "value": "1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -8571,22 +8575,22 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "libpython3.12t64",
-      "version": "3.12.3-1ubuntu0.11",
-      "purl": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "version": "3.12.3-1ubuntu0.12",
+      "purl": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "libpython3.12t64@3.12.3-1ubuntu0.11"
+          "value": "libpython3.12t64@3.12.3-1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -8598,7 +8602,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.11"
+          "value": "1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -9940,7 +9944,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10018,7 +10022,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10343,7 +10347,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10383,7 +10387,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10423,7 +10427,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10463,7 +10467,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10499,7 +10503,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10539,7 +10543,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10579,7 +10583,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10970,7 +10974,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11042,7 +11046,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11142,7 +11146,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11299,7 +11303,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11444,7 +11448,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -11513,7 +11517,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12006,7 +12010,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12114,7 +12118,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12139,13 +12143,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "python3.12-minimal",
-      "version": "3.12.3-1ubuntu0.11",
+      "version": "3.12.3-1ubuntu0.12",
       "licenses": [
         {
           "license": {
@@ -12203,15 +12207,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "python3.12-minimal@3.12.3-1ubuntu0.11"
+          "value": "python3.12-minimal@3.12.3-1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12223,7 +12227,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.11"
+          "value": "1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -12232,13 +12236,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "bom-ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "type": "library",
       "supplier": {
         "name": "Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>"
       },
       "name": "python3.12",
-      "version": "3.12.3-1ubuntu0.11",
+      "version": "3.12.3-1ubuntu0.12",
       "licenses": [
         {
           "license": {
@@ -12296,15 +12300,15 @@
           }
         }
       ],
-      "purl": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "purl": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "python3.12@3.12.3-1ubuntu0.11"
+          "value": "python3.12@3.12.3-1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -12316,7 +12320,7 @@
         },
         {
           "name": "aquasecurity:trivy:SrcRelease",
-          "value": "1ubuntu0.11"
+          "value": "1ubuntu0.12"
         },
         {
           "name": "aquasecurity:trivy:SrcVersion",
@@ -12336,7 +12340,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -12599,7 +12603,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -13105,7 +13109,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:86021f2fd3ea96a95cfcf221b373b5e59603a33ae75b0df8d37a30898e2f2419"
+          "value": "sha256:af7af84dcaf7eb45931bc688b0c6a64522164e1ffc2888a8e68d7fa0bfedaefe"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -13200,7 +13204,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13228,7 +13232,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13256,7 +13260,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13284,7 +13288,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13340,7 +13344,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13396,7 +13400,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13452,7 +13456,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13592,7 +13596,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13620,7 +13624,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13648,7 +13652,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13760,7 +13764,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13816,7 +13820,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13900,7 +13904,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13928,7 +13932,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -15020,7 +15024,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -15244,7 +15248,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:bc1e20321f0be8062ad20fe0ce07dc421dced893319cf974c4f523e5db84d3b3"
+          "value": "sha256:ae85de86138b8612b2d2cc50e9198b22fa9e3853dc0f427a4b656fc16b3b4ca0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -15367,7 +15371,7 @@
   ],
   "dependencies": [
     {
-      "ref": "09aa986d-a42b-4cfd-94d2-09853aee847c",
+      "ref": "14954741-ad44-4af1-9ef5-95b09063f286",
       "dependsOn": [
         "pkg:deb/ubuntu/apt@2.8.3?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/bash@5.2.21-2ubuntu4?arch=amd64&distro=ubuntu-24.04",
@@ -15419,19 +15423,19 @@
       ]
     },
     {
-      "ref": "562aa425-788e-4453-841e-d20125dbee1c",
+      "ref": "30de90ac-0b4e-445e-bc15-993c6dfcf7f5",
       "dependsOn": []
     },
     {
-      "ref": "6b394b3e-0d31-417b-930c-875e2cf6c9c7",
+      "ref": "7640bbdb-d033-4cb9-ba7c-061519fe85e9",
       "dependsOn": []
     },
     {
-      "ref": "c3f60908-779d-450a-8724-c6be0b73f053",
+      "ref": "9c56ce6d-fc46-43eb-85d8-44151db3cd57",
       "dependsOn": []
     },
     {
-      "ref": "cca65d4b-69cf-4257-b90c-24a3efa933ba",
+      "ref": "be4c9e12-b1e8-4532-b2f9-a74af7b58324",
       "dependsOn": []
     },
     {
@@ -16177,8 +16181,8 @@
         "pkg:deb/ubuntu/libltdl7@2.4.7-7build1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libmysqlclient21@8.0.45-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libpam0g@1.5.3-5ubuntu5.5?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpq5@16.13-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/mailutils-common@3.17-1.1build3?arch=all&distro=ubuntu-24.04&epoch=1"
       ]
     },
@@ -16304,7 +16308,7 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpq5@16.11-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpq5@16.13-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.7?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libgssapi-krb5-2@1.20.1-6ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
@@ -16330,18 +16334,18 @@
     {
       "ref": "pkg:deb/ubuntu/libpython3-stdlib@3.12.3-0ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
-        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04"
+        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.7?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libssl3t64@3.0.13-0ubuntu3.7?arch=amd64&distro=ubuntu-24.04"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5.1build0.1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.7?arch=amd64&distro=ubuntu-24.04",
@@ -16350,7 +16354,7 @@
         "pkg:deb/ubuntu/libffi8@3.4.6-1build1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/liblzma5@5.6.1%2Breally5.4.5-1ubuntu0.2?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libncursesw6@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libreadline8t64@8.2-4build1?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libsqlite3-0@3.45.1-1ubuntu2.5?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libtinfo6@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
@@ -16360,11 +16364,11 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/libpython3.12t64@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.7?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/libexpat1@2.6.1-2ubuntu0.4?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/zlib1g@1.3.dfsg-3.1ubuntu2.1?arch=amd64&distro=ubuntu-24.04&epoch=1"
       ]
     },
@@ -16764,19 +16768,19 @@
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libexpat1@2.6.1-2ubuntu0.4?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/zlib1g@1.3.dfsg-3.1ubuntu2.1?arch=amd64&distro=ubuntu-24.04&epoch=1"
       ]
     },
     {
-      "ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+      "ref": "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
-        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/libpython3.12-stdlib@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/media-types@10.1.0?arch=all&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04",
+        "pkg:deb/ubuntu/python3.12-minimal@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/tzdata@2025b-0ubuntu0.24.04.1?arch=all&distro=ubuntu-24.04"
       ]
     },
@@ -16784,7 +16788,7 @@
       "ref": "pkg:deb/ubuntu/python3@3.12.3-0ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
       "dependsOn": [
         "pkg:deb/ubuntu/libpython3-stdlib@3.12.3-0ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
-        "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.11?arch=amd64&distro=ubuntu-24.04"
+        "pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.12?arch=amd64&distro=ubuntu-24.04"
       ]
     },
     {
@@ -17183,13 +17187,13 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:oci/cooperation-scripts@sha256%3A185a3eebd37711d7126ebedcdd3324df00d052809f0c9d9907ba6abdf7d72f50?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "ref": "pkg:oci/cooperation-scripts@sha256%3Af9e61ec37ad58482e31653274585318f42af76678184c19bbaa8c45095e258ef?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "dependsOn": [
-        "09aa986d-a42b-4cfd-94d2-09853aee847c",
-        "562aa425-788e-4453-841e-d20125dbee1c",
-        "6b394b3e-0d31-417b-930c-875e2cf6c9c7",
-        "c3f60908-779d-450a-8724-c6be0b73f053",
-        "cca65d4b-69cf-4257-b90c-24a3efa933ba",
+        "14954741-ad44-4af1-9ef5-95b09063f286",
+        "30de90ac-0b4e-445e-bc15-993c6dfcf7f5",
+        "7640bbdb-d033-4cb9-ba7c-061519fe85e9",
+        "9c56ce6d-fc46-43eb-85d8-44151db3cd57",
+        "be4c9e12-b1e8-4532-b2f9-a74af7b58324",
         "pkg:maven/ch.qos.logback/logback-classic@1.5.16",
         "pkg:maven/ch.qos.logback/logback-core@1.5.16",
         "pkg:maven/co.elastic.logging/ecs-logging-core@1.6.0",
@@ -18625,8 +18629,8 @@
         }
       ],
       "cwes": [
-        22,
-        59
+        59,
+        22
       ],
       "description": "A path traversal vulnerability was found in the CPIO utility. This issue could allow a remote unauthenticated attacker to trick a user into opening a specially crafted archive. During the extraction process, the archiver could follow symlinks outside of the intended directory, which allows files to be written in arbitrary directories through symlinks.",
       "advisories": [
@@ -18647,7 +18651,7 @@
         }
       ],
       "published": "2024-02-05T15:15:08+00:00",
-      "updated": "2024-11-21T08:45:32+00:00",
+      "updated": "2026-02-25T19:29:28+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/cpio@2.15%2Bdfsg-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
@@ -18708,7 +18712,7 @@
         }
       ],
       "cwes": [
-        208
+        385
       ],
       "description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
       "advisories": [
@@ -18771,7 +18775,7 @@
         }
       ],
       "published": "2024-03-06T22:15:57+00:00",
-      "updated": "2025-04-02T17:15:37+00:00",
+      "updated": "2026-02-25T20:17:20+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/libgcrypt20@1.10.3-2build1?arch=amd64&distro=ubuntu-24.04",
@@ -19183,6 +19187,7 @@
         }
       ],
       "description": "curl's websocket code did not update the 32 bit mask pattern for each new\n outgoing frame as the specification says. Instead it used a fixed mask that\npersisted and was used throughout the entire connection.\n\nA predictable mask pattern allows for a malicious server to induce traffic\nbetween the two communicating parties that could be interpreted by an involved\nproxy (configured or transparent) as genuine, real, HTTP traffic with content\nand thereby poison its cache. That cached poisoned content could then be\nserved to all users of that proxy.",
+      "recommendation": "Upgrade curl to version 8.5.0-2ubuntu10.7; Upgrade libcurl4t64 to version 8.5.0-2ubuntu10.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-10148"
@@ -19210,6 +19215,9 @@
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-10148"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-1"
         },
         {
           "url": "https://www.cve.org/CVERecord?id=CVE-2025-10148"
@@ -19598,6 +19606,107 @@
       ]
     },
     {
+      "id": "CVE-2025-14017",
+      "source": {
+        "name": "ubuntu",
+        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "azure"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "cbl-mariner"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 4.8,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl,\nchanging TLS options in one thread would inadvertently change them globally\nand therefore possibly also affect other concurrently setup transfers.\n\nDisabling certificate verification for a specific transfer could\nunintentionally disable the feature for other threads as well.",
+      "recommendation": "Upgrade curl to version 8.5.0-2ubuntu10.7; Upgrade libcurl4t64 to version 8.5.0-2ubuntu10.7",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-14017"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2026/01/07/3"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-14017"
+        },
+        {
+          "url": "https://curl.se/docs/CVE-2025-14017.html"
+        },
+        {
+          "url": "https://curl.se/docs/CVE-2025-14017.json"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-14017"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-1"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-2"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-14017"
+        }
+      ],
+      "published": "2026-01-08T10:15:45+00:00",
+      "updated": "2026-01-27T21:29:39+00:00",
+      "affects": [
+        {
+          "ref": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "8.5.0-2ubuntu10.6",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.6?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "8.5.0-2ubuntu10.6",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "CVE-2025-14524",
       "source": {
         "name": "ubuntu",
@@ -19627,6 +19736,7 @@
         601
       ],
       "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a cross-protocol redirect to a second URL that uses an IMAP, LDAP,\nPOP3 or SMTP scheme, curl might wrongly pass on the bearer token to the new\ntarget host.",
+      "recommendation": "Upgrade curl to version 8.5.0-2ubuntu10.7; Upgrade libcurl4t64 to version 8.5.0-2ubuntu10.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-14524"
@@ -19642,6 +19752,9 @@
         },
         {
           "url": "https://hackerone.com/reports/3459417"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-1"
         },
         {
           "url": "https://www.cve.org/CVERecord?id=CVE-2025-14524"
@@ -19700,6 +19813,7 @@
         295
       ],
       "description": "When doing TLS related transfers with reused easy or multi handles and\naltering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentally\nreuse a CA store cached in memory for which the partial chain option was\nreversed. Contrary to the user's wishes and expectations. This could make\nlibcurl find and accept a trust chain that it otherwise would not.",
+      "recommendation": "Upgrade curl to version 8.5.0-2ubuntu10.7; Upgrade libcurl4t64 to version 8.5.0-2ubuntu10.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-14819"
@@ -19712,6 +19826,9 @@
         },
         {
           "url": "https://curl.se/docs/CVE-2025-14819.json"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-1"
         },
         {
           "url": "https://www.cve.org/CVERecord?id=CVE-2025-14819"
@@ -19749,6 +19866,18 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 5.3,
@@ -19773,10 +19902,28 @@
           "url": "https://avd.aquasec.com/nvd/cve-2025-14831"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:3477"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2025-14831"
         },
         {
+          "url": "https://bugzilla.redhat.com/2392528"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2423177"
+        },
+        {
           "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2423177"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2026-3477.html"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-14831.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-3477.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-14831"
@@ -19789,7 +19936,7 @@
         }
       ],
       "published": "2026-02-09T15:16:09+00:00",
-      "updated": "2026-02-09T16:08:35+00:00",
+      "updated": "2026-03-02T17:16:23+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.4?arch=amd64&distro=ubuntu-24.04",
@@ -19832,6 +19979,7 @@
         297
       ],
       "description": "When doing SSH-based transfers using either SCP or SFTP, and setting the\nknown_hosts file, libcurl could still mistakenly accept connecting to hosts\n*not present* in the specified file if they were added as recognized in the\nlibssh *global* known_hosts file.",
+      "recommendation": "Upgrade curl to version 8.5.0-2ubuntu10.7; Upgrade libcurl4t64 to version 8.5.0-2ubuntu10.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-15079"
@@ -19847,6 +19995,12 @@
         },
         {
           "url": "https://hackerone.com/reports/3477116"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-1"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-2"
         },
         {
           "url": "https://www.cve.org/CVERecord?id=CVE-2025-15079"
@@ -19905,6 +20059,7 @@
         287
       ],
       "description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do\npublic key authentication, curl would wrongly still ask and authenticate using\na locally running SSH agent.",
+      "recommendation": "Upgrade curl to version 8.5.0-2ubuntu10.7; Upgrade libcurl4t64 to version 8.5.0-2ubuntu10.7",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-15224"
@@ -19920,6 +20075,12 @@
         },
         {
           "url": "https://hackerone.com/reports/3480925"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-1"
+        },
+        {
+          "url": "https://ubuntu.com/security/notices/USN-8062-2"
         },
         {
           "url": "https://www.cve.org/CVERecord?id=CVE-2025-15224"
@@ -20328,7 +20489,7 @@
           "source": {
             "name": "amazon"
           },
-          "severity": "medium"
+          "severity": "low"
         },
         {
           "source": {
@@ -21093,7 +21254,7 @@
       ]
     },
     {
-      "id": "CVE-2025-9086",
+      "id": "CVE-2025-9820",
       "source": {
         "name": "ubuntu",
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
@@ -21107,136 +21268,6 @@
         },
         {
           "source": {
-            "name": "amazon"
-          },
-          "severity": "low"
-        },
-        {
-          "source": {
-            "name": "oracle-oval"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "photon"
-          },
-          "severity": "high"
-        },
-        {
-          "source": {
-            "name": "redhat"
-          },
-          "score": 5.3,
-          "severity": "medium",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
-        },
-        {
-          "source": {
-            "name": "rocky"
-          },
-          "severity": "medium"
-        },
-        {
-          "source": {
-            "name": "ubuntu"
-          },
-          "severity": "low"
-        }
-      ],
-      "cwes": [
-        125
-      ],
-      "description": "1. A cookie is set using the `secure` keyword for `https://target` \n 2. curl is redirected to or otherwise made to speak with `http://target` (same \n   hostname, but using clear text HTTP) using the same cookie set \n 3. The same cookie name is set - but with just a slash as path (`path=\\\"/\\\",`).\n   Since this site is not secure, the cookie *should* just be ignored.\n4. A bug in the path comparison logic makes curl read outside a heap buffer\n   boundary\n\nThe bug either causes a crash or it potentially makes the comparison come to\nthe wrong conclusion and lets the clear-text site override the contents of the\nsecure cookie, contrary to expectations and depending on the memory contents\nimmediately following the single-byte allocation that holds the path.\n\nThe presumed and correct behavior would be to plainly ignore the second set of\nthe cookie since it was already set as secure on a secure host so overriding\nit on an insecure host should not be okay.",
-      "advisories": [
-        {
-          "url": "https://avd.aquasec.com/nvd/cve-2025-9086"
-        },
-        {
-          "url": "http://www.openwall.com/lists/oss-security/2025/09/10/1"
-        },
-        {
-          "url": "https://access.redhat.com/errata/RHSA-2026:1350"
-        },
-        {
-          "url": "https://access.redhat.com/security/cve/CVE-2025-9086"
-        },
-        {
-          "url": "https://bugzilla.redhat.com/2394750"
-        },
-        {
-          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2394750"
-        },
-        {
-          "url": "https://curl.se/docs/CVE-2025-9086.html"
-        },
-        {
-          "url": "https://curl.se/docs/CVE-2025-9086.json"
-        },
-        {
-          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-9086"
-        },
-        {
-          "url": "https://errata.almalinux.org/9/ALSA-2026-1350.html"
-        },
-        {
-          "url": "https://errata.rockylinux.org/RLSA-2026:1350"
-        },
-        {
-          "url": "https://github.com/curl/curl/commit/c6ae07c6a541e0e96d0040afb6"
-        },
-        {
-          "url": "https://hackerone.com/reports/3294999"
-        },
-        {
-          "url": "https://linux.oracle.com/cve/CVE-2025-9086.html"
-        },
-        {
-          "url": "https://linux.oracle.com/errata/ELSA-2026-1825.html"
-        },
-        {
-          "url": "https://lists.debian.org/debian-lts-announce/2026/01/msg00002.html"
-        },
-        {
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-9086"
-        },
-        {
-          "url": "https://www.cve.org/CVERecord?id=CVE-2025-9086"
-        }
-      ],
-      "published": "2025-09-12T06:15:44+00:00",
-      "updated": "2026-01-20T14:58:01+00:00",
-      "affects": [
-        {
-          "ref": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "8.5.0-2ubuntu10.6",
-              "status": "affected"
-            }
-          ]
-        },
-        {
-          "ref": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.6?arch=amd64&distro=ubuntu-24.04",
-          "versions": [
-            {
-              "version": "8.5.0-2ubuntu10.6",
-              "status": "affected"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "CVE-2025-9820",
-      "source": {
-        "name": "ubuntu",
-        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
-      },
-      "ratings": [
-        {
-          "source": {
             "name": "azure"
           },
           "severity": "medium"
@@ -21244,6 +21275,12 @@
         {
           "source": {
             "name": "cbl-mariner"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
           },
           "severity": "medium"
         },
@@ -21276,16 +21313,34 @@
           "url": "http://www.openwall.com/lists/oss-security/2025/11/20/2"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:3477"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2025-9820"
         },
         {
+          "url": "https://bugzilla.redhat.com/2392528"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2423177"
+        },
+        {
           "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2392528"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2026-3477.html"
         },
         {
           "url": "https://gitlab.com/gnutls/gnutls/-/commit/1d56f96f6ab5034d677136b9d50b5a75dff0faf5"
         },
         {
           "url": "https://gitlab.com/gnutls/gnutls/-/issues/1732"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-9820.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-3477.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-9820"
@@ -21301,7 +21356,7 @@
         }
       ],
       "published": "2026-01-26T20:16:09+00:00",
-      "updated": "2026-01-27T14:59:34+00:00",
+      "updated": "2026-03-02T18:16:25+00:00",
       "affects": [
         {
           "ref": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.4?arch=amd64&distro=ubuntu-24.04",
@@ -21441,6 +21496,12 @@
         "url": "https://git.launchpad.net/ubuntu-cve-tracker"
       },
       "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
         {
           "source": {
             "name": "redhat"
@@ -21670,6 +21731,122 @@
           "versions": [
             {
               "version": "1.5.16",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-23865",
+      "source": {
+        "name": "ubuntu",
+        "url": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        125
+      ],
+      "description": "An integer overflow in the tt_var_load_item_variation_store function of the Freetype library in versions 2.13.2 and 2.13.3 may allow for an out of bounds read operation when parsing HVAR/VVAR/MVAR tables in OpenType variable fonts. This issue is fixed in version 2.14.2.",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2026-23865"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2026/03/03/8"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2026-23865"
+        },
+        {
+          "url": "https://gitlab.com/freetype/freetype/-/commit/fc85a255849229c024c8e65f536fe1875d84841c"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-23865"
+        },
+        {
+          "url": "https://sourceforge.net/projects/freetype/files/freetype2/2.14.2/"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-23865"
+        },
+        {
+          "url": "https://www.facebook.com/security/advisories/cve-2026-23865"
+        }
+      ],
+      "published": "2026-03-02T17:16:32+00:00",
+      "updated": "2026-03-04T01:15:55+00:00",
+      "affects": [
+        {
+          "ref": "pkg:deb/ubuntu/libfreetype6@2.13.2%2Bdfsg-1build3?arch=amd64&distro=ubuntu-24.04",
+          "versions": [
+            {
+              "version": "2.13.2+dfsg-1build3",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GHSA-72hv-8253-57qq",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [],
+      "description": "### Summary\nThe non-blocking (async) JSON parser in `jackson-core` bypasses the `maxNumberLength` constraint (default: 1000 characters) defined in `StreamReadConstraints`. This allows an attacker to send JSON with arbitrarily long numbers through the async parser API, leading to excessive memory allocation and potential CPU exhaustion, resulting in a Denial of Service (DoS).\n\nThe standard synchronous parser correctly enforces this limit, but the async parser fails to do so, creating an inconsistent enforcement policy.\n\n### Details\nThe root cause is that the async parsing path in `NonBlockingUtf8JsonParserBase` (and related classes) does not call the methods responsible for number length validation.\n\n- The number parsing methods (e.g., `_finishNumberIntegralPart`) accumulate digits into the `TextBuffer` without any length checks.\n- After parsing, they call `_valueComplete()`, which finalizes the token but does **not** call `resetInt()` or `resetFloat()`.\n- The `resetInt()`/`resetFloat()` methods in `ParserBase` are where the `validateIntegerLength()` and `validateFPLength()` checks are performed.\n- Because this validation step is skipped, the `maxNumberLength` constraint is never enforced in the async code path.\n\n### PoC\nThe following JUnit 5 test demonstrates the vulnerability. It shows that the async parser accepts a 5,000-digit number, whereas the limit should be 1,000.\n\n```java\npackage tools.jackson.core.unittest.dos;\n\nimport java.nio.charset.StandardCharsets;\n\nimport org.junit.jupiter.api.Test;\n\nimport tools.jackson.core.*;\nimport tools.jackson.core.exc.StreamConstraintsException;\nimport tools.jackson.core.json.JsonFactory;\nimport tools.jackson.core.json.async.NonBlockingByteArrayJsonParser;\n\nimport static org.junit.jupiter.api.Assertions.*;\n\n/**\n * POC: Number Length Constraint Bypass in Non-Blocking (Async) JSON Parsers\n *\n * Authors: sprabhav7, rohan-repos\n * \n * maxNumberLength default = 1000 characters (digits).\n * A number with more than 1000 digits should be rejected by any parser.\n *\n * BUG: The async parser never calls resetInt()/resetFloat() which is where\n * validateIntegerLength()/validateFPLength() lives. Instead it calls\n * _valueComplete() which skips all number length validation.\n *\n * CWE-770: Allocation of Resources Without Limits or Throttling\n */\nclass AsyncParserNumberLengthBypassTest {\n\n    private static final int MAX_NUMBER_LENGTH = 1000;\n    private static final int TEST_NUMBER_LENGTH = 5000;\n\n    private final JsonFactory factory = new JsonFactory();\n\n    // CONTROL: Sync parser correctly rejects a number exceeding maxNumberLength\n    @Test\n    void syncParserRejectsLongNumber() throws Exception {\n        byte[] payload = buildPayloadWithLongInteger(TEST_NUMBER_LENGTH);\n\t\t\n\t\t// Output to console\n        System.out.println(\"[SYNC] Parsing \" + TEST_NUMBER_LENGTH + \"-digit number (limit: \" + MAX_NUMBER_LENGTH + \")\");\n        try {\n            try (JsonParser p = factory.createParser(ObjectReadContext.empty(), payload)) {\n                while (p.nextToken() != null) {\n                    if (p.currentToken() == JsonToken.VALUE_NUMBER_INT) {\n                        System.out.println(\"[SYNC] Accepted number with \" + p.getText().length() + \" digits — UNEXPECTED\");\n                    }\n                }\n            }\n            fail(\"Sync parser must reject a \" + TEST_NUMBER_LENGTH + \"-digit number\");\n        } catch (StreamConstraintsException e) {\n            System.out.println(\"[SYNC] Rejected with StreamConstraintsException: \" + e.getMessage());\n        }\n    }\n\n    // VULNERABILITY: Async parser accepts the SAME number that sync rejects\n    @Test\n    void asyncParserAcceptsLongNumber() throws Exception {\n        byte[] payload = buildPayloadWithLongInteger(TEST_NUMBER_LENGTH);\n\n        NonBlockingByteArrayJsonParser p =\n            (NonBlockingByteArrayJsonParser) factory.createNonBlockingByteArrayParser(ObjectReadContext.empty());\n        p.feedInput(payload, 0, payload.length);\n        p.endOfInput();\n\n        boolean foundNumber = false;\n        try {\n            while (p.nextToken() != null) {\n                if (p.currentToken() == JsonToken.VALUE_NUMBER_INT) {\n                    foundNumber = true;\n                    String numberText = p.getText();\n                    assertEquals(TEST_NUMBER_LENGTH, numberText.length(),\n                        \"Async parser silently accepted all \" + TEST_NUMBER_LENGTH + \" digits\");\n                }\n            }\n            // Output to console\n            System.out.println(\"[ASYNC INT] Accepted number with \" + TEST_NUMBER_LENGTH + \" digits — BUG CONFIRMED\");\n            assertTrue(foundNumber, \"Parser should have produced a VALUE_NUMBER_INT token\");\n        } catch (StreamConstraintsException e) {\n            fail(\"Bug is fixed — async parser now correctly rejects long numbers: \" + e.getMessage());\n        }\n        p.close();\n    }\n\n    private byte[] buildPayloadWithLongInteger(int numDigits) {\n        StringBuilder sb = new StringBuilder(numDigits + 10);\n        sb.append(\"{\\\"v\\\":\");\n        for (int i = 0; i < numDigits; i++) {\n            sb.append((char) ('1' + (i % 9)));\n        }\n        sb.append('}');\n        return sb.toString().getBytes(StandardCharsets.UTF_8);\n    }\n}\n\n```\n\n\n### Impact\nA malicious actor can send a JSON document with an arbitrarily long number to an application using the async parser (e.g., in a Spring WebFlux or other reactive application). This can cause:\n1.  **Memory Exhaustion:** Unbounded allocation of memory in the `TextBuffer` to store the number's digits, leading to an `OutOfMemoryError`.\n2.  **CPU Exhaustion:** If the application subsequently calls `getBigIntegerValue()` or `getDecimalValue()`, the JVM can be tied up in O(n^2) `BigInteger` parsing operations, leading to a CPU-based DoS.\n\n### Suggested Remediation\n\nThe async parsing path should be updated to respect the `maxNumberLength` constraint. The simplest fix appears to ensure that `_valueComplete()` or a similar method in the async path calls the appropriate validation methods (`resetInt()` or `resetFloat()`) already present in `ParserBase`, mirroring the behavior of the synchronous parsers.\n\n**NOTE:** This research was performed in collaboration with [rohan-repos](https://github.com/rohan-repos)",
+      "recommendation": "Upgrade com.fasterxml.jackson.core:jackson-core to version 2.18.6, 2.21.1, 3.1.0",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-72hv-8253-57qq"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/commit/b0c428e6f993e1b5ece5c1c3cb2523e887cd52cf"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/pull/1555"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-72hv-8253-57qq"
+        }
+      ],
+      "published": "2026-02-28T02:01:05+00:00",
+      "updated": "2026-03-03T16:59:14+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.17.2",
+          "versions": [
+            {
+              "version": "2.17.2",
+              "status": "affected"
+            }
+          ]
+        },
+        {
+          "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.19.2",
+          "versions": [
+            {
+              "version": "2.19.2",
               "status": "affected"
             }
           ]

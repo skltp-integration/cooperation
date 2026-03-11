@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3a72a0d4-3c92-48f4-96bd-24aeb0ada576",
+  "serialNumber": "urn:uuid:d4f6c075-8958-4a56-8047-e4b591f4988c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-24T10:48:39+00:00",
+    "timestamp": "2026-03-11T13:46:26+00:00",
     "tools": {
       "components": [
         {
@@ -20,7 +20,7 @@
       ]
     },
     "component": {
-      "bom-ref": "19a1d474-9300-49a8-aea7-bb72cefede9b",
+      "bom-ref": "8480af06-647d-4024-9b4b-5c0773944868",
       "type": "application",
       "name": ".",
       "properties": [
@@ -33,7 +33,7 @@
   },
   "components": [
     {
-      "bom-ref": "a0f959bd-5093-4695-900a-b7ebc460a6a9",
+      "bom-ref": "30021f7d-67ff-42b4-90d9-607057f0ebc3",
       "type": "application",
       "name": "pom.xml",
       "properties": [
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "bom-ref": "b47dd8a4-6c4d-44f9-b047-e7a48f21aa39",
+      "bom-ref": "f4010d11-6a15-43e8-b0cb-c1cfd80d7e68",
       "type": "application",
       "name": "scripts/pom.xml",
       "properties": [
@@ -2716,11 +2716,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.7",
+      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.8",
       "type": "library",
       "group": "se.skltp.cooperation",
       "name": "cooperation",
-      "version": "1.8.7",
+      "version": "1.8.8",
       "licenses": [
         {
           "license": {
@@ -2728,11 +2728,11 @@
           }
         }
       ],
-      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.8.7",
+      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.8.8",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "se.skltp.cooperation:cooperation:1.8.7::2a3cd4f8"
+          "value": "se.skltp.cooperation:cooperation:1.8.8::bfa8a9f2"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -2743,20 +2743,20 @@
   ],
   "dependencies": [
     {
-      "ref": "19a1d474-9300-49a8-aea7-bb72cefede9b",
+      "ref": "30021f7d-67ff-42b4-90d9-607057f0ebc3",
       "dependsOn": [
-        "a0f959bd-5093-4695-900a-b7ebc460a6a9",
-        "b47dd8a4-6c4d-44f9-b047-e7a48f21aa39"
+        "pkg:maven/se.skltp.cooperation/cooperation@1.8.8"
       ]
     },
     {
-      "ref": "a0f959bd-5093-4695-900a-b7ebc460a6a9",
+      "ref": "8480af06-647d-4024-9b4b-5c0773944868",
       "dependsOn": [
-        "pkg:maven/se.skltp.cooperation/cooperation@1.8.7"
+        "30021f7d-67ff-42b4-90d9-607057f0ebc3",
+        "f4010d11-6a15-43e8-b0cb-c1cfd80d7e68"
       ]
     },
     {
-      "ref": "b47dd8a4-6c4d-44f9-b047-e7a48f21aa39",
+      "ref": "f4010d11-6a15-43e8-b0cb-c1cfd80d7e68",
       "dependsOn": [
         "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT"
       ]
@@ -3429,7 +3429,7 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.7",
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.8.8",
       "dependsOn": [
         "pkg:maven/co.elastic.logging/log4j2-ecs-layout@1.5.0",
         "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.18.2",
@@ -5018,7 +5018,7 @@
           "source": {
             "name": "amazon"
           },
-          "severity": "medium"
+          "severity": "high"
         },
         {
           "source": {
@@ -5730,6 +5730,430 @@
       ]
     },
     {
+      "id": "CVE-2025-52520",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 3.7,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        190
+      ],
+      "description": "For some unlikely configurations of multipart upload, an Integer Overflow vulnerability in Apache Tomcat could lead to a DoS via bypassing of size limits.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.8, from 10.1.0-M1 through 10.1.42, from 9.0.0.M1 through 9.0.106.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 through 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nUsers are recommended to upgrade to version 11.0.9, 10.1.43 or 9.0.107, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.9, 10.1.43, 9.0.107",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-52520"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/07/10/12"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:14181"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-52520"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379386"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379386"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48976"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48988"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48989"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-49125"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52434"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52520"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53506"
+        },
+        {
+          "url": "https://errata.almalinux.org/9/ALSA-2025-14181.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:14181"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/927d66fbc294cb65242102b817a45fd80834e040"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/927d66fbc294cb65242102b817a45fd80834e040"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/a51e4bedccfafd35b7cdd0ee3e22267dee9f90db"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/a51e4bedccfafd35b7cdd0ee3e22267dee9f90db"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/fc42bbccb9041fafd194fbfdf3eab1d44cb5c45c"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/fc42bbccb9041fafd194fbfdf3eab1d44cb5c45c"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-52520.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-14181.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/trqq01bbxw6c92zx69kx2mw2qgmfy0o5"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-52520"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-52520"
+        }
+      ],
+      "published": "2025-07-10T19:15:25+00:00",
+      "updated": "2025-11-04T22:16:20+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-53506",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "photon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
+        }
+      ],
+      "cwes": [
+        400
+      ],
+      "description": "Uncontrolled Resource Consumption vulnerability in Apache Tomcat if an HTTP/2 client did not acknowledge the initial settings frame that reduces the maximum permitted concurrent streams.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.8, from 10.1.0-M1 through 10.1.42, from 9.0.0.M1 through 9.0.106.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 through 8.5.100. Other EOL versions may also be affected.\n\n\nUsers are recommended to upgrade to version 11.0.9, 10.1.43 or 9.0.107, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 9.0.107, 10.1.43, 11.0.9",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2025-53506"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/07/10/13"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2025:14181"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2025-53506"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2379386"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373015"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373018"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373020"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2373309"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379374"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379382"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2379386"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48976"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48988"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-48989"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-49125"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52434"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-52520"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53506"
+        },
+        {
+          "url": "https://errata.almalinux.org/9/ALSA-2025-14181.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2025:14181"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/2aa6261276ebe50b99276953591e3a2be7898bdb"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/2aa6261276ebe50b99276953591e3a2be7898bdb"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/434772930f362145516dd60681134e7f0cf8115b"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/434772930f362145516dd60681134e7f0cf8115b"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/be8f330f83ceddaf3baeed57522e571572b6b99b"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/be8f330f83ceddaf3baeed57522e571572b6b99b"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2025-53506.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2025-14181.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/p09775q0rd185m6zz98krg0fp45j8kr0"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2025/07/msg00009.html"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-53506"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-53506"
+        }
+      ],
+      "published": "2025-07-10T20:15:26+00:00",
+      "updated": "2025-11-04T22:16:21+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.34",
+          "versions": [
+            {
+              "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "CVE-2025-55752",
       "source": {
         "name": "ghsa",
@@ -5999,7 +6423,7 @@
           "source": {
             "name": "amazon"
           },
-          "severity": "medium"
+          "severity": "high"
         },
         {
           "source": {
@@ -6155,7 +6579,7 @@
         20
       ],
       "description": "Improper Input Validation vulnerability.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.14, from 10.1.0-M1 through 10.1.49, from 9.0.0-M1 through 9.0.112.\n\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 through 8.5.100. Older EOL versions are not affected.\nTomcat did not validate that the host name provided via the SNI \nextension was the same as the host name provided in the HTTP host header \nfield. If Tomcat was configured with more than one virtual host and the \nTLS configuration for one of those hosts did not require client \ncertificate authentication but another one did, it was possible for a \nclient to bypass the client certificate authentication by sending \ndifferent host names in the SNI extension and the HTTP host header field.\n\n\n\nThe vulnerability only applies if client certificate authentication is \nonly enforced at the Connector. It does not apply if client certificate \nauthentication is enforced at the web application.\n\n\nUsers are recommended to upgrade to version 11.0.15 or later, 10.1.50 or later or 9.0.113 or later, which fix the issue.",
-      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.14, 10.1.49, 9.0.112",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.15, 10.1.50, 9.0.113",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2025-66614"
@@ -6396,7 +6820,7 @@
         20
       ],
       "description": "Improper Input Validation vulnerability in Apache Tomcat.\n\n\nTomcat did not limit HTTP/0.9 requests to the GET method. If a security \nconstraint was configured to allow HEAD requests to a URI but deny GET \nrequests, the user could bypass that constraint on GET requests by \nsending a (specification invalid) HEAD request using HTTP/0.9.\n\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.14, from 10.1.0-M1 through 10.1.49, from 9.0.0.M1 through 9.0.112.\n\n\nOlder, EOL versions are also affected.\n\nUsers are recommended to upgrade to version 11.0.15 or later, 10.1.50 or later or 9.0.113 or later, which fixes the issue.",
-      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.14, 10.1.49, 9.0.112",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.15, 10.1.50, 9.0.113",
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2026-24733"
@@ -6443,6 +6867,46 @@
           "versions": [
             {
               "version": "10.1.34",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GHSA-72hv-8253-57qq",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [],
+      "description": "### Summary\nThe non-blocking (async) JSON parser in `jackson-core` bypasses the `maxNumberLength` constraint (default: 1000 characters) defined in `StreamReadConstraints`. This allows an attacker to send JSON with arbitrarily long numbers through the async parser API, leading to excessive memory allocation and potential CPU exhaustion, resulting in a Denial of Service (DoS).\n\nThe standard synchronous parser correctly enforces this limit, but the async parser fails to do so, creating an inconsistent enforcement policy.\n\n### Details\nThe root cause is that the async parsing path in `NonBlockingUtf8JsonParserBase` (and related classes) does not call the methods responsible for number length validation.\n\n- The number parsing methods (e.g., `_finishNumberIntegralPart`) accumulate digits into the `TextBuffer` without any length checks.\n- After parsing, they call `_valueComplete()`, which finalizes the token but does **not** call `resetInt()` or `resetFloat()`.\n- The `resetInt()`/`resetFloat()` methods in `ParserBase` are where the `validateIntegerLength()` and `validateFPLength()` checks are performed.\n- Because this validation step is skipped, the `maxNumberLength` constraint is never enforced in the async code path.\n\n### PoC\nThe following JUnit 5 test demonstrates the vulnerability. It shows that the async parser accepts a 5,000-digit number, whereas the limit should be 1,000.\n\n```java\npackage tools.jackson.core.unittest.dos;\n\nimport java.nio.charset.StandardCharsets;\n\nimport org.junit.jupiter.api.Test;\n\nimport tools.jackson.core.*;\nimport tools.jackson.core.exc.StreamConstraintsException;\nimport tools.jackson.core.json.JsonFactory;\nimport tools.jackson.core.json.async.NonBlockingByteArrayJsonParser;\n\nimport static org.junit.jupiter.api.Assertions.*;\n\n/**\n * POC: Number Length Constraint Bypass in Non-Blocking (Async) JSON Parsers\n *\n * Authors: sprabhav7, rohan-repos\n * \n * maxNumberLength default = 1000 characters (digits).\n * A number with more than 1000 digits should be rejected by any parser.\n *\n * BUG: The async parser never calls resetInt()/resetFloat() which is where\n * validateIntegerLength()/validateFPLength() lives. Instead it calls\n * _valueComplete() which skips all number length validation.\n *\n * CWE-770: Allocation of Resources Without Limits or Throttling\n */\nclass AsyncParserNumberLengthBypassTest {\n\n    private static final int MAX_NUMBER_LENGTH = 1000;\n    private static final int TEST_NUMBER_LENGTH = 5000;\n\n    private final JsonFactory factory = new JsonFactory();\n\n    // CONTROL: Sync parser correctly rejects a number exceeding maxNumberLength\n    @Test\n    void syncParserRejectsLongNumber() throws Exception {\n        byte[] payload = buildPayloadWithLongInteger(TEST_NUMBER_LENGTH);\n\t\t\n\t\t// Output to console\n        System.out.println(\"[SYNC] Parsing \" + TEST_NUMBER_LENGTH + \"-digit number (limit: \" + MAX_NUMBER_LENGTH + \")\");\n        try {\n            try (JsonParser p = factory.createParser(ObjectReadContext.empty(), payload)) {\n                while (p.nextToken() != null) {\n                    if (p.currentToken() == JsonToken.VALUE_NUMBER_INT) {\n                        System.out.println(\"[SYNC] Accepted number with \" + p.getText().length() + \" digits — UNEXPECTED\");\n                    }\n                }\n            }\n            fail(\"Sync parser must reject a \" + TEST_NUMBER_LENGTH + \"-digit number\");\n        } catch (StreamConstraintsException e) {\n            System.out.println(\"[SYNC] Rejected with StreamConstraintsException: \" + e.getMessage());\n        }\n    }\n\n    // VULNERABILITY: Async parser accepts the SAME number that sync rejects\n    @Test\n    void asyncParserAcceptsLongNumber() throws Exception {\n        byte[] payload = buildPayloadWithLongInteger(TEST_NUMBER_LENGTH);\n\n        NonBlockingByteArrayJsonParser p =\n            (NonBlockingByteArrayJsonParser) factory.createNonBlockingByteArrayParser(ObjectReadContext.empty());\n        p.feedInput(payload, 0, payload.length);\n        p.endOfInput();\n\n        boolean foundNumber = false;\n        try {\n            while (p.nextToken() != null) {\n                if (p.currentToken() == JsonToken.VALUE_NUMBER_INT) {\n                    foundNumber = true;\n                    String numberText = p.getText();\n                    assertEquals(TEST_NUMBER_LENGTH, numberText.length(),\n                        \"Async parser silently accepted all \" + TEST_NUMBER_LENGTH + \" digits\");\n                }\n            }\n            // Output to console\n            System.out.println(\"[ASYNC INT] Accepted number with \" + TEST_NUMBER_LENGTH + \" digits — BUG CONFIRMED\");\n            assertTrue(foundNumber, \"Parser should have produced a VALUE_NUMBER_INT token\");\n        } catch (StreamConstraintsException e) {\n            fail(\"Bug is fixed — async parser now correctly rejects long numbers: \" + e.getMessage());\n        }\n        p.close();\n    }\n\n    private byte[] buildPayloadWithLongInteger(int numDigits) {\n        StringBuilder sb = new StringBuilder(numDigits + 10);\n        sb.append(\"{\\\"v\\\":\");\n        for (int i = 0; i < numDigits; i++) {\n            sb.append((char) ('1' + (i % 9)));\n        }\n        sb.append('}');\n        return sb.toString().getBytes(StandardCharsets.UTF_8);\n    }\n}\n\n```\n\n\n### Impact\nA malicious actor can send a JSON document with an arbitrarily long number to an application using the async parser (e.g., in a Spring WebFlux or other reactive application). This can cause:\n1.  **Memory Exhaustion:** Unbounded allocation of memory in the `TextBuffer` to store the number's digits, leading to an `OutOfMemoryError`.\n2.  **CPU Exhaustion:** If the application subsequently calls `getBigIntegerValue()` or `getDecimalValue()`, the JVM can be tied up in O(n^2) `BigInteger` parsing operations, leading to a CPU-based DoS.\n\n### Suggested Remediation\n\nThe async parsing path should be updated to respect the `maxNumberLength` constraint. The simplest fix appears to ensure that `_valueComplete()` or a similar method in the async path calls the appropriate validation methods (`resetInt()` or `resetFloat()`) already present in `ParserBase`, mirroring the behavior of the synchronous parsers.\n\n**NOTE:** This research was performed in collaboration with [rohan-repos](https://github.com/rohan-repos)",
+      "recommendation": "Upgrade com.fasterxml.jackson.core:jackson-core to version 2.18.6, 2.21.1, 3.1.0",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-72hv-8253-57qq"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/commit/b0c428e6f993e1b5ece5c1c3cb2523e887cd52cf"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/pull/1555"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-72hv-8253-57qq"
+        }
+      ],
+      "published": "2026-02-28T02:01:05+00:00",
+      "updated": "2026-03-03T16:59:14+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.18.2",
+          "versions": [
+            {
+              "version": "2.18.2",
               "status": "affected"
             }
           ]
