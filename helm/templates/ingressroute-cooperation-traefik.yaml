@@ -4,6 +4,8 @@ metadata:
   annotations:
   name: cooperation-https-traefik
 spec:
+  entryPoints:
+    - websecure
   routes:
     - kind: Rule
       match: Host(`{{ .Values.ingressroute.bksHostName }}`) && (PathPrefix(`/coop`) || PathPrefix(`/takinfo`))
