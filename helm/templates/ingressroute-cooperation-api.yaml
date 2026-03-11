@@ -2,8 +2,10 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   annotations:
-  name: cooperation-https
+  name: cooperation-https-api
 spec:
+  entryPoints:
+    - websecure
   routes:
     - kind: Rule
       match: Host(`{{ .Values.ingressroute.apiHostName }}`) && (PathPrefix(`/coop`) || PathPrefix(`/takinfo`))
