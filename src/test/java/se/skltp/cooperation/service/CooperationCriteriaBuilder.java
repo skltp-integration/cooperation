@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -23,7 +23,6 @@ package se.skltp.cooperation.service;
 /**
  * A builder object for CooperationCriteria
  *
- * @author Peter Merikan
  */
 public class CooperationCriteriaBuilder {
 

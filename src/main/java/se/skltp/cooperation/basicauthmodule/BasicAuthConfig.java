@@ -45,7 +45,7 @@ public class BasicAuthConfig {
 			//   Our motivation is that CSRF attack protection is mostly relevant when a browser is involved,
 			//   where an attacker page can exploit a user's pre-existing session cookie or some other stored token.
 			// For stateless APIs, that communicate backend-backend; or where requests are never made from a browser,
-			//   but only a API tools like Postman or Insomnia; CSRF protection is less relevant.
+			//   but only via API tools like Postman or Insomnia; CSRF protection is less relevant.
 			.csrf(AbstractHttpConfigurer::disable)
 
 			.authorizeHttpRequests(authz -> {

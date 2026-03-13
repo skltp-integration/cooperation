@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -31,9 +31,9 @@ import se.skltp.cooperation.domain.ServiceContract;
 import se.skltp.cooperation.repository.ServiceContractRepository;
 import se.skltp.cooperation.service.ServiceContractCriteria;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
+import se.skltp.cooperation.util.ControllerUtils;
 
 /**
  * @author Jan Vasternas
@@ -55,7 +55,7 @@ public class ServiceContractServiceImpl implements se.skltp.cooperation.service.
 			return serviceContractRepository.findAll();
 		} else {
 			Predicate predicate = buildPredicate(criteria);
-			return Lists.newArrayList(serviceContractRepository.findAll(predicate));
+			return ControllerUtils.iterableToArrayList(serviceContractRepository.findAll(predicate));
 		}
 	}
 

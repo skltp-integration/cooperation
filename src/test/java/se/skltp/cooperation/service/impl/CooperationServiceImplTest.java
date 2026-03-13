@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -50,7 +50,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * @author Peter Merikan
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)

@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -20,20 +20,17 @@
  */
 package se.skltp.cooperation.service;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.*;
 
-/**
- * @author Peter Merikan
- */
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CooperationCriteriaTest {
 
 	private CooperationCriteria uut;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		uut = new CooperationCriteria();
 

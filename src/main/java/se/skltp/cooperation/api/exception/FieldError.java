@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -23,7 +23,6 @@ package se.skltp.cooperation.api.exception;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * @author Peter Merikan
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class FieldError {

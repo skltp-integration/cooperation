@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -33,12 +33,11 @@ import se.skltp.cooperation.repository.ConnectionPointRepository;
 import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
+import se.skltp.cooperation.util.ControllerUtils;
 
 /**
- * @author Peter Merikan
  */
 @Service
 @Transactional(readOnly = true)
@@ -58,7 +57,7 @@ public class ConnectionPointServiceImpl implements ConnectionPointService {
 			return connectionPointRepository.findAll();
 		} else {
 			Predicate predicate = buildPredicate(criteria);
-			return Lists.newArrayList(connectionPointRepository.findAll(predicate));
+			return ControllerUtils.iterableToArrayList(connectionPointRepository.findAll(predicate));
 		}
 
 	}

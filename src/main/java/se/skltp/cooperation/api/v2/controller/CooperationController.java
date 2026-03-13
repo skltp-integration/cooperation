@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import se.skltp.cooperation.api.exception.ResourceNotFoundException;
@@ -37,14 +38,12 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 
+import se.skltp.cooperation.util.ControllerUtils;
 import se.skltp.cooperation.util.TimeDiffUtil;
-
-import com.google.common.base.Splitter;
 
 /**
  * REST controller to handle resource Cooperation
  *
- * @author Peter Merikan
  */
 @RestController
 @RequestMapping(value = {
@@ -55,7 +54,7 @@ import com.google.common.base.Splitter;
 })
 public class CooperationController {
 
-	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
+
 	static final String INCLUDE_SERVICECONSUMER = "serviceConsumer";
 	private static final String INCLUDE_SERVICECONTRACT = "serviceContract";
 	private static final String INCLUDE_CONNECTIONPOINT = "connectionPoint";
@@ -131,7 +130,7 @@ public class CooperationController {
 
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
-			includes.addAll(SPLITTER.splitToList(include));
+			includes.addAll(ControllerUtils.splitCommaSeparated(include));
 		}
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,

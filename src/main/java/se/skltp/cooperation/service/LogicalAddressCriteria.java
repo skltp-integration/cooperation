@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -28,13 +28,13 @@ public class LogicalAddressCriteria {
 	Long serviceContractId;
 	Long connectionPointId;
 	Long serviceProducerId;
-	
+
 	public boolean isEmpty() {
 
 		return logicalAdress == null && serviceConsumerId == null && serviceContractId == null
 			&& connectionPointId == null && serviceProducerId == null;
 	}
-	
+
 	public LogicalAddressCriteria(String logicalAdress, Long serviceConsumerId,
 			Long serviceContractId, Long connectionPointId, Long serviceProducerId) {
 		this.logicalAdress = logicalAdress;

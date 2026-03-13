@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -20,17 +20,13 @@
  */
 package se.skltp.cooperation.service.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
@@ -49,7 +45,6 @@ import se.skltp.cooperation.api.TestUtil;
 /**
  * @author Jan Västernäs
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class CooperationServiceImplIntegrationTest {
@@ -76,7 +71,7 @@ public class CooperationServiceImplIntegrationTest {
 	ServiceDomain serviceDomain1;
 	ServiceDomain serviceDomain2;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
@@ -101,7 +96,7 @@ public class CooperationServiceImplIntegrationTest {
 				connectionPoint1, logicalAddress1, serviceProducer1, serviceContract1);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 		util.deleteAll();
 	}

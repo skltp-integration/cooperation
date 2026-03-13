@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -29,13 +29,13 @@ public class ConnectionPointCriteria {
 	Long logicalAddressId;
 	Long serviceContractId;
 	Long serviceProducerId;
-	
+
 	public boolean isEmpty() {
 
 		return environment == null && platform == null && serviceConsumerId == null && logicalAddressId == null
 			&& serviceContractId == null && serviceProducerId == null;
 	}
-	
+
 	public ConnectionPointCriteria(String environment, String platform, Long serviceConsumerId,
 			Long logicalAddressId, Long serviceContractId, Long serviceProducerId) {
 		super();

@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -24,7 +24,6 @@ package se.skltp.cooperation.service;
  * A criteria object to be used when fetching
  * {@link se.skltp.cooperation.domain.ServiceConsumer}
  *
- * @author Peter Merikan
  */
 public class ServiceConsumerCriteria {
 	private Long connectionPointId;
@@ -79,5 +78,5 @@ public class ServiceConsumerCriteria {
 	public void setServiceProducerId(Long serviceProducerId) {
 		this.serviceProducerId = serviceProducerId;
 	}
-	
+
 }

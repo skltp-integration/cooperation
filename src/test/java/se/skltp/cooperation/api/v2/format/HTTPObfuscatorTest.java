@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -20,16 +20,17 @@
  */
 package se.skltp.cooperation.api.v2.format;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class HTTPObfuscatorTest {
 
 	private HTTPObfuscator uut;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		uut = new HTTPObfuscatorImpl();
 

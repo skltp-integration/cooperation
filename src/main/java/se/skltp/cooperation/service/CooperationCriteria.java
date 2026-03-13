@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -23,7 +23,6 @@ package se.skltp.cooperation.service;
 /**
  * A criteria object to be used when fetching Cooperations
  *
- * @author Peter Merikan
  */
 public class CooperationCriteria {
 
@@ -90,6 +89,6 @@ public class CooperationCriteria {
 	public void setServiceDomainId(Long serviceDomainId) {
 		this.serviceDomainId = serviceDomainId;
 	}
-	
-	
+
+
 }

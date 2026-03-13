@@ -16,13 +16,12 @@ import se.skltp.cooperation.repository.ServiceConsumerRepository;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.JPAExpressions;
+import se.skltp.cooperation.util.ControllerUtils;
 
 /**
- * @author Peter Merikan
  */
 @Service
 @Transactional(readOnly = true)
@@ -51,7 +50,7 @@ public class ServiceConsumerServiceImpl implements ServiceConsumerService {
 			return findAll();
 		} else {
 			Predicate predicate = buildPredicate(criteria);
-			return Lists.newArrayList(serviceConsumerRepository.findAll(predicate));
+			return ControllerUtils.iterableToArrayList(serviceConsumerRepository.findAll(predicate));
 		}
 	}
 

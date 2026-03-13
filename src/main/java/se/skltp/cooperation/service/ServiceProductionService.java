@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -25,7 +25,6 @@ import java.util.List;
 import se.skltp.cooperation.domain.ServiceProduction;
 
 /**
- * @author Peter Merikan
  */
 public interface ServiceProductionService {
 

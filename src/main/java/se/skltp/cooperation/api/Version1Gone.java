@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * This is a basic catch-all Response to tell any callers that an API has been closed.
+ */
 @RestController
 @RequestMapping(value = {
 	"/api/v1/**"
 })
-/**
- * This is a basic catch-all Response to tell any callers that an API has been closed.
- */
 public class Version1Gone {
 	@GetMapping()
 	public ResponseEntity<String> respondWithGone() {

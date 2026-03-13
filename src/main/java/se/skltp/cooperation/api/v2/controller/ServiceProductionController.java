@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -37,8 +37,7 @@ import se.skltp.cooperation.api.exception.ResourceNotFoundException;
 import se.skltp.cooperation.api.v2.dto.ServiceProductionDTO;
 import se.skltp.cooperation.api.v2.format.HTTPObfuscator;
 import se.skltp.cooperation.api.v2.listdto.ServiceProductionListDTO;
-
-import com.google.common.base.Splitter;
+import se.skltp.cooperation.util.ControllerUtils;
 
 /**
  * REST controller to handle resource ServiceProduction
@@ -54,7 +53,7 @@ import com.google.common.base.Splitter;
 })
 public class ServiceProductionController {
 
-	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
+
 	private static final String INCLUDE_PHYSICAL_ADDRESS = "physicalAddress";
 	public static final String INCLUDE_SERVICEPRODUCER = "serviceProducer";
 	public static final String INCLUDE_SERVICECONTRACT = "serviceContract";
@@ -142,7 +141,7 @@ public class ServiceProductionController {
 
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
-			includes.addAll(SPLITTER.splitToList(include));
+			includes.addAll(ControllerUtils.splitCommaSeparated(include));
 		}
 
 		ServiceProductionCriteria criteria = new ServiceProductionCriteria(physicalAddress,

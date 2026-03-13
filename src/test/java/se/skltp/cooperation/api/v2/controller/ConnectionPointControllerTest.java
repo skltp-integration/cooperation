@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -40,9 +40,14 @@ import java.util.Arrays;
 
 import org.apache.catalina.security.SecurityConfig;
 import org.modelmapper.ModelMapper;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+//import org.joda.time.DateTimeZone;
+//import org.joda.time.format.DateTimeFormat;
+//import org.joda.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -68,7 +73,6 @@ import se.skltp.cooperation.api.v2.dto.ConnectionPointDTO;
 /**
  * Test class for the ConnectionPointController REST controller.
  *
- * @author Peter Merikan
  * @see ConnectionPointController
  */
 
@@ -79,7 +83,16 @@ import se.skltp.cooperation.api.v2.dto.ConnectionPointDTO;
 @WebAppConfiguration
 public class ConnectionPointControllerTest {
 
-	private static DateTimeFormatter isoDateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").withZone(DateTimeZone.forID("CET"));
+	private static final DateTimeFormatter ISO_DATE_FORMATTER =
+		DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ")
+			.withZone(ZoneId.of("CET"));
+
+	private static Date parseDate(String value) {
+		return Date.from(ZonedDateTime.parse(value, ISO_DATE_FORMATTER).toInstant());
+	}
+	private static String formatDate(Date value) {
+		return ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(value.getTime()));
+	}
 
 	ConnectionPoint cp1;
 	ConnectionPoint cp2;
@@ -114,12 +127,12 @@ public class ConnectionPointControllerTest {
 		dto1.setId(1L);
 		dto1.setPlatform("dto1.platform");
 		dto1.setEnvironment("dto1.environment");
-		dto1.setSnapshotTime(isoDateFormatter.parseDateTime("2015-10-13T10:14:25+0200").toDate());
+		dto1.setSnapshotTime(Date.from(ZonedDateTime.parse("2015-10-13T10:14:25+0200", ISO_DATE_FORMATTER).toInstant()));
 		dto2 = new ConnectionPointDTO();
 		dto2.setId(2L);
 		dto2.setPlatform("dto2.platform");
 		dto2.setEnvironment("dto2.environment");
-		dto2.setSnapshotTime(isoDateFormatter.parseDateTime("2015-10-13T10:15:12+0200").toDate());
+		dto2.setSnapshotTime(Date.from(ZonedDateTime.parse("2015-10-13T10:15:12+0200", ISO_DATE_FORMATTER).toInstant()));
 
 	}
 
@@ -136,11 +149,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 			.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
-			.andExpect(jsonPath("$.[0].snapshotTime", is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))))
+			.andExpect(jsonPath("$.[0].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
 			.andExpect(jsonPath("$.[1].platform").value(is(dto2.getPlatform())))
 			.andExpect(jsonPath("$.[1].environment").value(is(dto2.getEnvironment())))
-			.andExpect(jsonPath("$.[1].snapshotTime", is(isoDateFormatter.print(dto2.getSnapshotTime().getTime()))))
+			.andExpect(jsonPath("$.[1].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))))
 		;
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
@@ -161,11 +174,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 			.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
-			.andExpect(jsonPath("$.[0].snapshotTime", is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))))
+			.andExpect(jsonPath("$.[0].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
 			.andExpect(jsonPath("$.[1].platform").value(is(dto2.getPlatform())))
 			.andExpect(jsonPath("$.[1].environment").value(is(dto2.getEnvironment())))
-			.andExpect(jsonPath("$.[1].snapshotTime", is(isoDateFormatter.print(dto2.getSnapshotTime().getTime()))))
+			.andExpect(jsonPath("$.[1].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))))
 		;
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
@@ -186,11 +199,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))))
+			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/id").string(is(dto2.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/platform").string(is(dto2.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/environment").string(is(dto2.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(isoDateFormatter.print(dto2.getSnapshotTime().getTime()))));
+			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))));
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
@@ -210,11 +223,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))))
+			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/id").string(is(dto2.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/platform").string(is(dto2.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/environment").string(is(dto2.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(isoDateFormatter.print(dto2.getSnapshotTime().getTime()))));
+			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))));
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
@@ -262,7 +275,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 			.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()))
-			.andExpect(jsonPath("$.snapshotTime", is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))));
+			.andExpect(jsonPath("$.snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
 	}
 
 	@Test
@@ -278,7 +291,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))));
+			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
 	}
 
 	@Test
@@ -294,7 +307,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 			.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()))
-			.andExpect(jsonPath("$.snapshotTime", is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))));
+			.andExpect(jsonPath("$.snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
 	}
 
 	@Test
@@ -310,7 +323,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))));
+			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
 	}
 
 	@Test
@@ -325,7 +338,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(isoDateFormatter.print(dto1.getSnapshotTime().getTime()))));
+			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
 	}
 
 	@Test

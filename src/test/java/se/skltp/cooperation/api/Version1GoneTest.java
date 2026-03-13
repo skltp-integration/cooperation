@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import se.skltp.cooperation.Application;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = SecurityConfig.class)
@@ -26,8 +26,8 @@ public class Version1GoneTest {
 
 	@Test
 	public void getAnyVersion1Resource_shouldBeToldIsGone() throws Exception {
-    	assertEquals("Response must be of Type 'ResponseEntity'", "ResponseEntity", version1Gone.respondWithGone().getClass().getSimpleName());
+    	assertEquals("ResponseEntity", version1Gone.respondWithGone().getClass().getSimpleName(),"Response must be of Type 'ResponseEntity'");
 		ResponseEntity<String> result = version1Gone.respondWithGone();
-    	assertSame("Response must be of type HTTP 410 GONE.", HttpStatus.GONE, result.getStatusCode());
+    	assertSame(HttpStatus.GONE, result.getStatusCode(), "Response must be of type HTTP 410 GONE.");
 	}
 }

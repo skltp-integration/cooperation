@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -32,10 +32,10 @@ import se.skltp.cooperation.domain.ServiceProducer;
 import se.skltp.cooperation.repository.ServiceProducerRepository;
 import se.skltp.cooperation.service.ServiceProducerCriteria;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.JPAExpressions;
+import se.skltp.cooperation.util.ControllerUtils;
 
 /**
  * @author Jan Vasternas
@@ -58,7 +58,7 @@ public class ServiceProducerServiceImpl implements
 			return serviceProducerRepository.findAll();
 		} else {
 			Predicate predicate = buildPredicate(criteria);
-			return Lists.newArrayList(serviceProducerRepository.findAll(predicate));
+			return ControllerUtils.iterableToArrayList(serviceProducerRepository.findAll(predicate));
 		}
 	}
 

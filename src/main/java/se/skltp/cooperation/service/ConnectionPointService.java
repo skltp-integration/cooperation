@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -25,13 +25,12 @@ import java.util.List;
 import se.skltp.cooperation.domain.ConnectionPoint;
 
 /**
- * @author Peter Merikan
  */
 public interface ConnectionPointService {
 
 	/**
 	 * Find all ConnectionPoints
-	 * 
+	 *
 	 * @param criteria
 	 *
 	 * @return List A list of {@link ConnectionPoint} objects.

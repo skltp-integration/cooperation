@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -31,7 +31,7 @@ public interface ServiceProducerService {
 
 	/**
 	 * Find all ServiceProducers
-	 * @param criteria 
+	 * @param criteria
 	 *
 	 * @return List A list of {@link ServiceProducer} objects.
 	 */

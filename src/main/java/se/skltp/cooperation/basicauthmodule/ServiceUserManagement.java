@@ -5,8 +5,6 @@
 
 package se.skltp.cooperation.basicauthmodule;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +27,6 @@ public final class ServiceUserManagement {
 
 	@Autowired
 	UserRepository userRepository;
-
-	private static final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
 	@PostConstruct
 	private void initialization() {

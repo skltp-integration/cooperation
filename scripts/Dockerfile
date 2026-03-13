@@ -1,4 +1,4 @@
-FROM groovy:4.0-jdk17
+FROM groovy:4.0-jdk21
 
 USER root
 RUN apt update && apt install -y mailutils openssh-client

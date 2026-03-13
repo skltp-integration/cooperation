@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
+ * Copyright (c) 2026 Inera.
+ *
  *
  * This file is part of SKLTP.
  *
@@ -40,7 +40,6 @@ import se.skltp.cooperation.api.v2.listdto.ConnectionPointListDTO;
 /**
  * REST controller for managing ConnectionPoint.
  *
- * @author Peter Merikan
  */
 @RestController
 @RequestMapping(value = {
