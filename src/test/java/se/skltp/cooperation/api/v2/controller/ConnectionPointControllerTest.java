@@ -1,28 +1,14 @@
 /**
- * Copyright (c) 2026 Inera.
- *
- *
- * This file is part of SKLTP.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * Copyright (c) 2015-2026 Inera.
+ * This file is part of the SKLTP project and software kit.
+ * This library is free software under the GNU Lesser General Public License v2.1.
+ * Refer to the full license files at the project root.
  */
 package se.skltp.cooperation.api.v2.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -112,7 +98,7 @@ public class ConnectionPointControllerTest {
     private WebApplicationContext context;
 
 	@BeforeEach
-	public void setUpTestData() throws Exception {
+	public void setUpTestData() {
 
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(context).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
@@ -127,12 +113,12 @@ public class ConnectionPointControllerTest {
 		dto1.setId(1L);
 		dto1.setPlatform("dto1.platform");
 		dto1.setEnvironment("dto1.environment");
-		dto1.setSnapshotTime(Date.from(ZonedDateTime.parse("2015-10-13T10:14:25+0200", ISO_DATE_FORMATTER).toInstant()));
+		dto1.setSnapshotTime(parseDate("2015-10-13T10:14:25+0200"));
 		dto2 = new ConnectionPointDTO();
 		dto2.setId(2L);
 		dto2.setPlatform("dto2.platform");
 		dto2.setEnvironment("dto2.environment");
-		dto2.setSnapshotTime(Date.from(ZonedDateTime.parse("2015-10-13T10:15:12+0200", ISO_DATE_FORMATTER).toInstant()));
+		dto2.setSnapshotTime(parseDate("2015-10-13T10:15:12+0200"));
 
 	}
 
@@ -149,11 +135,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 			.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
-			.andExpect(jsonPath("$.[0].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
+			.andExpect(jsonPath("$.[0].snapshotTime", is(formatDate(dto1.getSnapshotTime()))))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
 			.andExpect(jsonPath("$.[1].platform").value(is(dto2.getPlatform())))
 			.andExpect(jsonPath("$.[1].environment").value(is(dto2.getEnvironment())))
-			.andExpect(jsonPath("$.[1].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))))
+			.andExpect(jsonPath("$.[1].snapshotTime", is(formatDate(dto2.getSnapshotTime()))))
 		;
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
@@ -174,11 +160,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
 			.andExpect(jsonPath("$.[0].platform").value(is(dto1.getPlatform())))
 			.andExpect(jsonPath("$.[0].environment").value(is(dto1.getEnvironment())))
-			.andExpect(jsonPath("$.[0].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
+			.andExpect(jsonPath("$.[0].snapshotTime", is(formatDate(dto1.getSnapshotTime()))))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
 			.andExpect(jsonPath("$.[1].platform").value(is(dto2.getPlatform())))
 			.andExpect(jsonPath("$.[1].environment").value(is(dto2.getEnvironment())))
-			.andExpect(jsonPath("$.[1].snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))))
+			.andExpect(jsonPath("$.[1].snapshotTime", is(formatDate(dto2.getSnapshotTime()))))
 		;
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
@@ -199,11 +185,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
+			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(formatDate(dto1.getSnapshotTime()))))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/id").string(is(dto2.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/platform").string(is(dto2.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/environment").string(is(dto2.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))));
+			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(formatDate(dto2.getSnapshotTime()))));
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
@@ -223,11 +209,11 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[1]/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))))
+			.andExpect(xpath("/connectionPoints/connectionPoint[1]/snapshotTime").string(is(formatDate(dto1.getSnapshotTime()))))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/id").string(is(dto2.getId().toString())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/platform").string(is(dto2.getPlatform())))
 			.andExpect(xpath("/connectionPoints/connectionPoint[2]/environment").string(is(dto2.getEnvironment())))
-			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto2.getSnapshotTime().getTime())))));
+			.andExpect(xpath("/connectionPoints/connectionPoint[2]/snapshotTime").string(is(formatDate(dto2.getSnapshotTime()))));
 
 		verify(connectionPointServiceMock, times(1)).findAll(any(ConnectionPointCriteria.class));
 		verifyNoMoreInteractions(connectionPointServiceMock);
@@ -238,7 +224,7 @@ public class ConnectionPointControllerTest {
 	public void getAllAcceptJson_shouldReturnEmptyList() throws Exception {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null, null, null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<ConnectionPoint>());
+		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<>());
 
 		mockMvc.perform(get("/api/v2/connectionPoints").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
@@ -251,7 +237,7 @@ public class ConnectionPointControllerTest {
 	public void getAllAcceptXml_shouldReturnEmptyList() throws Exception {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null, null, null);
-		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<ConnectionPoint>());
+		when(connectionPointServiceMock.findAll(criteria)).thenReturn(new ArrayList<>());
 
 		mockMvc.perform(get("/api/v2/connectionPoints").accept(MediaType.APPLICATION_XML_VALUE))
 			.andExpect(status().isOk())
@@ -275,7 +261,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 			.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()))
-			.andExpect(jsonPath("$.snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
+			.andExpect(jsonPath("$.snapshotTime", is(formatDate(dto1.getSnapshotTime()))));
 	}
 
 	@Test
@@ -291,7 +277,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
+			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(formatDate(dto1.getSnapshotTime()))));
 	}
 
 	@Test
@@ -307,7 +293,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(jsonPath("$.id").value(dto1.getId().intValue()))
 			.andExpect(jsonPath("$.platform").value(dto1.getPlatform()))
 			.andExpect(jsonPath("$.environment").value(dto1.getEnvironment()))
-			.andExpect(jsonPath("$.snapshotTime", is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
+			.andExpect(jsonPath("$.snapshotTime", is(formatDate(dto1.getSnapshotTime()))));
 	}
 
 	@Test
@@ -323,7 +309,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
+			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(formatDate(dto1.getSnapshotTime()))));
 	}
 
 	@Test
@@ -338,7 +324,7 @@ public class ConnectionPointControllerTest {
 			.andExpect(xpath("/connectionPoint/id").string(is(dto1.getId().toString())))
 			.andExpect(xpath("/connectionPoint/platform").string(is(dto1.getPlatform())))
 			.andExpect(xpath("/connectionPoint/environment").string(is(dto1.getEnvironment())))
-			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(ISO_DATE_FORMATTER.format(Instant.ofEpochMilli(dto1.getSnapshotTime().getTime())))));
+			.andExpect(xpath("/connectionPoint/snapshotTime").string(is(formatDate(dto1.getSnapshotTime()))));
 	}
 
 	@Test
@@ -348,7 +334,7 @@ public class ConnectionPointControllerTest {
 		mockMvc.perform(get("/api/v2/connectionPoints/{id}", Long.MAX_VALUE)
 	    	      .contentType(MediaType.APPLICATION_JSON))
 	    	      .andExpect(status().isNotFound())
-	    	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException)
+	    	      .andExpect(result -> assertInstanceOf(ResourceNotFoundException.class, result.getResolvedException())
 	    	      );
 
 	}

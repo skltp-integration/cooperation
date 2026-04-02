@@ -1,6 +1,6 @@
 //////
 // 2022-05-17, Henrik Augustsson.
-// Nordic Medtest.
+// Inera.
 //////
 
 package se.skltp.cooperation.basicauthmodule;
@@ -25,13 +25,17 @@ public final class ServiceUserManagement {
 
 	private final Logger log = LoggerFactory.getLogger(ServiceUserManagement.class);
 
-	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	ServiceUserManagement(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@PostConstruct
 	private void initialization() {
 		log.debug("INITIALIZATION of ServiceUserManagement instance.");
-		if (userRepository.findAll().size() == 0) {
+		if (userRepository.findAll().isEmpty()) {
 			log.info("ADDING CAESAR as generic auth user. Change in DB.");
 			createUserFlow(new UserData(
 				"Caesar",
@@ -93,7 +97,7 @@ public final class ServiceUserManagement {
 	/**
 	 * Checks if User is present by name.
 	 * @param username The username (id) of the user.
-	 * @return true if user exists in the db, false otherwise.
+	 * @return true if the user exists in the db, false otherwise.
 	 */
 	public boolean userExists(String username) {
 		return userRepository.existsById(username);
@@ -103,7 +107,7 @@ public final class ServiceUserManagement {
 		// At the entry of this function, it is already known that the user does not exist.
 		// Any permission settings were checked in the controller.
 
-		log.info("Attempting CREATION of USER " + newUserPayload.username + " with roles: " + newUserPayload.roles);
+		log.info("Attempting CREATION of USER {} with roles: {}", newUserPayload.username, newUserPayload.roles);
 
 		newUserPayload.password = MyUserDetailsService.generateHashedPassword(newUserPayload.password);
 
@@ -114,10 +118,10 @@ public final class ServiceUserManagement {
 
 	public ServiceUser editUserFlow(UserData incomingUserData, ServiceUser existingUser) {
 		// At the entry of this function, it is already known that the user exists.
-		//   The specific user entry was located in the controller function, and attached to this call.
+		//   The specific user entry was located in the controller function and attached to this call.
 		// Any permission settings were checked in the controller.
 
-		log.info("Attempting EDIT of USER " + incomingUserData.username + ", which will have provided roles: " + incomingUserData.roles);
+		log.info("Attempting EDIT of USER {}, which will have provided roles: {}", incomingUserData.username, incomingUserData.roles);
 
 		ServiceUser editedUser = new ServiceUser(
 			existingUser.username,
@@ -137,7 +141,7 @@ public final class ServiceUserManagement {
 		// At the entry of this function, password quality has been checked,
 		//    and any permission settings were checked in the controller.
 
-		log.info("Attempting PWD CHANGE on USER " + existingUser.username + " with current roles: " + existingUser.roles);
+		log.info("Attempting PWD CHANGE on USER {} with current roles: {}", existingUser.username, existingUser.roles);
 
 		String hashedPassword = MyUserDetailsService.generateHashedPassword(newPassword);
 
@@ -171,8 +175,7 @@ public final class ServiceUserManagement {
 
 	/**
 	 * Will assemble a wrapper of dummy users.\n
-	 * Will not be stored in memory.\n
-	 * Will not overwrite user file.
+	 * Will not be stored in memory.
 	 * Do NOT use these Dummy users for actual service usage, for obvious security reasons.
 	 *
 	 * @return A payload of dummy users.
