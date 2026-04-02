@@ -1,22 +1,7 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
- *
- * This file is part of SKLTP.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * Copyright (c) 2015-2026 Inera.
+ * * This library is free software under the GNU Lesser General Public License v2.1.
+ * Refer to the full license files at the project root.
  */
 package se.skltp.cooperation.service.impl;
 
@@ -32,12 +17,11 @@ import se.skltp.cooperation.repository.CooperationRepository;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
+import se.skltp.cooperation.util.ControllerUtils;
 
 /**
- * @author Peter Merikan
  */
 @Service
 @Transactional(readOnly = true)
@@ -57,7 +41,7 @@ public class CooperationServiceImpl implements CooperationService {
 			return cooperationRepository.findAll();
 		} else {
 			Predicate predicate = buildPredicate(criteria);
-			return Lists.newArrayList(cooperationRepository.findAll(predicate));
+			return ControllerUtils.iterableToArrayList(cooperationRepository.findAll(predicate));
 		}
 	}
 

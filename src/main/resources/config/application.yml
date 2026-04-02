@@ -1,5 +1,10 @@
-spring.profiles.active: dev
 
+spring:
+  main:
+    banner-mode: off
+  profiles:
+    active: dev
+    
 server:
   port: 8080
   error:
@@ -28,44 +33,3 @@ settings:
   allowApi_createAnyUsers: true
   allowApi_createSuperAdmins: false
   allowApi_downloadSampleUserFile: true
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: dev
-  datasource:
-    url: jdbc:h2:mem:cooperation;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  sql:
-    init:
-      platform: h2
-  jpa:
-    open-in-view: true
-  h2:
-    console.enabled: true
-
-logging:
-  config: classpath:log4j2-dev.xml
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: prod
-  sql:
-    init:
-      platform: mysql
-  datasource:
-    url: ${COOPERATION_DB_URL}
-    username: ${COOPERATION_DB_USER}
-    password: ${COOPERATION_DB_PASSWORD}
-    driverClassName: com.mysql.cj.jdbc.Driver
-    testOnBorrow: true
-    validationQuery: SELECT 1
-  jpa:
-    open-in-view: true

@@ -1,36 +1,17 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
- *
- * This file is part of SKLTP.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * Copyright (c) 2015-2026 Inera.
+ * * This library is free software under the GNU Lesser General Public License v2.1.
+ * Refer to the full license files at the project root.
  */
 package se.skltp.cooperation.service.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
@@ -48,7 +29,6 @@ import se.skltp.cooperation.api.TestUtil;
 /**
  * @author Jan Västernäs
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class ServiceProductionServiceImplIntegrationTest {
@@ -76,7 +56,7 @@ public class ServiceProductionServiceImplIntegrationTest {
 	ServiceDomain serviceDomain1;
 	ServiceDomain serviceDomain2;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
@@ -101,7 +81,7 @@ public class ServiceProductionServiceImplIntegrationTest {
 				connectionPoint1, logicalAddress2, serviceProducer2, serviceContract1);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 		util.deleteAll();
 	}

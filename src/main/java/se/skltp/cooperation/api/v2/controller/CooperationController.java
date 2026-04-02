@@ -1,22 +1,7 @@
 /**
- * Copyright (c) 2014 Center for eHalsa i samverkan (CeHis).
- * 								<http://cehis.se/>
- *
- * This file is part of SKLTP.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * Copyright (c) 2015-2026 Inera.
+ * * This library is free software under the GNU Lesser General Public License v2.1.
+ * Refer to the full license files at the project root.
  */
 package se.skltp.cooperation.api.v2.controller;
 
@@ -28,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import se.skltp.cooperation.api.exception.ResourceNotFoundException;
@@ -37,14 +23,12 @@ import se.skltp.cooperation.domain.Cooperation;
 import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 
+import se.skltp.cooperation.util.ControllerUtils;
 import se.skltp.cooperation.util.TimeDiffUtil;
-
-import com.google.common.base.Splitter;
 
 /**
  * REST controller to handle resource Cooperation
  *
- * @author Peter Merikan
  */
 @RestController
 @RequestMapping(value = {
@@ -55,7 +39,7 @@ import com.google.common.base.Splitter;
 })
 public class CooperationController {
 
-	private static final Splitter SPLITTER = Splitter.on(',').trimResults().omitEmptyStrings();
+
 	static final String INCLUDE_SERVICECONSUMER = "serviceConsumer";
 	private static final String INCLUDE_SERVICECONTRACT = "serviceContract";
 	private static final String INCLUDE_CONNECTIONPOINT = "connectionPoint";
@@ -131,7 +115,7 @@ public class CooperationController {
 
 		List<String> includes = new ArrayList<>();
 		if (include != null) {
-			includes.addAll(SPLITTER.splitToList(include));
+			includes.addAll(ControllerUtils.splitCommaSeparated(include));
 		}
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumerId, logicalAddressId,

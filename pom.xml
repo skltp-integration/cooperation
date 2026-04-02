@@ -1,23 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.1</version>
-    <relativePath></relativePath>
+    <version>3.5.12</version>
+    <relativePath/>
   </parent>
+
   <groupId>se.skltp.cooperation</groupId>
   <artifactId>cooperation</artifactId>
   <version>1.9.0-SNAPSHOT</version>
+
   <name>cooperation</name>
   <description>Established Cooperation</description>
+	<url/>
+	<inceptionYear/>
+	<organization/>
+	<licenses/>
+
+	<developers/>
+	<contributors/>
+
+	<mailingLists/>
+
+	<!-- The prerequisites tag is only intended for maven-plugin projects. -->
+	<!--prerequisites/-->
+
+	<modules/>
+
   <scm>
     <connection>scm:git:https://github.com:443/skltp-integration/cooperation.git</connection>
     <developerConnection>scm:git:https://github.com:443/skltp-integration/cooperation.git</developerConnection>
     <url>https://github.com/skltp-integration/cooperation.git</url>
   </scm>
+	<issueManagement/>
+	<ciManagement/>
   <distributionManagement>
     <repository>
       <id>release-nexus</id>
@@ -30,31 +49,48 @@
       <url>${snapshot-nexus-url}</url>
     </snapshotRepository>
   </distributionManagement>
+
   <properties>
-    <commons-collection.version>3.2.2</commons-collection.version>
-    <jacoco.plugin.version>0.8.12</jacoco.plugin.version>
-    <java.version>17</java.version>
-    <jakarta.xml.version>4.0.2</jakarta.xml.version>
-    <modelmapper.version>3.2.2</modelmapper.version>
-    <build.timestamp>${maven.build.timestamp}</build.timestamp>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <ecs-logging-java.version>1.5.0</ecs-logging-java.version>
-    <maven.javadoc.skip>true</maven.javadoc.skip>
-    <gson.version>2.11.0</gson.version>
-    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <openfeign-querydsl.version>5.6.1</openfeign-querydsl.version>
-    <jsonpath.version>0.9.1</jsonpath.version>
+		<java.version>21</java.version>
+		<spring-boot.version>3.5.12</spring-boot.version> <!-- From Mar 2026 -->
+
+    <jacoco.plugin.version>0.8.14</jacoco.plugin.version> <!-- From Oct 2025 -->
+    <modelmapper.version>3.2.6</modelmapper.version> <!-- From Nov 2025 -->
+		<openfeign-querydsl.version>6.12</openfeign-querydsl.version> <!-- From Jun 2025 -->
+
+    <ecs-logging-java.version>1.7.0</ecs-logging-java.version> <!-- From Apr 2025 -->
+
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<build.timestamp>${maven.build.timestamp}</build.timestamp>
   </properties>
+
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>commons-collections</groupId>
-        <artifactId>commons-collections</artifactId>
-        <version>${commons-collection.version}</version>
-      </dependency>
+			<!-- Importing Spring Boot BOM-POM, which sets versions for a ton of Spring-related dependencies. -->
+			<!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Source: https://mvnrepository.com/artifact/io.github.openfeign.querydsl/querydsl-bom -->
+			<dependency>
+				<groupId>io.github.openfeign.querydsl</groupId>
+				<artifactId>querydsl-bom</artifactId>
+				<version>${openfeign-querydsl.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -85,11 +121,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>${gson.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
     </dependency>
@@ -102,6 +133,17 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-registry-prometheus</artifactId>
@@ -119,32 +161,25 @@
       <artifactId>modelmapper</artifactId>
       <version>${modelmapper.version}</version>
     </dependency>
+
     <dependency>
       <groupId>io.github.openfeign.querydsl</groupId>
       <artifactId>querydsl-apt</artifactId>
-      <version>${openfeign-querydsl.version}</version>
-      <classifier>jakarta</classifier>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.openfeign.querydsl</groupId>
-      <artifactId>querydsl-jpa</artifactId>
-      <version>${openfeign-querydsl.version}</version>
       <classifier>jakarta</classifier>
     </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>32.0.0-jre</version>
-    </dependency>
+		<!-- Source: https://mvnrepository.com/artifact/io.github.openfeign.querydsl/querydsl-jpa -->
+		<dependency>
+			<groupId>io.github.openfeign.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+		</dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
+			<!-- VERSION handled by Spring Boot Dependencies BOM -->
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-log4j2</artifactId>
-    </dependency>
+
+
     <dependency>
       <groupId>co.elastic.logging</groupId>
       <artifactId>log4j2-ecs-layout</artifactId>
@@ -153,45 +188,29 @@
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>${jakarta.xml.version}</version>
+			<!-- VERSION handled by Spring Boot Dependencies BOM -->
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
+
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
       <artifactId>json-path</artifactId>
+			<!-- VERSION handled by Spring Boot Dependencies BOM -->
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
       <artifactId>json-path-assert</artifactId>
+			<!-- VERSION handled by Spring Boot Dependencies BOM -->
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.5</version>
-    </dependency>
+
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-core</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
+
   <build>
     <finalName>cooperation-${project.version}</finalName>
     <pluginManagement>
@@ -212,9 +231,9 @@
           <version>1.10.b1</version>
           <configuration>
             <properties>
-              <year>2014</year>
-              <copyright>Center for eHalsa i samverkan (CeHis).
-								&lt;http://cehis.se/></copyright>
+              <year>2014-2026</year>
+              <copyright>Inera.
+								&lt;https://inera.se/></copyright>
               <product>SKLTP</product>
             </properties>
             <strictCheck>true</strictCheck>
@@ -243,7 +262,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.11.0</version>
+				<!-- VERSION handled by Spring Boot Dependencies BOM -->
         <configuration>
           <release>${java.version}</release>
         </configuration>
@@ -253,12 +272,15 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
           <arguments>
-            <argument>--spring.profiles.active=dev</argument>
+            <argument>--spring.profiles.active=prod</argument>
           </arguments>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+	<reporting/>
+
   <profiles>
     <profile>
       <id>license</id>
