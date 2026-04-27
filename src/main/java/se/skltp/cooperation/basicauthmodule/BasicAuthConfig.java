@@ -26,6 +26,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
@@ -47,7 +48,9 @@ public class BasicAuthConfig {
 	}
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http, @Value("${spring.h2.console.enabled:false}") boolean h2Console) throws Exception {
+	public SecurityFilterChain securityFilterChain(
+		HttpSecurity http,
+		@Value("${spring.h2.console.enabled:false}") boolean h2Console) throws Exception {
 		http
 
 			// !!! REGARDING CSRF PROTECTION !!!
@@ -90,10 +93,18 @@ public class BasicAuthConfig {
 			// Basic auth — existing mechanism
 			.httpBasic(Customizer.withDefaults())
 
-			// JWT bearer tokens — accepts tokens issued by the Keycloak coop realm
+			// JWT + DPoP — Spring Security 6.5 auto-configures DPoP proof validation
+			// (DPoPAuthenticationConfigurer) when .jwt() is present and DPoPProofJwtDecoderFactory
+			// is on the classpath.  This handles: typ, alg, jwk, signature, htm, htu, iat, ath,
+			// cnf.jkt binding, and jti replay prevention — all per RFC 9449.
 			.oauth2ResourceServer(oauth2 -> oauth2
 				.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
 			)
+
+			// Reject plain "Authorization: Bearer" tokens early — only DPoP tokens are accepted.
+			// This filter runs before the OAuth2 resource server filter so that Bearer tokens
+			// never reach Spring's JWT decoder.
+			.addFilterBefore(new RejectBearerTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 
 			.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint()));
 		return http.build();

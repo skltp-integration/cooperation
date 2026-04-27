@@ -33,4 +33,27 @@ class ApplicationAuthenticationTests {
 			.andExpect(jsonPath("$.path", is("/api/logicalAddresses")))
 			.andExpect(jsonPath("$.timestamp", anything()));
 	}
+
+	/**
+	 * Plain Bearer tokens are rejected by {@link RejectBearerTokenFilter}
+	 * before the JWT signature is even checked.
+	 */
+	@Test
+	void bearerTokenIsRejectedWith401() throws Exception {
+		mockMvc.perform(get("/api/v2/cooperations")
+				.header("Authorization", "Bearer any.plain.bearer.token"))
+			.andExpect(status().isUnauthorized());
+	}
+
+	/**
+	 * A DPoP-scheme authorization header without a {@code DPoP} proof header is rejected
+	 * by Spring Security's built-in {@code DPoPAuthenticationConfigurer} even if the
+	 * access token would otherwise be valid.
+	 */
+	@Test
+	void dpopTokenWithoutProofHeaderIsRejected() throws Exception {
+		mockMvc.perform(get("/api/v2/cooperations")
+				.header("Authorization", "DPoP any.dpop.token"))
+			.andExpect(status().isUnauthorized());
+	}
 }
