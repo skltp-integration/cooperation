@@ -14,6 +14,13 @@ spring:
     open-in-view: true
   h2:
     console.enabled: true
-
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Stub URI – NimbusJwtDecoder is built lazily; no real network call is
+          # made at startup, so the ApplicationContext loads without a running
+          # Keycloak instance. Tests that don't present a JWT token are unaffected.
+          jwk-set-uri: http://localhost/test-jwks
 logging:
   config: classpath:log4j2-dev.xml

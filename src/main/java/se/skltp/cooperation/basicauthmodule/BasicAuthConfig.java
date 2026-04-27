@@ -5,6 +5,9 @@
 
 package se.skltp.cooperation.basicauthmodule;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +17,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
@@ -25,6 +32,9 @@ import org.springframework.security.web.firewall.HttpFirewall;
 @Configuration
 @EnableWebSecurity
 public class BasicAuthConfig {
+
+	/** Scope value that the Keycloak coop realm grants for read access. */
+	private static final String COOP_READ_SCOPE = "https://dev.ntjp.se/coop/read";
 
 	@Bean
 	public UserDetailsService userDetailsService() {
@@ -76,9 +86,44 @@ public class BasicAuthConfig {
 
 					.anyRequest().fullyAuthenticated();
 			})
+
+			// Basic auth — existing mechanism
 			.httpBasic(Customizer.withDefaults())
+
+			// JWT bearer tokens — accepts tokens issued by the Keycloak coop realm
+			.oauth2ResourceServer(oauth2 -> oauth2
+				.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+			)
+
 			.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint()));
 		return http.build();
+	}
+
+	/**
+	 * Maps JWT scopes to Spring Security authorities.
+	 * The {@code https://dev.ntjp.se/coop/read} scope is mapped to the
+	 * {@link Settings#REG_USER_ROLE USER} authority so the existing
+	 * authorization rules on {@code /api/v2/**} are satisfied.
+	 */
+	@Bean
+	public JwtAuthenticationConverter jwtAuthenticationConverter() {
+		JwtGrantedAuthoritiesConverter scopeConverter = new JwtGrantedAuthoritiesConverter();
+		scopeConverter.setAuthoritiesClaimName("scope");
+		scopeConverter.setAuthorityPrefix("SCOPE_");
+
+		JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+		converter.setJwtGrantedAuthoritiesConverter(jwt -> {
+			Collection<GrantedAuthority> authorities = new ArrayList<>(scopeConverter.convert(jwt));
+
+			// Grant USER role when the token carries the coop read scope
+			String scopeClaim = jwt.getClaimAsString("scope");
+			if (scopeClaim != null && scopeClaim.contains(COOP_READ_SCOPE)) {
+				authorities.add(new SimpleGrantedAuthority(Settings.REG_USER_ROLE));
+			}
+
+			return authorities;
+		});
+		return converter;
 	}
 
 	@Bean

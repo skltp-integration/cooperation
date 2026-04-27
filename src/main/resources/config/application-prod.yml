@@ -14,3 +14,8 @@ spring:
     validationQuery: SELECT 1
   jpa:
     open-in-view: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://dev.ntjp.se/auth/realms/coop/protocol/openid-connect/certs
