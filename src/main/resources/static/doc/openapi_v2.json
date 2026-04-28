@@ -1155,6 +1155,11 @@
   "security": [
     {
       "basicAuth": []
+    },
+    {
+      "oauth2Dpop": [
+        "https://dev.ntjp.se/coop/read"
+      ]
     }
   ],
   "components": {
@@ -1162,6 +1167,18 @@
       "basicAuth": {
         "type": "http",
         "scheme": "basic"
+      },
+      "oauth2Dpop": {
+        "type": "oauth2",
+        "description": "OAuth 2.0 Client Credentials grant with DPoP (RFC 9449). The client authenticates using a public/private key pair and receives a DPoP-bound access token. All requests must include a DPoP proof header alongside the access token.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://dev.ntjp.se/auth/realms/coop/protocol/openid-connect/token",
+            "scopes": {
+              "https://dev.ntjp.se/coop/read": "Read access to the Cooperation API"
+            }
+          }
+        }
       }
     },
     "responses": {
