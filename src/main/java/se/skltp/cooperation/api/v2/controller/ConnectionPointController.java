@@ -68,7 +68,7 @@ public class ConnectionPointController {
 				logicalAddressId, serviceContractId, serviceProducerId);
 		if (!isDevProfileActive()) {
 			try {
-				TimeUnit.SECONDS.sleep(120);
+				TimeUnit.SECONDS.sleep(91);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 				log.warn("Interrupted while delaying getAllAsJson response", e);
