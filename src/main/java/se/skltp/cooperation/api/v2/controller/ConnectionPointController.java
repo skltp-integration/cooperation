@@ -7,13 +7,11 @@ package se.skltp.cooperation.api.v2.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,15 +39,12 @@ public class ConnectionPointController {
 
 	private final ConnectionPointService connectionPointService;
 	private final ModelMapper mapper;
-	private final Environment environment;
 
 	@Autowired
 	public ConnectionPointController(ConnectionPointService connectionPointService,
-			ModelMapper mapper,
-			Environment environment) {
+			ModelMapper mapper) {
 		this.connectionPointService = connectionPointService;
 		this.mapper = mapper;
-		this.environment = environment;
 	}
 
 	/**
@@ -64,17 +59,8 @@ public class ConnectionPointController {
 			@RequestParam(required = false) Long serviceProducerId) {
 		log.debug("REST request to get all ConnectionPoints as json");
 
-		List<ConnectionPointDTO> result = getAll(platform, environment, serviceConsumerId,
-				logicalAddressId, serviceContractId, serviceProducerId);
-		if (!isDevProfileActive()) {
-			try {
-				TimeUnit.SECONDS.sleep(91);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				log.warn("Interrupted while delaying getAllAsJson response", e);
-			}
-		}
-		return result;
+		return getAll(platform, environment, serviceConsumerId, logicalAddressId,
+				serviceContractId, serviceProducerId);
 
 	}
 
@@ -129,15 +115,6 @@ public class ConnectionPointController {
 
 	private ConnectionPointDTO toDTO(ConnectionPoint cp) {
 		return mapper.map(cp, ConnectionPointDTO.class);
-	}
-
-	private boolean isDevProfileActive() {
-		for (String profile : environment.getActiveProfiles()) {
-			if ("dev".equalsIgnoreCase(profile)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 }
