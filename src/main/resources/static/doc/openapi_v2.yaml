@@ -761,6 +761,42 @@ paths:
           description: InstalledContract not found
         default:
           $ref: '#/components/responses/UnexpectedErrorResponse'
+  /lotsOfData:
+    get:
+      summary: LotsOfData - dummy text payload
+      description: |
+        Returnerar en okomprimerad textpayload for test av stora svar.
+        Parametern mb anger antal megabyte som returneras (1-101 MB).
+        Svaret streamas i chunkar for att minimera minnesanvandning i servern.
+      parameters:
+        - name: mb
+          in: query
+          description: Antal MB dummy-text som ska returneras (okomprimerat). Max 101 MB.
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 101
+      tags:
+        - LotsOfData
+      responses:
+        '200':
+          description: Dummy text i angiven storlek
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Ogiltigt parametervarde
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
 security:
   - basicAuth: []
   - oauth2Dpop:
