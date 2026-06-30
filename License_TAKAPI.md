@@ -1,5 +1,5 @@
-## Cooperation
-Also known as _TAK-API_.
+## TAK-API
+Also known as _Cooperation_.
 
 Copyright © 2015–2026. Inera, Sweden.
 https://www.inera.se/
