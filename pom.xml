@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.12</version>
+    <version>3.5.16</version>
     <relativePath/>
   </parent>
 
@@ -52,13 +52,13 @@
 
   <properties>
 		<java.version>21</java.version>
-		<spring-boot.version>3.5.12</spring-boot.version> <!-- From Mar 2026 -->
+		<spring-boot.version>3.5.16</spring-boot.version> <!-- From Jun 2026 -->
 
-    <jacoco.plugin.version>0.8.14</jacoco.plugin.version> <!-- From Oct 2025 -->
+    <jacoco.plugin.version>0.8.15</jacoco.plugin.version> <!-- From Jun 2026 -->
     <modelmapper.version>3.2.6</modelmapper.version> <!-- From Nov 2025 -->
 		<openfeign-querydsl.version>6.12</openfeign-querydsl.version> <!-- From Jun 2025 -->
 
-    <ecs-logging-java.version>1.7.0</ecs-logging-java.version> <!-- From Apr 2025 -->
+    <ecs-logging-java.version>1.8.0</ecs-logging-java.version> <!-- From Apr 2026 -->
 
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -213,53 +213,83 @@
 
   <build>
     <finalName>cooperation-${project.version}</finalName>
+
     <pluginManagement>
       <plugins>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.1</version>
-          <configuration>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-            <tagNameFormat>v@{project.version}</tagNameFormat>
-            <localCheckout>true</localCheckout>
-            <arguments>-Dmaven.javadoc.skip=true</arguments>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>com.mycila.maven-license-plugin</groupId>
-          <artifactId>maven-license-plugin</artifactId>
-          <version>1.10.b1</version>
-          <configuration>
-            <properties>
-              <year>2014-2026</year>
-              <copyright>Inera.
-								&lt;https://inera.se/></copyright>
-              <product>SKLTP</product>
-            </properties>
-            <strictCheck>true</strictCheck>
-            <basedir>${basedir}</basedir>
-            <header>header.txt</header>
-            <encoding>UTF-8</encoding>
-            <includes>
-              <include>src/main/**</include>
-              <include>src/test/**</include>
-            </includes>
-            <excludes>
-              <exclude>**/*.xsd</exclude>
-              <exclude>**/*.wsdl</exclude>
-              <exclude>**/*.xml</exclude>
-              <exclude>**/*.dtd</exclude>
-            </excludes>
-            <useDefaultExcludes>true</useDefaultExcludes>
-            <mapping>
-              <tag>DYNASCRIPT_STYLE</tag>
-            </mapping>
-            <useDefaultMapping>true</useDefaultMapping>
-          </configuration>
-        </plugin>
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>3.3.1</version> <!-- DEC 2025. Latest as of APR 2026 -->
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<localCheckout>true</localCheckout>
+						<arguments>-Dmaven.javadoc.skip=true</arguments>
+					</configuration>
+				</plugin>
+
+				<!-- User manual for license plugin in IntelliJ IDEA:
+                -Set profile 'license' to true in your IDE and refresh the project.
+                -Go to plugins > license on project-parent level;
+                   and run 'license:check' to control, or 'license:format' to renew file headers.
+                -Disable the 'license' profile and commit your updated headers. -->
+				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>5.0.0</version> <!-- MAR 2025. Latest as of APR 2026 -->
+					<configuration>
+						<!-- To fail the build when deprecated configuration is used. -->
+						<prohibitLegacyUse>true</prohibitLegacyUse>
+						<strictCheck>true</strictCheck>
+						<useDefaultMapping>true</useDefaultMapping>
+						<useDefaultExcludes>true</useDefaultExcludes>
+						<basedir>${project.basedir}</basedir>
+						<encoding>UTF-8</encoding>
+
+						<licenseSets>
+							<licenseSet>
+								<header>License_header_template.txt</header>
+
+								<!-- Properties used in the template -->
+								<properties>
+									<copyrightYears>2015-2026</copyrightYears>
+									<inceptionYear>2015</inceptionYear>
+									<product>TAK-API (Cooperation)</product>
+									<owner>Inera</owner>
+									<owner_url>https://www.inera.se/</owner_url>
+									<product_webpage>https://inera.atlassian.net/wiki/spaces/NTJPP/pages/3359539201/Ineras+Informationstj+nster</product_webpage>
+								</properties>
+
+
+								<!-- File inclusion/exclusion -->
+								<includes>
+									<include>src/**/*.java</include>
+								</includes>
+
+								<excludes>
+									<exclude>target/**</exclude>
+									<exclude>**/target/**</exclude>
+									<exclude>**/*.xsd</exclude>
+									<exclude>**/*.wsdl</exclude>
+									<exclude>**/*.xml</exclude>
+									<exclude>**/*.dtd</exclude>
+									<exclude>**/*.map</exclude>
+									<exclude>**/*.info</exclude>
+									<exclude>**/*.yml</exclude>
+<!--									<exclude>**/src/main/resources/static/doc/**/*.*</exclude>-->
+								</excludes>
+							</licenseSet>
+						</licenseSets>
+					</configuration>
+				</plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+			</plugin>
+
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
 				<!-- VERSION handled by Spring Boot Dependencies BOM -->
@@ -267,6 +297,7 @@
           <release>${java.version}</release>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -282,27 +313,28 @@
 	<reporting/>
 
   <profiles>
-    <profile>
-      <id>license</id>
-      <activation />
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.mycila.maven-license-plugin</groupId>
-            <artifactId>maven-license-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>check</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+		<profile>
+			<id>license</id>
+			<activation />
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.mycila</groupId>
+						<artifactId>license-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>check-license</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
     <profile>
       <id>test-coverage</id>
       <build>
