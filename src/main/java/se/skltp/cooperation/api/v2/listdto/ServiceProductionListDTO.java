@@ -14,15 +14,15 @@ import jakarta.xml.bind.annotation.XmlElement;
 
 import se.skltp.cooperation.api.v2.dto.ServiceProductionDTO;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import tools.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import tools.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import tools.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * A wrapper object to hold a list of {@link ServiceProductionDTO} objects.
  *
  */
-@JacksonXmlRootElement(localName="serviceProductions")
+@JsonRootName("serviceProductions")
 public class ServiceProductionListDTO {
 
 	@JacksonXmlProperty(localName = "serviceProduction")

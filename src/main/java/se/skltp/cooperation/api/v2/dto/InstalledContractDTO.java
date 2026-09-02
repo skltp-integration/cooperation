@@ -9,7 +9,7 @@ package se.skltp.cooperation.api.v2.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import tools.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 
 /**
@@ -17,7 +17,7 @@ import tools.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  * Minor version in omitted from this class and the rest output
  *
  */
-@JacksonXmlRootElement(localName = "installedContract")
+@JsonRootName("installedContract")
 @JsonInclude(Include.NON_EMPTY)
 public class InstalledContractDTO {
 

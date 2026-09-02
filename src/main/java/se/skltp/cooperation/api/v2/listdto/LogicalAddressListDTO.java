@@ -14,16 +14,16 @@ import jakarta.xml.bind.annotation.XmlElement;
 
 import se.skltp.cooperation.api.v2.dto.LogicalAddressDTO;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import tools.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import tools.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import tools.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * A wrapper object to hold a list of {@link LogicalAddressDTO} objects.
  *
  * @author Jan Vasternas
  */
-@JacksonXmlRootElement(localName="logicalAddresss")
+@JsonRootName("logicalAddresss")
 public class LogicalAddressListDTO {
 
 	@JacksonXmlProperty(localName = "logicalAddress")

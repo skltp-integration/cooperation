@@ -9,13 +9,13 @@ package se.skltp.cooperation.api.v2.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import tools.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * A LogicalAddress Data Transfer Object
  *
  */
-@JacksonXmlRootElement(localName = "logicalAddress")
+@JsonRootName("logicalAddress")
 @JsonInclude(Include.NON_EMPTY)
 public class LogicalAddressDTO {
 
