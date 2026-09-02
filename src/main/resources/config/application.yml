@@ -9,6 +9,8 @@ spring:
   jackson:
     serialization:
       indent-output: true
+    deserialization:
+      fail-on-unknown-properties: true
     
 server:
   port: 8080
