@@ -41,6 +41,10 @@ public final class MyUserDetailsService implements UserDetailsService {
 	}
 
 	public static String generateHashedPassword(String rawPassword) {
+		if (rawPassword == null) {
+			throw new IllegalArgumentException("rawPassword cannot be null");
+		}
+
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 		return passwordEncoder.encode(rawPassword);
 	}
