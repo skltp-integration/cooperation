@@ -12,6 +12,8 @@
 
 package se.skltp.cooperation.basicauthmodule;
 
+import tools.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +46,8 @@ public class BasicAuthConfig {
 	}
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http, @Value("${spring.h2.console.enabled:false}") boolean h2Console) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint,
+			@Value("${spring.h2.console.enabled:false}") boolean h2Console) throws Exception {
 		http
 
 			// !!! REGARDING CSRF PROTECTION !!!
@@ -84,13 +87,13 @@ public class BasicAuthConfig {
 					.anyRequest().fullyAuthenticated();
 			})
 			.httpBasic(Customizer.withDefaults())
-			.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint()));
+			.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint));
 		return http.build();
 	}
 
 	@Bean
-	public AuthenticationEntryPoint authenticationEntryPoint() {
-		return new MyAuthEntryPoint();
+	public AuthenticationEntryPoint authenticationEntryPoint(ObjectMapper objectMapper) {
+		return new MyAuthEntryPoint(objectMapper);
 	}
 
 	// Set the used firewall to the most lax possible safety settings.
