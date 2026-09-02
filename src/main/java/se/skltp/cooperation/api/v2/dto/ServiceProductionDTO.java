@@ -9,7 +9,7 @@ package se.skltp.cooperation.api.v2.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * A ServiceProduction Data Transfer Object with associations

@@ -7,17 +7,16 @@
  */
 package se.skltp.cooperation.api.v2.controller;
 
-import org.apache.catalina.security.SecurityConfig;
 import org.modelmapper.ModelMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -48,7 +47,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  */
 @SpringBootTest(classes = Application.class)
-@ContextConfiguration(classes = SecurityConfig.class)
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @WebAppConfiguration
@@ -74,6 +72,10 @@ public class CooperationControllerTest {
 
 	@BeforeEach
 	public void setUpTestData() throws Exception {
+
+		// Spring Boot 4 removed MockitoTestExecutionListener, which used to initialise
+		// @InjectMocks fields for us. Same pattern as ServiceConsumerControllerTest.
+		MockitoAnnotations.openMocks(this);
 
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");

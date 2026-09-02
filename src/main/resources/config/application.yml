@@ -3,6 +3,9 @@ spring:
     banner-mode: off
   profiles:
     active: dev
+  jackson:
+    serialization:
+      indent-output: true
     
 server:
   port: 8080

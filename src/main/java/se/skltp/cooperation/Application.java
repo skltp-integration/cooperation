@@ -14,10 +14,7 @@ import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
@@ -34,14 +31,4 @@ public class Application extends SpringBootServletInitializer {
 		log.info("Spring Boot Launching - running version: {}", SpringBootVersion.getVersion());
 		SpringApplication.run(Application.class, args);
 	}
-
-	// To produce formatted output in a browser
-	// Not sure that we should do this
-	// But is a good place to configure Jackson, possible with other information
-	@Bean
-    public ObjectMapper objectMapper() {
-		ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        return objectMapper;
-    }
 }

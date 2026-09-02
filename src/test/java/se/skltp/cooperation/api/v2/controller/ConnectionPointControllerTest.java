@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.apache.catalina.security.SecurityConfig;
 import org.modelmapper.ModelMapper;
 //import org.joda.time.DateTimeZone;
 //import org.joda.time.format.DateTimeFormat;
@@ -39,10 +38,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -64,7 +62,6 @@ import se.skltp.cooperation.api.v2.dto.ConnectionPointDTO;
  */
 
 @SpringBootTest(classes = Application.class)
-@ContextConfiguration(classes = SecurityConfig.class)
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @WebAppConfiguration

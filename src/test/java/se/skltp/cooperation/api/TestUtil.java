@@ -36,7 +36,8 @@ import se.skltp.cooperation.repository.ServiceProducerRepository;
 import se.skltp.cooperation.repository.ServiceProductionRepository;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Utility class for testing REST controllers.
@@ -69,8 +70,10 @@ public class TestUtil {
 			Charset.forName("utf8"));
 
 	public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		ObjectMapper mapper = JsonMapper.builder()
+				.changeDefaultPropertyInclusion(incl -> JsonInclude.Value.construct(
+						JsonInclude.Include.NON_NULL, JsonInclude.Include.NON_NULL))
+				.build();
 		return mapper.writeValueAsBytes(object);
 	}
 
