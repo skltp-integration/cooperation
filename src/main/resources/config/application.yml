@@ -1,6 +1,9 @@
 spring:
   main:
     banner-mode: off
+  web:
+    error:
+      include-message: always
   profiles:
     active: dev
   jackson:
@@ -9,8 +12,6 @@ spring:
     
 server:
   port: 8080
-  error:
-    include-message: always
   servlet:
     context-path: /coop
 
