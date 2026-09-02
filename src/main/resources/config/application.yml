@@ -11,6 +11,8 @@ spring:
       indent-output: true
     deserialization:
       fail-on-unknown-properties: true
+    mapper:
+      sort-properties-alphabetically: false
     
 server:
   port: 8080
