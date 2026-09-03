@@ -9,14 +9,14 @@ package se.skltp.cooperation.api.v2.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * A ServiceDomain Data Transfer Object
  *
  * @author Jan Vasternas
  */
-@JacksonXmlRootElement(localName = "serviceDomain")
+@JsonRootName("serviceDomain")
 @JsonInclude(Include.NON_EMPTY)
 public class ServiceDomainDTO {
 

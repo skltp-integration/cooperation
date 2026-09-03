@@ -7,7 +7,7 @@
  */
 package se.skltp.cooperation.basicauthmodule;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,6 +22,12 @@ import java.util.Map;
 
 public class MyAuthEntryPoint implements AuthenticationEntryPoint {
 
+	private final ObjectMapper objectMapper;
+
+	public MyAuthEntryPoint(ObjectMapper objectMapper) {
+		this.objectMapper = objectMapper;
+	}
+
 	/**
 	 * Implements backwards-compatible error info for auth failures
 	 */
@@ -34,8 +40,7 @@ public class MyAuthEntryPoint implements AuthenticationEntryPoint {
 		error.put("error", status.getReasonPhrase());
 		error.put("path", request.getRequestURI());
 
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonError = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(error);
+		String jsonError = objectMapper.writeValueAsString(error);
 
 		response.setStatus(status.value());
 		response.setContentType("application/json");

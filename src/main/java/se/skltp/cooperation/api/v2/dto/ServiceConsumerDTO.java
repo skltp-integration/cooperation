@@ -9,13 +9,13 @@ package se.skltp.cooperation.api.v2.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * A ServiceConsumer Data Transfer Object
  *
  */
-@JacksonXmlRootElement(localName = "serviceConsumer")
+@JsonRootName("serviceConsumer")
 @JsonInclude(Include.NON_EMPTY)
 public class ServiceConsumerDTO {
 

@@ -13,15 +13,15 @@ import java.util.List;
 
 import se.skltp.cooperation.api.v2.dto.CooperationDTO;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 /**
  * A wrapper object to hold a list of {@link CooperationDTO} objects.
  *
  */
-@JacksonXmlRootElement(localName="cooperations")
+@JsonRootName("cooperations")
 public class CooperationListDTO {
 
 	@JacksonXmlElementWrapper(useWrapping = false)

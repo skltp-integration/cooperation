@@ -13,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * A ConnectionPoint Data Transfer Object
  *
  */
-@JacksonXmlRootElement(localName = "connectionPoint")
+@JsonRootName("connectionPoint")
 @JsonInclude(Include.NON_EMPTY)
 public class ConnectionPointDTO {
 

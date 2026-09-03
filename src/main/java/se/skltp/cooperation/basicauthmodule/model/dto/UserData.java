@@ -12,7 +12,7 @@
 
 package se.skltp.cooperation.basicauthmodule.model.dto;
 
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import se.skltp.cooperation.basicauthmodule.MyUserDetailsService;
 
 import java.util.List;

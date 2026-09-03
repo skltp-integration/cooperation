@@ -12,15 +12,15 @@ import java.util.List;
 
 import se.skltp.cooperation.api.v2.dto.ServiceConsumerDTO;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 /**
  * A wrapper object to hold a list of {@link ServiceConsumerDTO} objects.
  *
  */
-@JacksonXmlRootElement(localName="serviceConsumers")
+@JsonRootName("serviceConsumers")
 public class ServiceConsumerListDTO {
 
 	@JacksonXmlProperty(localName = "serviceConsumer")
