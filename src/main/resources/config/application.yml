@@ -7,8 +7,6 @@ spring:
   profiles:
     active: dev
   jackson:
-    serialization:
-      indent-output: true
     deserialization:
       fail-on-unknown-properties: true
     mapper:
