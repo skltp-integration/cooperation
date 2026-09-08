@@ -13,8 +13,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+import org.springframework.context.event.EventListener;
+import org.springframework.core.SpringVersion;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
@@ -28,7 +31,13 @@ public class Application extends SpringBootServletInitializer {
     }
 
 	public static void main(String[] args) {
-		log.info("Spring Boot Launching - running version: {}", SpringBootVersion.getVersion());
 		SpringApplication.run(Application.class, args);
+	}
+
+	@EventListener(ApplicationStartedEvent.class)
+	void springLogger() {
+		log.info("Application Launching with Spring Boot v{}, Spring v{}",
+			SpringBootVersion.getVersion(),
+			SpringVersion.getVersion());
 	}
 }
