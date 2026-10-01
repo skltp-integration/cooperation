@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`{{ .Values.ingressroute.apiHostName }}`) && (PathPrefix(`/coop`) || PathPrefix(`/takinfo`))
       middlewares:
-        - name: cooperation-ipwhitelist
+        - name: cooperation-ipallowlist
         - name: cooperation-takinfo-redirect
       priority: 10
       services:
