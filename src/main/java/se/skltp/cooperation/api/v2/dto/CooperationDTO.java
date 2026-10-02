@@ -10,6 +10,7 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.Cooperation;
 
 /**
  * A Cooperation Data Transfer Object with associations
@@ -18,51 +19,33 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName("cooperation")
 @JsonInclude(Include.NON_EMPTY)
-public class CooperationDTO {
-	private Long id;
+public record CooperationDTO(
+	Long id,
 
-	private ServiceConsumerDTO serviceConsumer;
-	private LogicalAddressDTO logicalAddress;
-	private ConnectionPointDTO connectionPoint;
-	private ServiceContractDTO serviceContract;
+	ServiceConsumerDTO serviceConsumer,
+	LogicalAddressDTO logicalAddress,
+	ConnectionPointDTO connectionPoint,
+	ServiceContractDTO serviceContract
+) {
+	public static CooperationDTO from(Cooperation input) {
+		return new CooperationDTO(
+			input.getId(),
 
-	public Long getId() {
-		return id;
-	}
+			input.getServiceConsumer() == null
+				? null
+				: ServiceConsumerDTO.from(input.getServiceConsumer()),
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+			input.getLogicalAddress() == null
+				? null
+				: LogicalAddressDTO.from(input.getLogicalAddress()),
 
-	public ServiceConsumerDTO getServiceConsumer() {
-		return serviceConsumer;
-	}
+			input.getConnectionPoint() == null
+				? null
+				: ConnectionPointDTO.from(input.getConnectionPoint()),
 
-	public void setServiceConsumer(ServiceConsumerDTO serviceConsumer) {
-		this.serviceConsumer = serviceConsumer;
-	}
-
-	public LogicalAddressDTO getLogicalAddress() {
-		return logicalAddress;
-	}
-
-	public void setLogicalAddress(LogicalAddressDTO logicalAddress) {
-		this.logicalAddress = logicalAddress;
-	}
-
-	public ConnectionPointDTO getConnectionPoint() {
-		return connectionPoint;
-	}
-
-	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-		this.connectionPoint = connectionPoint;
-	}
-
-	public ServiceContractDTO getServiceContract() {
-		return serviceContract;
-	}
-
-	public void setServiceContract(ServiceContractDTO serviceContract) {
-		this.serviceContract = serviceContract;
+			input.getServiceContract() == null
+				? null
+				: ServiceContractDTO.from(input.getServiceContract())
+		);
 	}
 }
