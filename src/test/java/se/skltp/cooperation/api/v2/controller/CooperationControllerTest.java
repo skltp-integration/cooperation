@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import org.modelmapper.ModelMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -47,11 +45,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  */
 @SpringBootTest(classes = Application.class)
-@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @WebAppConfiguration
-public class CooperationControllerTest {
-
+class CooperationControllerTest {
 
 	@MockitoBean
 	private CooperationService cooperationServiceMock;
@@ -63,7 +59,6 @@ public class CooperationControllerTest {
 	private CooperationDTO dto1;
 	private CooperationDTO dto2;
 
-
     @Autowired
     private WebApplicationContext wac;
 
@@ -71,7 +66,7 @@ public class CooperationControllerTest {
 	CooperationController uut;
 
 	@BeforeEach
-	public void setUpTestData() throws Exception {
+	void setUpTestData() {
 
 		// Spring Boot 4 removed MockitoTestExecutionListener, which used to initialise
 		// @InjectMocks fields for us. Same pattern as ServiceConsumerControllerTest.
@@ -88,9 +83,12 @@ public class CooperationControllerTest {
 		c2.setId(2L);
 		dto1 = new CooperationDTO();
 		dto1.setId(1L);
-		dto1.setConnectionPoint(new ConnectionPointDTO());
-		dto1.getConnectionPoint().setId(11L);
-		dto1.getConnectionPoint().setPlatform("dto1.connectionPoint.platform");
+		dto1.setConnectionPoint(new ConnectionPointDTO(
+			11L,
+			"dto1.connectionPoint.platform",
+			null,
+			null
+		));
 		dto1.setLogicalAddress(new LogicalAddressDTO());
 		dto1.getLogicalAddress().setId(12L);
 		dto1.getLogicalAddress().setDescription("dto1.logicalAddress.description");
@@ -102,9 +100,12 @@ public class CooperationControllerTest {
 		dto1.getServiceContract().setName("dto1.serviceContract.name");
 		dto2 = new CooperationDTO();
 		dto2.setId(2L);
-		dto2.setConnectionPoint(new ConnectionPointDTO());
-		dto2.getConnectionPoint().setId(21L);
-		dto2.getConnectionPoint().setPlatform("dto2.connectionPoint.platform");
+		dto2.setConnectionPoint(new ConnectionPointDTO(
+			21L,
+			"dto2.connectionPoint.platform",
+			null,
+			null
+		));
 		dto2.setLogicalAddress(new LogicalAddressDTO());
 		dto2.getLogicalAddress().setId(22L);
 		dto2.getLogicalAddress().setDescription("dto2.logicalAddress.description");
@@ -114,12 +115,10 @@ public class CooperationControllerTest {
 		dto2.setServiceContract(new ServiceContractDTO());
 		dto2.getServiceContract().setId(24L);
 		dto2.getServiceContract().setName("dto2.serviceContract.name");
-
-
 	}
 
 	@Test
-	public void getAllAsJson_shouldReturnAll() throws Exception {
+	void getAllAsJson_shouldReturnAll() throws Exception {
 
 		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -134,11 +133,10 @@ public class CooperationControllerTest {
 
 		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
-
 	}
 
 	@Test
-	public void getAllAsJson_shouldReturnWithFilter() throws Exception {
+	void getAllAsJson_shouldReturnWithFilter() throws Exception {
 
 		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -153,11 +151,10 @@ public class CooperationControllerTest {
 
 		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
-
 	}
 
 	@Test
-	public void getAllAsJson_shouldReturnWithInclude() throws Exception {
+	void getAllAsJson_shouldReturnWithInclude() throws Exception {
 
 		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -169,23 +166,22 @@ public class CooperationControllerTest {
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
 			.andExpect(jsonPath("$", hasSize(2)))
 			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
-			.andExpect(jsonPath("$.[0].connectionPoint.platform").value(is(dto1.getConnectionPoint().getPlatform())))
+			.andExpect(jsonPath("$.[0].connectionPoint.platform").value(is(dto1.getConnectionPoint().platform())))
 			.andExpect(jsonPath("$.[0].logicalAddress.description").value(is(dto1.getLogicalAddress().getDescription())))
 			.andExpect(jsonPath("$.[0].serviceConsumer.hsaId").value(is(dto1.getServiceConsumer().getHsaId())))
 			.andExpect(jsonPath("$.[0].serviceContract.name").value(is(dto1.getServiceContract().getName())))
 			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
-			.andExpect(jsonPath("$.[1].connectionPoint.platform").value(is(dto2.getConnectionPoint().getPlatform())))
+			.andExpect(jsonPath("$.[1].connectionPoint.platform").value(is(dto2.getConnectionPoint().platform())))
 			.andExpect(jsonPath("$.[1].logicalAddress.description").value(is(dto2.getLogicalAddress().getDescription())))
 			.andExpect(jsonPath("$.[1].serviceConsumer.hsaId").value(is(dto2.getServiceConsumer().getHsaId())))
 			.andExpect(jsonPath("$.[1].serviceContract.name").value(is(dto2.getServiceContract().getName())));
 
 		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
-
 	}
 
 	@Test
-	public void testGetAllAsXml_shouldReturnAll() throws Exception {
+	void testGetAllAsXml_shouldReturnAll() throws Exception {
 
 		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -199,11 +195,10 @@ public class CooperationControllerTest {
 
 		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
-
 	}
 
 	@Test
-	public void testGetAllAsXml_shouldReturnWithInclude() throws Exception {
+	void testGetAllAsXml_shouldReturnWithInclude() throws Exception {
 
 		when(cooperationServiceMock.findAll(any(CooperationCriteria.class))).thenReturn(Arrays.asList(c1, c2));
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -214,25 +209,22 @@ public class CooperationControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
 			.andExpect(xpath("/cooperations/cooperation[1]/id").string(is(dto1.getId().toString())))
-			.andExpect(xpath("/cooperations/cooperation[1]/connectionPoint/platform").string(is(dto1.getConnectionPoint().getPlatform())))
+			.andExpect(xpath("/cooperations/cooperation[1]/connectionPoint/platform").string(is(dto1.getConnectionPoint().platform())))
 			.andExpect(xpath("/cooperations/cooperation[1]/logicalAddress/description").string(is(dto1.getLogicalAddress().getDescription())))
 			.andExpect(xpath("/cooperations/cooperation[1]/serviceConsumer/hsaId").string(is(dto1.getServiceConsumer().getHsaId())))
 			.andExpect(xpath("/cooperations/cooperation[1]/serviceContract/name").string(is(dto1.getServiceContract().getName())))
 			.andExpect(xpath("/cooperations/cooperation[2]/id").string(is(dto2.getId().toString())))
-			.andExpect(xpath("/cooperations/cooperation[2]/connectionPoint/platform").string(is(dto2.getConnectionPoint().getPlatform())))
+			.andExpect(xpath("/cooperations/cooperation[2]/connectionPoint/platform").string(is(dto2.getConnectionPoint().platform())))
 			.andExpect(xpath("/cooperations/cooperation[2]/logicalAddress/description").string(is(dto2.getLogicalAddress().getDescription())))
 			.andExpect(xpath("/cooperations/cooperation[2]/serviceConsumer/hsaId").string(is(dto2.getServiceConsumer().getHsaId())))
 			.andExpect(xpath("/cooperations/cooperation[2]/serviceContract/name").string(is(dto2.getServiceContract().getName())));
 
-
 		verify(cooperationServiceMock, times(1)).findAll(any(CooperationCriteria.class));
 		verifyNoMoreInteractions(cooperationServiceMock);
-
 	}
 
-
 	@Test
-	public void get_shouldReturnOneAsJson() throws Exception {
+	void get_shouldReturnOneAsJson() throws Exception {
 
 		when(cooperationServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -246,7 +238,7 @@ public class CooperationControllerTest {
 	}
 
 	@Test
-	public void get_shouldReturnOneAsXml() throws Exception {
+	void get_shouldReturnOneAsXml() throws Exception {
 
 		when(cooperationServiceMock.find(c1.getId())).thenReturn(c1);
 		when(mapperMock.map(c1, CooperationDTO.class)).thenReturn(dto1);
@@ -258,33 +250,36 @@ public class CooperationControllerTest {
 	}
 
 	@Test
-	public void get_shouldThrowNotFoundException() throws Exception {
+	void get_shouldThrowNotFoundException() throws Exception {
 
 		when(cooperationServiceMock.find(anyLong())).thenReturn(null);
 
 		mockMvc.perform(get("/api/v2/cooperations/{id}", Long.MAX_VALUE)
 	    	      .contentType(MediaType.APPLICATION_JSON))
 	    	      .andExpect(status().isNotFound())
-	    	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException)
+	    	      .andExpect(result -> assertInstanceOf(ResourceNotFoundException.class, result.getResolvedException())
 	    	      );
 	}
 
-
 	@Test
-	public void buildCriteria_shouldBeEmpty() throws Exception {
+	void buildCriteria_shouldBeEmpty() {
 
-		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null, null);
+		CooperationCriteria criteria = new CooperationCriteria(null,
+			null,
+			null,
+			null,
+			null);
 		assertTrue(criteria.isEmpty());
 	}
 
 	@Test
-	public void testIncludeOrNot() throws Exception {
+	void testIncludeOrNot() {
 		Cooperation c = new Cooperation();
 		c.setConnectionPoint(new ConnectionPoint());
 		c.setLogicalAddress(new LogicalAddress());
 		c.setServiceConsumer(new ServiceConsumer());
 		c.setServiceContract(new ServiceContract());
-		uut.includeOrNot(Arrays.asList(uut.INCLUDE_LOGICALADDRESS, uut.INCLUDE_SERVICECONSUMER), c);
+		uut.includeOrNot(Arrays.asList(CooperationController.INCLUDE_LOGICALADDRESS, CooperationController.INCLUDE_SERVICECONSUMER), c);
 		assertNotNull(c.getLogicalAddress());
 		assertNotNull(c.getServiceConsumer());
 		assertNull(c.getConnectionPoint());
