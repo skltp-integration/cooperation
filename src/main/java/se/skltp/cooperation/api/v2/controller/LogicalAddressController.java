@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,10 @@ public class LogicalAddressController {
 	private final Logger log = LoggerFactory.getLogger(LogicalAddressController.class);
 
 	private final LogicalAddressService logicalAddressService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public LogicalAddressController(LogicalAddressService logicalAddressService,
-			ModelMapper mapper) {
+	public LogicalAddressController(LogicalAddressService logicalAddressService) {
 		this.logicalAddressService = logicalAddressService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -64,9 +60,7 @@ public class LogicalAddressController {
 
 		return getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
 				serviceProducerId);
-
 	}
-
 
 	/**
 	 * GET /logicalAddresss -> get all the logicalAddresss. Content type: XML
@@ -84,7 +78,6 @@ public class LogicalAddressController {
 		result.setLogicalAddresss(getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
 				serviceProducerId));
 		return result;
-
 	}
 
 	/**
@@ -116,7 +109,6 @@ public class LogicalAddressController {
 	}
 
 	private LogicalAddressDTO toDTO(LogicalAddress la) {
-		return mapper.map(la, LogicalAddressDTO.class);
+		return LogicalAddressDTO.from(la);
 	}
-
 }

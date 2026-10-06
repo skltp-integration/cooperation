@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +39,10 @@ public class ConnectionPointController {
 	private final Logger log = LoggerFactory.getLogger(ConnectionPointController.class);
 
 	private final ConnectionPointService connectionPointService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public ConnectionPointController(ConnectionPointService connectionPointService,
-			ModelMapper mapper) {
+	public ConnectionPointController(ConnectionPointService connectionPointService) {
 		this.connectionPointService = connectionPointService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -63,7 +59,6 @@ public class ConnectionPointController {
 
 		return getAll(platform, environment, serviceConsumerId, logicalAddressId,
 				serviceContractId, serviceProducerId);
-
 	}
 
 	/**
@@ -81,7 +76,6 @@ public class ConnectionPointController {
 
 		return new ConnectionPointListDTO(getAll(platform, environment, serviceConsumerId,
 				logicalAddressId, serviceContractId, serviceProducerId));
-
 	}
 
 	/**
@@ -115,8 +109,7 @@ public class ConnectionPointController {
 		return result;
 	}
 
-	private ConnectionPointDTO toDTO(ConnectionPoint cp) {
-		return mapper.map(cp, ConnectionPointDTO.class);
+	private ConnectionPointDTO toDTO(ConnectionPoint conn) {
+		return ConnectionPointDTO.from(conn);
 	}
-
 }

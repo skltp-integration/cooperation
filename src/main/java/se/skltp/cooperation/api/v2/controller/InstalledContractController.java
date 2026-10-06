@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,10 @@ public class InstalledContractController {
 	private final Logger log = LoggerFactory.getLogger(InstalledContractController.class);
 
 	private final InstalledContractService installedContractService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public InstalledContractController(InstalledContractService installedContractService,
-			ModelMapper mapper) {
+	public InstalledContractController(InstalledContractService installedContractService) {
 		this.installedContractService = installedContractService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -110,8 +106,7 @@ public class InstalledContractController {
 		return result;
 	}
 
-	private InstalledContractDTO toDTO(InstalledContract cp) {
-		return mapper.map(cp, InstalledContractDTO.class);
+	private InstalledContractDTO toDTO(InstalledContract ic) {
+		return InstalledContractDTO.from(ic);
 	}
-
 }

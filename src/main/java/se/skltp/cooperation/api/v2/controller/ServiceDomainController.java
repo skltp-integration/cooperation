@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,10 @@ public class ServiceDomainController {
 	private final Logger log = LoggerFactory.getLogger(ServiceDomainController.class);
 
 	private final ServiceDomainService serviceDomainService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public ServiceDomainController(ServiceDomainService serviceDomainService,
-			ModelMapper mapper) {
+	public ServiceDomainController(ServiceDomainService serviceDomainService) {
 		this.serviceDomainService = serviceDomainService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -101,8 +97,7 @@ public class ServiceDomainController {
 		return result;
 	}
 
-	private ServiceDomainDTO toDTO(ServiceDomain cp) {
-		return mapper.map(cp, ServiceDomainDTO.class);
+	private ServiceDomainDTO toDTO(ServiceDomain sd) {
+		return ServiceDomainDTO.from(sd);
 	}
-
 }

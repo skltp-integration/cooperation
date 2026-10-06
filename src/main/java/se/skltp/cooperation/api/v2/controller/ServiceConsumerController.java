@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +39,10 @@ public class ServiceConsumerController {
 	private final Logger log = LoggerFactory.getLogger(ServiceConsumerController.class);
 
 	private final ServiceConsumerService serviceConsumerService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public ServiceConsumerController(ServiceConsumerService serviceConsumerService,
-			ModelMapper mapper) {
+	public ServiceConsumerController(ServiceConsumerService serviceConsumerService) {
 		this.serviceConsumerService = serviceConsumerService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -83,7 +79,6 @@ public class ServiceConsumerController {
 		result.setServiceConsumers(getAll(connectionPointId, logicalAddressId, serviceContractId,
 				serviceProducerId));
 		return result;
-
 	}
 
 	/**
@@ -113,7 +108,7 @@ public class ServiceConsumerController {
 
 		List<ServiceConsumerDTO> result = new ArrayList<>();
 		for (ServiceConsumer consumer : consumers) {
-			if ( ! (connectionPointId == null)) {
+			if ((connectionPointId != null)) {
 				consumer.setConnectionPoint(null);
 			}
 			result.add(toDTO(consumer));
@@ -122,7 +117,6 @@ public class ServiceConsumerController {
 	}
 
 	private ServiceConsumerDTO toDTO(ServiceConsumer consumer) {
-		return mapper.map(consumer, ServiceConsumerDTO.class);
+		return ServiceConsumerDTO.from(consumer);
 	}
-
 }
