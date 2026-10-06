@@ -8,10 +8,8 @@
 package se.skltp.cooperation.basicauthmodule;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.server.ResponseStatusException;
 import se.skltp.cooperation.basicauthmodule.model.*;
 import se.skltp.cooperation.basicauthmodule.model.dto.PasswordChange;
@@ -23,7 +21,6 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class AuthControllerTest {
 
@@ -34,17 +31,17 @@ class AuthControllerTest {
 	Settings settings;
 
 	@Test
-	void whenretrieveDummyUsers() {
+	void whenRetrieveDummyUsers() {
 		settings.apiAllowDownloadSampleUserList = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.retrieveDummyUsers());
 		settings.apiAllowDownloadSampleUserList = true;
 		ServiceUserListWrapper wrapper = ctrl.retrieveDummyUsers();
-		assertEquals(wrapper.getUsers().size(),3);
-		assertEquals(wrapper.getUsers().get(1).username,"Anders");
+		assertEquals(3, wrapper.getUsers().size());
+		assertEquals("Anders", wrapper.getUsers().get(1).username);
 	}
 
 	@Test
-	void whengetHash_looksLikeAHash() {
+	void whenGetHash_looksLikeAHash() {
 		PasswordCrypto payload = new PasswordCrypto("Qwert123");
 		settings.apiAllowGenerateCryptHash = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.getHash(payload));
@@ -52,7 +49,6 @@ class AuthControllerTest {
 		String response = ctrl.getHash(payload);
 		assertTrue(response.contains("$2a$10$"));
 	}
-
 
 	@Test
 	void whenCreateEditAndChangePasswordOnUser_flowWorks() {
@@ -75,7 +71,7 @@ class AuthControllerTest {
 			Arrays.asList(Settings.REG_USER_ROLE, Settings.REG_ADMIN_ROLE, Settings.AUTH_ADMIN_ROLE)
 		);
 
-		//// ADD User
+		// ADD User
 		// TEST globally locked user addition or editing for ADD/EDIT Users.
 		settings.apiAllowAnyUserManagementChanges = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataUser));
@@ -87,7 +83,7 @@ class AuthControllerTest {
 		// adding
 		ServiceUser user1 = ctrl.createOrEditUser(userDataUser);
 
-		//// EDIT User
+		// EDIT User
 		userDataUser.contactPhone = "076-9876543";
 		// Test non-null pwd failure
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataUser));
@@ -102,7 +98,7 @@ class AuthControllerTest {
 		assertEquals(user1.username, user2.username);
 		assertNotEquals(user1.contactPhone, user2.contactPhone);
 
-		//// CREATE new admin.
+		// CREATE new admin.
 		// TEST Create Admin Lock.
 		settings.apiAllowCreateSuperAdmins = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.createOrEditUser(userDataAdmin));
@@ -110,7 +106,7 @@ class AuthControllerTest {
 		// creation.
 		ctrl.createOrEditUser(userDataAdmin);
 
-		//// EDIT Admin
+		// EDIT Admin
 		userDataAdmin.contactPhone = "076-9876543";
 		userDataAdmin.password = null;
 		// TEST Edit Admin Lock.
@@ -120,7 +116,7 @@ class AuthControllerTest {
 		// editing.
 		ctrl.createOrEditUser(userDataAdmin);
 
-		//// TESTING get-users on currently added users.
+		// TESTING get-users on currently added users.
 		// TEST USER GET LOCK.
 		settings.apiAllowGetUsers = false;
 		assertThrows(ResponseStatusException.class, () -> ctrl.getUsersCleaned());
@@ -131,7 +127,7 @@ class AuthControllerTest {
 		assertEquals(usersCleaned.getUsers().get(1).username, user1.username);
 
 
-		//// TESTING PASSWORD CHANGES
+		// TESTING PASSWORD CHANGES
 		// Dummy datas for pwd change test.
 		PasswordChange pwdChangeUserBadPwd = new PasswordChange(
 			"Eskil",

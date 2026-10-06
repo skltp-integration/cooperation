@@ -30,15 +30,12 @@ import se.skltp.cooperation.service.InstalledContractCriteria;
 import se.skltp.cooperation.service.InstalledContractService;
 import se.skltp.cooperation.api.TestUtil;
 
-/**
- * @author Jan Västernäs
- */
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class InstalledContractServiceImplIntegrationTest {
+class InstalledContractServiceImplIntegrationTest {
 
 	@Autowired
-	private InstalledContractService uut;
+	private InstalledContractService insCtrSrv;
 
 	@Autowired
 	private TestUtil util;
@@ -65,19 +62,27 @@ public class InstalledContractServiceImplIntegrationTest {
 	ServiceDomain serviceDomain;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() {
+
+		util.deleteAll(); // Clean DB before each test.
+
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
+
 		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
 		serviceConsumer2 = util.createServiceConsumer("consumer2", "hsaId2",connectionPoint2);
+
 		logicalAddress1 = util.createLogicalAddress("description1", "adress1");
 		logicalAddress2 = util.createLogicalAddress("description2", "adress2");
-		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);
-		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain);
-		installedContract1 = util.createInstlledContract(connectionPoint1, serviceContract1);
-		installedContract2 = util.createInstlledContract(connectionPoint2, serviceContract2);
 
 		serviceDomain = util.createServiceDomain("name", "namespace");
+
+		serviceContract1 = util.createServiceContract("name1", "namespace1", 1, 0);
+		serviceContract2 = util.createServiceContract("name2", "namespace2", 2, 0, serviceDomain);
+
+		installedContract1 = util.createInstalledContract(connectionPoint1, serviceContract1);
+		installedContract2 = util.createInstalledContract(connectionPoint2, serviceContract2);
+
 		cooperation1 = util.createCooperation(connectionPoint1, logicalAddress1, serviceContract1,
 				serviceConsumer1);
 		cooperation2 = util.createCooperation(connectionPoint2, logicalAddress2, serviceContract2,
@@ -95,62 +100,59 @@ public class InstalledContractServiceImplIntegrationTest {
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown() {
 		util.deleteAll();
 	}
 
 	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	void findAll_shouldReturnAll() {
 
 		InstalledContractCriteria criteria = new InstalledContractCriteria(null, null,null);
-		List<InstalledContract> result = uut.findAll(criteria);
+		List<InstalledContract> result = insCtrSrv.findAll(criteria);
 		assertEquals(2, result.size());
-
 	}
 
-
 	@Test
-	public void findByConnectionPointId() throws Exception {
+	void findByConnectionPointId() {
 
 		InstalledContractCriteria criteria = new InstalledContractCriteria(connectionPoint1.getId(), null,null);
-		List<InstalledContract> result = uut.findAll(criteria);
+		List<InstalledContract> result = insCtrSrv.findAll(criteria);
 		assertEquals(1, result.size());
 
 		criteria = new InstalledContractCriteria(connectionPoint2.getId(), null,null);
-		result = uut.findAll(criteria);
+		result = insCtrSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(connectionPoint2.getId(), result.get(0).getConnectionPoint().getId());
+		assertEquals(connectionPoint2.getId(), result.getFirst().getConnectionPoint().getId());
 	}
 
 	@Test
-	public void findByConnectionPointId_noHits() throws Exception {
+	void findByConnectionPointId_noHits() {
 
 		InstalledContractCriteria criteria = new InstalledContractCriteria(9999L, null,null);
-		List<InstalledContract> result = uut.findAll(criteria);
+		List<InstalledContract> result = insCtrSrv.findAll(criteria);
 		assertEquals(0, result.size());
-
 	}
 
 	@Test
-	public void findByServiceContractId() throws Exception {
+	void findByServiceContractId() {
 
 		InstalledContractCriteria criteria = new InstalledContractCriteria(null, serviceContract1.getId(),null);
-		List<InstalledContract> result = uut.findAll(criteria);
+		List<InstalledContract> result = insCtrSrv.findAll(criteria);
 		assertEquals(1, result.size());
 
 		criteria = new InstalledContractCriteria(null,serviceContract2.getId(),null);
-		result = uut.findAll(criteria);
+		result = insCtrSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceContract2.getId(), result.get(0).getServiceContract().getId());
+		assertEquals(serviceContract2.getId(), result.getFirst().getServiceContract().getId());
 	}
 
-	public void findByServiceDomainId() throws Exception {
+	@Test
+	void findByServiceDomainId() {
 
-		InstalledContractCriteria criteria = new InstalledContractCriteria(null, null,serviceDomain.getId());
-		List<InstalledContract> result = uut.findAll(criteria);
+		InstalledContractCriteria criteria = new InstalledContractCriteria(null, null, serviceDomain.getId());
+		List<InstalledContract> result = insCtrSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceDomain.getId(), result.get(0).getServiceContract().getServiceDomain().getId());
-
+		assertEquals(serviceDomain.getId(), result.getFirst().getServiceContract().getServiceDomain().getId());
+		assertEquals(installedContract2.getId(), result.getFirst().getId());
 	}
-
 }

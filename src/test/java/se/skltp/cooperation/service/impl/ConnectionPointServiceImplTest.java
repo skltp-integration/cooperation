@@ -7,13 +7,12 @@
  */
 package se.skltp.cooperation.service.impl;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
@@ -32,25 +31,29 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- */
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class ConnectionPointServiceImplTest {
+class ConnectionPointServiceImplTest {
 
 	private ConnectionPointServiceImpl uut;
+
 	@Mock
 	private ConnectionPointRepository connectionPointRepositoryMock;
+	AutoCloseable mocks;
 
 	@BeforeEach
-	public void setUp() throws Exception {
-		MockitoAnnotations.openMocks(this);
+	void setUp() {
+		mocks = MockitoAnnotations.openMocks(this);
 		uut = new ConnectionPointServiceImpl(connectionPointRepositoryMock);
 	}
 
+	@AfterEach
+	void tearDown() throws Exception {
+		mocks.close();
+	}
+
 	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	void findAll_shouldReturnAll() {
 
 		ConnectionPoint cp1 = new ConnectionPoint();
 		cp1.setId(1L);
@@ -60,24 +63,22 @@ public class ConnectionPointServiceImplTest {
 		when(connectionPointRepositoryMock.findAll()).thenReturn(Arrays.asList(cp1, cp2));
 		List<ConnectionPoint> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
-		assertEquals(1L, result.get(0).getId().longValue());
+		assertEquals(1L, result.getFirst().getId().longValue());
 		assertEquals(2L, result.get(1).getId().longValue());
 		verify(connectionPointRepositoryMock, times(1)).findAll();
-
 	}
 
 	@Test
-	public void findAll_shouldReturnEmpyList() throws Exception {
+	void findAll_shouldReturnEmptyList() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null,null,null,null,null,null);
-		when(connectionPointRepositoryMock.findAll()).thenReturn(new ArrayList<ConnectionPoint>());
+		when(connectionPointRepositoryMock.findAll()).thenReturn(new ArrayList<>());
 		List<ConnectionPoint> result = uut.findAll(criteria);
 		assertEquals(0, result.size());
-
 	}
 
 	@Test
-	public void find_shouldReturnOne() throws Exception {
+	void find_shouldReturnOne() {
 		ConnectionPoint cp = new ConnectionPoint();
 		cp.setId(1L);
 		Optional<ConnectionPoint> ocp = Optional.of(cp);
@@ -87,13 +88,12 @@ public class ConnectionPointServiceImplTest {
 	}
 
 	@Test
-	public void find_shouldReturnNullWhenNotFound() throws Exception {
+	void find_shouldReturnNullWhenNotFound() {
 		ConnectionPoint cp = new ConnectionPoint();
 		cp.setId(1L);
 		Optional<ConnectionPoint> ocp = Optional.empty();
 		when(connectionPointRepositoryMock.findById(cp.getId())).thenReturn(ocp);
 		ConnectionPoint result = uut.find(cp.getId());
 		assertNull(result);
-
 	}
 }
