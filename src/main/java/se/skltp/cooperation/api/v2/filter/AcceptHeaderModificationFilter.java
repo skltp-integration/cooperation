@@ -24,8 +24,8 @@ import org.springframework.stereotype.Component;
 
 /*
  * A Servlet Filter that will add Accept-headers for json or xml if the URI string contains .json or .xml.
- * The serialization of object return by the GET methods of the REST api depends on which Accept-headar
- * that is present in the reuest. This it the general solution in this api to support .json and .xml.
+ * The serialization of object return by the GET methods of the REST api depends on which Accept-header
+ * that is present in the request. This it the general solution in this api to support .json and .xml.
  * Since the header information is read-only in the request a Request Wrapper is created containing the
  * extra header information. The wrapper extends jakarta.servlet.http.HttpServletRequestWrapper.
  */
@@ -54,13 +54,15 @@ public class AcceptHeaderModificationFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		Filter.super.destroy();
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
+		Filter.super.init(arg0);
 	}
 
-	class HeaderMapRequestWrapper extends HttpServletRequestWrapper {
+	static class HeaderMapRequestWrapper extends HttpServletRequestWrapper {
 		/**
 		 * construct a wrapper for this request
 		 *
@@ -70,7 +72,7 @@ public class AcceptHeaderModificationFilter implements Filter {
 			super(request);
 		}
 
-		private Map<String, String> headerMap = new HashMap<String, String>();
+		private final Map<String, String> headerMap = new HashMap<>();
 
 		/**
 		 * add a header with given name and value
@@ -97,9 +99,7 @@ public class AcceptHeaderModificationFilter implements Filter {
 		@Override
 		public Enumeration<String> getHeaderNames() {
 			List<String> names = Collections.list(super.getHeaderNames());
-			for (String name : headerMap.keySet()) {
-				names.add(name);
-			}
+			names.addAll(headerMap.keySet());
 			return Collections.enumeration(names);
 		}
 
@@ -111,7 +111,5 @@ public class AcceptHeaderModificationFilter implements Filter {
 			}
 			return Collections.enumeration(values);
 		}
-
 	}
-
 }
