@@ -10,6 +10,7 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.LogicalAddress;
 
 /**
  * A LogicalAddress Data Transfer Object
@@ -17,33 +18,16 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("logicalAddress")
 @JsonInclude(Include.NON_EMPTY)
-public class LogicalAddressDTO {
-
-	private Long id;
-	private String description;
-	private String logicalAddress;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getLogicalAddress() {
-		return logicalAddress;
-	}
-
-	public void setLogicalAddress(String logicalAddress) {
-		this.logicalAddress = logicalAddress;
+public record LogicalAddressDTO(
+	Long id,
+	String description,
+	String logicalAddress
+) {
+	public static LogicalAddressDTO from(LogicalAddress input) {
+		return new LogicalAddressDTO(
+			input.getId(),
+			input.getDescription(),
+			input.getLogicalAddress()
+		);
 	}
 }

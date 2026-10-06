@@ -10,7 +10,6 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,10 @@ public class ServiceProducerController {
 	private final Logger log = LoggerFactory.getLogger(ServiceProducerController.class);
 
 	private final ServiceProducerService serviceProducerService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public ServiceProducerController(ServiceProducerService serviceProducerService,
-			ModelMapper mapper) {
+	public ServiceProducerController(ServiceProducerService serviceProducerService) {
 		this.serviceProducerService = serviceProducerService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -63,7 +59,6 @@ public class ServiceProducerController {
 
 		return getAll(hsaId, connectionPointId, logicalAddressId, serviceContractId,
 				serviceConsumerId);
-
 	}
 
 	/**
@@ -82,7 +77,6 @@ public class ServiceProducerController {
 		result.setServiceProducers(getAll(hsaId, connectionPointId, logicalAddressId,
 				serviceContractId, serviceConsumerId));
 		return result;
-
 	}
 
 	/**
@@ -110,7 +104,7 @@ public class ServiceProducerController {
 		List<ServiceProducer> producers = serviceProducerService.findAll(criteria);
 		List<ServiceProducerDTO> result = new ArrayList<>();
 		for (ServiceProducer producer : producers) {
-			if ( ! (connectionPointId == null)) {
+			if ((connectionPointId != null)) {
 				producer.setConnectionPoint(null);
 			}
 			result.add(toDTO(producer));
@@ -118,8 +112,7 @@ public class ServiceProducerController {
 		return result;
 	}
 
-	private ServiceProducerDTO toDTO(ServiceProducer Producer) {
-		return mapper.map(Producer, ServiceProducerDTO.class);
+	private ServiceProducerDTO toDTO(ServiceProducer sp) {
+		return ServiceProducerDTO.from(sp);
 	}
-
 }

@@ -10,6 +10,7 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.ServiceProduction;
 
 /**
  * A ServiceProduction Data Transfer Object with associations
@@ -17,70 +18,37 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("serviceProduction")
 @JsonInclude(Include.NON_EMPTY)
-public class ServiceProductionDTO {
+public record ServiceProductionDTO (
+	Long id,
+	String physicalAddress,
+	String rivtaProfile,
 
-	private Long id;
-	private String physicalAddress;
-	private String rivtaProfile;
+	ServiceProducerDTO serviceProducer,
+	LogicalAddressDTO logicalAddress,
+	ConnectionPointDTO connectionPoint,
+	ServiceContractDTO serviceContract
+) {
+	public static ServiceProductionDTO from(ServiceProduction input) {
+		return new ServiceProductionDTO(
+			input.getId(),
+			input.getPhysicalAddress(),
+			input.getRivtaProfile(),
 
-	private ServiceProducerDTO serviceProducer;
-	private LogicalAddressDTO logicalAddress;
-	private ConnectionPointDTO connectionPoint;
-	private ServiceContractDTO serviceContract;
+			input.getServiceProducer() == null
+				? null
+				: ServiceProducerDTO.from(input.getServiceProducer()),
 
-	public Long getId() {
-		return id;
-	}
+			input.getLogicalAddress() == null
+				? null
+				: LogicalAddressDTO.from(input.getLogicalAddress()),
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+			input.getConnectionPoint() == null
+				? null
+				: ConnectionPointDTO.from(input.getConnectionPoint()),
 
-	public String getPhysicalAddress() {
-		return physicalAddress;
-	}
-
-	public void setPhysicalAddress(String physicalAddress) {
-		this.physicalAddress = physicalAddress;
-	}
-
-	public String getRivtaProfile() {
-		return rivtaProfile;
-	}
-
-	public void setRivtaProfile(String rivtaProfile) {
-		this.rivtaProfile = rivtaProfile;
-	}
-
-	public ServiceProducerDTO getServiceProducer() {
-		return serviceProducer;
-	}
-
-	public void setServiceProducer(ServiceProducerDTO serviceProducer) {
-		this.serviceProducer = serviceProducer;
-	}
-
-	public LogicalAddressDTO getLogicalAddress() {
-		return logicalAddress;
-	}
-
-	public void setLogicalAddress(LogicalAddressDTO logicalAddress) {
-		this.logicalAddress = logicalAddress;
-	}
-
-	public ConnectionPointDTO getConnectionPoint() {
-		return connectionPoint;
-	}
-
-	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-		this.connectionPoint = connectionPoint;
-	}
-
-	public ServiceContractDTO getServiceContract() {
-		return serviceContract;
-	}
-
-	public void setServiceContract(ServiceContractDTO serviceContract) {
-		this.serviceContract = serviceContract;
+			input.getServiceContract() == null
+				? null
+				: ServiceContractDTO.from(input.getServiceContract())
+		);
 	}
 }

@@ -10,6 +10,7 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.ServiceContract;
 
 
 /**
@@ -19,52 +20,20 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("serviceContract")
 @JsonInclude(Include.NON_EMPTY)
-public class ServiceContractDTO {
-
-	private Long id;
-	private String name;
-	private String namespace;
-	private Integer major;
-	private Integer minor;
-
-	public Long getId() {
-		return id;
+public record ServiceContractDTO (
+	Long id,
+	String name,
+	String namespace,
+	Integer major,
+	Integer minor
+) {
+	public static ServiceContractDTO from(ServiceContract input) {
+		return new ServiceContractDTO(
+			input.getId(),
+			input.getName(),
+			input.getNamespace(),
+			input.getMajor(),
+			input.getMinor()
+		);
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getNamespace() {
-		return namespace;
-	}
-
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
-	}
-
-	public Integer getMajor() {
-		return major;
-	}
-
-	public void setMajor(Integer major) {
-		this.major = major;
-	}
-
-	public Integer getMinor() {
-		return minor;
-	}
-
-	public void setMinor(Integer minor) {
-		this.minor = minor;
-	}
-
 }

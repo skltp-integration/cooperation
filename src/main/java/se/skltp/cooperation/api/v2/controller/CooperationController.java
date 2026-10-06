@@ -10,12 +10,10 @@ package se.skltp.cooperation.api.v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import se.skltp.cooperation.api.exception.ResourceNotFoundException;
@@ -41,7 +39,6 @@ import se.skltp.cooperation.util.TimeDiffUtil;
 })
 public class CooperationController {
 
-
 	static final String INCLUDE_SERVICECONSUMER = "serviceConsumer";
 	private static final String INCLUDE_SERVICECONTRACT = "serviceContract";
 	private static final String INCLUDE_CONNECTIONPOINT = "connectionPoint";
@@ -49,12 +46,10 @@ public class CooperationController {
 
 	private final Logger log = LoggerFactory.getLogger(CooperationController.class);
 	private final CooperationService cooperationService;
-	private final ModelMapper mapper;
 
 	@Autowired
-	public CooperationController(CooperationService cooperationService, ModelMapper mapper) {
+	public CooperationController(CooperationService cooperationService) {
 		this.cooperationService = cooperationService;
-		this.mapper = mapper;
 	}
 
 	/**
@@ -72,7 +67,6 @@ public class CooperationController {
 
 		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,
 				serviceDomainId, include);
-
 	}
 
 	/**
@@ -91,7 +85,6 @@ public class CooperationController {
 		result.setCooperations(getAll(serviceConsumerId, logicalAddressId, serviceContractId,
 				connectionPointId, serviceDomainId, include));
 		return result;
-
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class CooperationController {
 			includeOrNot(includes, cp);
 			result.add(toDTO(cp));
 		}
-		log.info("Benchmark: getAll took " + tdu.timeElapsed() + " s to process " + cooperations.size() + " records.");
+		log.info("Benchmark: getAll took {}s to process {} records.", tdu.timeElapsed(), cooperations.size());
 
 		return result;
 	}
@@ -160,7 +153,6 @@ public class CooperationController {
 	}
 
 	private CooperationDTO toDTO(Cooperation coop) {
-		return mapper.map(coop, CooperationDTO.class);
+		return CooperationDTO.from(coop);
 	}
-
 }

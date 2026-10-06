@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 
-import org.modelmapper.ModelMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -59,8 +58,7 @@ public class InstalledContractControllerTest {
 	InstalledContractDTO dto2;
 	@MockitoBean
 	private InstalledContractService installedContractServiceMock;
-	@MockitoBean
-	private ModelMapper mapperMock;
+
 	private MockMvc mockMvc;
 
     @Autowired
@@ -78,29 +76,31 @@ public class InstalledContractControllerTest {
 		ic1.setId(1L);
 		ic2 = new InstalledContract();
 		ic2.setId(2L);
-		dto1 = new InstalledContractDTO();
-		dto1.setId(1L);
-		dto2 = new InstalledContractDTO();
-		dto2.setId(2L);
+		dto1 = new InstalledContractDTO(
+			1L,
+			null,
+			null
+		);
+		dto2 = new InstalledContractDTO(
+			2L,
+			null,
+			null
+		);
 	}
 
 	@Test
 	public void getAllAcceptJson_shouldReturnAll() throws Exception {
 
 		when(installedContractServiceMock.findAll(any(InstalledContractCriteria.class))).thenReturn(Arrays.asList(ic1, ic2));
-		when(mapperMock.map(ic1, InstalledContractDTO.class)).thenReturn(dto1);
-		when(mapperMock.map(ic2, InstalledContractDTO.class)).thenReturn(dto2);
 
 		mockMvc.perform(get("/api/v2/installedContracts").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8")).andExpect(jsonPath("$", hasSize(2)))
-			.andExpect(jsonPath("$.[0].id").value(is(dto1.getId().intValue())))
-			.andExpect(jsonPath("$.[1].id").value(is(dto2.getId().intValue())))
+			.andExpect(jsonPath("$.[0].id").value(is(ic1.getId().intValue())))
+			.andExpect(jsonPath("$.[1].id").value(is(ic2.getId().intValue())))
 		;
 
 		verify(installedContractServiceMock, times(1)).findAll(any(InstalledContractCriteria.class));
 		verifyNoMoreInteractions(installedContractServiceMock);
-
 	}
-
 }

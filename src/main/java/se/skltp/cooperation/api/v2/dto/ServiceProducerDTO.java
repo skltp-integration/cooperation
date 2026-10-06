@@ -10,6 +10,7 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.ServiceProducer;
 
 
 /**
@@ -18,43 +19,20 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("serviceProducer")
 @JsonInclude(Include.NON_EMPTY)
-public class ServiceProducerDTO {
-
-	private Long id;
-	private String description;
-	private String hsaId;
-
-	private ConnectionPointDTO connectionPoint;
-
-	public ConnectionPointDTO getConnectionPoint() {
-		return connectionPoint;
-	}
-
-	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-		this.connectionPoint = connectionPoint;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getHsaId() {
-		return hsaId;
-	}
-
-	public void setHsaId(String hsaId) {
-		this.hsaId = hsaId;
+public record ServiceProducerDTO(
+	Long id,
+	String description,
+	String hsaId,
+	ConnectionPointDTO connectionPoint
+) {
+	public static ServiceProducerDTO from(ServiceProducer input) {
+		return new ServiceProducerDTO(
+			input.getId(),
+			input.getDescription(),
+			input.getHsaId(),
+			input.getConnectionPoint() == null
+				? null
+				: ConnectionPointDTO.from(input.getConnectionPoint())
+		);
 	}
 }

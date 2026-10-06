@@ -55,7 +55,6 @@
 		<spring-boot.version>4.1.1</spring-boot.version> <!-- From Aug 2026 -->
 
     <jacoco.plugin.version>0.8.15</jacoco.plugin.version> <!-- From Jun 2026 -->
-    <modelmapper.version>3.2.6</modelmapper.version> <!-- From Nov 2025 -->
 		<openfeign-querydsl.version>7.6</openfeign-querydsl.version> <!-- From Aug 2026. Built against Hibernate 7.4.5, which Boot 4.1 manages. -->
 
     <ecs-logging-java.version>1.8.0</ecs-logging-java.version> <!-- From Apr 2026 -->
@@ -162,11 +161,6 @@
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.modelmapper</groupId>
-      <artifactId>modelmapper</artifactId>
-      <version>${modelmapper.version}</version>
     </dependency>
 
     <dependency>

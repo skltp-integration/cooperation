@@ -10,6 +10,8 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.InstalledContract;
+import se.skltp.cooperation.domain.ServiceConsumer;
 
 
 /**
@@ -19,35 +21,20 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("installedContract")
 @JsonInclude(Include.NON_EMPTY)
-public class InstalledContractDTO {
-
-	private Long id;
-
-	private ConnectionPointDTO connectionPoint;
-	private ServiceContractDTO serviceContract;
-
-	public Long getId() {
-		return id;
+public record InstalledContractDTO(
+	Long id,
+	ConnectionPointDTO connectionPoint,
+	ServiceContractDTO serviceContract
+) {
+	public static InstalledContractDTO from(InstalledContract input) {
+		return new InstalledContractDTO(
+			input.getId(),
+			input.getConnectionPoint() == null
+				? null
+				: ConnectionPointDTO.from(input.getConnectionPoint()),
+			input.getConnectionPoint() == null
+				? null
+				: ServiceContractDTO.from(input.getServiceContract())
+		);
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public ConnectionPointDTO getConnectionPoint() {
-		return connectionPoint;
-	}
-
-	public void setConnectionPoint(ConnectionPointDTO connectionPoint) {
-		this.connectionPoint = connectionPoint;
-	}
-
-	public ServiceContractDTO getServiceContract() {
-		return serviceContract;
-	}
-
-	public void setServiceContract(ServiceContractDTO serviceContract) {
-		this.serviceContract = serviceContract;
-	}
-
 }

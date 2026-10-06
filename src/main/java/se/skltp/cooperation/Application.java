@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
@@ -23,19 +22,20 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Application extends SpringBootServletInitializer {
-	private final static  Logger log = LoggerFactory.getLogger(Application.class);
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
-    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
+	/**
+	 * This function exists specifically to do some simple logging of what Spring Boot and Spring Framework versions
+	 * are being used in the application. When the Spring Boot banner is hidden in an app, this is otherwise only done
+	 * through a debug-level log-entry from Spring Boot. This function thus helps make clear versions through logging,
+	 * as the application undergoes normal lifecycle upgrades.
+	 */
 	@EventListener(ApplicationStartedEvent.class)
 	void springLogger() {
+		final Logger log = LoggerFactory.getLogger(Application.class);
 		log.info("Application Launching with Spring Boot v{}, Spring v{}",
 			SpringBootVersion.getVersion(),
 			SpringVersion.getVersion());

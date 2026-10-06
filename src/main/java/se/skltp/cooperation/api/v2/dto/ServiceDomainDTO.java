@@ -10,6 +10,7 @@ package se.skltp.cooperation.api.v2.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.ServiceDomain;
 
 /**
  * A ServiceDomain Data Transfer Object
@@ -18,36 +19,16 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("serviceDomain")
 @JsonInclude(Include.NON_EMPTY)
-public class ServiceDomainDTO {
-
-
-	private Long id;
-	private String name;
-	private String namespace;
-
-	public Long getId() {
-		return id;
+public record ServiceDomainDTO(
+	Long id,
+	String name,
+	String namespace
+) {
+	public static ServiceDomainDTO from(ServiceDomain input) {
+		return new ServiceDomainDTO(
+			input.getId(),
+			input.getName(),
+			input.getNamespace()
+		);
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getNamespace() {
-		return namespace;
-	}
-
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
-	}
-
-
 }

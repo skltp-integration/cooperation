@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import se.skltp.cooperation.domain.ConnectionPoint;
 
 /**
  * A ConnectionPoint Data Transfer Object
@@ -21,46 +22,23 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  */
 @JsonRootName("connectionPoint")
 @JsonInclude(Include.NON_EMPTY)
-public class ConnectionPointDTO {
-
-
-	private Long id;
-	private String platform;
-	private String environment;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ssZ", timezone="CET")
-	private Date snapshotTime;
-
-	public Long getId() {
-		return id;
+public record ConnectionPointDTO(
+	Long id,
+	String platform,
+	String environment,
+	@JsonFormat(
+		shape = JsonFormat.Shape.STRING,
+		pattern = "yyyy-MM-dd'T'HH:mm:ssZ",
+		timezone = "CET"
+	)
+	Date snapshotTime
+) {
+	public static ConnectionPointDTO from(ConnectionPoint conn) {
+		return new ConnectionPointDTO(
+			conn.getId(),
+			conn.getPlatform(),
+			conn.getEnvironment(),
+			conn.getSnapshotTime()
+		);
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getPlatform() {
-		return platform;
-	}
-
-	public void setPlatform(String platform) {
-		this.platform = platform;
-	}
-
-	public String getEnvironment() {
-		return environment;
-	}
-
-	public void setEnvironment(String environment) {
-		this.environment = environment;
-	}
-
-	public Date getSnapshotTime() {
-		return snapshotTime;
-	}
-
-	public void setSnapshotTime(Date snapshotTime) {
-		this.snapshotTime = snapshotTime;
-	}
-
-
 }
