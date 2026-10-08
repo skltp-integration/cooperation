@@ -15,7 +15,6 @@ import se.skltp.cooperation.domain.ServiceProducer;
 
 /**
  * A ServiceProducer Data Transfer Object
- *
  */
 @JsonRootName("serviceProducer")
 @JsonInclude(Include.NON_EMPTY)
