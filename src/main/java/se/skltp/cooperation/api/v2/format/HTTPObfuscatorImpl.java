@@ -26,41 +26,40 @@ public class HTTPObfuscatorImpl implements HTTPObfuscator {
 		// after - https://....unet.org....443..../v1
 
 		try {
-			StringBuffer buffer = new StringBuffer();
+			StringBuilder builder = new StringBuilder();
 			int doubleSlashPosition = original.indexOf("//");
 			if (doubleSlashPosition < 0 || original.length() < doubleSlashPosition + 2) {
 				return original;
 			}
-			buffer.append(original.substring(0, doubleSlashPosition + 2));
-			buffer.append(DOTS);
+			builder.append(original, 0, doubleSlashPosition + 2);
+			builder.append(DOTS);
 			String remainder = original.substring(doubleSlashPosition + 2);
 			int semicolonPosition = remainder.indexOf(":");
 			int slashPosition = remainder.indexOf("/");
 			if (semicolonPosition > 0) {
-				buffer.append(remainder.substring(Math.max(semicolonPosition - 6,0), semicolonPosition));
-				buffer.append(DOTS);
+				builder.append(remainder, Math.max(semicolonPosition - 6,0), semicolonPosition);
+				builder.append(DOTS);
 				if (slashPosition > 0){
-					buffer.append(remainder.substring(semicolonPosition + 1, slashPosition));
+					builder.append(remainder, semicolonPosition + 1, slashPosition);
 				} else{
-					buffer.append(remainder.substring(semicolonPosition + 1));
+					builder.append(remainder.substring(semicolonPosition + 1));
 				}
 
 			} else if (slashPosition > 0) {
-				buffer.append(remainder.substring(Math.max(slashPosition - 6,0), slashPosition));
+				builder.append(remainder, Math.max(slashPosition - 6,0), slashPosition);
 			} else {
-				buffer.append(remainder.substring(Math.max(remainder.length() - 6, 0)));
+				builder.append(remainder.substring(Math.max(remainder.length() - 6, 0)));
 			}
 			int lastIndexSlash = remainder.lastIndexOf("/");
 			if ( lastIndexSlash > 0 && remainder.length() > lastIndexSlash +1){
-				buffer.append(DOTS);
-				buffer.append(remainder.substring(lastIndexSlash));
+				builder.append(DOTS);
+				builder.append(remainder.substring(lastIndexSlash));
 			}
 
-			return buffer.toString();
+			return builder.toString();
 		} catch (Exception e) {
-			log.info("Failed to obfuscate: " + original);
+			log.info("Failed to obfuscate: {}", original);
 			return original;
 		}
 	}
-
 }

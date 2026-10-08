@@ -23,10 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class Version1Gone {
 	@GetMapping()
 	public ResponseEntity<String> respondWithGone() {
-		return new ResponseEntity<>(
-			"Cooperation API v1 has been closed.\n" +
-				"Please use v2 instead.\n" +
-				"For more information about changes needed for v2, contact API maintainer and provider.",
-			HttpStatus.GONE);
+		String body = """
+				Cooperation API v1 has been closed.
+				Please use v2 instead.
+				For more information about changes needed for v2, contact API maintainer and provider.
+				""";
+		return new ResponseEntity<>(body, HttpStatus.GONE);
 	}
 }

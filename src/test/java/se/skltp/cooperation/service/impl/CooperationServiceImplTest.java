@@ -8,13 +8,12 @@
 package se.skltp.cooperation.service.impl;
 
 import com.querydsl.core.types.Predicate;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import se.skltp.cooperation.Application;
 import se.skltp.cooperation.domain.Cooperation;
@@ -36,25 +35,30 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- */
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class CooperationServiceImplTest {
+class CooperationServiceImplTest {
 
 	private CooperationServiceImpl uut;
+
 	@Mock
 	private CooperationRepository cooperationRepositoryMock;
 
+	AutoCloseable mock;
+
 	@BeforeEach
-	public void setUp() throws Exception {
-		MockitoAnnotations.openMocks(this);
+	void setUp() {
+		mock = MockitoAnnotations.openMocks(this);
 		uut = new CooperationServiceImpl(cooperationRepositoryMock);
 	}
 
+	@AfterEach
+	void tearDown() throws Exception {
+		mock.close();
+	}
+
 	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	void findAll_shouldReturnAll() {
 		Cooperation c1 = new Cooperation();
 		c1.setId(1L);
 		Cooperation c2 = new Cooperation();
@@ -62,13 +66,13 @@ public class CooperationServiceImplTest {
 		when(cooperationRepositoryMock.findAll()).thenReturn(Arrays.asList(c1, c2));
 		List<Cooperation> result = uut.findAll(new CooperationCriteria());
 		assertEquals(2, result.size());
-		assertEquals(1, result.get(0).getId().longValue());
+		assertEquals(1, result.getFirst().getId().longValue());
 		assertEquals(2, result.get(1).getId().longValue());
 		verify(cooperationRepositoryMock, times(1)).findAll();
 	}
 
 	@Test
-	public void findAll_withPredicateShouldReturnAll() throws Exception {
+	void findAll_withPredicateShouldReturnAll() {
 		CooperationCriteria criteria = new CooperationCriteria();
 		criteria.setConnectionPointId(1L);
 		Cooperation c1 = new Cooperation();
@@ -78,21 +82,21 @@ public class CooperationServiceImplTest {
 		when(cooperationRepositoryMock.findAll(any(Predicate.class))).thenReturn(Arrays.asList(c1, c2));
 		List<Cooperation> result = uut.findAll(criteria);
 		assertEquals(2, result.size());
-		assertEquals(1, result.get(0).getId().longValue());
+		assertEquals(1, result.getFirst().getId().longValue());
 		assertEquals(2, result.get(1).getId().longValue());
 		verify(cooperationRepositoryMock, times(1)).findAll(any(Predicate.class));
 	}
 
 	@Test
-	public void findAll_shouldReturnEmptyList() throws Exception {
+	void findAll_shouldReturnEmptyList() {
 
-		when(cooperationRepositoryMock.findAll()).thenReturn(new ArrayList<Cooperation>());
+		when(cooperationRepositoryMock.findAll()).thenReturn(new ArrayList<>());
 		List<Cooperation> result = uut.findAll(new CooperationCriteria());
 		assertEquals(0, result.size());
 	}
 
 	@Test
-	public void find_shouldReturnOne() throws Exception {
+	void find_shouldReturnOne() {
 		Cooperation c1 = new Cooperation();
 		c1.setId(1L);
 		Optional<Cooperation> oc1 = Optional.of(c1);
@@ -102,7 +106,7 @@ public class CooperationServiceImplTest {
 	}
 
 	@Test
-	public void find_shouldReturnNullWhenNotFound() throws Exception {
+	void find_shouldReturnNullWhenNotFound() {
 		Cooperation c1 = new Cooperation();
 		c1.setId(1L);
 		Optional<Cooperation> oc1 = Optional.empty();
@@ -110,13 +114,10 @@ public class CooperationServiceImplTest {
 		Cooperation result = uut.find(c1.getId());
 		assertNull(result);
 		verify(cooperationRepositoryMock, times(1)).findById(c1.getId());
-
 	}
 
 	@Test
-	public void buildPredicate_shouldBuild() throws Exception {
-
-
+	void buildPredicate_shouldBuild() {
 		Predicate predicate = uut.buildPredicate(new CooperationCriteriaBuilder()
 			.serviceConsumerId(1L).build());
 		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1"));
@@ -124,25 +125,25 @@ public class CooperationServiceImplTest {
 			.serviceConsumerId(1L)
 			.logicalAddressId(2L).build());
 		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2"));
+
 		predicate = uut.buildPredicate(new CooperationCriteriaBuilder()
 			.serviceConsumerId(1L)
 			.logicalAddressId(2L)
 			.serviceContractId(3L).build());
+		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2 && cooperation.serviceContract.id = 3"));
+
 		predicate = uut.buildPredicate(new CooperationCriteriaBuilder()
 			.serviceConsumerId(1L)
 			.logicalAddressId(2L)
 			.serviceContractId(3L)
 			.connectionPointId(4L).build());
 		assertThat(predicate.toString(), is("cooperation.serviceConsumer.id = 1 && cooperation.logicalAddress.id = 2 && cooperation.serviceContract.id = 3 && cooperation.connectionPoint.id = 4"));
-
 	}
 
 	@Test
-	public void buildCriteria_shouldReturnNull() throws Exception {
+	void buildCriteria_shouldReturnNull() {
 
 		Predicate predicate = uut.buildPredicate(new CooperationCriteria());
 		assertNull(predicate);
 	}
-
-
 }

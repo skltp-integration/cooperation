@@ -13,29 +13,29 @@ package se.skltp.cooperation.service;
  */
 public class CooperationCriteriaBuilder {
 
-	private CooperationCriteria object = new CooperationCriteria();
+	private final CooperationCriteria coopCrit = new CooperationCriteria();
 
 	public CooperationCriteria build() {
-		return object;
+		return coopCrit;
 	}
 
 	public CooperationCriteriaBuilder connectionPointId(Long id) {
-		object.setConnectionPointId(id);
+		coopCrit.setConnectionPointId(id);
 		return this;
 	}
 
 	public CooperationCriteriaBuilder logicalAddressId(Long id) {
-		object.setLogicalAddressId(id);
+		coopCrit.setLogicalAddressId(id);
 		return this;
 	}
 
 	public CooperationCriteriaBuilder serviceConsumerId(Long id) {
-		object.setServiceConsumerId(id);
+		coopCrit.setServiceConsumerId(id);
 		return this;
 	}
 
 	public CooperationCriteriaBuilder serviceContractId(Long id) {
-		object.setServiceContractId(id);
+		coopCrit.setServiceContractId(id);
 		return this;
 	}
 }

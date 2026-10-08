@@ -13,24 +13,22 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- */
-public class ServiceConsumerCriteriaTest {
+class ServiceConsumerCriteriaTest {
 
 	private ServiceConsumerCriteria uut;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() {
 		uut = new ServiceConsumerCriteria();
 	}
 
 	@Test
-	public void isEmpty_shouldBeEmpty() throws Exception {
+	void isEmpty_shouldBeEmpty() {
 		assertTrue(uut.isEmpty());
 	}
 
 	@Test
-	public void isEmpty_shouldNotBeEmpty() throws Exception {
+	void isEmpty_shouldNotBeEmpty() {
 		uut.setConnectionPointId(1L);
 		assertFalse(uut.isEmpty());
 	}

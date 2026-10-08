@@ -28,12 +28,9 @@ import se.skltp.cooperation.service.LogicalAddressCriteria;
 import se.skltp.cooperation.service.LogicalAddressService;
 import se.skltp.cooperation.api.TestUtil;
 
-/**
- * @author Jan Västernäs
- */
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class LogicalAdressServiceImplIntegrationTest {
+class LogicalAdressServiceImplIntegrationTest {
 
 	@Autowired
 	private LogicalAddressService uut;
@@ -59,7 +56,7 @@ public class LogicalAdressServiceImplIntegrationTest {
 	ServiceProducer serviceProducer2;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp(){
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
 		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
@@ -86,12 +83,12 @@ public class LogicalAdressServiceImplIntegrationTest {
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown(){
 		util.deleteAll();
 	}
 
 	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	void findAll_shouldReturnAll(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria(null, null, null, null, null);
 		List<LogicalAddress> result = uut.findAll(criteria);
@@ -100,17 +97,17 @@ public class LogicalAdressServiceImplIntegrationTest {
 	}
 
 	@Test
-	public void findByLogicalAdress() throws Exception {
+	void findByLogicalAdress(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria("adress2", null, null,
 				null, null);
 		List<LogicalAddress> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(logicalAddress2.getId(), result.get(0).getId());
+		assertEquals(logicalAddress2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByConnectionPointId() throws Exception {
+	void findByConnectionPointId(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria(null, null, null,
 				connectionPoint1.getId(), null);
@@ -120,11 +117,11 @@ public class LogicalAdressServiceImplIntegrationTest {
 		criteria = new LogicalAddressCriteria(null, null, null, connectionPoint2.getId(), null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(logicalAddress2.getId(), result.get(0).getId());
+		assertEquals(logicalAddress2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByConnectionPointId_noHits() throws Exception {
+	void findByConnectionPointId_noHits(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria(null, null, null, 999L, null);
 		List<LogicalAddress> result = uut.findAll(criteria);
@@ -133,7 +130,7 @@ public class LogicalAdressServiceImplIntegrationTest {
 	}
 
 	@Test
-	public void findByServiceContractId() throws Exception {
+	void findByServiceContractId(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria(null, null,
 				serviceContract1.getId(), null, null);
@@ -143,11 +140,11 @@ public class LogicalAdressServiceImplIntegrationTest {
 		criteria = new LogicalAddressCriteria(null, null, serviceContract2.getId(), null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(logicalAddress2.getId(), result.get(0).getId());
+		assertEquals(logicalAddress2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByServiceConsumerId() throws Exception {
+	void findByServiceConsumerId(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria(null,
 				serviceConsumer1.getId(), null, null, null);
@@ -157,17 +154,17 @@ public class LogicalAdressServiceImplIntegrationTest {
 		criteria = new LogicalAddressCriteria(null, serviceConsumer2.getId(), null, null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(logicalAddress2.getId(), result.get(0).getId());
+		assertEquals(logicalAddress2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByServiceProducerId() throws Exception {
+	void findByServiceProducerId(){
 
 		LogicalAddressCriteria criteria = new LogicalAddressCriteria(null, null, null, null,
 				serviceProducer1.getId());
 		List<LogicalAddress> result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(logicalAddress2.getId(), result.get(0).getId());
+		assertEquals(logicalAddress2.getId(), result.getFirst().getId());
 
 		criteria = new LogicalAddressCriteria(null, null, null, null, serviceProducer2.getId());
 		result = uut.findAll(criteria);

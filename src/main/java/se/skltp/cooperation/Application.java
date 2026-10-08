@@ -13,7 +13,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.core.SpringVersion;
@@ -21,7 +20,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class Application extends SpringBootServletInitializer {
+public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

@@ -23,12 +23,10 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -46,11 +44,9 @@ import se.skltp.cooperation.api.v2.dto.InstalledContractDTO;
  * @author Jan Vasternas
  * @see InstalledContractController
  */
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class InstalledContractControllerTest {
-
+class InstalledContractControllerTest {
 
 	InstalledContract ic1;
 	InstalledContract ic2;
@@ -65,7 +61,7 @@ public class InstalledContractControllerTest {
     private WebApplicationContext wac;
 
 	@BeforeEach
-	public void setUpTestData() throws Exception {
+	void setUpTestData() {
 
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
@@ -89,7 +85,7 @@ public class InstalledContractControllerTest {
 	}
 
 	@Test
-	public void getAllAcceptJson_shouldReturnAll() throws Exception {
+	void getAllAcceptJson_shouldReturnAll() throws Exception {
 
 		when(installedContractServiceMock.findAll(any(InstalledContractCriteria.class))).thenReturn(Arrays.asList(ic1, ic2));
 

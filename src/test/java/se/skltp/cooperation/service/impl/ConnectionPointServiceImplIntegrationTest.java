@@ -14,10 +14,10 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import se.skltp.cooperation.Application;
@@ -32,16 +32,12 @@ import se.skltp.cooperation.service.ConnectionPointCriteria;
 import se.skltp.cooperation.service.ConnectionPointService;
 import se.skltp.cooperation.api.TestUtil;
 
-/**
- * @author Jan Västernäs
- */
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class ConnectionPointServiceImplIntegrationTest {
+class ConnectionPointServiceImplIntegrationTest {
 
 	@Autowired
-	private ConnectionPointService uut;
+	private ConnectionPointService connPtSer;
 
 	@Autowired
 	private TestUtil util;
@@ -56,7 +52,8 @@ public class ConnectionPointServiceImplIntegrationTest {
 	ServiceProducer serviceProducer1;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() {
+		util.deleteAll(); // Make sure DB is clean before injecting test data.
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
 		serviceConsumer1 = util.createServiceConsumer("description", "hsaId", connectionPoint1);
@@ -70,96 +67,77 @@ public class ConnectionPointServiceImplIntegrationTest {
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown() {
 		util.deleteAll();
 	}
 
-	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	@ParameterizedTest
+	@CsvSource(value = {"NULL, 2", "NTJP, 2", "XYZ, 0"},
+		nullValues = "NULL")
+	void findAll_testVariousPlatformCriteria(String platform, int expectedCount) {
+		ConnectionPointCriteria criteria =
+			new ConnectionPointCriteria(null, platform, null, null, null, null);
 
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null,
-				null, null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
-		assertEquals(2, result.size());
-
+		assertEquals(expectedCount, connPtSer.findAll(criteria).size());
 	}
 
 	@Test
-	public void findByEnvironment() throws Exception {
+	void findByEnvironment() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria("PROD", null, null, null,
 				null, null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
+		List<ConnectionPoint> result = connPtSer.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals("NTJP", result.get(0).getPlatform());
+		assertEquals("NTJP", result.getFirst().getPlatform());
 	}
 
 	@Test
-	public void findByPlatform() throws Exception {
-
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, "NTJP", null, null,
-				null, null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
-		assertEquals(2, result.size());
-	}
-
-	@Test
-	public void findByPlatform_noHits() throws Exception {
-
-		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, "XYZ", null, null,
-				null, null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
-		assertEquals(0, result.size());
-	}
-
-	@Test
-	public void findByServiceConsumerId() throws Exception {
+	void findByServiceConsumerId() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null,
 				serviceConsumer1.getId(), null, null, null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
+		List<ConnectionPoint> result = connPtSer.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals("TEST", result.get(0).getEnvironment());
+		assertEquals("TEST", result.getFirst().getEnvironment());
 	}
 
 	@Test
-	public void findByLogicalAdressId() throws Exception {
+	void findByLogicalAdressId() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null,
 				logicalAddress1.getId(), null, null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
+		List<ConnectionPoint> result = connPtSer.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals("TEST", result.get(0).getEnvironment());
+		assertEquals("TEST", result.getFirst().getEnvironment());
 	}
 
 	@Test
-	public void findByServiceContractId() throws Exception {
+	void findByServiceContractId() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null,
 				serviceContract1.getId(), null);
-		List<ConnectionPoint> result = uut.findAll(criteria);
+		List<ConnectionPoint> result = connPtSer.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals("TEST", result.get(0).getEnvironment());
+		assertEquals("TEST", result.getFirst().getEnvironment());
 	}
 
 	@Test
-	public void findByServiceProducerId() throws Exception {
+	void findByServiceProducerId() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, null, null, null,null,
 				serviceProducer1.getId());
-		List<ConnectionPoint> result = uut.findAll(criteria);
+		List<ConnectionPoint> result = connPtSer.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals("TEST", result.get(0).getEnvironment());
+		assertEquals("TEST", result.getFirst().getEnvironment());
 	}
 
 	@Test
-	public void findByMultipleCriteria() throws Exception {
+	void findByMultipleCriteria() {
 
 		ConnectionPointCriteria criteria = new ConnectionPointCriteria(null, "NTJP", null, logicalAddress1.getId(),serviceContract1.getId(),
 				serviceProducer1.getId());
-		List<ConnectionPoint> result = uut.findAll(criteria);
+		List<ConnectionPoint> result = connPtSer.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals("TEST", result.get(0).getEnvironment());
+		assertEquals("TEST", result.getFirst().getEnvironment());
 	}
-
 }
