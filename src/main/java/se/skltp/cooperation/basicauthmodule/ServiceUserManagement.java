@@ -192,9 +192,6 @@ public final class ServiceUserManagement {
 		userList.getUsers().add(new ServiceUser(
 			"Caesar",
 			Settings.REDACTED_LABEL,
-			// For specimen password "qwerty"...:
-			// Stored as BCrypt-encode at strength 10 as "$2y$10$Ffs4rDCIok.I3uuQ8IIMxufD5FoTvhxymukqEBElHwRxEvaLy8dRO",
-			// Sent over web, encoded as BASE64 it is: "SGVucmlrOnF3ZXJ0eQ=="
 			"Caesar Julius",
 			"NMT",
 			"cj@a.aa",
