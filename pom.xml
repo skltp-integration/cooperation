@@ -2,21 +2,21 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.1.1</version>
-    <relativePath/>
-  </parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.1.1</version> <!-- From Aug 2026 -->
+		<relativePath/>
+	</parent>
 
-  <groupId>se.skltp.cooperation</groupId>
-  <artifactId>cooperation</artifactId>
-  <version>1.11.0-SNAPSHOT</version>
+	<groupId>se.skltp.cooperation</groupId>
+	<artifactId>cooperation</artifactId>
+	<version>1.11.0-SNAPSHOT</version>
 
-  <name>cooperation</name>
-  <description>Established Cooperation</description>
+	<name>cooperation</name>
+	<description>Established Cooperation</description>
 	<url/>
-	<inceptionYear/>
+	<inceptionYear>2015</inceptionYear>
 	<organization/>
 	<licenses/>
 
@@ -30,34 +30,33 @@
 
 	<modules/>
 
-  <scm>
-    <connection>scm:git:https://github.com:443/skltp-integration/cooperation.git</connection>
-    <developerConnection>scm:git:https://github.com:443/skltp-integration/cooperation.git</developerConnection>
-    <url>https://github.com/skltp-integration/cooperation.git</url>
-  </scm>
+	<scm>
+		<connection>scm:git:https://github.com:443/skltp-integration/cooperation.git</connection>
+		<developerConnection>scm:git:https://github.com:443/skltp-integration/cooperation.git</developerConnection>
+		<url>https://github.com/skltp-integration/cooperation.git</url>
+	</scm>
 	<issueManagement/>
 	<ciManagement/>
-  <distributionManagement>
-    <repository>
-      <id>release-nexus</id>
-      <name>Release Nexus</name>
-      <url>${releases-nexus-url}</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshot-nexus</id>
-      <name>Snapshot Nexus</name>
-      <url>${snapshot-nexus-url}</url>
-    </snapshotRepository>
-  </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>release-nexus</id>
+			<name>Release Nexus</name>
+			<url>${releases-nexus-url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-nexus</id>
+			<name>Snapshot Nexus</name>
+			<url>${snapshot-nexus-url}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
-  <properties>
+	<properties>
 		<java.version>21</java.version>
-		<spring-boot.version>4.1.1</spring-boot.version> <!-- From Aug 2026 -->
 
-    <jacoco.plugin.version>0.8.15</jacoco.plugin.version> <!-- From Jun 2026 -->
+		<jacoco.plugin.version>0.8.15</jacoco.plugin.version> <!-- From Jun 2026 -->
 		<openfeign-querydsl.version>7.6</openfeign-querydsl.version> <!-- From Aug 2026. Built against Hibernate 7.4.5, which Boot 4.1 manages. -->
 
-    <ecs-logging-java.version>1.8.0</ecs-logging-java.version> <!-- From Apr 2026 -->
+		<ecs-logging-java.version>1.8.0</ecs-logging-java.version> <!-- From Apr 2026 -->
 
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -65,20 +64,13 @@
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
-  </properties>
 
-  <dependencyManagement>
-    <dependencies>
-			<!-- Importing Spring Boot BOM-POM, which sets versions for a ton of Spring-related dependencies. -->
-			<!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring-boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+		<!-- Empty default so @{argLine} resolves when the JaCoCo profile is inactive -->
+		<argLine/>
+	</properties>
 
+	<dependencyManagement>
+		<dependencies>
 			<!-- Source: https://mvnrepository.com/artifact/io.github.openfeign.querydsl/querydsl-bom -->
 			<dependency>
 				<groupId>io.github.openfeign.querydsl</groupId>
@@ -87,51 +79,41 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-    </dependencies>
-  </dependencyManagement>
+		</dependencies>
+	</dependencyManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webmvc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-tomcat</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
@@ -150,73 +132,56 @@
 			<scope>test</scope>
 		</dependency>
 
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.mysql</groupId>
-      <artifactId>mysql-connector-j</artifactId>
-    </dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>io.github.openfeign.querydsl</groupId>
-      <artifactId>querydsl-apt</artifactId>
-      <classifier>jakarta</classifier>
-    </dependency>
+		<dependency>
+			<groupId>io.github.openfeign.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<classifier>jakarta</classifier>
+		</dependency>
 		<!-- Source: https://mvnrepository.com/artifact/io.github.openfeign.querydsl/querydsl-jpa -->
 		<dependency>
 			<groupId>io.github.openfeign.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
 		</dependency>
 
-    <dependency>
-      <groupId>tools.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-xml</artifactId>
+		<dependency>
+			<groupId>tools.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
 			<!-- VERSION handled by Spring Boot Dependencies BOM -->
-    </dependency>
+		</dependency>
 
 
-    <dependency>
-      <groupId>co.elastic.logging</groupId>
-      <artifactId>log4j2-ecs-layout</artifactId>
-      <version>${ecs-logging-java.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
+		<dependency>
+			<groupId>co.elastic.logging</groupId>
+			<artifactId>log4j2-ecs-layout</artifactId>
+			<version>${ecs-logging-java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
 			<!-- VERSION handled by Spring Boot Dependencies BOM -->
-    </dependency>
+		</dependency>
+	</dependencies>
 
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path</artifactId>
-			<!-- VERSION handled by Spring Boot Dependencies BOM -->
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path-assert</artifactId>
-			<!-- VERSION handled by Spring Boot Dependencies BOM -->
-      <scope>test</scope>
-    </dependency>
+	<build>
+		<finalName>cooperation-${project.version}</finalName>
 
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <finalName>cooperation-${project.version}</finalName>
-
-    <pluginManagement>
-      <plugins>
+		<pluginManagement>
+			<plugins>
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
 					<version>3.3.1</version> <!-- DEC 2025. Latest as of APR 2026 -->
@@ -276,39 +241,61 @@
 									<exclude>**/*.map</exclude>
 									<exclude>**/*.info</exclude>
 									<exclude>**/*.yml</exclude>
-<!--									<exclude>**/src/main/resources/static/doc/**/*.*</exclude>-->
+									<!--									<exclude>**/src/main/resources/static/doc/**/*.*</exclude>-->
 								</excludes>
 							</licenseSet>
 						</licenseSets>
 					</configuration>
 				</plugin>
-      </plugins>
-    </pluginManagement>
+			</plugins>
+		</pluginManagement>
 
-    <plugins>
+		<plugins>
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 			</plugin>
 
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<!-- VERSION handled by Spring Boot Dependencies BOM -->
-        <configuration>
-          <release>${java.version}</release>
-        </configuration>
-      </plugin>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
 
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Exposes ${org.mockito:mockito-core:jar} for the Surefire agent below -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>properties</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Load Mockito as a startup agent instead of dynamically attaching it -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar}</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<reporting/>
 
-  <profiles>
+	<profiles>
 		<profile>
 			<id>license</id>
 			<activation />
@@ -331,31 +318,31 @@
 			</build>
 		</profile>
 
-    <profile>
-      <id>test-coverage</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>${jacoco.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>default-prepare-agent</id>
-                <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>default-report</id>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+		<profile>
+			<id>test-coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>default-prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>default-report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

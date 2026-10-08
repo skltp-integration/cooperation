@@ -13,23 +13,23 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CooperationCriteriaTest {
+class CooperationCriteriaTest {
 
 	private CooperationCriteria uut;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() {
 		uut = new CooperationCriteria();
 
 	}
 
 	@Test
-	public void isEmpty_shouldBeEmpty() throws Exception {
+	void isEmpty_shouldBeEmpty() {
 		assertTrue(uut.isEmpty());
 	}
 
 	@Test
-	public void isEmpty_shouldNotBeEmpty() throws Exception {
+	void isEmpty_shouldNotBeEmpty() {
 		uut.setConnectionPointId(1L);
 		assertFalse(uut.isEmpty());
 		uut.setLogicalAddressId(1L);
@@ -39,5 +39,4 @@ public class CooperationCriteriaTest {
 		uut.setServiceContractId(1L);
 		assertFalse(uut.isEmpty());
 	}
-
 }

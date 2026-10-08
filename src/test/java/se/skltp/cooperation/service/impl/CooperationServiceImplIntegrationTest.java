@@ -29,15 +29,12 @@ import se.skltp.cooperation.service.CooperationCriteria;
 import se.skltp.cooperation.service.CooperationService;
 import se.skltp.cooperation.api.TestUtil;
 
-/**
- * @author Jan Västernäs
- */
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class CooperationServiceImplIntegrationTest {
+class CooperationServiceImplIntegrationTest {
 
 	@Autowired
-	private CooperationService uut;
+	private CooperationService coopSrv;
 
 	@Autowired
 	private TestUtil util;
@@ -59,7 +56,7 @@ public class CooperationServiceImplIntegrationTest {
 	ServiceDomain serviceDomain2;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() {
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
 		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
@@ -84,97 +81,97 @@ public class CooperationServiceImplIntegrationTest {
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown() {
 		util.deleteAll();
 	}
 
 	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	void findAll_shouldReturnAll() {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, null, null, null, null);
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(3, result.size());
 
 	}
 
 	@Test
-	public void findByServiceConsumerId() throws Exception {
+	void findByServiceConsumerId() {
 
 		CooperationCriteria criteria = new CooperationCriteria(serviceConsumer1.getId(), null,
 				null, null, null);
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(cooperation1.getId(), result.get(0).getId());
+		assertEquals(cooperation1.getId(), result.getFirst().getId());
 
 		criteria = new CooperationCriteria(serviceConsumer2.getId(), null, null, null, null);
-		result = uut.findAll(criteria);
+		result = coopSrv.findAll(criteria);
 		assertEquals(2, result.size());
 	}
 
 	@Test
-	public void findByServiceConsumerId_noHits() throws Exception {
+	void findByServiceConsumerId_noHits() {
 
 		CooperationCriteria criteria = new CooperationCriteria(999L, null, null, null, null);
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(0, result.size());
 
 	}
 
 	@Test
-	public void findByLogicalAddressId() throws Exception {
+	void findByLogicalAddressId() {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, logicalAddress1.getId(), null,
 				null, null);
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(cooperation1.getId(), result.get(0).getId());
+		assertEquals(cooperation1.getId(), result.getFirst().getId());
 
-		assertEquals(cooperation1.getId(), result.get(0).getId());
+		assertEquals(cooperation1.getId(), result.getFirst().getId());
 		criteria = new CooperationCriteria(null, logicalAddress2.getId(), null, null, null);
-		result = uut.findAll(criteria);
+		result = coopSrv.findAll(criteria);
 		assertEquals(2, result.size());
 	}
 
 	@Test
-	public void findByServiceContractId() throws Exception {
+	void findByServiceContractId() {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, null,
 				serviceContract1.getId(), null, null);
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(2, result.size());
 
 		criteria = new CooperationCriteria(null, null, serviceContract2.getId(), null, null);
-		result = uut.findAll(criteria);
+		result = coopSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(cooperation2.getId(), result.get(0).getId());
+		assertEquals(cooperation2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByServiceDomainId() throws Exception {
+	void findByServiceDomainId() {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, null,
 				null, null, serviceDomain1.getId());
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(2, result.size());
 
 		criteria = new CooperationCriteria(null, null, null, null, serviceDomain2.getId());
-		result = uut.findAll(criteria);
+		result = coopSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(cooperation2.getId(), result.get(0).getId());
+		assertEquals(cooperation2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByConnectionPointId() throws Exception {
+	void findByConnectionPointId() {
 
 		CooperationCriteria criteria = new CooperationCriteria(null, null, null,
 				connectionPoint1.getId(), null);
-		List<Cooperation> result = uut.findAll(criteria);
+		List<Cooperation> result = coopSrv.findAll(criteria);
 		assertEquals(2, result.size());
 
 		criteria = new CooperationCriteria(null, null, null, connectionPoint2.getId(), null);
-		result = uut.findAll(criteria);
+		result = coopSrv.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(cooperation2.getId(), result.get(0).getId());
+		assertEquals(cooperation2.getId(), result.getFirst().getId());
 	}
 
 }

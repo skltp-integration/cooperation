@@ -28,12 +28,9 @@ import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.api.TestUtil;
 
-/**
- * @author Jan Västernäs
- */
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class ServiceConsumerServiceImplIntegrationTest {
+class ServiceConsumerServiceImplIntegrationTest {
 
 	@Autowired
 	private ServiceConsumerService uut;
@@ -60,7 +57,7 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	ServiceProducer serviceProducer2;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp(){
 		connectionPoint1 = util.createConnectionPoint("NTJP", "TEST");
 		connectionPoint2 = util.createConnectionPoint("NTJP", "PROD");
 		serviceConsumer1 = util.createServiceConsumer("consumer1", "hsaId1",connectionPoint1);
@@ -87,12 +84,12 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown(){
 		util.deleteAll();
 	}
 
 	@Test
-	public void findAll_shouldReturnAll() throws Exception {
+	void findAll_shouldReturnAll(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
@@ -101,7 +98,7 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	}
 
 	@Test
-	public void findByConnectionPointId() throws Exception {
+	void findByConnectionPointId(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(connectionPoint1.getId(),
 				null, null, null);
@@ -111,11 +108,11 @@ public class ServiceConsumerServiceImplIntegrationTest {
 		criteria = new ServiceConsumerCriteria(connectionPoint2.getId(), null, null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
+		assertEquals(serviceConsumer2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByConnectionPointId_noHits() throws Exception {
+	void findByConnectionPointId_noHits(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(999L, null, null, null);
 		List<ServiceConsumer> result = uut.findAll(criteria);
@@ -124,7 +121,7 @@ public class ServiceConsumerServiceImplIntegrationTest {
 	}
 
 	@Test
-	public void findByLogicalAddressId() throws Exception {
+	void findByLogicalAddressId(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null,
 				logicalAddress1.getId(), null, null);
@@ -134,11 +131,11 @@ public class ServiceConsumerServiceImplIntegrationTest {
 		criteria = new ServiceConsumerCriteria(null, logicalAddress2.getId(), null, null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
+		assertEquals(serviceConsumer2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByServiceContractId() throws Exception {
+	void findByServiceContractId(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null,
 				serviceContract1.getId(), null);
@@ -148,11 +145,11 @@ public class ServiceConsumerServiceImplIntegrationTest {
 		criteria = new ServiceConsumerCriteria(null, null, serviceContract2.getId(), null);
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
+		assertEquals(serviceConsumer2.getId(), result.getFirst().getId());
 	}
 
 	@Test
-	public void findByServiceProducerId() throws Exception {
+	void findByServiceProducerId(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null,
 				serviceProducer1.getId());
@@ -163,11 +160,11 @@ public class ServiceConsumerServiceImplIntegrationTest {
 				serviceProducer2.getId());
 		result = uut.findAll(criteria);
 		assertEquals(1, result.size());
-		assertEquals(serviceConsumer2.getId(), result.get(0).getId());
+		assertEquals(serviceConsumer2.getId(), result.getFirst().getId());
 
 	}
 	@Test
-	public void findByServiceProducerId_noHit() throws Exception {
+	void findByServiceProducerId_noHit(){
 
 		ServiceConsumerCriteria criteria = new ServiceConsumerCriteria(null, null, null,
 				999L);

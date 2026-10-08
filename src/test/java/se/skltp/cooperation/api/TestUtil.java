@@ -7,13 +7,10 @@
  */
 package se.skltp.cooperation.api;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import se.skltp.cooperation.domain.ConnectionPoint;
@@ -34,10 +31,6 @@ import se.skltp.cooperation.repository.ServiceContractRepository;
 import se.skltp.cooperation.repository.ServiceDomainRepository;
 import se.skltp.cooperation.repository.ServiceProducerRepository;
 import se.skltp.cooperation.repository.ServiceProductionRepository;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Utility class for testing REST controllers.
@@ -64,18 +57,6 @@ public class TestUtil {
 	private ServiceProductionRepository serviceProductionRepository;
 	@Autowired
 	private ServiceDomainRepository serviceDomainRepository;
-
-	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(
-			MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(),
-			Charset.forName("utf8"));
-
-	public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
-		ObjectMapper mapper = JsonMapper.builder()
-				.changeDefaultPropertyInclusion(incl -> JsonInclude.Value.construct(
-						JsonInclude.Include.NON_NULL, JsonInclude.Include.NON_NULL))
-				.build();
-		return mapper.writeValueAsBytes(object);
-	}
 
 	public ConnectionPoint createConnectionPoint(String platform, String environment) {
 		ConnectionPoint connectionPoint = new ConnectionPoint();
@@ -108,11 +89,11 @@ public class TestUtil {
 		return cooperation;
 	}
 
-	public ServiceProduction createServiceProduction(String rivtaProfile, String physicalAdress,
+	public ServiceProduction createServiceProduction(String rivTaProfile, String physicalAdress,
 			ConnectionPoint connectionPoint, LogicalAddress logicalAddress,
 			ServiceProducer serviceProducer, ServiceContract serviceContract) {
 		ServiceProduction serviceProduction = new ServiceProduction();
-		serviceProduction.setRivtaProfile(rivtaProfile);
+		serviceProduction.setRivtaProfile(rivTaProfile);
 		serviceProduction.setPhysicalAddress(physicalAdress);
 		serviceProduction.setConnectionPoint(connectionPoint);
 		serviceProduction.setLogicalAddress(logicalAddress);
@@ -123,9 +104,9 @@ public class TestUtil {
 
 	}
 
-	public LogicalAddress createLogicalAddress(String decription, String logicalAdress) {
+	public LogicalAddress createLogicalAddress(String description, String logicalAdress) {
 		LogicalAddress logicalAddress = new LogicalAddress();
-		logicalAddress.setDescription(decription);
+		logicalAddress.setDescription(description);
 		logicalAddress.setLogicalAddress(logicalAdress);
 		logicalAddressRepository.save(logicalAddress);
 		return logicalAddress;
@@ -152,10 +133,10 @@ public class TestUtil {
 		serviceContractRepository.save(serviceContract);
 		return serviceContract;
 	}
-	public InstalledContract createInstlledContract(ConnectionPoint connectionPoint, ServiceContract serviceContract) {
+	public InstalledContract createInstalledContract(ConnectionPoint connectionPoint, ServiceContract serviceContract) {
 		InstalledContract installedContract = new InstalledContract();
-		installedContract.setConnectionPoint(connectionPoint);;
-		installedContract.setServiceContract(serviceContract);;
+		installedContract.setConnectionPoint(connectionPoint);
+		installedContract.setServiceContract(serviceContract);
 		installedContractRepository.save(installedContract);
 		return installedContract;
 	}
@@ -189,5 +170,4 @@ public class TestUtil {
 		connectionPointRepository.deleteAll();
 
 	}
-
 }

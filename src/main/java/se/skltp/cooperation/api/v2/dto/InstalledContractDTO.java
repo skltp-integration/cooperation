@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import se.skltp.cooperation.domain.InstalledContract;
-import se.skltp.cooperation.domain.ServiceConsumer;
 
 
 /**

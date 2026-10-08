@@ -9,8 +9,6 @@ package se.skltp.cooperation.api.v2.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,16 +23,13 @@ import se.skltp.cooperation.domain.ServiceConsumer;
 import se.skltp.cooperation.service.ServiceConsumerCriteria;
 import se.skltp.cooperation.service.ServiceConsumerService;
 import se.skltp.cooperation.api.exception.ResourceNotFoundException;
-import se.skltp.cooperation.api.v2.dto.ServiceConsumerDTO;
 
-import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -51,8 +46,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 class ServiceConsumerControllerTest {
 
-	@InjectMocks
-	ServiceConsumerController serConCtrl;
 	@MockitoBean
 	private ServiceConsumerService serviceConsumerServiceMock;
 
@@ -60,22 +53,13 @@ class ServiceConsumerControllerTest {
 
 	private ServiceConsumer cons1;
 	private ServiceConsumer cons2;
-	private ServiceConsumerDTO dto1;
-	private ServiceConsumerDTO dto2;
 
 
     @Autowired
     private WebApplicationContext wac;
 
-	@PostConstruct
-	void setup() {
-		MockitoAnnotations.openMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(serConCtrl).build();
-	}
-
 	@BeforeEach
 	void setUpTestData() {
-
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
@@ -92,20 +76,6 @@ class ServiceConsumerControllerTest {
 		cons2.setId(2L);
 		cons2.setDescription("dto2.description");
 		cons2.setHsaId("dto2.hsaId");
-
-		// DTO fixture -  to be discarded.
-		dto1 = new ServiceConsumerDTO(
-			1L,
-			"dto1.description",
-			"dto1.hsaId",
-			null
-		);
-		dto2 = new ServiceConsumerDTO(
-			2L,
-			"dto2.description",
-			"dto2.hsaId",
-			null
-		);
 	}
 
 	@Test

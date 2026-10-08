@@ -7,6 +7,7 @@
  */
 package se.skltp.cooperation.api.v2.controller;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -55,19 +56,20 @@ class CooperationControllerTest {
 	private Cooperation coop2;
 
     @Autowired
-    private WebApplicationContext wac;
+    private WebApplicationContext webAppCtx;
 
 	@InjectMocks
-	CooperationController uut;
+	CooperationController coopCtrl;
+	private AutoCloseable mocks;
 
 	@BeforeEach
 	void setUpTestData() {
 
 		// Spring Boot 4 removed MockitoTestExecutionListener, which used to initialise
 		// @InjectMocks fields for us. Same pattern as ServiceConsumerControllerTest.
-		MockitoAnnotations.openMocks(this);
+		mocks = MockitoAnnotations.openMocks(this);
 
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(((request, response, chain) -> {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppCtx).addFilter(((request, response, chain) -> {
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
         })).build();
@@ -123,6 +125,11 @@ class CooperationControllerTest {
 		coop2.setLogicalAddress(la2);
 		coop2.setServiceConsumer(sc2);
 		coop2.setServiceContract(contract2);
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		mocks.close();
 	}
 
 	@Test
@@ -277,7 +284,7 @@ class CooperationControllerTest {
 		c.setLogicalAddress(new LogicalAddress());
 		c.setServiceConsumer(new ServiceConsumer());
 		c.setServiceContract(new ServiceContract());
-		uut.includeOrNot(Arrays.asList(CooperationController.INCLUDE_LOGICALADDRESS, CooperationController.INCLUDE_SERVICECONSUMER), c);
+		coopCtrl.includeOrNot(Arrays.asList(CooperationController.INCLUDE_LOGICALADDRESS, CooperationController.INCLUDE_SERVICECONSUMER), c);
 		assertNotNull(c.getLogicalAddress());
 		assertNotNull(c.getServiceConsumer());
 		assertNull(c.getConnectionPoint());

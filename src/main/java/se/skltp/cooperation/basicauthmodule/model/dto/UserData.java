@@ -13,7 +13,6 @@
 package se.skltp.cooperation.basicauthmodule.model.dto;
 
 import org.jspecify.annotations.NonNull;
-import se.skltp.cooperation.basicauthmodule.MyUserDetailsService;
 
 import java.util.List;
 

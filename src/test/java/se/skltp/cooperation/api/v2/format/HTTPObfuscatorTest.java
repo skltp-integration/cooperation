@@ -9,23 +9,20 @@ package se.skltp.cooperation.api.v2.format;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HTTPObfuscatorTest {
+class HTTPObfuscatorTest {
 
 	private HTTPObfuscator uut;
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() {
 		uut = new HTTPObfuscatorImpl();
-
 	}
 
-
 	@Test
-	public void test() throws Exception {
+	void test() {
 		verify("http://abcdef.se","http://....def.se");
 		verify("http://abcdefghij.se/","http://....hij.se");
 		verify("http://abcdefghij.se:443","http://....hij.se....443");
@@ -34,9 +31,7 @@ public class HTTPObfuscatorTest {
 		verify("http://abcdefghij.se/adapter/npo/npo/v1","http://....hij.se..../v1");
 	}
 
-
 	private void verify(String original, String expectedResult) {
 		assertEquals(expectedResult,uut.obfuscate(original));
 	}
-
 }
