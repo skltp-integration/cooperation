@@ -14,8 +14,6 @@ import se.skltp.cooperation.domain.ServiceDomain;
 
 /**
  * A ServiceDomain Data Transfer Object
- *
- * @author Jan Vasternas
  */
 @JsonRootName("serviceDomain")
 @JsonInclude(Include.NON_EMPTY)
