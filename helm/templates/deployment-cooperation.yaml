@@ -19,6 +19,7 @@ spec:
         {{- include "cooperation.selectorLabels" . | nindent 8 }}
         monitoring: prometheus
     spec:
+      automountServiceAccountToken: false
       imagePullSecrets:
         - name: regcred
       containers:

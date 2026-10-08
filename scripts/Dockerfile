@@ -1,7 +1,9 @@
 FROM groovy:4.0-jdk21
 
 USER root
-RUN apt update && apt install -y mailutils openssh-client
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssh-client \
+    && rm -rf /var/lib/apt/lists/*
 USER groovy
 
 COPY --chown=groovy:groovy cooperation/*.groovy scripts/

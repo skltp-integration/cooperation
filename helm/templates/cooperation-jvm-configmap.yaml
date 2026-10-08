@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: cooperation-jvm-configmap
 data:
-  JAVA_OPTS: "{{ .Values.deployment.javaOpts }}"
+  JAVA_OPTS: {{ .Values.deployment.javaOpts | quote }}
 
