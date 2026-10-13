@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:6a85f89c-9eac-4f7c-964a-0d7d94d749f7",
+  "serialNumber": "urn:uuid:c1a90a14-370e-4ad0-9a39-c6c26a41d26b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-01T19:46:22+00:00",
+    "timestamp": "2026-10-13T09:29:35+00:00",
     "tools": {
       "components": [
         {
@@ -20,7 +20,7 @@
       ]
     },
     "component": {
-      "bom-ref": "65e8bfb8-0c2e-410d-a6ba-1656fbf8cfee",
+      "bom-ref": "4fa0ef96-d0f8-4cf7-a5bb-aea8fd8dd740",
       "type": "application",
       "name": ".",
       "properties": [
@@ -33,9 +33,9 @@
   },
   "components": [
     {
-      "bom-ref": "3f3c50b7-e250-4a51-90c3-fb52d92aa23d",
+      "bom-ref": "0eda98f0-1faa-4fdc-89b7-0e7c007c7d46",
       "type": "application",
-      "name": "pom.xml",
+      "name": "scripts/pom.xml",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -48,9 +48,9 @@
       ]
     },
     {
-      "bom-ref": "df9b2b18-bd11-4732-82a9-774042a0425e",
+      "bom-ref": "841d93d7-de3f-4468-903c-4bda754342cb",
       "type": "application",
-      "name": "scripts/pom.xml",
+      "name": "pom.xml",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -1523,31 +1523,6 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/org.modelmapper/modelmapper@3.2.6",
-      "type": "library",
-      "group": "org.modelmapper",
-      "name": "modelmapper",
-      "version": "3.2.6",
-      "licenses": [
-        {
-          "license": {
-            "id": "Apache-2.0"
-          }
-        }
-      ],
-      "purl": "pkg:maven/org.modelmapper/modelmapper@3.2.6",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "org.modelmapper:modelmapper:3.2.6::6132451d"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "pom"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:maven/org.reactivestreams/reactive-streams@1.0.4",
       "type": "library",
       "group": "org.reactivestreams",
@@ -2941,11 +2916,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.2",
+      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.3",
       "type": "library",
       "group": "se.skltp.cooperation",
       "name": "cooperation",
-      "version": "1.10.2",
+      "version": "1.10.3",
       "licenses": [
         {
           "license": {
@@ -2953,11 +2928,11 @@
           }
         }
       ],
-      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.10.2",
+      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.10.3",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "se.skltp.cooperation:cooperation:1.10.2::233d4470"
+          "value": "se.skltp.cooperation:cooperation:1.10.3::b2db829b"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -3043,22 +3018,22 @@
   ],
   "dependencies": [
     {
-      "ref": "3f3c50b7-e250-4a51-90c3-fb52d92aa23d",
-      "dependsOn": [
-        "pkg:maven/se.skltp.cooperation/cooperation@1.10.2"
-      ]
-    },
-    {
-      "ref": "65e8bfb8-0c2e-410d-a6ba-1656fbf8cfee",
-      "dependsOn": [
-        "3f3c50b7-e250-4a51-90c3-fb52d92aa23d",
-        "df9b2b18-bd11-4732-82a9-774042a0425e"
-      ]
-    },
-    {
-      "ref": "df9b2b18-bd11-4732-82a9-774042a0425e",
+      "ref": "0eda98f0-1faa-4fdc-89b7-0e7c007c7d46",
       "dependsOn": [
         "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT"
+      ]
+    },
+    {
+      "ref": "4fa0ef96-d0f8-4cf7-a5bb-aea8fd8dd740",
+      "dependsOn": [
+        "0eda98f0-1faa-4fdc-89b7-0e7c007c7d46",
+        "841d93d7-de3f-4468-903c-4bda754342cb"
+      ]
+    },
+    {
+      "ref": "841d93d7-de3f-4468-903c-4bda754342cb",
+      "dependsOn": [
+        "pkg:maven/se.skltp.cooperation/cooperation@1.10.3"
       ]
     },
     {
@@ -3384,10 +3359,6 @@
     },
     {
       "ref": "pkg:maven/org.jspecify/jspecify@1.0.1",
-      "dependsOn": []
-    },
-    {
-      "ref": "pkg:maven/org.modelmapper/modelmapper@3.2.6",
       "dependsOn": []
     },
     {
@@ -3824,7 +3795,7 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.2",
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.3",
       "dependsOn": [
         "pkg:maven/co.elastic.logging/log4j2-ecs-layout@1.8.0",
         "pkg:maven/com.h2database/h2@2.4.240",
@@ -3833,7 +3804,6 @@
         "pkg:maven/io.github.openfeign.querydsl/querydsl-jpa@7.6",
         "pkg:maven/io.micrometer/micrometer-registry-prometheus@1.17.1",
         "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5",
-        "pkg:maven/org.modelmapper/modelmapper@3.2.6",
         "pkg:maven/org.springframework.boot/spring-boot-starter-actuator@4.1.1",
         "pkg:maven/org.springframework.boot/spring-boot-starter-data-jpa@4.1.1",
         "pkg:maven/org.springframework.boot/spring-boot-starter-log4j2@4.1.1",
@@ -3875,6 +3845,12 @@
       "ratings": [
         {
           "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "ghsa"
           },
           "score": 5.3,
@@ -3904,6 +3880,9 @@
         },
         {
           "url": "https://access.redhat.com/security/cve/CVE-2026-19032"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-19032"
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind"
@@ -3968,6 +3947,12 @@
       "ratings": [
         {
           "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "bitnami"
           },
           "score": 9.1,
@@ -4009,6 +3994,9 @@
         },
         {
           "url": "https://access.redhat.com/security/cve/CVE-2026-65182"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-65182"
         },
         {
           "url": "https://github.com/apache/tomcat/commit/8bafd79a3b54684e80e9cb1bafd4746aede7d3f5"
@@ -4061,6 +4049,12 @@
       "ratings": [
         {
           "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "bitnami"
           },
           "score": 9.8,
@@ -4103,6 +4097,9 @@
           "url": "https://access.redhat.com/security/cve/CVE-2026-65905"
         },
         {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-65905"
+        },
+        {
           "url": "https://github.com/apache/tomcat"
         },
         {
@@ -4138,6 +4135,12 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "ghsa"
           },
           "score": 7.5,
@@ -4147,12 +4150,30 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 7.5,
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
         }
       ],
       "cwes": [
@@ -4166,7 +4187,31 @@
           "url": "https://avd.aquasec.com/nvd/cve-2026-68497"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:77648"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-68497"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-68497"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2531964"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2531964"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68497"
+        },
+        {
+          "url": "https://errata.almalinux.org/10/ALSA-2026-77648.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:77648"
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind"
@@ -4196,6 +4241,12 @@
           "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-q4xh-88c3-wmh7"
         },
         {
+          "url": "https://linux.oracle.com/cve/CVE-2026-68497.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-77648.html"
+        },
+        {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-68497"
         },
         {
@@ -4223,6 +4274,12 @@
         "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
       },
       "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
         {
           "source": {
             "name": "bitnami"
@@ -4265,6 +4322,9 @@
         },
         {
           "url": "https://access.redhat.com/security/cve/CVE-2026-68525"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-68525"
         },
         {
           "url": "https://github.com/apache/tomcat"
@@ -4320,6 +4380,12 @@
       "ratings": [
         {
           "source": {
+            "name": "amazon"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "ghsa"
           },
           "score": 5.6,
@@ -4349,6 +4415,12 @@
         },
         {
           "url": "https://access.redhat.com/security/cve/CVE-2026-83557"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-83557"
+        },
+        {
+          "url": "https://getsafety.com/vulnerabilities/SFTY-20260901-46895/CVE-2026-83557"
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind"
@@ -4402,6 +4474,186 @@
       ]
     },
     {
+      "id": "CVE-2026-89407",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 5.9,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "cwes": [
+        400,
+        1333
+      ],
+      "description": "NumberInput.looksLikeValidNumber() in FasterXML jackson-core pre-validates \"stringified numbers\" with two regular expressions: PATTERN_FLOAT ([+-]?[0-9]*[\\.]?[0-9]+([eE][+-]?[0-9]+)?), present since 2.17.0, and PATTERN_FLOAT_TRAILING_DOT, added in 2.17.2. PATTERN_FLOAT places adjacent quantifiers over the same character class -- an optional [0-9]* run, an optional dot, then a required [0-9]+ run -- so input that ultimately fails to match forces Java's backtracking engine to retry every possible split point of the digit run. \n\n\n\nMatching cost therefore grows with the square of the input length. \n\n\n\nAn attacker who can supply JSON that an application deserializes into a numeric target type reaches this method through jackson-databind's default String-to-number coercion (StdDeserializer and NumberDeserializers for BigDecimal, BigInteger, Double and Float). \n\n\n\nBecause StreamReadConstraints.maxStringLength defaults to 20,000,000 characters, no constraint bounds the input before it reaches the regex. \n\n\n\nTesting by the reporter confirmed O(n^2) growth across five consecutive input-size doublings, with a single 160,000-character string consuming roughly 74 seconds in one call; a small number of concurrent requests of ordinary body size can therefore exhaust a server's request-handling thread pool. \n\n\n\nThe affected method does not exist before 2.17.0, so 2.16.x and earlier releases are not affected. \n\n\n\nThe fix replaces both regular expressions with a hand-rolled single-pass scan.",
+      "recommendation": "Upgrade tools.jackson.core:jackson-core to version 3.1.7, 3.2.2",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2026-89407"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2026-89407"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-89407"
+        },
+        {
+          "url": "https://getsafety.com/vulnerabilities/SFTY-20260922-89449/CVE-2026-89407"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/commit/731e794f62623aa0d86ced52490166be903fbb1d"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/commit/e7acd64cc99bd346704423dc2bfea1ab0a08ddff"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/issues/1649"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/pull/1650"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/pull/1701"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-p6pp-m3f8-5c89"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89407"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-89407"
+        }
+      ],
+      "published": "2026-09-22T15:17:21+00:00",
+      "updated": "2026-09-22T20:00:03+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/tools.jackson.core/jackson-core@3.1.5",
+          "versions": [
+            {
+              "version": "3.1.5",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-89425",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "cwes": [
+        400,
+        770
+      ],
+      "description": "UTF8DataInputJsonParser._reportInvalidToken() in FasterXML jackson-core builds the offending-token text for its error message by appending Java identifier characters to a StringBuilder in a loop that has no upper bound. Unlike the three sibling parser implementations, including UTF8StreamJsonParser, it never consults ErrorReportConfiguration.getMaxErrorTokenLength() (default 256). A malformed token supplied to a parser created through JsonFactory.createParser(DataInput) is therefore accumulated in full. No StreamReadConstraints setting mitigates this: maxDocumentLength cannot be applied to DataInput sources at all, and maxStringLength does not cover this path because the accumulation bypasses ReadConstrainedTextBuffer. The reporter measured a 20,000,109-character exception message from a 20-million-character malformed token on the DataInput path, against 367 characters for identical input on the InputStream path. Scaling the payload drives the StringBuilder, which also incurs byte-to-char expansion and internal array doubling, to many times the raw payload size and can trigger OutOfMemoryError for the whole JVM. UTF8DataInputJsonParser was introduced in 2.8.0 together with createParser(DataInput); releases before 2.8.0 do not contain the affected class.",
+      "recommendation": "Upgrade tools.jackson.core:jackson-core to version 3.1.7, 3.2.3",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2026-89425"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2026-89425"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-89425"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/commit/211cf2c5d91abbec38067f37efc1363cd4e88ee3"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/pull/1698"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/releases/tag/jackson-core-2.18.11"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/releases/tag/jackson-core-3.2.3"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-7hhh-6rmp-j9qf"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89425"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-89425"
+        }
+      ],
+      "published": "2026-09-23T03:17:04+00:00",
+      "updated": "2026-09-24T20:43:32+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/tools.jackson.core/jackson-core@3.1.5",
+          "versions": [
+            {
+              "version": "3.1.5",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "CVE-2026-91776",
       "source": {
         "name": "ghsa",
@@ -4416,6 +4668,21 @@
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
         }
       ],
       "cwes": [
@@ -4428,6 +4695,12 @@
           "url": "https://avd.aquasec.com/nvd/cve-2026-91776"
         },
         {
+          "url": "https://access.redhat.com/security/cve/CVE-2026-91776"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-91776"
+        },
+        {
           "url": "https://github.com/FasterXML/jackson-databind"
         },
         {
@@ -4435,6 +4708,9 @@
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind/issues/6203"
+        },
+        {
+          "url": "https://github.com/FasterXML/jackson-databind/pull/6203"
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind/releases/tag/jackson-databind-2.18.11"
@@ -4456,6 +4732,9 @@
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91776"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-91776"
         }
       ],
       "published": "2026-09-23T03:17:04+00:00",
@@ -4487,6 +4766,21 @@
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "ubuntu"
+          },
+          "severity": "medium"
         }
       ],
       "cwes": [
@@ -4497,6 +4791,12 @@
       "advisories": [
         {
           "url": "https://avd.aquasec.com/nvd/cve-2026-91777"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2026-91777"
+        },
+        {
+          "url": "https://advisory.echohq.com/cve/CVE-2026-91777"
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind"
@@ -4530,6 +4830,9 @@
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91777"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-91777"
         }
       ],
       "published": "2026-09-23T03:17:04+00:00",
