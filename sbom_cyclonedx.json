@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:c1a90a14-370e-4ad0-9a39-c6c26a41d26b",
+  "serialNumber": "urn:uuid:22dfd8d0-427f-444a-9f4c-1481f314b7d9",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-13T09:29:35+00:00",
+    "timestamp": "2026-10-13T10:12:56+00:00",
     "tools": {
       "components": [
         {
@@ -20,7 +20,7 @@
       ]
     },
     "component": {
-      "bom-ref": "4fa0ef96-d0f8-4cf7-a5bb-aea8fd8dd740",
+      "bom-ref": "84ffc2e8-b270-46fb-9bd7-a1c4bfc92761",
       "type": "application",
       "name": ".",
       "properties": [
@@ -33,7 +33,7 @@
   },
   "components": [
     {
-      "bom-ref": "0eda98f0-1faa-4fdc-89b7-0e7c007c7d46",
+      "bom-ref": "6e54e3ea-817a-4b47-b082-4a494a79eef7",
       "type": "application",
       "name": "scripts/pom.xml",
       "properties": [
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "bom-ref": "841d93d7-de3f-4468-903c-4bda754342cb",
+      "bom-ref": "ff047756-baf8-42e8-b616-3d03031f8954",
       "type": "application",
       "name": "pom.xml",
       "properties": [
@@ -2916,11 +2916,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.3",
+      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.4",
       "type": "library",
       "group": "se.skltp.cooperation",
       "name": "cooperation",
-      "version": "1.10.3",
+      "version": "1.10.4",
       "licenses": [
         {
           "license": {
@@ -2928,11 +2928,11 @@
           }
         }
       ],
-      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.10.3",
+      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.10.4",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "se.skltp.cooperation:cooperation:1.10.3::b2db829b"
+          "value": "se.skltp.cooperation:cooperation:1.10.4::e8d93335"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -3018,22 +3018,22 @@
   ],
   "dependencies": [
     {
-      "ref": "0eda98f0-1faa-4fdc-89b7-0e7c007c7d46",
+      "ref": "6e54e3ea-817a-4b47-b082-4a494a79eef7",
       "dependsOn": [
         "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT"
       ]
     },
     {
-      "ref": "4fa0ef96-d0f8-4cf7-a5bb-aea8fd8dd740",
+      "ref": "84ffc2e8-b270-46fb-9bd7-a1c4bfc92761",
       "dependsOn": [
-        "0eda98f0-1faa-4fdc-89b7-0e7c007c7d46",
-        "841d93d7-de3f-4468-903c-4bda754342cb"
+        "6e54e3ea-817a-4b47-b082-4a494a79eef7",
+        "ff047756-baf8-42e8-b616-3d03031f8954"
       ]
     },
     {
-      "ref": "841d93d7-de3f-4468-903c-4bda754342cb",
+      "ref": "ff047756-baf8-42e8-b616-3d03031f8954",
       "dependsOn": [
-        "pkg:maven/se.skltp.cooperation/cooperation@1.10.3"
+        "pkg:maven/se.skltp.cooperation/cooperation@1.10.4"
       ]
     },
     {
@@ -3795,7 +3795,7 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.3",
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.4",
       "dependsOn": [
         "pkg:maven/co.elastic.logging/log4j2-ecs-layout@1.8.0",
         "pkg:maven/com.h2database/h2@2.4.240",

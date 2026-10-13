@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:833eb7a1-eea8-4d7e-818c-dd77b5758ee2",
+  "serialNumber": "urn:uuid:ebc3dd5c-e5c7-4780-8dfe-dce1d7750d7a",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-13T09:33:30+00:00",
+    "timestamp": "2026-10-13T10:15:38+00:00",
     "tools": {
       "components": [
         {
@@ -20,10 +20,10 @@
       ]
     },
     "component": {
-      "bom-ref": "pkg:oci/cooperation-scripts@sha256:87bd5779f8692d5fdd9fa880f810e842354a1fbc30184d8dca8281715a80587e?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "bom-ref": "pkg:oci/cooperation-scripts@sha256:a7157f057373dab27f49bbbd1c088ff07b28194370cb0786b01908116e0e5b12?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "type": "container",
-      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.10.3",
-      "purl": "pkg:oci/cooperation-scripts@sha256:87bd5779f8692d5fdd9fa880f810e842354a1fbc30184d8dca8281715a80587e?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "name": "docker.drift.inera.se/ntjp/cooperation-scripts:1.10.4",
+      "purl": "pkg:oci/cooperation-scripts@sha256:a7157f057373dab27f49bbbd1c088ff07b28194370cb0786b01908116e0e5b12?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "properties": [
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -31,11 +31,7 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:30bbb73af5067f00bdf975e20454dbd66110eeb38cfdfdc3caf9e5765a007096"
+          "value": "sha256:33cfa1f2338d1ecf3e9d83f229c20585aa8ba46f56d036d7829828659401b4c0"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -43,11 +39,7 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:549ee1902b681e45e94adcd0fe7fc679d8a812bafc846d9e0fb4e721ca25a0e1"
-        },
-        {
-          "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:56c3c08c43dfc81aea11e2f0744fb6d8f034b109d2de953e36749f1051dc4b87"
+          "value": "sha256:4eb9375b9f8ec3c4faceb278cea13803fc53204a22a4e2deb96af8ac3a92eac5"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -63,7 +55,7 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:72c9081c22f1136319d5c5498ba521e8186e3e4b12bff76ecdce42853266b41c"
+          "value": "sha256:67419a4c490ce3fb4124f3ebadc9ac1783f111ea42a3c7288d3d7bd31a3fe01c"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -71,7 +63,7 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:a308713bced6ca2f5bb50cc42471c51b6c933e5ad86f3b2e2c2ae0b375f89770"
+          "value": "sha256:9479886bff2b40da1a85e4dc783ea4d63aaca0d8dc9782ca98ac76c55466279e"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -79,11 +71,15 @@
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:c85e4bd1c4bf357f683b1e7d7dccffb728fa648147d3f1af759eb9c64194ede5"
+          "value": "sha256:b9f67cc651d38d04d07915fc2d1f499dc90bba5d72576dae53bc3a6ac5f52bc8"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
-          "value": "sha256:cb7ba1214035d4f12d100f2e996907b48a64f460a952870ef2047cc5f95ec4b4"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:c85e4bd1c4bf357f683b1e7d7dccffb728fa648147d3f1af759eb9c64194ede5"
         },
         {
           "name": "aquasecurity:trivy:DiffID",
@@ -94,8 +90,12 @@
           "value": "sha256:d81fb2a7c6ee3be05fdefaa7fd223be219c1ab172083ec1b994c3ecda33ac0a8"
         },
         {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:dd836f2f5b8323adcfa98c07422fbda1a15ab9a9e8cebacc734dcfa19f88063c"
+        },
+        {
           "name": "aquasecurity:trivy:ImageID",
-          "value": "sha256:26834913aaf494d2d4b023df4686716984d5d43c4d57433c8fb07d0ec8f7b6c7"
+          "value": "sha256:79bd320940abda753d7f6919ce4e0f7bee0c8e3aaf3defa4b8d37d5e18947425"
         },
         {
           "name": "aquasecurity:trivy:Labels:org.opencontainers.image.version",
@@ -103,11 +103,11 @@
         },
         {
           "name": "aquasecurity:trivy:Reference",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.10.3"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.10.4"
         },
         {
           "name": "aquasecurity:trivy:RepoDigest",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:87bd5779f8692d5fdd9fa880f810e842354a1fbc30184d8dca8281715a80587e"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts@sha256:a7157f057373dab27f49bbbd1c088ff07b28194370cb0786b01908116e0e5b12"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -115,7 +115,7 @@
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
-          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.10.3"
+          "value": "docker.drift.inera.se/ntjp/cooperation-scripts:1.10.4"
         },
         {
           "name": "aquasecurity:trivy:RepoTag",
@@ -138,7 +138,7 @@
   },
   "components": [
     {
-      "bom-ref": "24f4f4f5-5d3d-4286-a076-4091ad995eb6",
+      "bom-ref": "1566d641-a4c1-4225-a222-d024132fdad9",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy-test",
@@ -173,7 +173,23 @@
       ]
     },
     {
-      "bom-ref": "46681d9b-e73d-4782-96f9-f812c18ce9f5",
+      "bom-ref": "2a970722-73be-4fd2-afe8-b4ba9cd947ef",
+      "type": "operating-system",
+      "name": "ubuntu",
+      "version": "24.04",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "ubuntu"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6020ada8-e7e2-4a0d-ad4e-98b421ac0427",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy",
@@ -208,35 +224,7 @@
       ]
     },
     {
-      "bom-ref": "81d5b8ad-baad-4e36-8626-844bd22bda83",
-      "type": "library",
-      "group": "org.apache.groovy",
-      "name": "groovy-test",
-      "version": "4.0.33",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "5993c266ae25507f2ef6e63e6547c5cc48d15f4f"
-        }
-      ],
-      "purl": "pkg:maven/org.apache.groovy/groovy-test@4.0.33",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "opt/groovy/grooid/groovy-test-4.0.33-grooid.jar"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d104fa64fcd1e81fde6c6f3cae645e7b943c48fc8f92d34daf970d0ec0ee4d7e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "jar"
-        }
-      ]
-    },
-    {
-      "bom-ref": "a928b324-047b-4ef2-bed7-bea0c42a5681",
+      "bom-ref": "b414b751-e79e-43c3-a5ab-f396047c8a81",
       "type": "library",
       "group": "org.apache.groovy",
       "name": "groovy",
@@ -271,18 +259,30 @@
       ]
     },
     {
-      "bom-ref": "dc294544-ce4b-4f81-9c3a-67fa7ceaf90f",
-      "type": "operating-system",
-      "name": "ubuntu",
-      "version": "24.04",
+      "bom-ref": "c01d42e9-7a07-4f17-a47a-41c2f4c47118",
+      "type": "library",
+      "group": "org.apache.groovy",
+      "name": "groovy-test",
+      "version": "4.0.33",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "5993c266ae25507f2ef6e63e6547c5cc48d15f4f"
+        }
+      ],
+      "purl": "pkg:maven/org.apache.groovy/groovy-test@4.0.33",
       "properties": [
         {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "opt/groovy/grooid/groovy-test-4.0.33-grooid.jar"
         },
         {
-          "name": "aquasecurity:trivy:Type",
-          "value": "ubuntu"
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d104fa64fcd1e81fde6c6f3cae645e7b943c48fc8f92d34daf970d0ec0ee4d7e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "jar"
         }
       ]
     },
@@ -3677,7 +3677,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:72c9081c22f1136319d5c5498ba521e8186e3e4b12bff76ecdce42853266b41c"
+          "value": "sha256:b9f67cc651d38d04d07915fc2d1f499dc90bba5d72576dae53bc3a6ac5f52bc8"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -3994,7 +3994,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:72c9081c22f1136319d5c5498ba521e8186e3e4b12bff76ecdce42853266b41c"
+          "value": "sha256:b9f67cc651d38d04d07915fc2d1f499dc90bba5d72576dae53bc3a6ac5f52bc8"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4489,7 +4489,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:72c9081c22f1136319d5c5498ba521e8186e3e4b12bff76ecdce42853266b41c"
+          "value": "sha256:b9f67cc651d38d04d07915fc2d1f499dc90bba5d72576dae53bc3a6ac5f52bc8"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -4746,7 +4746,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:72c9081c22f1136319d5c5498ba521e8186e3e4b12bff76ecdce42853266b41c"
+          "value": "sha256:b9f67cc651d38d04d07915fc2d1f499dc90bba5d72576dae53bc3a6ac5f52bc8"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -9439,7 +9439,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:72c9081c22f1136319d5c5498ba521e8186e3e4b12bff76ecdce42853266b41c"
+          "value": "sha256:b9f67cc651d38d04d07915fc2d1f499dc90bba5d72576dae53bc3a6ac5f52bc8"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -10765,7 +10765,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -10805,7 +10805,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -10840,7 +10840,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -10875,7 +10875,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -10938,7 +10938,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11008,7 +11008,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11078,7 +11078,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11258,7 +11258,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11286,7 +11286,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11326,7 +11326,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11466,7 +11466,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11536,7 +11536,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11674,7 +11674,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -11714,7 +11714,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13095,7 +13095,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13361,7 +13361,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:16fa4833034c1c936c9b7c50f57ffb0cac80814b1c25eac99750478e07d781e9"
+          "value": "sha256:c5a85e9cef7928b3a2e29edd219c662829b0bc433ad29358b07d0bfc8a97c632"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -13512,23 +13512,11 @@
   ],
   "dependencies": [
     {
-      "ref": "24f4f4f5-5d3d-4286-a076-4091ad995eb6",
+      "ref": "1566d641-a4c1-4225-a222-d024132fdad9",
       "dependsOn": []
     },
     {
-      "ref": "46681d9b-e73d-4782-96f9-f812c18ce9f5",
-      "dependsOn": []
-    },
-    {
-      "ref": "81d5b8ad-baad-4e36-8626-844bd22bda83",
-      "dependsOn": []
-    },
-    {
-      "ref": "a928b324-047b-4ef2-bed7-bea0c42a5681",
-      "dependsOn": []
-    },
-    {
-      "ref": "dc294544-ce4b-4f81-9c3a-67fa7ceaf90f",
+      "ref": "2a970722-73be-4fd2-afe8-b4ba9cd947ef",
       "dependsOn": [
         "pkg:deb/ubuntu/apt@2.8.3?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/bash@5.2.21-2ubuntu4?arch=amd64&distro=ubuntu-24.04",
@@ -13573,6 +13561,18 @@
         "pkg:deb/ubuntu/util-linux@2.39.3-9ubuntu6.6?arch=amd64&distro=ubuntu-24.04",
         "pkg:deb/ubuntu/wget@1.21.4-1ubuntu4.5?arch=amd64&distro=ubuntu-24.04"
       ]
+    },
+    {
+      "ref": "6020ada8-e7e2-4a0d-ad4e-98b421ac0427",
+      "dependsOn": []
+    },
+    {
+      "ref": "b414b751-e79e-43c3-a5ab-f396047c8a81",
+      "dependsOn": []
+    },
+    {
+      "ref": "c01d42e9-7a07-4f17-a47a-41c2f4c47118",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/ubuntu/adduser@3.137ubuntu1?arch=all&distro=ubuntu-24.04",
@@ -14989,13 +14989,13 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:oci/cooperation-scripts@sha256:87bd5779f8692d5fdd9fa880f810e842354a1fbc30184d8dca8281715a80587e?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
+      "ref": "pkg:oci/cooperation-scripts@sha256:a7157f057373dab27f49bbbd1c088ff07b28194370cb0786b01908116e0e5b12?arch=amd64&repository_url=docker.drift.inera.se%2Fntjp%2Fcooperation-scripts",
       "dependsOn": [
-        "24f4f4f5-5d3d-4286-a076-4091ad995eb6",
-        "46681d9b-e73d-4782-96f9-f812c18ce9f5",
-        "81d5b8ad-baad-4e36-8626-844bd22bda83",
-        "a928b324-047b-4ef2-bed7-bea0c42a5681",
-        "dc294544-ce4b-4f81-9c3a-67fa7ceaf90f",
+        "1566d641-a4c1-4225-a222-d024132fdad9",
+        "2a970722-73be-4fd2-afe8-b4ba9cd947ef",
+        "6020ada8-e7e2-4a0d-ad4e-98b421ac0427",
+        "b414b751-e79e-43c3-a5ab-f396047c8a81",
+        "c01d42e9-7a07-4f17-a47a-41c2f4c47118",
         "pkg:maven/ch.qos.logback/logback-classic@1.5.16",
         "pkg:maven/ch.qos.logback/logback-core@1.5.16",
         "pkg:maven/co.elastic.logging/ecs-logging-core@1.6.0",
