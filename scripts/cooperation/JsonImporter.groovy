@@ -120,10 +120,14 @@ public class JsonImporter {
     }
 
     private static String platformEnvironmentToPlatform(String platformEnvironment) {
-        return platformEnvironment.split("_")[0].toUpperCase()
+		def parts = platformEnvironment.split("_")
+		def (first, second) = parts
+        return first.toUpperCase()
     }
 
     private static String platformEnvironmentToEnvironment(String platformEnvironment) {
-        return platformEnvironment.split("_")[1].toUpperCase()
+		def parts = platformEnvironment.split("_")
+		def (first, second) = parts
+        return second.toUpperCase()
     }
 }

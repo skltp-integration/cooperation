@@ -23,12 +23,12 @@ error=$?
 
 sleep 10
 
-if [ ! -f ${outfile} ]; then
+if [[ ! -f ${outfile} ]]; then
     echo "Cooperation import verification lyckades inte." > ${outfile}
     error=1
 fi
 
-if [ ! $error -eq 0 ]; then
+if [[ ! $error -eq 0 ]]; then
   groovy SendAlertEmail.groovy \
       -login ${COOPERATION_MAIL_LOGIN} \
       -host ${COOPERATION_MAIL_SERVER} \

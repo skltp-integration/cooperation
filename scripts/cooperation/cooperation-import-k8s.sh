@@ -50,9 +50,9 @@ groovy VerifyCooperation.groovy \
     -out "${outfileBefore}" \
     -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
 
-if [ "$COOPERATION_FORCE_IMPORT" == "true" ]; then
+if [[ "$COOPERATION_FORCE_IMPORT" == "true" ]]; then
   printlog "INFO" "Force import active, will proceed even if up-to-date."
-elif [ $exitCode -eq 0 ]; then
+elif [[ $exitCode -eq 0 ]]; then
   printlog "INFO" "Cooperation is up-to-date, aborting."
   exit 0
 fi
@@ -82,7 +82,7 @@ no_existing_dumps=()
 for dump_file in "${dump_files[@]}"
 do
   path="${coopImportFilesDir}/takdump_${dump_file}.json"
-  if [ ! -f $path ]; then
+  if [[ ! -f $path ]]; then
     no_existing_dumps+=("$dump_file")
   fi
 done
@@ -105,15 +105,15 @@ for dump_file in "${dump_files[@]}"
 do
   fileName="takdump_${dump_file}.json"
   groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
-  if [ $? -eq 0 ]; then
+  if [[ $? -eq 0 ]]; then
     transformed_dumps+=("$dump_file")
   else
     printlog "ERROR" "Failed to transform ${fileName}"
-    if [ -f "${latestDir}/${fileName}" ]; then
+    if [[ -f "${latestDir}/${fileName}" ]]; then
       printlog "WARN" "Using older version of ${fileName}"
       cp ${latestDir}/${fileName} ${coopImportFilesDir}
       groovy TransformTakExportFormatToCooperationImportFormat.groovy -d ${coopImportFilesDir} -f ${fileName} || true
-      if [ $? -eq 0 ]; then
+      if [[ $? -eq 0 ]]; then
         transformed_dumps+=("$dump_file")
       else
         printlog "ERROR" "Failed to transform older version of ${fileName}"
@@ -154,7 +154,7 @@ groovy VerifyCooperation.groovy \
     -out "${outfileAfter}" \
     -auth "${COOPERATION_AUTH_USER_AND_PASS}" || exitCode=$?
 
-if [ $exitCode -eq 0 ]; then
+if [[ $exitCode -eq 0 ]]; then
   rm -rf ${latestDir}
   cp -r ${currentDir} ${latestDir}
 fi
