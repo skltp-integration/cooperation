@@ -56,7 +56,7 @@ public class ServiceContractController {
 												 @RequestParam(required = false) Long serviceConsumerId,
 												 @RequestParam(required = false) Long serviceProducerId,
 												 @RequestParam(required = false) Long serviceDomainId) {
-		log.debug("REST request to get all ServiceContracts as json");
+		log.info("REST request to get all ServiceContracts as json");
 
 		return getAll(namespace, connectionPointId, logicalAddressId, serviceConsumerId,
 				serviceProducerId, serviceDomainId);
@@ -73,7 +73,7 @@ public class ServiceContractController {
 											  @RequestParam(required = false) Long serviceConsumerId,
 											  @RequestParam(required = false) Long serviceProducerId,
 											  @RequestParam(required = false) Long serviceDomainId) {
-		log.debug("REST request to get all ServiceContracts as xml");
+		log.info("REST request to get all ServiceContracts as xml");
 
 		ServiceContractListDTO result = new ServiceContractListDTO();
 		result.setServiceContracts(getAll(namespace, connectionPointId, logicalAddressId,
@@ -88,14 +88,14 @@ public class ServiceContractController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceContractDTO get(@PathVariable Long id) {
-		log.debug("REST request to get ServiceContract : {}", id);
+		log.info("REST request to get ServiceContract : {}", id);
 
-		ServiceContract cp = serviceContractService.find(id);
-		if (cp == null) {
-			log.debug("Connection point with id {} not found", id);
-			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
+		ServiceContract sc = serviceContractService.find(id);
+		if (sc == null) {
+			log.debug("ServiceContract with id {} not found", id);
+			throw new ResourceNotFoundException("ServiceContract with id " + id + " not found");
 		}
-		return toDTO(cp);
+		return toDTO(sc);
 	}
 
 	private List<ServiceContractDTO> getAll(String namespace, Long connectionPointId,

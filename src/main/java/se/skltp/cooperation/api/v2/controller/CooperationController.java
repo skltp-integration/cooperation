@@ -63,7 +63,7 @@ public class CooperationController {
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
-		log.debug("REST request to get all Cooperations as json");
+		log.info("REST request to get all Cooperations as json");
 
 		return getAll(serviceConsumerId, logicalAddressId, serviceContractId, connectionPointId,
 				serviceDomainId, include);
@@ -79,7 +79,7 @@ public class CooperationController {
 										  @RequestParam(required = false) Long connectionPointId,
 										  @RequestParam(required = false) Long serviceDomainId,
 										  @RequestParam(required = false) String include) {
-		log.debug("REST request to get all Cooperations as xml");
+		log.info("REST request to get all Cooperations as xml");
 
 		CooperationListDTO result = new CooperationListDTO();
 		result.setCooperations(getAll(serviceConsumerId, logicalAddressId, serviceContractId,
@@ -93,7 +93,7 @@ public class CooperationController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public CooperationDTO get(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {}", id);
+		log.info("REST request to get Cooperation : {}", id);
 
 		Cooperation coop = cooperationService.find(id);
 		if (coop == null) {

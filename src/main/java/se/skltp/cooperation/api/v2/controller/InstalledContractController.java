@@ -55,7 +55,7 @@ public class InstalledContractController {
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceDomainId) {
-		log.debug("REST request to get all InstalledContracts as json");
+		log.info("REST request to get all InstalledContracts as json");
 
 		return getAll(connectionPointId, serviceContractId, serviceDomainId);
 
@@ -69,7 +69,7 @@ public class InstalledContractController {
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceDomainId) {
-		log.debug("REST request to get all ServiceContracts as xml");
+		log.info("REST request to get all InstalledContracts as xml");
 
 		InstalledContractListDTO result = new InstalledContractListDTO();
 		result.setInstalledContracts(getAll(connectionPointId, serviceContractId, serviceDomainId));
@@ -83,14 +83,14 @@ public class InstalledContractController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public InstalledContractDTO get(@PathVariable Long id) {
-		log.debug("REST request to get ServiceContract : {}", id);
+		log.info("REST request to get InstalledContract : {}", id);
 
-		InstalledContract cp = installedContractService.find(id);
-		if (cp == null) {
+		InstalledContract ic = installedContractService.find(id);
+		if (ic == null) {
 			log.debug("Installed Contract with id {} not found", id);
 			throw new ResourceNotFoundException("Installed Contract with id " + id + " not found");
 		}
-		return toDTO(cp);
+		return toDTO(ic);
 	}
 
 	private List<InstalledContractDTO> getAll( Long connectionPointId, Long serviceContractId,
