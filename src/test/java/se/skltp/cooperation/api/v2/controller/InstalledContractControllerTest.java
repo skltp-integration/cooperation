@@ -9,7 +9,9 @@ package se.skltp.cooperation.api.v2.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -18,6 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 import java.util.Arrays;
 
@@ -33,6 +36,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import se.skltp.cooperation.Application;
+import se.skltp.cooperation.api.exception.ResourceNotFoundException;
 import se.skltp.cooperation.domain.InstalledContract;
 import se.skltp.cooperation.service.InstalledContractCriteria;
 import se.skltp.cooperation.service.InstalledContractService;
@@ -98,5 +102,56 @@ class InstalledContractControllerTest {
 
 		verify(installedContractServiceMock, times(1)).findAll(any(InstalledContractCriteria.class));
 		verifyNoMoreInteractions(installedContractServiceMock);
+	}
+
+	@Test
+	void getAllAcceptXml_shouldReturnAll() throws Exception {
+		when(installedContractServiceMock.findAll(any(InstalledContractCriteria.class)))
+				.thenReturn(Arrays.asList(ic1, ic2));
+
+		mockMvc.perform(get("/api/v2/installedContracts").accept(MediaType.APPLICATION_XML))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
+				.andExpect(xpath("/installedContracts/installedContract[1]/id").string("1"))
+				.andExpect(xpath("/installedContracts/installedContract[2]/id").string("2"));
+
+		verify(installedContractServiceMock).findAll(any(InstalledContractCriteria.class));
+	}
+
+	@Test
+	void getAcceptJson_shouldReturnOne() throws Exception {
+		when(installedContractServiceMock.find(ic1.getId())).thenReturn(ic1);
+
+		mockMvc.perform(get("/api/v2/installedContracts/{id}", ic1.getId())
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8"))
+				.andExpect(jsonPath("$.id").value(ic1.getId().intValue()));
+
+		verify(installedContractServiceMock).find(ic1.getId());
+	}
+
+	@Test
+	void getAcceptXml_shouldReturnOne() throws Exception {
+		when(installedContractServiceMock.find(ic1.getId())).thenReturn(ic1);
+
+		mockMvc.perform(get("/api/v2/installedContracts/{id}", ic1.getId())
+						.accept(MediaType.APPLICATION_XML))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
+				.andExpect(xpath("/installedContract/id").string("1"));
+
+		verify(installedContractServiceMock).find(ic1.getId());
+	}
+
+	@Test
+	void get_shouldReturnNotFoundWhenContractDoesNotExist() throws Exception {
+		when(installedContractServiceMock.find(anyLong())).thenReturn(null);
+
+		mockMvc.perform(get("/api/v2/installedContracts/{id}", Long.MAX_VALUE)
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(result -> assertInstanceOf(ResourceNotFoundException.class,
+						result.getResolvedException()));
 	}
 }
