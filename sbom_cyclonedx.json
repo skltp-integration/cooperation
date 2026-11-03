@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:22dfd8d0-427f-444a-9f4c-1481f314b7d9",
+  "serialNumber": "urn:uuid:0f7581a2-61d2-4e77-a747-4b978482092b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-13T10:12:56+00:00",
+    "timestamp": "2026-11-03T10:03:02+00:00",
     "tools": {
       "components": [
         {
@@ -20,7 +20,7 @@
       ]
     },
     "component": {
-      "bom-ref": "84ffc2e8-b270-46fb-9bd7-a1c4bfc92761",
+      "bom-ref": "88ad5930-365b-4899-83a8-fafe2e99f582",
       "type": "application",
       "name": ".",
       "properties": [
@@ -33,9 +33,9 @@
   },
   "components": [
     {
-      "bom-ref": "6e54e3ea-817a-4b47-b082-4a494a79eef7",
+      "bom-ref": "27735317-9bae-4f1e-9ee9-5f1faaa04f83",
       "type": "application",
-      "name": "scripts/pom.xml",
+      "name": "pom.xml",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -48,9 +48,9 @@
       ]
     },
     {
-      "bom-ref": "ff047756-baf8-42e8-b616-3d03031f8954",
+      "bom-ref": "64921c1e-d3ff-46b2-9d51-7bacae5c2593",
       "type": "application",
-      "name": "pom.xml",
+      "name": "scripts/pom.xml",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -2916,11 +2916,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.4",
+      "bom-ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.5",
       "type": "library",
       "group": "se.skltp.cooperation",
       "name": "cooperation",
-      "version": "1.10.4",
+      "version": "1.10.5",
       "licenses": [
         {
           "license": {
@@ -2928,11 +2928,11 @@
           }
         }
       ],
-      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.10.4",
+      "purl": "pkg:maven/se.skltp.cooperation/cooperation@1.10.5",
       "properties": [
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "se.skltp.cooperation:cooperation:1.10.4::e8d93335"
+          "value": "se.skltp.cooperation:cooperation:1.10.5::f5a01c52"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -3018,22 +3018,22 @@
   ],
   "dependencies": [
     {
-      "ref": "6e54e3ea-817a-4b47-b082-4a494a79eef7",
+      "ref": "27735317-9bae-4f1e-9ee9-5f1faaa04f83",
+      "dependsOn": [
+        "pkg:maven/se.skltp.cooperation/cooperation@1.10.5"
+      ]
+    },
+    {
+      "ref": "64921c1e-d3ff-46b2-9d51-7bacae5c2593",
       "dependsOn": [
         "pkg:maven/se.skltp.cooperation/cooperation-scripts@1.8.0-SNAPSHOT"
       ]
     },
     {
-      "ref": "84ffc2e8-b270-46fb-9bd7-a1c4bfc92761",
+      "ref": "88ad5930-365b-4899-83a8-fafe2e99f582",
       "dependsOn": [
-        "6e54e3ea-817a-4b47-b082-4a494a79eef7",
-        "ff047756-baf8-42e8-b616-3d03031f8954"
-      ]
-    },
-    {
-      "ref": "ff047756-baf8-42e8-b616-3d03031f8954",
-      "dependsOn": [
-        "pkg:maven/se.skltp.cooperation/cooperation@1.10.4"
+        "27735317-9bae-4f1e-9ee9-5f1faaa04f83",
+        "64921c1e-d3ff-46b2-9d51-7bacae5c2593"
       ]
     },
     {
@@ -3795,7 +3795,7 @@
       "dependsOn": []
     },
     {
-      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.4",
+      "ref": "pkg:maven/se.skltp.cooperation/cooperation@1.10.5",
       "dependsOn": [
         "pkg:maven/co.elastic.logging/log4j2-ecs-layout@1.8.0",
         "pkg:maven/com.h2database/h2@2.4.240",
@@ -3847,7 +3847,7 @@
           "source": {
             "name": "amazon"
           },
-          "severity": "medium"
+          "severity": "high"
         },
         {
           "source": {
@@ -3947,6 +3947,12 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "amazon"
           },
           "severity": "high"
@@ -3971,12 +3977,24 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 8.2,
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
         }
       ],
       "cwes": [
@@ -3993,10 +4011,76 @@
           "url": "http://www.openwall.com/lists/oss-security/2026/08/26/1"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:92869"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-65182"
         },
         {
           "url": "https://advisory.echohq.com/cve/CVE-2026-65182"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524162"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524162"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65182"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65637"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65905"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65927"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68525"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68569"
+        },
+        {
+          "url": "https://errata.almalinux.org/8/ALSA-2026-92869.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:92869"
         },
         {
           "url": "https://github.com/apache/tomcat/commit/8bafd79a3b54684e80e9cb1bafd4746aede7d3f5"
@@ -4006,6 +4090,12 @@
         },
         {
           "url": "https://github.com/apache/tomcat/commit/b79752d2a8578d94743e2a95c50af297f780c0df"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-65182.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-93469.html"
         },
         {
           "url": "https://lists.apache.org/thread/joosxvzc9b49ttj8lj0jw9mqt0ml767m"
@@ -4041,12 +4131,18 @@
       ]
     },
     {
-      "id": "CVE-2026-65905",
+      "id": "CVE-2026-65637",
       "source": {
         "name": "ghsa",
         "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
       },
       "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
         {
           "source": {
             "name": "amazon"
@@ -4073,12 +4169,221 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "redhat"
+          },
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
+        }
+      ],
+      "cwes": [
+        20
+      ],
+      "description": "Improper Input Validation vulnerability in Apache Tomcat due to incomplete fix for CVE-2026-32990.\n\n\n\nThis issue affects Apache Tomcat: from 11.0.20 through 11.0.24, from 10.1.53 through 10.1.57, from 9.0.115 through 9.0.120.\n\n\n\nUsers are recommended to upgrade to version 11.0.25, 10.1.58 or 9.0.121, which fix the issue.",
+      "recommendation": "Upgrade org.apache.tomcat.embed:tomcat-embed-core to version 11.0.25, 10.1.59, 9.0.121",
+      "advisories": [
+        {
+          "url": "https://avd.aquasec.com/nvd/cve-2026-65637"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2026:92869"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/CVE-2026-65637"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524162"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524162"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65182"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65637"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65905"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65927"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68525"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68569"
+        },
+        {
+          "url": "https://errata.almalinux.org/8/ALSA-2026-92869.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:92869"
+        },
+        {
+          "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/40012414df828a56126f76a7339669c7c919aae7"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/8639b20f045c88f356b887204f52e897399f0de7"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/b823e88da077f5fa973e34d72359bded9f621e3c"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/releases/tag/10.1.58"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/releases/tag/11.0.25"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/releases/tag/9.0.121"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-65637.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-93469.html"
+        },
+        {
+          "url": "https://lists.apache.org/thread/djog953z1ohsyt25bdvhfzbmsy22vgcj"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-65637"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-65637"
+        }
+      ],
+      "published": "2026-08-25T22:17:05+00:00",
+      "updated": "2026-08-27T15:19:42+00:00",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.24",
+          "versions": [
+            {
+              "version": "11.0.24",
+              "status": "affected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-65905",
+      "source": {
+        "name": "ghsa",
+        "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+      },
+      "ratings": [
+        {
+          "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "bitnami"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "ghsa"
+          },
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        },
+        {
+          "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 4.8,
           "severity": "medium",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
         }
       ],
       "cwes": [
@@ -4094,13 +4399,85 @@
           "url": "http://www.openwall.com/lists/oss-security/2026/08/26/4"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:92869"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-65905"
         },
         {
           "url": "https://advisory.echohq.com/cve/CVE-2026-65905"
         },
         {
+          "url": "https://bugzilla.redhat.com/2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524162"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524162"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65182"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65637"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65905"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65927"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68525"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68569"
+        },
+        {
+          "url": "https://errata.almalinux.org/8/ALSA-2026-92869.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:92869"
+        },
+        {
           "url": "https://github.com/apache/tomcat"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-65905.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-93469.html"
         },
         {
           "url": "https://lists.apache.org/thread/9v114xlpgbzrrbzz5vf9f6r2q4wnxwwj"
@@ -4136,6 +4513,12 @@
         {
           "source": {
             "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
           },
           "severity": "high"
         },
@@ -4190,6 +4573,9 @@
           "url": "https://access.redhat.com/errata/RHSA-2026:77648"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:80504"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-68497"
         },
         {
@@ -4208,7 +4594,7 @@
           "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68497"
         },
         {
-          "url": "https://errata.almalinux.org/10/ALSA-2026-77648.html"
+          "url": "https://errata.almalinux.org/9/ALSA-2026-80504.html"
         },
         {
           "url": "https://errata.rockylinux.org/RLSA-2026:77648"
@@ -4244,7 +4630,7 @@
           "url": "https://linux.oracle.com/cve/CVE-2026-68497.html"
         },
         {
-          "url": "https://linux.oracle.com/errata/ELSA-2026-77648.html"
+          "url": "https://linux.oracle.com/errata/ELSA-2026-80504.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-68497"
@@ -4276,6 +4662,12 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "amazon"
           },
           "severity": "high"
@@ -4300,12 +4692,24 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 6.5,
           "severity": "medium",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
         }
       ],
       "cwes": [
@@ -4321,10 +4725,76 @@
           "url": "http://www.openwall.com/lists/oss-security/2026/08/26/7"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:92869"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-68525"
         },
         {
           "url": "https://advisory.echohq.com/cve/CVE-2026-68525"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2524162"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524151"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524154"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524155"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524160"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524161"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2524162"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65182"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65637"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65905"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-65927"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68525"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-68569"
+        },
+        {
+          "url": "https://errata.almalinux.org/8/ALSA-2026-92869.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:92869"
         },
         {
           "url": "https://github.com/apache/tomcat"
@@ -4337,6 +4807,12 @@
         },
         {
           "url": "https://github.com/apache/tomcat/commit/58123aa468a20e2a079b7e0c68a4009e2475c098"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-68525.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-93469.html"
         },
         {
           "url": "https://lists.apache.org/thread/x1y2lfsgzxwzc456f8954vbvgn03zhd7"
@@ -4382,7 +4858,7 @@
           "source": {
             "name": "amazon"
           },
-          "severity": "medium"
+          "severity": "high"
         },
         {
           "source": {
@@ -4482,6 +4958,12 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "amazon"
           },
           "severity": "high"
@@ -4497,12 +4979,24 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 5.9,
           "severity": "medium",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
         }
       ],
       "cwes": [
@@ -4516,10 +5010,49 @@
           "url": "https://avd.aquasec.com/nvd/cve-2026-89407"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:86706"
+        },
+        {
+          "url": "https://access.redhat.com/errata/RHSA-2026:92408"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-89407"
         },
         {
           "url": "https://advisory.echohq.com/cve/CVE-2026-89407"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2538720"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2539084"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2519756"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2519775"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2538720"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89058"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89059"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89407"
+        },
+        {
+          "url": "https://errata.almalinux.org/9/ALSA-2026-86706.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:92408"
         },
         {
           "url": "https://getsafety.com/vulnerabilities/SFTY-20260922-89449/CVE-2026-89407"
@@ -4544,6 +5077,12 @@
         },
         {
           "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-p6pp-m3f8-5c89"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-89407.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-92408.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89407"
@@ -4575,6 +5114,12 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "medium"
+        },
+        {
+          "source": {
             "name": "amazon"
           },
           "severity": "high"
@@ -4590,12 +5135,24 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 7.5,
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "medium"
         }
       ],
       "cwes": [
@@ -4609,10 +5166,40 @@
           "url": "https://avd.aquasec.com/nvd/cve-2026-89425"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:86706"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-89425"
         },
         {
           "url": "https://advisory.echohq.com/cve/CVE-2026-89425"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2538720"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2539084"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2538720"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2539084"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89407"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89425"
+        },
+        {
+          "url": "https://errata.almalinux.org/9/ALSA-2026-86706.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:86706"
         },
         {
           "url": "https://github.com/FasterXML/jackson-core"
@@ -4631,6 +5218,12 @@
         },
         {
           "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-7hhh-6rmp-j9qf"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-89425.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-90909.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89425"
@@ -4660,6 +5253,12 @@
         "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
       },
       "ratings": [
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
         {
           "source": {
             "name": "ghsa"
@@ -4760,6 +5359,18 @@
       "ratings": [
         {
           "source": {
+            "name": "alma"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
+            "name": "amazon"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "ghsa"
           },
           "score": 7.5,
@@ -4769,12 +5380,24 @@
         },
         {
           "source": {
+            "name": "oracle-oval"
+          },
+          "severity": "high"
+        },
+        {
+          "source": {
             "name": "redhat"
           },
           "score": 7.5,
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "rocky"
+          },
+          "severity": "high"
         },
         {
           "source": {
@@ -4793,10 +5416,31 @@
           "url": "https://avd.aquasec.com/nvd/cve-2026-91777"
         },
         {
+          "url": "https://access.redhat.com/errata/RHSA-2026:85231"
+        },
+        {
           "url": "https://access.redhat.com/security/cve/CVE-2026-91777"
         },
         {
           "url": "https://advisory.echohq.com/cve/CVE-2026-91777"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/2539085"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2539085"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-91777"
+        },
+        {
+          "url": "https://errata.almalinux.org/9/ALSA-2026-85231.html"
+        },
+        {
+          "url": "https://errata.rockylinux.org/RLSA-2026:85231"
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind"
@@ -4827,6 +5471,12 @@
         },
         {
           "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-cxp5-3px4-pw24"
+        },
+        {
+          "url": "https://linux.oracle.com/cve/CVE-2026-91777.html"
+        },
+        {
+          "url": "https://linux.oracle.com/errata/ELSA-2026-90909.html"
         },
         {
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91777"
