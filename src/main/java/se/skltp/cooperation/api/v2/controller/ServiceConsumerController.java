@@ -54,11 +54,10 @@ public class ServiceConsumerController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all ServiceConsumers as json");
+		log.info("REST request to get all ServiceConsumers as json");
 
-		List<ServiceConsumerDTO> result = getAll(connectionPointId, logicalAddressId,
+		return getAll(connectionPointId, logicalAddressId,
 				serviceContractId, serviceProducerId);
-		return result;
 
 	}
 
@@ -73,7 +72,7 @@ public class ServiceConsumerController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all ServiceConsumers as xml");
+		log.info("REST request to get all ServiceConsumers as xml");
 
 		ServiceConsumerListDTO result = new ServiceConsumerListDTO();
 		result.setServiceConsumers(getAll(connectionPointId, logicalAddressId, serviceContractId,
@@ -87,11 +86,11 @@ public class ServiceConsumerController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceConsumerDTO get(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {}", id);
+		log.info("REST request to get ServiceConsumer : {}", id);
 
 		ServiceConsumer serviceConsumer = serviceConsumerService.find(id);
 		if (serviceConsumer == null) {
-			log.debug("Service consumer with id {} not found", id);
+			log.debug("ServiceConsumer with id {} not found", id);
 			throw new ResourceNotFoundException("Service consumer with id " + id + " not found");
 
 		}

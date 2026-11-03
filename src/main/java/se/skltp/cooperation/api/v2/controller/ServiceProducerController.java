@@ -55,7 +55,7 @@ public class ServiceProducerController {
 												 @RequestParam(required = false) Long logicalAddressId,
 												 @RequestParam(required = false) Long serviceContractId,
 												 @RequestParam(required = false) Long serviceConsumerId) {
-		log.debug("REST request to get all ServiceProducers as json");
+		log.info("REST request to get all ServiceProducers as json");
 
 		return getAll(hsaId, connectionPointId, logicalAddressId, serviceContractId,
 				serviceConsumerId);
@@ -71,7 +71,7 @@ public class ServiceProducerController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId) {
-		log.debug("REST request to get all ServiceProducers as xml");
+		log.info("REST request to get all ServiceProducers as xml");
 
 		ServiceProducerListDTO result = new ServiceProducerListDTO();
 		result.setServiceProducers(getAll(hsaId, connectionPointId, logicalAddressId,
@@ -85,7 +85,7 @@ public class ServiceProducerController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceProducerDTO get(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {}", id);
+		log.info("REST request to get ServiceProducer : {}", id);
 
 		ServiceProducer serviceProducer = serviceProducerService.find(id);
 		if (serviceProducer == null) {

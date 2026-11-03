@@ -56,7 +56,7 @@ public class LogicalAddressController {
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all LogicalAddresses as json");
+		log.info("REST request to get all LogicalAddresses as json");
 
 		return getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
 				serviceProducerId);
@@ -72,7 +72,7 @@ public class LogicalAddressController {
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceConsumerId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all LogicalAddresses as xml");
+		log.info("REST request to get all LogicalAddresses as xml");
 
 		LogicalAddressListDTO result = new LogicalAddressListDTO();
 		result.setLogicalAddresss(getAll(logicalAdress, connectionPointId, serviceContractId, serviceConsumerId,
@@ -86,14 +86,14 @@ public class LogicalAddressController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public LogicalAddressDTO get(@PathVariable Long id) {
-		log.debug("REST request to get LogicalAddress : {}", id);
+		log.info("REST request to get LogicalAddress : {}", id);
 
-		LogicalAddress cp = logicalAddressService.find(id);
-		if (cp == null) {
+		LogicalAddress la = logicalAddressService.find(id);
+		if (la == null) {
 			log.debug("Logical Adress with id {} not found", id);
 			throw new ResourceNotFoundException("Logical Adress with id " + id + " not found");
 		}
-		return toDTO(cp);
+		return toDTO(la);
 	}
 
 	private List<LogicalAddressDTO> getAll(String logicalAdress, Long connectionPointId,

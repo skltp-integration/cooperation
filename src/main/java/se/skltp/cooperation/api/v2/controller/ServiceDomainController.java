@@ -51,7 +51,7 @@ public class ServiceDomainController {
 	 */
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ServiceDomainDTO> getAllAsJson(@RequestParam(required = false) String namespace) {
-		log.debug("REST request to get all ServiceDomains as json");
+		log.info("REST request to get all ServiceDomains as json");
 
 		return getAll(namespace);
 
@@ -62,7 +62,7 @@ public class ServiceDomainController {
 	 */
 	@GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
 	public ServiceDomainListDTO getAllAsXml(@RequestParam(required = false) String namespace) {
-		log.debug("REST request to get all ServiceDomains as xml");
+		log.info("REST request to get all ServiceDomains as xml");
 
 		return new ServiceDomainListDTO(getAll(namespace));
 
@@ -75,14 +75,14 @@ public class ServiceDomainController {
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" }, produces = {
 		MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceDomainDTO getOne(@PathVariable Long id) {
-		log.debug("REST request to get ServiceDomain : {}", id);
+		log.info("REST request to get ServiceDomain : {}", id);
 
-		ServiceDomain cp = serviceDomainService.find(id);
-		if (cp == null) {
-			log.debug("Connection point with id {} not found", id);
-			throw new ResourceNotFoundException("Connection point with id " + id + " not found");
+		ServiceDomain sd = serviceDomainService.find(id);
+		if (sd == null) {
+			log.debug("ServiceDomain with id {} not found", id);
+			throw new ResourceNotFoundException("ServiceDomain with id " + id + " not found");
 		}
-		return toDTO(cp);
+		return toDTO(sd);
 	}
 
 	private List<ServiceDomainDTO> getAll(String namespace) {

@@ -55,7 +55,7 @@ public class ConnectionPointController {
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all ConnectionPoints as json");
+		log.info("REST request to get all ConnectionPoints as json");
 
 		return getAll(platform, environment, serviceConsumerId, logicalAddressId,
 				serviceContractId, serviceProducerId);
@@ -65,14 +65,13 @@ public class ConnectionPointController {
 	 * GET /connectionPoints -> get all the connectionPoints as xml
 	 */
 	@GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
-	@ResponseBody
 	public ConnectionPointListDTO getAllAsXml(@RequestParam(required = false) String platform,
 			@RequestParam(required = false) String environment,
 			@RequestParam(required = false) Long serviceConsumerId,
 			@RequestParam(required = false) Long logicalAddressId,
 			@RequestParam(required = false) Long serviceContractId,
 			@RequestParam(required = false) Long serviceProducerId) {
-		log.debug("REST request to get all ConnectionPoints as xml");
+		log.info("REST request to get all ConnectionPoints as xml");
 
 		return new ConnectionPointListDTO(getAll(platform, environment, serviceConsumerId,
 				logicalAddressId, serviceContractId, serviceProducerId));
@@ -84,7 +83,7 @@ public class ConnectionPointController {
 	 */
 	@GetMapping(value = { "/{id}", "/{id}.json", "/{id}.xml" })
 	public ConnectionPointDTO getOneAcceptHeader(@PathVariable Long id) {
-		log.debug("REST request to get ConnectionPoint : {}", id);
+		log.info("REST request to get ConnectionPoint : {}", id);
 
 		ConnectionPoint cp = connectionPointService.find(id);
 		if (cp == null) {

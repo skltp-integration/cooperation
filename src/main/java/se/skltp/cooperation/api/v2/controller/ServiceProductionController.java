@@ -68,7 +68,7 @@ public class ServiceProductionController {
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
-		log.debug("REST request to get all ServiceProductions as json");
+		log.info("REST request to get all ServiceProductions as json");
 
 		return getAll(physicalAddress, rivtaProfile, serviceProducerId, logicalAddressId,
 				serviceContractId, connectionPointId, serviceDomainId, include);
@@ -88,7 +88,7 @@ public class ServiceProductionController {
 			@RequestParam(required = false) Long connectionPointId,
 			@RequestParam(required = false) Long serviceDomainId,
 			@RequestParam(required = false) String include) {
-		log.debug("REST request to get all ServiceProductions as xml");
+		log.info("REST request to get all ServiceProductions as xml");
 
 		ServiceProductionListDTO result = new ServiceProductionListDTO();
 		result.setServiceProductions(getAll(physicalAddress, rivtaProfile, serviceProducerId,
@@ -104,7 +104,7 @@ public class ServiceProductionController {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ServiceProductionDTO get(@PathVariable Long id,
 			@RequestParam(required = false) String include) {
-		log.debug("REST request to get ConnectionPoint : {}", id);
+		log.info("REST request to get ServiceProduction : {}", id);
 
 		ServiceProduction serviceProduction = serviceProductionService.find(id);
 		if (serviceProduction == null) {
